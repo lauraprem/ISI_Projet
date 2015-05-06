@@ -1,12 +1,19 @@
 package model.graph.edge;
 
+import model.graph.ground.Ground;
 import model.graph.label.Label;
 import model.graph.Node;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Classe representant une arrete orientee et valuee
  */
 public class Edge {
+    private static final Logger logger = LogManager.getLogger();
+
+    private Long id = 0L;
+
     /**
      * valeur de l'arrete
      */
@@ -19,6 +26,11 @@ public class Edge {
      * Noeud destination de l'arrete orientee
      */
     private Node destination;
+
+    /**
+     * Terrain associé à l'arrête
+     */
+    private Ground ground;
 
     /**
      * construit une arrete orientee et valuee
@@ -86,9 +98,21 @@ public class Edge {
         this.destination = v2;
     }
 
+    public Ground getGround() {
+        return ground;
+    }
+
+    public Boolean updateGround() {
+        if(ground.updateType()) {
+            logger.info(String.format("L'arrête %s est maintenant inondée.", id));
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
     @Override
     public String toString() {
-        return source.getLabel().toString() + " ==> " + destination.getLabel().getLabel() + "(" + valuation + ")";
+        return source.getLabel().toString() + " ==> " + destination.getLabel().getLabel() + "(\"" + valuation + "\" " + ground.toString() + ")";
     }
 
 

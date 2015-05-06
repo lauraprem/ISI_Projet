@@ -1,1 +1,5 @@
 /target/
+
+.classpath
+.project
+ISI_projet.iml
