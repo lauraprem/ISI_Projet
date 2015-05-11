@@ -22,7 +22,7 @@ public class main {
 		vue.setLocationRelativeTo(null);
 		vue.setVisible(true);
 
-		MainControler controleurPrincipal = new MainControler(); //(modele, vue);
+		MainControler MainPrincipal = new MainControler(vue); //(modele, vue);
 	}
 
 	

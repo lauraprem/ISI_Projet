@@ -27,9 +27,10 @@ public class MenuHaut extends JPanel {
 
 		toolBar.add(Box.createRigidArea(HGAP));
 		this.add(toolBar);
-		this.addButton(toolBar, " Ajouter noeud ", "Créer noeud", null, this);
-		this.addButton(toolBar, " Ajouter feu ", "Ajouter feu", null, this);
-		this.addButton(toolBar, " Ajouter robot ", "Ajouter robot", null, this);
+		this.addButton(toolBar, " Ajouter noeud ", "Add_Noeud", null, this);
+		this.addButton(toolBar, " Ajouter arc ", "Add_arc", null, this);
+		this.addButton(toolBar, " Ajouter feu ", "Add_Feu", null, this);
+		this.addButton(toolBar, " Ajouter robot ", "Add_Robot", null, this);
 	}
 
 	public ArrayList<JButton> getListButon() {
