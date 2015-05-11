@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 public class MainWindow extends JFrame {
 
-//	private MenuFichier menuAppli;
-//	private MenuHaut menuHaut;
+	private MenuFichier menuFile;
+	private MenuHaut menuHaut;
 
 	public MainWindow() { //(Manager modele)
 		super("Robocup Rescue");
@@ -14,15 +14,16 @@ public class MainWindow extends JFrame {
 		getContentPane().setLayout(new BorderLayout(10, 10));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-//		menuAppli = new MenuFichier();
-//		setJMenuBar(menuAppli); // on installe le menu bar
-//		
-//		menuHaut = new MenuHaut(modele);
-//		getContentPane().add(menuHaut, "North")
-//
-		Drawing drawing = new Drawing("resources/pictures/mapsixieme.jpg"); //(modele);
-
+		menuFile = new MenuFichier();
+		setJMenuBar(menuFile);
+		
+		menuHaut = new MenuHaut();
+		getContentPane().add(menuHaut, "North");
+		
+		Drawing drawing = new Drawing("src/main/resources/pictures/mapsixieme.jpg"); //(modele);
 		getContentPane().add(drawing, "Center");
+		
+		this.setResizable(false);
 	}
 
 //	public MenuFichier getMenuAppli() {
