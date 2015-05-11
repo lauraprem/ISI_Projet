@@ -53,7 +53,7 @@ public class Edge {
         this.source = _v1;
         this.destination = _v2;
         this.ground = ground;
-        this.id = getMaxId();
+        this.setId(getMaxId());
         incrementMaxId();
     }
 
@@ -145,7 +145,7 @@ public class Edge {
         return id;
     }
     @XmlAttribute
-	public void setId(Long id) {
+	private void setId(Long id) {
 		this.id = id;
 	}
     @Override
