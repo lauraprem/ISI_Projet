@@ -17,8 +17,8 @@ public class MainWindow extends JFrame {
 		menuFile = new MenuFichier();
 		setJMenuBar(menuFile);
 		
-		menuHaut = new MenuHaut();
-		getContentPane().add(menuHaut, "North");
+//		menuHaut = new MenuHaut();
+//		getContentPane().add(menuHaut, "North");
 		
 		Drawing drawing = new Drawing("src/main/resources/pictures/mapsixieme.jpg"); //(modele);
 		getContentPane().add(drawing, "Center");
@@ -26,27 +26,19 @@ public class MainWindow extends JFrame {
 		this.setResizable(false);
 	}
 
-//	public MenuFichier getMenuAppli() {
-//		return menuAppli;
-//	}
-//
-//	public void setMenuAppli(MenuFichier menubar) {
-//		this.menuAppli = menubar;
-//	}
-//
-//	public MenuHaut getMenuHaut() {
-//		return menuHaut;
-//	}
-//
-//	public void setMenuHaut(MenuHaut menuHaut) {
-//		this.menuHaut = menuHaut;
-//	}
-//
-//	public MenuBas getMenuBas() {
-//		return menuBas;
-//	}
-//
-//	public void setMenuBas(MenuBas menuBas) {
-//		this.menuBas = menuBas;
-//	}
+	public MenuFichier getMenuFile() {
+		return menuFile;
+	}
+
+	public void setMenuFile(MenuFichier menuFile) {
+		this.menuFile = menuFile;
+	}
+
+	public MenuHaut getMenuHaut() {
+		return menuHaut;
+	}
+
+	public void setMenuHaut(MenuHaut menuHaut) {
+		this.menuHaut = menuHaut;
+	}
 }

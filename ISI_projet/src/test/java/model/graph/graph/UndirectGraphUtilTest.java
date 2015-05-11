@@ -20,11 +20,14 @@ import static org.junit.Assert.assertEquals;
  */
 public class UndirectGraphUtilTest {
     private IUndirectedGraph graph;
+    private Node onFire;
 
     @Before
     public void setUp() throws Exception {
         graph = new UndirectedGraph();
-        graph.addEdge(new Node(new StringLabel("test1"), new Point(1, 2)),
+        onFire = new Node(new StringLabel("test1"), new Point(1, 2));
+        onFire.increaseFireLevel(20);
+        graph.addEdge(onFire,
                 new Node(new StringLabel("test2"), new Point(-1, -2)),
                 new IntegerLabel(3),
                 new Ground(GroundType.FLAT, 1.0));
@@ -37,5 +40,12 @@ public class UndirectGraphUtilTest {
         Node n = new Node(new StringLabel("unlinkedNode"), new Point(-1, -5));
         unlinkedNodes.add(n);
         assertEquals(UndirectGraphUtil.getUnlinkedNodes(graph), unlinkedNodes);
+    }
+
+    @Test
+    public void testGetOnFireNodes() throws Exception {
+        ArrayList onFireNodes = new ArrayList<Node>();
+        onFireNodes.add(onFire);
+        assertEquals(UndirectGraphUtil.getUnlinkedNodes(graph), onFireNodes);
     }
 }
