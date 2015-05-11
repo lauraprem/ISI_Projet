@@ -21,8 +21,8 @@ public class UndirectedGraph implements IUndirectedGraph {
      * @param _node2
      */
     public void addEdge(Node _node1, Node _node2) {
-        directedGraph.addArc(new Edge(_node1, _node2, null));
-        directedGraph.addArc(new Edge(_node2, _node1, null));
+        directedGraph.addArc(new Edge(_node1, _node2, null, null));
+        directedGraph.addArc(new Edge(_node2, _node1, null, null));
     }
 
     /**
