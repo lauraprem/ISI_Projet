@@ -4,6 +4,7 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -19,30 +20,25 @@ import javax.swing.JPanel;
 
 public class Drawing extends JPanel implements Observer {
 	
-	public Drawing(String img) { //(modele)
-		//modele.AjoutObservateur(this);
-//		ImageIcon img = new ImageIcon("images/background.png").getImage());
-//		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-//	    setPreferredSize(size);
-//	    setMinimumSize(size);
-//	    setMaximumSize(size);
-//	    setSize(size);
-		
-		this.setBackground(Color.white);
-		this.setSize(new Dimension(600, 400));
-		this.setPreferredSize(new Dimension(600, 400));
-		
+	private Image img;
+
+	public Drawing(String img) {
+//		modele.AjoutObservateur(this);
+		this(new ImageIcon(img).getImage());
+	}
+
+	public Drawing(Image img) {
+		this.img = img;
+		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+		setPreferredSize(size);
+		setMinimumSize(size);
+		setMaximumSize(size);
+		setSize(size);
+		setLayout(null);
 	}
 
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-
-		Color c = g.getColor();
-		
-		Dimension dim = getSize();
-		g.setColor(Color.white);
-		g.fillRect(0,0,dim.width, dim.height);
-		g.setColor(c); 
+		g.drawImage(img, 0, 0, null);
 	}
 
 	public void Update() {
