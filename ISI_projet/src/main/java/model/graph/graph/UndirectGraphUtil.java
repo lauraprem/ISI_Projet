@@ -14,4 +14,7 @@ public class UndirectGraphUtil {
     public static List<Node> getUnlinkedNodes(IGraph graph) {
         return graph.getAllNodes().stream().filter(node -> !node.isLinked()).collect(Collectors.toList());
     }
+    public static List<Node> getOnFireNodes(IGraph graph) {
+        return graph.getAllNodes().stream().filter(node -> !node.isOnFire()).collect(Collectors.toList());
+    }
 }
