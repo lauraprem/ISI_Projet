@@ -30,7 +30,21 @@ public class EdgeTest {
     @Test
     public void testUpdateGround() throws Exception {
         GroundType expected = GroundType.FLOODED;
+        edge = new Edge(new Node(new StringLabel("test1"), new Point(1, 2)),
+                new Node(new StringLabel("test2"), new Point(-1, -2)),
+                new IntegerLabel(3),
+                new Ground(GroundType.FLAT, 1.0));
         edge.updateGround();
         assertEquals(String.format("Ground type is %s should be %s", edge.getGround().getType(), expected), expected, edge.getGround().getType());
+    }
+
+    @Test
+    public void testIds() throws Exception {
+        Long expected = edge.getId() + 1;
+        edge = new Edge(new Node(new StringLabel("test1"), new Point(1, 2)),
+                new Node(new StringLabel("test2"), new Point(-1, -2)),
+                new IntegerLabel(3),
+                new Ground(GroundType.FLAT, 1.0));
+        assertEquals(String.format("Id is %s should be %s", edge.getId(), expected), expected, edge.getId());
     }
 }
