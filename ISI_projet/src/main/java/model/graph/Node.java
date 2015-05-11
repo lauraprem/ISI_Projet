@@ -52,6 +52,15 @@ public class Node extends Point {
         incrementMaxId();
     }
 
+    private Boolean hasArc = Boolean.FALSE;
+
+    public Boolean getHasArc() {
+        return hasArc;
+    }
+
+    public void setHasArc(Boolean hasArc) {
+        this.hasArc = hasArc;
+    }
 
     private synchronized static Long getMaxId() {
         return maxId;
@@ -106,18 +115,20 @@ public class Node extends Point {
         if (fireLevel < 0) {
             this.fireLevel = 0;
             logger.warn(String.format("The level of the fire can't be negative, has been set to 0."));
-        }
-        this.fireLevel = fireLevel;
+        } else
+            this.fireLevel = fireLevel;
     }
 
     public void decreaseFireLevel(Integer diff) {
-        if (diff < 0) logger.warn(String.format("The level of the fire has been decreased of a negative amount, so it has been increased."));
+        if (diff < 0)
+            logger.warn(String.format("The level of the fire has been decreased of a negative amount, so it has been increased."));
         setFireLevel(getFireLevel() - diff);
     }
 
     public void increaseFireLevel(Integer diff) {
-        if (diff < 0) logger.warn(String.format("The level of the fire has been increased of a negative amount, so it has been decreased."));
-        setFireLevel(getFireLevel() - diff);
+        if (diff < 0)
+            logger.warn(String.format("The level of the fire has been increased of a negative amount, so it has been decreased."));
+        setFireLevel(getFireLevel() + diff);
     }
 
     public Boolean isOnFire() {
