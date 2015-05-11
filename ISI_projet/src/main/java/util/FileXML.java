@@ -38,7 +38,6 @@ public class FileXML {
 		Node noeud1=new Node(new StringLabel("noeud1"),new Point(1,0));
 		Node noeud2=new Node(new StringLabel("noeud2"),new Point(1,1));
 		Edge arc1=new Edge(noeud1, noeud2);
-		arc1.
 		arc1.getGround().setType(GroundType.FLAT);
 		graphe.setArc(arc1);
 		graphe.setNoeud(noeud1);
