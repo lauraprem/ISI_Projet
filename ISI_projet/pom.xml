@@ -10,6 +10,7 @@
 	<properties>
 		<junit.version>4.12</junit.version>
 		<log4j.version>2.2</log4j.version>
+		<bind.version>2.2.11</bind.version>
 	</properties>
 
 	<dependencies>
@@ -26,7 +27,7 @@
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
-			<version>2.2.11</version>
+			<version>${bind.version}</version>
 		</dependency>
 
 	</dependencies>
