@@ -4,6 +4,8 @@ import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IDirectedGraph;
 import model.graph.graph.IUndirectedGraph;
+import model.graph.ground.Ground;
+import model.graph.label.Label;
 
 import java.util.List;
 import java.util.Set;
@@ -17,12 +19,33 @@ public class UndirectedGraph implements IUndirectedGraph {
     /**
      * Ajoute une arrete au graph entre deux noeuds
      *
+     * @param edge
+     */
+    @Override
+    public void addEdge(Edge edge) {
+        directedGraph.addArc(edge);
+        directedGraph.addArc(edge.opposite());
+    }
+
+    /**
+     * Ajoute une arrete au graph entre deux noeuds
+     *
      * @param _node1
      * @param _node2
      */
     public void addEdge(Node _node1, Node _node2) {
-        directedGraph.addArc(new Edge(_node1, _node2, null, null));
-        directedGraph.addArc(new Edge(_node2, _node1, null, null));
+        addEdge(_node1, _node2, null, null);
+    }
+    /**
+     * Ajoute une arrete au graph entre deux noeuds
+     *
+     * @param _node1
+     * @param _node2
+     */
+    public void addEdge(Node _node1, Node _node2, Label valuation, Ground ground) {
+        directedGraph.addArc(new Edge(_node1, _node2, valuation, ground));
+        directedGraph.addArc(new Edge(_node2, _node1, valuation, ground));
+
     }
 
     /**

@@ -22,4 +22,8 @@ public class IntegerLabel implements Label {
         return String.valueOf(label);
     }
 
+    @Override
+    public IntegerLabel clone() {
+        return new IntegerLabel(label);
+    }
 }

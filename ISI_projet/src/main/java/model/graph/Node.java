@@ -149,7 +149,22 @@ public class Node extends Point {
         return true;
     }
 
-
+    /**
+     * Creates a new object of the same class and with the
+     * same contents as this object.
+     *
+     * @return a clone of this instance.
+     * @throws OutOfMemoryError if there is not enough memory.
+     * @see Cloneable
+     * @since 1.2
+     */
+    @Override
+    public Node clone() {
+        Node node = new Node(label.clone(), (Point) super.clone());
+        node.setFireLevel(fireLevel);
+        node.setLinked(linked);
+        return node;
+    }
 }
 
 

@@ -87,4 +87,9 @@ public class Ground {
         sb.append('}');
         return sb.toString();
     }
+    
+    @Override
+    public Ground clone() {
+        return new Ground(type, chancesOfGettingFlooded);
+    }
 }

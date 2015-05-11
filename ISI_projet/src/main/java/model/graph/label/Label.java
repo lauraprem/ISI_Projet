@@ -6,4 +6,6 @@ public interface Label {
     public void setLabel(Object label);
 
     public String toString();
+
+    public Label clone();
 }

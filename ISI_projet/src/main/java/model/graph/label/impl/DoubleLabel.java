@@ -21,4 +21,9 @@ public class DoubleLabel implements Label {
     public String toString() {
         return Double.toString(label);
     }
+
+    @Override
+    public DoubleLabel clone() {
+        return new DoubleLabel(label);
+    }
 }

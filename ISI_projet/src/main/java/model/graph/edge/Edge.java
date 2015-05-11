@@ -5,9 +5,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import model.graph.Node;
+import model.graph.Node;
 import model.graph.ground.Ground;
+import model.graph.ground.GroundType;
 import model.graph.label.Label;
-
+import model.graph.Node;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -57,15 +59,15 @@ public class Edge {
         incrementMaxId();
     }
 
-	/**
-	 * construit une arrete orientee et valuee
-	 *
-	 * @param _v1        noeud source
-	 * @param _v2        noeud destination
-	 */
-	public Edge(Node _v1, Node _v2) {
-		this(_v1, _v2, null, null);
-	}
+    /**
+     * construit une arrete orientee et valuee
+     *
+     * @param _v1 noeud source
+     * @param _v2 noeud destination
+     */
+    public Edge(Node _v1, Node _v2) {
+        this(_v1, _v2, null, null);
+    }
 
     private synchronized static Long getMaxId() {
         return maxId;
@@ -76,7 +78,7 @@ public class Edge {
     }
 
     private void incrementMaxId() {
-        setMaxId(getMaxId()+1);
+        setMaxId(getMaxId() + 1);
     }
 
 
@@ -134,7 +136,7 @@ public class Edge {
     }
 
     public Boolean updateGround() {
-        if(ground.updateType()) {
+        if (ground.updateType()) {
             logger.info(String.format("L'arrête %s est maintenant inondée.", id));
             return Boolean.TRUE;
         }
@@ -144,6 +146,15 @@ public class Edge {
     public Long getId() {
         return id;
     }
+
+
+    public Edge opposite() {
+        Edge opposite = this.clone();
+        opposite.setDestination(getSource());
+        opposite.setSource(getDestination());
+        return opposite;
+    }
+
     @XmlAttribute
 	private void setId(Long id) {
 		this.id = id;
@@ -153,5 +164,8 @@ public class Edge {
         return source.getLabel().toString() + " ==> " + destination.getLabel().getLabel() + "(\"" + valuation + "\" " + ground.toString() + ")";
     }
 
-
+    @Override
+    public Edge clone() {
+        return new Edge(source.clone(), destination.clone(), valuation.clone(), ground.clone());
+    }
 }

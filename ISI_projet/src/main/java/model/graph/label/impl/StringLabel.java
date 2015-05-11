@@ -22,4 +22,10 @@ public class StringLabel implements Label {
         return label;
     }
 
+    @Override
+    public StringLabel clone() {
+        return new StringLabel(label);
+    }
+
+
 }
