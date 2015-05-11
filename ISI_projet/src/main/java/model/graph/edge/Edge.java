@@ -42,6 +42,8 @@ public class Edge {
      * @param _valuation valeur de l'arrete
      */
     public Edge(Node _v1, Node _v2, Label _valuation, Ground ground) {
+        _v1.setLinked(Boolean.TRUE);
+        _v2.setLinked(Boolean.TRUE);
         this.valuation = _valuation;
         this.source = _v1;
         this.destination = _v2;

@@ -52,14 +52,14 @@ public class Node extends Point {
         incrementMaxId();
     }
 
-    private Boolean hasArc = Boolean.FALSE;
+    private Boolean linked = Boolean.FALSE;
 
-    public Boolean getHasArc() {
-        return hasArc;
+    public Boolean isLinked() {
+        return linked;
     }
 
-    public void setHasArc(Boolean hasArc) {
-        this.hasArc = hasArc;
+    public void setLinked(Boolean linked) {
+        this.linked = linked;
     }
 
     private synchronized static Long getMaxId() {
