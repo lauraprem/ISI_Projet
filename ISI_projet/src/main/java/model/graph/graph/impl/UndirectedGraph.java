@@ -66,7 +66,9 @@ public class UndirectedGraph implements IUndirectedGraph {
         return directedGraph.getAdjNodes(_n);
     }
 
-
+    public List<Edge> getArc(Node _n) {
+		return directedGraph.getArc(_n);
+	}
     @Override
     public String toString() {
         String str = String.format("%s\n", getClass().getName());

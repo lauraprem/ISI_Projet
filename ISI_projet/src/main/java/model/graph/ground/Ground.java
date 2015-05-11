@@ -5,10 +5,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * @author Alexandre
  *         06/05/2015
  */
+@XmlRootElement
 public class Ground {
     private static final Logger logger = LogManager.getLogger();
 
@@ -31,7 +35,7 @@ public class Ground {
     public GroundType getType() {
         return type;
     }
-
+    @XmlAttribute
     public void setType(GroundType type) {
         this.type = type;
     }

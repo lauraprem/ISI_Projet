@@ -1,14 +1,22 @@
 package model.graph.edge;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import model.graph.Node;
 import model.graph.ground.Ground;
 import model.graph.label.Label;
-import model.graph.Node;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * Classe representant une arrete orientee et valuee
+ * @author gael,corinne,alexandre,laura
+ *
  */
+@XmlRootElement
 public class Edge {
     private static final Logger logger = LogManager.getLogger();
 
@@ -30,6 +38,7 @@ public class Edge {
     /**
      * Terrain associé à l'arrête
      */
+    @XmlElement
     private Ground ground;
 
     /**
@@ -54,8 +63,21 @@ public class Edge {
 	public Edge(Node _v1, Node _v2) {
 		this(_v1, _v2, null);
 	}
-
-
+	/**
+	 * la valeur de l'id
+	 * @return
+	 */
+	public Long getId() {
+		return id;
+	}
+	/**
+	 * 
+	 * @param id	id du noeud
+	 */
+	@XmlAttribute
+	public void setId(Long id) {
+		this.id = id;
+	}
 	/**
      * @return la valeur de l'arrete
      */
@@ -66,6 +88,7 @@ public class Edge {
     /**
      * @param valuation
      */
+    @XmlElement
     public void setValuation(Label valuation) {
         this.valuation = valuation;
     }
@@ -80,6 +103,7 @@ public class Edge {
     /**
      * @param v1 noeud source
      */
+    @XmlElement
     public void setSource(Node v1) {
         this.source = v1;
     }
@@ -94,6 +118,7 @@ public class Edge {
     /**
      * @param v2 noeud destination
      */
+    @XmlElement
     public void setDestination(Node v2) {
         this.destination = v2;
     }
