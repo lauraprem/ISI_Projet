@@ -11,13 +11,12 @@ import java.util.Random;
  */
 public class Ground {
     private static final Logger logger = LogManager.getLogger();
-
     private static final Random random = new Random();
     /**
      * Probabilité que le terrain devienne inondé (flooded)
      * 0 par défaut
      */
-    private Double chancesOfGettingFlooded = 0.0;
+    private Double chancesOfGettingFlooded;
 
     /**
      * Type de terrain
@@ -25,7 +24,12 @@ public class Ground {
     private GroundType type;
 
     public Ground(GroundType type) {
+        this(type, 0.0);
+    }
+
+    public Ground(GroundType type, Double chancesOfGettingFlooded) {
         this.type = type;
+        this.chancesOfGettingFlooded = chancesOfGettingFlooded;
     }
 
     public GroundType getType() {
