@@ -1,6 +1,7 @@
 package model.graph.edge;
 
 import model.graph.ground.Ground;
+import model.graph.ground.GroundType;
 import model.graph.label.Label;
 import model.graph.Node;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +12,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class Edge {
     private static final Logger logger = LogManager.getLogger();
+    private static Long maxId = 0L;
 
     private Long id = 0L;
 
@@ -28,7 +30,7 @@ public class Edge {
     private Node destination;
 
     /**
-     * Terrain associé à l'arrête
+     * Terrain associÃ© Ã  l'arrÃªte
      */
     private Ground ground;
 
@@ -39,10 +41,13 @@ public class Edge {
      * @param _v2        noeud destination
      * @param _valuation valeur de l'arrete
      */
-    public Edge(Node _v1, Node _v2, Label _valuation) {
+    public Edge(Node _v1, Node _v2, Label _valuation, Ground ground) {
         this.valuation = _valuation;
         this.source = _v1;
         this.destination = _v2;
+        this.ground = ground;
+        this.id = getMaxId();
+        incrementMaxId();
     }
 
 	/**
@@ -52,11 +57,23 @@ public class Edge {
 	 * @param _v2        noeud destination
 	 */
 	public Edge(Node _v1, Node _v2) {
-		this(_v1, _v2, null);
+		this(_v1, _v2, null, null);
 	}
 
+    private synchronized static Long getMaxId() {
+        return maxId;
+    }
 
-	/**
+    private synchronized static void setMaxId(Long maxId) {
+        Edge.maxId = maxId;
+    }
+
+    private void incrementMaxId() {
+        setMaxId(getMaxId()+1);
+    }
+
+
+    /**
      * @return la valeur de l'arrete
      */
     public Label getValuation() {
@@ -102,12 +119,20 @@ public class Edge {
         return ground;
     }
 
+    public void setGround(Ground ground) {
+        this.ground = ground;
+    }
+
     public Boolean updateGround() {
         if(ground.updateType()) {
-            logger.info(String.format("L'arrête %s est maintenant inondée.", id));
+            logger.info(String.format("L'arrÃªte %s est maintenant inondÃ©e.", id));
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override
