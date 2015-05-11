@@ -1,7 +1,8 @@
 package model.graph;
 
 import model.graph.label.Label;
-import model.graph.label.impl.IntegerLabel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 
@@ -10,6 +11,7 @@ import java.awt.*;
  */
 
 public class Node extends Point {
+    private static final Logger logger = LogManager.getLogger();
     /**
      * etiquette du noeud
      */
@@ -60,7 +62,7 @@ public class Node extends Point {
     }
 
     private void incrementMaxId() {
-        setMaxId(getMaxId()+1);
+        setMaxId(getMaxId() + 1);
     }
 
     /**
@@ -101,7 +103,25 @@ public class Node extends Point {
     }
 
     public void setFireLevel(Integer fireLevel) {
+        if (fireLevel < 0) {
+            this.fireLevel = 0;
+            logger.warn(String.format("The level of the fire can't be negative, has been set to 0."));
+        }
         this.fireLevel = fireLevel;
+    }
+
+    public void decreaseFireLevel(Integer diff) {
+        if (diff < 0) logger.warn(String.format("The level of the fire has been decreased of a negative amount, so it has been increased."));
+        setFireLevel(getFireLevel() - diff);
+    }
+
+    public void increaseFireLevel(Integer diff) {
+        if (diff < 0) logger.warn(String.format("The level of the fire has been increased of a negative amount, so it has been decreased."));
+        setFireLevel(getFireLevel() - diff);
+    }
+
+    public Boolean isOnFire() {
+        return fireLevel != 0;
     }
 
     @Override
