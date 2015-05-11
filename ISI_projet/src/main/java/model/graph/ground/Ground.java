@@ -15,13 +15,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Ground {
     private static final Logger logger = LogManager.getLogger();
-
     private static final Random random = new Random();
     /**
-     * Probabilité que le terrain devienne inondé (flooded)
-     * 0 par défaut
+     * ProbabilitÃ© que le terrain devienne inondÃ© (flooded)
+     * 0 par dÃ©faut
      */
-    private Double chancesOfGettingFlooded = 0.0;
+    private Double chancesOfGettingFlooded;
 
     /**
      * Type de terrain
@@ -29,7 +28,12 @@ public class Ground {
     private GroundType type;
 
     public Ground(GroundType type) {
+        this(type, 0.0);
+    }
+
+    public Ground(GroundType type, Double chancesOfGettingFlooded) {
         this.type = type;
+        this.chancesOfGettingFlooded = chancesOfGettingFlooded;
     }
 
     public GroundType getType() {
@@ -45,10 +49,10 @@ public class Ground {
     }
 
     /**
-     * Permet de définir la probabilité d'être inondé,
-     * si la probabilité donnée n'est pas entre 0 et 1
-     * sa valeur est rapporté à la plus proche des deux
-     * @param chancesOfGettingFlooded   chances d'être inondé
+     * Permet de dÃ©finir la probabilitÃ© d'Ãªtre inondÃ©,
+     * si la probabilitÃ© donnÃ©e n'est pas entre 0 et 1
+     * sa valeur est rapportÃ©e Ã  la plus proche des deux
+     * @param chancesOfGettingFlooded   chances d'Ãªtre inondÃ©
      */
     public void setChancesOfGettingFlooded(Double chancesOfGettingFlooded) {
         if(chancesOfGettingFlooded < 0) {
@@ -64,11 +68,11 @@ public class Ground {
 
     /**
      * Essaye d'inonder le terrain
-     * @return vrai si le terrain est devenu inondé,
+     * @return vrai si le terrain est devenu inondÃ©,
      * faux sinon.
      */
     public Boolean updateType() {
-        if(random.nextDouble() <= chancesOfGettingFlooded) {
+        if(chancesOfGettingFlooded == 1.0 || random.nextDouble() < chancesOfGettingFlooded) {
             type = GroundType.FLOODED;
             return Boolean.TRUE;
         }

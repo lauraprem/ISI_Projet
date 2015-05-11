@@ -13,12 +13,11 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Classe representant une arrete orientee et valuee
- * @author gael,corinne,alexandre,laura
- *
  */
 @XmlRootElement
 public class Edge {
     private static final Logger logger = LogManager.getLogger();
+    private static Long maxId = 0L;
 
     private Long id = 0L;
 
@@ -36,9 +35,8 @@ public class Edge {
     private Node destination;
 
     /**
-     * Terrain associé à l'arrête
+     * Terrain associÃ© Ã  l'arrÃªte
      */
-    @XmlElement
     private Ground ground;
 
     /**
@@ -48,10 +46,15 @@ public class Edge {
      * @param _v2        noeud destination
      * @param _valuation valeur de l'arrete
      */
-    public Edge(Node _v1, Node _v2, Label _valuation) {
+    public Edge(Node _v1, Node _v2, Label _valuation, Ground ground) {
+        _v1.setLinked(Boolean.TRUE);
+        _v2.setLinked(Boolean.TRUE);
         this.valuation = _valuation;
         this.source = _v1;
         this.destination = _v2;
+        this.ground = ground;
+        this.id = getMaxId();
+        incrementMaxId();
     }
 
 	/**
@@ -61,24 +64,23 @@ public class Edge {
 	 * @param _v2        noeud destination
 	 */
 	public Edge(Node _v1, Node _v2) {
-		this(_v1, _v2, null);
+		this(_v1, _v2, null, null);
 	}
-	/**
-	 * la valeur de l'id
-	 * @return
-	 */
-	public Long getId() {
-		return id;
-	}
-	/**
-	 * 
-	 * @param id	id du noeud
-	 */
-	@XmlAttribute
-	public void setId(Long id) {
-		this.id = id;
-	}
-	/**
+
+    private synchronized static Long getMaxId() {
+        return maxId;
+    }
+
+    private synchronized static void setMaxId(Long maxId) {
+        Edge.maxId = maxId;
+    }
+
+    private void incrementMaxId() {
+        setMaxId(getMaxId()+1);
+    }
+
+
+    /**
      * @return la valeur de l'arrete
      */
     public Label getValuation() {
@@ -126,15 +128,26 @@ public class Edge {
     public Ground getGround() {
         return ground;
     }
+    @XmlElement
+    public void setGround(Ground ground) {
+        this.ground = ground;
+    }
 
     public Boolean updateGround() {
         if(ground.updateType()) {
-            logger.info(String.format("L'arrête %s est maintenant inondée.", id));
+            logger.info(String.format("L'arrÃªte %s est maintenant inondÃ©e.", id));
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
+    public Long getId() {
+        return id;
+    }
+    @XmlAttribute
+	public void setId(Long id) {
+		this.id = id;
+	}
     @Override
     public String toString() {
         return source.getLabel().toString() + " ==> " + destination.getLabel().getLabel() + "(\"" + valuation + "\" " + ground.toString() + ")";

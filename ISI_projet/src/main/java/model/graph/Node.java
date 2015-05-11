@@ -1,6 +1,8 @@
 package model.graph;
 
 import model.graph.label.Label;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 
@@ -9,6 +11,7 @@ import java.awt.*;
  */
 
 public class Node extends Point {
+    private static final Logger logger = LogManager.getLogger();
     /**
      * etiquette du noeud
      */
@@ -16,11 +19,16 @@ public class Node extends Point {
     /**
      * ID unique du noeud
      */
-    private int uniqueID;
+    private Long id;
     /**
      * nombre total d'instances de Noeud
      */
-    private static int nombreOfNoeud = 0;
+    private static Long maxId = 0L;
+
+    /**
+     * Niveau de l'incendie
+     */
+    private Integer fireLevel = 0;
 
     /**
      * Construit un noeud avec une etiquette
@@ -40,17 +48,37 @@ public class Node extends Point {
     public Node(Label _label, Point _point) {
         super(_point);
         this.label = _label;
-        this.uniqueID = nombreOfNoeud;
-        Node.nombreOfNoeud++;
+        this.id = getMaxId();
+        incrementMaxId();
     }
 
+    private Boolean linked = Boolean.FALSE;
 
+    public Boolean isLinked() {
+        return linked;
+    }
+
+    public void setLinked(Boolean linked) {
+        this.linked = linked;
+    }
+
+    private synchronized static Long getMaxId() {
+        return maxId;
+    }
+
+    private synchronized static void setMaxId(Long maxId) {
+        Node.maxId = maxId;
+    }
+
+    private void incrementMaxId() {
+        setMaxId(getMaxId() + 1);
+    }
 
     /**
      * @return l'unique ID du noeud
      */
-    public int getID() {
-        return uniqueID;
+    public Long getID() {
+        return id;
     }
 
     /**
@@ -75,6 +103,37 @@ public class Node extends Point {
         return "" + label;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getFireLevel() {
+        return fireLevel;
+    }
+
+    public void setFireLevel(Integer fireLevel) {
+        if (fireLevel < 0) {
+            this.fireLevel = 0;
+            logger.warn(String.format("The level of the fire can't be negative, has been set to 0."));
+        } else
+            this.fireLevel = fireLevel;
+    }
+
+    public void decreaseFireLevel(Integer diff) {
+        if (diff < 0)
+            logger.warn(String.format("The level of the fire has been decreased of a negative amount, so it has been increased."));
+        setFireLevel(getFireLevel() - diff);
+    }
+
+    public void increaseFireLevel(Integer diff) {
+        if (diff < 0)
+            logger.warn(String.format("The level of the fire has been increased of a negative amount, so it has been decreased."));
+        setFireLevel(getFireLevel() + diff);
+    }
+
+    public Boolean isOnFire() {
+        return fireLevel != 0;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -85,7 +144,7 @@ public class Node extends Point {
         if (getClass() != obj.getClass())
             return false;
         Node other = (Node) obj;
-        if (uniqueID != other.uniqueID)
+        if (id != other.id)
             return false;
         return true;
     }

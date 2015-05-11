@@ -19,6 +19,7 @@ public class main {
 			}
 		});
 		vue.pack();
+		vue.setLocationRelativeTo(null);
 		vue.setVisible(true);
 
 		MainControler controleurPrincipal = new MainControler(); //(modele, vue);
