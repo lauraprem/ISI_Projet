@@ -17,12 +17,11 @@ public class FileXML {
 	public FileXML(File f,OSM graphe)
 	{
 		try {
-			File file = new File("data\\file.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(OSM.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(OSM.class.getPackage().getName(),OSM.class.getClassLoader());
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			 
-			jaxbMarshaller.marshal(graphe, file);
+			jaxbMarshaller.marshal(graphe, f);
 			jaxbMarshaller.marshal(graphe, System.out);
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
@@ -35,6 +34,7 @@ public class FileXML {
 	}
 	public static void main(String[] args)
 	{
+		String fileSeparator=System.getProperty("file.separator");
 		OSM graphe=new OSM();
 		Node noeud1=new Node(new StringLabel("noeud1"),new Point(1,0));
 		Node noeud2=new Node(new StringLabel("noeud2"),new Point(1,1));
@@ -42,11 +42,11 @@ public class FileXML {
 		graphe.setArc(arc1);
 		graphe.setNoeud(noeud1);
 		graphe.setNoeud(noeud2);
+		System.out.println("Source: "+arc1.getSource());
 		System.out.println("Destination: "+arc1.getDestination());
 		System.out.println("Type: "+arc1.getGround().getType());
-		System.out.println("Destination: "+arc1.getDestination());
-		System.out.println("Destination: "+arc1.getDestination());
-		File file = new File("data\\file.xml");
+		System.out.println("Valuation: "+arc1.getValuation());
+		File file = new File("data"+fileSeparator+"file.xml");
 		new FileXML(file,graphe);
 	}
 }

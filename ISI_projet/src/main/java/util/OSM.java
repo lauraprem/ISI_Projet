@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import model.graph.Node;
 import model.graph.edge.Edge;
 
-@XmlRootElement
+@XmlRootElement(name="OSM")
 public class OSM {
 	private Edge arc;
 	private Node noeud;
