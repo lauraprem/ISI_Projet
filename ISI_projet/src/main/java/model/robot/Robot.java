@@ -61,10 +61,11 @@ public class Robot {
 	/**
 	 * Permet au manager de proposer un noeud incendié à éteindre au robot
 	 * @param destination noeud à atteindre
-	 * @return la liste des noeuds qui composent le plus court chemin si le noeud est atteignable, liste vide si le noeud n'est pas atteignable
+	 * @return le cout pour aller à la destination et -1 s'il est impossible d'y aller
 	 */
-	public List<Node> proposeNode(Node destination) {
-		return pathFinder.findShorterPath(graph, currentNode, destination, capacity);
+	public int proposeNode(Node destination) {
+//		return pathFinder.findShorterPath(graph, currentNode, destination, capacity);
+		return -1;
 	}
 
 	public List<Ground> getCapacity() {

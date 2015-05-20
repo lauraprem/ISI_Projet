@@ -1,5 +1,7 @@
 package view;
+// package logo;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -7,16 +9,25 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Drawing extends JPanel implements Observer {
+/**
+ * Titre :        Logo
+ * Description :  Un exemple de programme graphique utilisant la celebre Tortue Logo
+ * Copyright :    Copyright (c) 2000
+ * Societe :      LIRMM
+ * @author J. Ferber
+ * @version 2.0
+ */
 
+public class DrawingNode extends JPanel implements Observer {
+	
 	private Image img;
 
-	public Drawing(String img) {
-		// modele.AjoutObservateur(this);
+	public DrawingNode(String img) {
+//		modele.AjoutObservateur(this);
 		this(new ImageIcon(img).getImage());
 	}
 
-	public Drawing(Image img) {
+	public DrawingNode(Image img) {
 		this.img = img;
 		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
 		setPreferredSize(size);
@@ -28,30 +39,6 @@ public class Drawing extends JPanel implements Observer {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(img, 0, 0, null);
-
-		// Dessine les arc
-		showEdges(g);
-
-		// Dessine les noeuds
-		showNodes(g);
-
-		// Dessine les feu
-		showFires(g);
-
-		// Dessine les Robots
-		showRobots(g);
-	}
-
-	public void showEdges(Graphics g) {
-	}
-
-	public void showNodes(Graphics g) {
-	}
-
-	public void showFires(Graphics g) {
-	}
-
-	public void showRobots(Graphics g) {
 	}
 
 	public void Update() {
