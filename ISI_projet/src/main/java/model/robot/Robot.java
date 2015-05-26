@@ -138,28 +138,4 @@ public class Robot {
 	public void setDecreaseFireLevelCapacity(Integer decreaseFireLevelCapacity) {
 		this.decreaseFireLevelCapacity = decreaseFireLevelCapacity;
 	}
-
-	public static Robot ToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
-		List<GroundType> grounds = new ArrayList<>();
-		grounds.add(GroundType.FLAT);
-		grounds.add(GroundType.STEEP);
-		grounds.add(GroundType.FLOODED);
-		return new Robot(grounds, _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
-	}
-
-	public static Robot Chenille(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
-		List<GroundType> grounds = new ArrayList<>();
-		grounds.add(GroundType.FLAT);
-		grounds.add(GroundType.FLOODED);
-		return new Robot(grounds, _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
-	}
-
-	public static Robot APates(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
-		List<GroundType> grounds = new ArrayList<>();
-		grounds.add(GroundType.FLAT);
-		grounds.add(GroundType.STEEP);
-		return new Robot(grounds, _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
-	}
-
-
 }
