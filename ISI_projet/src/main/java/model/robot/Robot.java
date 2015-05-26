@@ -4,8 +4,10 @@ import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IUndirectedGraph;
 import model.graph.ground.Ground;
+import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,9 +17,9 @@ import java.util.List;
  */
 public class Robot {
 	/**
-	 * Terrains sur lesquels le robot est capable de se deplacer
+	 * Types de terrains sur lesquels le robot est capable de se deplacer
 	 */
-	private List<Ground> capacity;
+	private List<GroundType> capacity;
 
 	/**
 	 * True si le robot est occupé à une tache, et donc non disponible
@@ -48,7 +50,7 @@ public class Robot {
 	 * @param _startNode noeud sur lequel se trouve le robot pour commencer
 	 * @param _pathFinder méthode de calcul du plus court chemin
 	 */
-	public Robot(List<Ground> _capacity, IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder) {
+	public Robot(List<GroundType> _capacity, IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder) {
 		this(_capacity, _graph, _startNode, _pathFinder, null);
 	}
 
@@ -60,7 +62,7 @@ public class Robot {
 	 * @param _pathFinder méthode de calcul du plus court chemin
 	 * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
 	 */
-	public Robot(List<Ground> _capacity, IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+	public Robot(List<GroundType> _capacity, IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
 		busy = false;
 		capacity = _capacity;
 		currentNode = _startNode;
@@ -91,11 +93,11 @@ public class Robot {
 		return -1;
 	}
 
-	public List<Ground> getCapacity() {
+	public List<GroundType> getCapacity() {
 		return capacity;
 	}
 
-	public void setCapacity(List<Ground> capacity) {
+	public void setCapacity(List<GroundType> capacity) {
 		this.capacity = capacity;
 	}
 
@@ -138,4 +140,28 @@ public class Robot {
 	public void setDecreaseFireLevelCapacity(Integer decreaseFireLevelCapacity) {
 		this.decreaseFireLevelCapacity = decreaseFireLevelCapacity;
 	}
+
+	public static Robot ToutTerrain(IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+		List<GroundType> grounds = new ArrayList<>();
+		grounds.add(GroundType.FLAT);
+		grounds.add(GroundType.STEEP);
+		grounds.add(GroundType.FLOODED);
+		return new Robot(grounds, _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
+	}
+
+	public static Robot Chenille(IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+		List<GroundType> grounds = new ArrayList<>();
+		grounds.add(GroundType.FLAT);
+		grounds.add(GroundType.FLOODED);
+		return new Robot(grounds, _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
+	}
+
+	public static Robot APates(IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+		List<GroundType> grounds = new ArrayList<>();
+		grounds.add(GroundType.FLAT);
+		grounds.add(GroundType.STEEP);
+		return new Robot(grounds, _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
+	}
+
+
 }
