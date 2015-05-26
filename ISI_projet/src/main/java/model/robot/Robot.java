@@ -75,7 +75,7 @@ public class Robot {
         graph.getAdjEdges(fire).forEach(edge -> {
             // TODO AGA : Voir pour changer la valeur
             edge.getGround().increaseChancesOfGettingFlooded(0.25);
-            edge.getGround().updateType();
+            edge.updateGround();
         });
         return !fire.isOnFire();
     }
