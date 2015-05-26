@@ -1,7 +1,5 @@
 package model.graph;
 
-import model.graph.ground.GroundType;
-import model.graph.label.impl.StringLabel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +16,7 @@ public class NodeTest {
 
     @Before
     public void setUp() throws Exception {
-        node = new Node(new StringLabel("test1"), new Point(1, 2));
+        node = new Node("test1", new Point(1, 2));
         node.setFireLevel(5);
     }
 

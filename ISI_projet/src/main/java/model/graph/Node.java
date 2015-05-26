@@ -1,10 +1,9 @@
 package model.graph;
 
-import model.graph.label.Label;
+import java.awt.Point;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.awt.*;
 
 /**
  * Classe representant un noeud etiquete pour un graph
@@ -15,7 +14,7 @@ public class Node extends Point {
     /**
      * etiquette du noeud
      */
-    private Label label;
+    private String label;
     /**
      * ID unique du noeud
      */
@@ -35,7 +34,7 @@ public class Node extends Point {
      *
      * @param _label etiquette du noeud
      */
-    public Node(Label _label) {
+    public Node(String _label) {
         this(_label, new Point(0, 0));
     }
 
@@ -45,7 +44,7 @@ public class Node extends Point {
      *
      * @param _label etiquette du noeud
      */
-    public Node(Label _label, Point _point) {
+    public Node(String _label, Point _point) {
         super(_point);
         this.label = _label;
         this.id = getMaxId();
@@ -74,26 +73,21 @@ public class Node extends Point {
         setMaxId(getMaxId() + 1);
     }
 
-    /**
-     * @return l'unique ID du noeud
-     */
-    public Long getID() {
-        return id;
-    }
+
 
     /**
      * Specifie l etiquette du noeud
      *
      * @param _label
      */
-    public void setLabel(Label _label) {
+    public void setLabel(String _label) {
         this.label = _label;
     }
 
     /**
      * @return l etiquette du noeud
      */
-    public Label getLabel() {
+    public String getLabel() {
         return label;
     }
 
@@ -103,6 +97,9 @@ public class Node extends Point {
         return "" + label;
     }
 
+    /**
+     * @return l'unique ID du noeud
+     */
     public Long getId() {
         return id;
     }
@@ -160,7 +157,7 @@ public class Node extends Point {
      */
     @Override
     public Node clone() {
-        Node node = new Node(label.clone(), (Point) super.clone());
+        Node node = new Node(new String(label), (Point) super.clone());
         node.setFireLevel(fireLevel);
         node.setLinked(linked);
         return node;
