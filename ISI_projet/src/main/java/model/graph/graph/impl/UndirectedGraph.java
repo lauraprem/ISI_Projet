@@ -25,7 +25,7 @@ public class UndirectedGraph implements IUndirectedGraph {
      */
     @Override
     public void addEdge(Edge edge) {
-        edges.add(edge);
+        addEdge(edge.getSource(), edge.getDestination(), edge.getLength(), edge.getGround());
     }
 
     /**
@@ -82,6 +82,14 @@ public class UndirectedGraph implements IUndirectedGraph {
      */
     public List<Node> getAllNodes() {
         return nodes;
+    }
+
+    /**
+     * @return toutes les arrêtes du graph
+     */
+    @Override
+    public List<Edge> getAllEdges() {
+        return edges;
     }
 
     /**

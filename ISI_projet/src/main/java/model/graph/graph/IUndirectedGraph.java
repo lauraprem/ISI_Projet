@@ -19,6 +19,12 @@ public interface IUndirectedGraph {
      */
     public List<Node> getAllNodes();
 
+
+    /**
+     * @return toutes les arrêtes du graph
+     */
+    public List<Edge> getAllEdges();
+
     /**
      * @return le nombre de noeuds du graph
      */
