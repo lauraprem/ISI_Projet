@@ -4,6 +4,7 @@ import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IGraph;
 import model.graph.graph.GraphUtil;
+import model.graph.graph.impl.Graph;
 import model.robot.Robot;
 
 import java.util.*;
@@ -15,13 +16,16 @@ import java.util.stream.Collectors;
  */
 public class Manager extends Thread {
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
-    private IGraph graph;
+    private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
     private Long refreshTime = 1000L;
 
     public Manager(IGraph graph, List<Robot> robots) {
         this.graph = graph;
         this.robots = robots;
+    }
+
+    public Manager() {
     }
 
     public synchronized IGraph getGraph() {
