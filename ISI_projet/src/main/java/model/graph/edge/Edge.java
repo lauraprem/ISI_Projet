@@ -60,6 +60,25 @@ public class Edge {
     /**
      * construit une arrete valuee
      *
+     * @param _id        id de l'arrête
+     * @param _v1        noeud source
+     * @param _v2        noeud destination
+     * @param _valuation valeur de l'arrete
+     * @param ground terrain de l'arrête
+     */
+    private Edge(Long _id, Node _v1, Node _v2, Double _valuation, Ground ground) {
+        _v1.setLinked(Boolean.TRUE);
+        _v2.setLinked(Boolean.TRUE);
+        this.length = _valuation;
+        this.source = _v1;
+        this.destination = _v2;
+        this.ground = ground;
+        this.id = _id;
+    }
+
+    /**
+     * construit une arrete valuee
+     *
      * @param _v1 noeud source
      * @param _v2 noeud destination
      */
@@ -164,6 +183,31 @@ public class Edge {
 
     @Override
     public Edge clone() {
-        return new Edge(source.clone(), destination.clone(), length.doubleValue(), ground.clone());
+        return new Edge(id, source.clone(), destination.clone(), length.doubleValue(), ground.clone());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Edge edge = (Edge) o;
+
+        if (!id.equals(edge.id)) return false;
+        if (length != null ? !length.equals(edge.length) : edge.length != null) return false;
+        if (!source.equals(edge.source)) return false;
+        if (!destination.equals(edge.destination)) return false;
+        return !(ground != null ? !ground.equals(edge.ground) : edge.ground != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + (length != null ? length.hashCode() : 0);
+        result = 31 * result + source.hashCode();
+        result = 31 * result + destination.hashCode();
+        result = 31 * result + (ground != null ? ground.hashCode() : 0);
+        return result;
     }
 }

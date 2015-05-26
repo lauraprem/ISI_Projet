@@ -2,8 +2,9 @@ package model.manager;
 
 import model.graph.Node;
 import model.graph.edge.Edge;
-import model.graph.graph.IUndirectedGraph;
-import model.graph.graph.UndirectGraphUtil;
+import model.graph.graph.IGraph;
+import model.graph.graph.GraphUtil;
+import model.graph.graph.impl.Graph;
 import model.robot.Robot;
 
 import java.util.*;
@@ -15,20 +16,23 @@ import java.util.stream.Collectors;
  */
 public class Manager extends Thread {
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
-    private IUndirectedGraph graph;
+    private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
     private Long refreshTime = 1000L;
 
-    public Manager(IUndirectedGraph graph, List<Robot> robots) {
+    public Manager(IGraph graph, List<Robot> robots) {
         this.graph = graph;
         this.robots = robots;
     }
 
-    public synchronized IUndirectedGraph getGraph() {
+    public Manager() {
+    }
+
+    public synchronized IGraph getGraph() {
         return graph;
     }
 
-    public synchronized void setGraph(IUndirectedGraph graph) {
+    public synchronized void setGraph(IGraph graph) {
         this.graph = graph;
     }
 
@@ -58,7 +62,7 @@ public class Manager extends Thread {
         Long startLoop, endLoop;
         while(!exit) {
             startLoop = System.currentTimeMillis();
-            askDistanceToRobots(UndirectGraphUtil.getNodesOnFire(graph),
+            askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
                     getUnoccupiedRobots());
             endLoop = System.currentTimeMillis();
             if(endLoop - startLoop < refreshTime) try {
@@ -92,7 +96,7 @@ public class Manager extends Thread {
     }
 
     private List<Node> getNodesOnFire() {
-        return UndirectGraphUtil.getNodesOnFire(graph);
+        return GraphUtil.getNodesOnFire(graph);
     }
 
     public synchronized void addNode(Node n) {

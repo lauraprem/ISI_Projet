@@ -3,7 +3,7 @@ package model.pathSearch;
 import java.util.List;
 
 import model.graph.Node;
-import model.graph.graph.IUndirectedGraph;
+import model.graph.graph.IGraph;
 import model.graph.ground.Ground;
 
 /**
@@ -21,5 +21,5 @@ public interface IShorterPathSearch {
 	 * @param capacity : terrain sur lesquels on peut passer
 	 * @return la liste des noeuds qui composent le plus court chemin si le noeud est atteignable, liste vide si le noeud n'est pas atteignable
 	 */
-	public List<Node> findShorterPath(IUndirectedGraph graph, Node start, Node goal, List<Ground> capacity);
+	public List<Node> findShorterPath(IGraph graph, Node start, Node goal, List<Ground> capacity);
 }
