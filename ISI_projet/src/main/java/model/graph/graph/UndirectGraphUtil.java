@@ -15,6 +15,6 @@ public class UndirectGraphUtil {
     }
 
     public static List<Node> getNodesOnFire(IUndirectedGraph graph) {
-        return graph.getAllNodes().stream().filter(node -> !node.isOnFire()).collect(Collectors.toList());
+        return graph.getAllNodes().stream().filter(node -> node.isOnFire()).collect(Collectors.toList());
     }
 }
