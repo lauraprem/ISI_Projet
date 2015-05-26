@@ -1,11 +1,12 @@
 package model.robot;
 
-import java.util.List;
-
 import model.graph.Node;
+import model.graph.edge.Edge;
 import model.graph.graph.IUndirectedGraph;
 import model.graph.ground.Ground;
 import model.pathSearch.IShorterPathSearch;
+
+import java.util.List;
 
 /**
  * Robots pompiers
@@ -21,7 +22,7 @@ public class Robot {
 	/**
 	 * True si le robot est occupé à une tache, et donc non disponible
 	 */
-	private boolean busy;
+	private Boolean busy;
 
 	/**
 	 * Le noeud sur lequel se trouve le robot
@@ -38,25 +39,46 @@ public class Robot {
 	 */
 	private IUndirectedGraph graph;
 
+	private Integer decreaseFireLevelCapacity;
+
 	/**
 	 * Constructeur du robot. Le robot n'est pas occupé.
 	 * @param _capacity liste des terrains sur lesquels les robots peuvent evoluer
 	 * @param _graph graph sur lequel le robot se déplace
 	 * @param _startNode noeud sur lequel se trouve le robot pour commencer
-	 * @param _pathFinder méthode de calcul du plus court chemin 
+	 * @param _pathFinder méthode de calcul du plus court chemin
 	 */
 	public Robot(List<Ground> _capacity, IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder) {
-		this.busy = false;
-		this.capacity = _capacity;
-		this.currentNode = _startNode;
-		this.graph = _graph;
-		this.pathFinder = _pathFinder;
+		this(_capacity, _graph, _startNode, _pathFinder, null);
 	}
 
-	public boolean stopFire(Node fire) {
-		// TODO LPR
-		return false;
+	/**
+	 * Constructeur du robot. Le robot n'est pas occupé.
+	 * @param _capacity liste des terrains sur lesquels les robots peuvent evoluer
+	 * @param _graph graph sur lequel le robot se déplace
+	 * @param _startNode noeud sur lequel se trouve le robot pour commencer
+	 * @param _pathFinder méthode de calcul du plus court chemin
+	 * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
+	 */
+	public Robot(List<Ground> _capacity, IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+		busy = false;
+		capacity = _capacity;
+		currentNode = _startNode;
+		graph = _graph;
+		pathFinder = _pathFinder;
+		decreaseFireLevelCapacity = _decreaseFireLevelCapacity;
 	}
+
+    public Boolean stopFire(Node fire) {
+        if (decreaseFireLevelCapacity == null) fire.decreaseFireLevel(fire.getFireLevel());
+        else fire.decreaseFireLevel(decreaseFireLevelCapacity);
+        graph.getAdjEdges(fire).forEach(edge -> {
+            // TODO AGA : Voir pour changer la valeur
+            edge.getGround().increaseChancesOfGettingFlooded(0.25);
+            edge.getGround().updateType();
+        });
+        return !fire.isOnFire();
+    }
 
 	/**
 	 * Permet au manager de proposer un noeud incendié à éteindre au robot
@@ -64,6 +86,7 @@ public class Robot {
 	 * @return le cout pour aller à la destination et -1 s'il est impossible d'y aller
 	 */
 	public int proposeNode(Node destination) {
+        // TODO LPR : Supprimer noeuds avec arrêtes non marchées + transformer Node en extendedNode dans le graphe
 //		return pathFinder.findShorterPath(graph, currentNode, destination, capacity);
 		return -1;
 	}
@@ -76,11 +99,11 @@ public class Robot {
 		this.capacity = capacity;
 	}
 
-	public boolean isBusy() {
+	public Boolean isBusy() {
 		return busy;
 	}
 
-	public void setBusy(boolean busy) {
+	public void setBusy(Boolean busy) {
 		this.busy = busy;
 	}
 
@@ -108,4 +131,11 @@ public class Robot {
 		this.pathFinder = pathFinder;
 	}
 
+	public Integer getDecreaseFireLevelCapacity() {
+		return decreaseFireLevelCapacity;
+	}
+
+	public void setDecreaseFireLevelCapacity(Integer decreaseFireLevelCapacity) {
+		this.decreaseFireLevelCapacity = decreaseFireLevelCapacity;
+	}
 }
