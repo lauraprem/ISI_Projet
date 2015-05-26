@@ -44,6 +44,6 @@ public class ControleurGraph implements ActionListener {
 		default:
 			break;
 		}
-		vue.addMouseListener(new ControleurMap(vue,typeElement)); // Singloton
+		vue.addMouseListener(new ControleurMap(vue,model,typeElement)); // Singloton
 	}
 }

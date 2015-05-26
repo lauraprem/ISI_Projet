@@ -44,7 +44,7 @@ public class ControleurElements implements ActionListener {
 		default:
 			break;
 		}
-		vue.addMouseListener(new ControleurMap(vue,typeElement));
+		vue.addMouseListener(new ControleurMap(vue,model,typeElement));
 	}
 	
 }

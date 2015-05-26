@@ -9,9 +9,8 @@ import view.MainWindow;
 public class main {
 	
 	public static void main(String[] args) {
-//		Manager modele = new Manager((new IU ,null);
-		Manager modele = null;
-		MainWindow vue= new MainWindow();
+		Manager modele = new Manager();
+		MainWindow vue= new MainWindow(modele);
 
 		vue.addWindowListener(new WindowAdapter() {
 			@Override

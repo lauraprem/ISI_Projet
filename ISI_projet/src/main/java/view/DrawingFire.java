@@ -18,6 +18,6 @@ public class DrawingFire {
 		String imagePath = getClass().getClassLoader().getResource("pictures/Feu.gif").getFile();
 		Image img = new ImageIcon(imagePath).getImage();
 		
-		graph.drawImage(img, model.x-10, model.y-13, null); // Position haut gauche
+		graph.drawImage(img, model.x-10, model.y-13, null);
 	}
 }

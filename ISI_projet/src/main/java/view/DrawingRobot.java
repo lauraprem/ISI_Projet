@@ -14,7 +14,7 @@ public class DrawingRobot{
 	
 	private Robot model;
 
-	public DrawingRobot(Graphics graph,Node model) {
+	public DrawingRobot(Graphics graph,Robot model) {
 			if (graph == null) {
 				return;
 			}
@@ -27,7 +27,8 @@ public class DrawingRobot{
 			String imagePath = getClass().getClassLoader().getResource(typePath).getFile();
 			Image img = new ImageIcon(imagePath).getImage();
 			
-			graph.drawImage(img, model.x-10, model.y-5, null); // Position haut gauche
+			Node node = model.getCurrentNode();
+			graph.drawImage(img,node.x -10, node.y-5, null); // Position haut gauche
 		}
 		
 //		switch (model.g) {

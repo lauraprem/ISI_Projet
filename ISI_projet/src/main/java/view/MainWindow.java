@@ -3,13 +3,15 @@ package view;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+
+import model.manager.Manager;
 public class MainWindow extends JFrame {
 
 	private MenuFichier menuFile;
 	private MenuHaut menuHaut;
 	private Drawing dessin;
 
-	public MainWindow() { //(Manager modele)
+	public MainWindow(Manager model) {
 		super("Robocup Rescue");
 
 		getContentPane().setLayout(new BorderLayout(10, 10));
@@ -21,7 +23,7 @@ public class MainWindow extends JFrame {
 //		menuHaut = new MenuHaut();
 //		getContentPane().add(menuHaut, "North");
 		String imagePath = getClass().getClassLoader().getResource("pictures/mapsixieme.jpg").getFile();
-		Drawing drawing = new Drawing(imagePath); //(modele);
+		Drawing drawing = new Drawing(model,imagePath);
 		getContentPane().add(drawing, "Center");
 		
 		this.setResizable(false);

@@ -1,31 +1,41 @@
 package model.manager;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import model.Observable;
 import model.graph.Node;
 import model.graph.edge.Edge;
-import model.graph.graph.IGraph;
 import model.graph.graph.GraphUtil;
+import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.robot.Robot;
-
-import java.util.*;
-import java.util.stream.Collectors;
+import view.Observer;
 
 /**
  * @author Alexandre
  *         11/05/2015
  */
-public class Manager extends Thread {
+public class Manager extends Thread implements Observable{
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
     private Long refreshTime = 1000L;
+    
+    protected ArrayList<Observer> observers;
 
     public Manager(IGraph graph, List<Robot> robots) {
+    	observers = new ArrayList<Observer>();
         this.graph = graph;
         this.robots = robots;
     }
 
     public Manager() {
+    	observers = new ArrayList<Observer>();
     }
 
     public synchronized IGraph getGraph() {
@@ -34,6 +44,7 @@ public class Manager extends Thread {
 
     public synchronized void setGraph(IGraph graph) {
         this.graph = graph;
+        this.NotifierObservateur();
     }
 
     public synchronized List<Robot> getRobots() {
@@ -101,17 +112,37 @@ public class Manager extends Thread {
 
     public synchronized void addNode(Node n) {
         graph.addNode(n);
+        this.NotifierObservateur();
     }
 
     public synchronized void addEdge(Edge e) {
         graph.addEdge(e);
+        this.NotifierObservateur();
     }
 
     public synchronized void addRobot(Robot r) {
         robots.add(r);
+        this.NotifierObservateur();
     }
 
     public synchronized void Exit() {
         exit = Boolean.TRUE;
     }
+
+    @Override
+	public void AjoutObservateur(Observer o) {
+		observers.add(o);
+	}
+
+	@Override
+	public void SupprimerObservateur(Observer o) {
+		observers.remove(o);
+	}
+
+	@Override
+	public void NotifierObservateur() {
+		for (Observer obs : observers) {
+			obs.Update();
+		}
+	}
 }
