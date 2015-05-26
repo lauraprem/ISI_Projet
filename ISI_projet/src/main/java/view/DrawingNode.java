@@ -2,12 +2,9 @@ package view;
 // package logo;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import model.graph.Node;
 
 /**
  * Titre :        Logo
@@ -18,30 +15,13 @@ import javax.swing.JPanel;
  * @version 2.0
  */
 
-public class DrawingNode extends JPanel implements Observer {
-	
-	private Image img;
+public class DrawingNode{
 
-	public DrawingNode(String img) {
-//		modele.AjoutObservateur(this);
-		this(new ImageIcon(img).getImage());
-	}
-
-	public DrawingNode(Image img) {
-		this.img = img;
-		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
-		setSize(size);
-		setLayout(null);
-	}
-
-	public void paintComponent(Graphics g) {
-		g.drawImage(img, 0, 0, null);
-	}
-
-	public void Update() {
-		repaint();
+	public DrawingNode(Node model, Graphics graph) {
+			if (graph == null) {
+				return;
+			}
+			graph.setColor(Color.black);
+			graph.drawOval((int)model.getX()-5, (int)model.getY()-5, 10, 10);
 	}
 }

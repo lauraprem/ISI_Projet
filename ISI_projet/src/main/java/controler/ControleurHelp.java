@@ -3,15 +3,16 @@ package controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.manager.Manager;
 import view.MainWindow;
 
 public class ControleurHelp implements ActionListener {
 
-	// private EnvironnementTortue model; //TODO model
+	 private Manager model;
 	private MainWindow vue;
 
-	public ControleurHelp(MainWindow vue) { // TODO model
-		// this.model = model; //TODO model
+	public ControleurHelp(MainWindow vue,Manager model) {
+		 this.model = model;
 		this.vue = vue;
 	}
 

@@ -1,33 +1,23 @@
 package view;
 
 import java.awt.Graphics;
+import java.awt.Image;
 
-import model.graph.graph.IUndirectedGraph;
+import javax.swing.ImageIcon;
+
+import model.graph.Node;
 
 
 public class DrawingFire {
-	
-	private IUndirectedGraph model;
 
-	public DrawingFire(IUndirectedGraph model) {
-		super();
-		this.model = model;
-	}
-
-	public void drawArc(Graphics graph) {
+	public DrawingFire(Graphics graph,Node model) {
 		if (graph == null) {
 			return;
 		}
-
-		// Dessine l'arc
-//		for (Iterator<Segment> it = tortue.getListSegments().iterator(); it
-//				.hasNext();) {
-//			Segment seg = (Segment) it.next();
-//			if (graph == null) {
-//				return;
-//			}
-//			graph.setColor(seg.getColor());
-//			graph.drawLine(seg.getPtStart().x, seg.getPtStart().y, seg.getPtEnd().x, seg.getPtEnd().y);
-//		}
+		
+		String imagePath = getClass().getClassLoader().getResource("pictures/Feu.gif").getFile();
+		Image img = new ImageIcon(imagePath).getImage();
+		
+		graph.drawImage(img, model.x-10, model.y-13, null); // Position haut gauche
 	}
 }

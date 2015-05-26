@@ -1,34 +1,32 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import model.graph.edge.Edge;
+import model.graph.ground.GroundType;
 
 public class DrawingArc{
-	
-	private Edge model;
 
-	public DrawingArc(Edge model) {
-		super();
-		this.model = model;
-	}
-
-	public void drawArc(Graphics graph) {
+	public DrawingArc(Edge model, Graphics graph) {
 		if (graph == null) {
 			return;
 		}
-
-		// Dessine l'arc
-//		for (Iterator<Segment> it = tortue.getListSegments().iterator(); it
-//				.hasNext();) {
-//			Segment seg = (Segment) it.next();
-//			if (graph == null) {
-//				return;
-//			}
-//			graph.setColor(seg.getColor());
-//			graph.drawLine(seg.getPtStart().x, seg.getPtStart().y, seg.getPtEnd().x, seg.getPtEnd().y);
-//		}
+		
+		switch (model.getGround().getType()) {
+		case FLAT:
+			graph.setColor(Color.black);
+			break;
+		case STEEP:
+			graph.setColor(Color.orange);
+			break;
+		case FLOODED: //TOTDO mettre innondé dans vue + add star + (stop + Pause)
+			graph.setColor(Color.magenta);
+			break;
+			default:
+				graph.setColor(Color.black);
+				break;
+		}
+		graph.drawLine((int)model.getSource().getX(), (int)model.getSource().getY(),(int)model.getDestination().getX(), (int)model.getDestination().getY());
 	}
-	
-	//TODO conversion des 
 }
