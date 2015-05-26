@@ -45,6 +45,7 @@ public class Edge {
      * @param _v1        noeud source
      * @param _v2        noeud destination
      * @param _valuation valeur de l'arrete
+     * @param ground terrain de l'arrête
      */
     public Edge(Node _v1, Node _v2, Label _valuation, Ground ground) {
         _v1.setLinked(Boolean.TRUE);

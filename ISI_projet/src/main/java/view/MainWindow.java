@@ -19,8 +19,8 @@ public class MainWindow extends JFrame {
 		
 //		menuHaut = new MenuHaut();
 //		getContentPane().add(menuHaut, "North");
-		
-		Drawing drawing = new Drawing("src/main/resources/pictures/mapsixieme.jpg"); //(modele);
+		String imagePath = getClass().getClassLoader().getResource("pictures/mapsixieme.jpg").getFile();
+		Drawing drawing = new Drawing(imagePath); //(modele);
 		getContentPane().add(drawing, "Center");
 		
 		this.setResizable(false);
