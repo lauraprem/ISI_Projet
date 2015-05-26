@@ -29,6 +29,10 @@ public interface IUndirectedGraph {
      */
     public List<Node> getAdjNodes(Node _n);
 
+    /**
+     * renvoie toutes les arrêtes du graph qui sont adjacents à _n
+     */
+    public List<Edge> getAdjEdges(Node _n);
 	
     /**
      * Ajoute une arrete au graph entre deux noeuds

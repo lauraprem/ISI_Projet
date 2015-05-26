@@ -2,6 +2,7 @@ package model.graph.graph.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import model.graph.Node;
 import model.graph.edge.Edge;
@@ -96,16 +97,26 @@ public class UndirectedGraph implements IUndirectedGraph {
      * @param _n
      */
     public List<Node> getAdjNodes(Node _n) {
-        ArrayList<Node> adjEdge = new ArrayList<Node>();
+        ArrayList<Node> adjNodes = new ArrayList<Node>();
         for (Edge edge : edges) {
             if (edge.getDestination().equals(_n)) {
-                adjEdge.add(edge.getSource());
+                adjNodes.add(edge.getSource());
             }
             if (edge.getSource().equals(_n)) {
-                adjEdge.add(edge.getDestination());
+                adjNodes.add(edge.getDestination());
             }
         }
-        return adjEdge;
+        return adjNodes;
+    }
+
+
+    /**
+     * renvoie tous les noeuds du graph qui sont voisins de _n
+     *
+     * @param _n
+     */
+    public List<Edge> getAdjEdges(Node _n) {
+        return edges.stream().filter(edge -> edge.getSource().equals(_n) || edge.getDestination().equals(_n)).collect(Collectors.toList());
     }
 
 
