@@ -47,4 +47,10 @@ public class GraphUtilTest {
         onFireNodes.add(onFire);
         assertEquals(onFireNodes, GraphUtil.getNodesOnFire(graph));
     }
+
+    @Test
+    public void testGetFilteredGraph() throws Exception {
+        ArrayList<GroundType> groundTypeList = new ArrayList<>();
+        assertEquals(new Graph(), GraphUtil.getFilteredGraph(graph, groundTypeList));
+    }
 }
