@@ -5,11 +5,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import model.graph.Node;
-import model.graph.Node;
 import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
 import model.graph.label.Label;
-import model.graph.Node;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,11 +26,11 @@ public class Edge {
      */
     private Label valuation;
     /**
-     * Noeud source de l'arrete orientee
+     * Noeud source de l'arrete
      */
     private Node source;
     /**
-     * Noeud destination de l'arrete orientee
+     * Noeud destination de l'arrete
      */
     private Node destination;
 
@@ -42,11 +40,12 @@ public class Edge {
     private Ground ground;
 
     /**
-     * construit une arrete orientee et valuee
+     * construit une arrete valuee
      *
      * @param _v1        noeud source
      * @param _v2        noeud destination
      * @param _valuation valeur de l'arrete
+     * @param ground terrain de l'arrête
      */
     public Edge(Node _v1, Node _v2, Label _valuation, Ground ground) {
         _v1.setLinked(Boolean.TRUE);
@@ -60,7 +59,7 @@ public class Edge {
     }
 
     /**
-     * construit une arrete orientee et valuee
+     * construit une arrete valuee
      *
      * @param _v1 noeud source
      * @param _v2 noeud destination

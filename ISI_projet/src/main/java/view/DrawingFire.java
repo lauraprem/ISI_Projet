@@ -2,14 +2,14 @@ package view;
 
 import java.awt.Graphics;
 
-import model.graph.IGraph;
+import model.graph.graph.IUndirectedGraph;
 
 
 public class DrawingFire {
 	
-	private IGraph model;
+	private IUndirectedGraph model;
 
-	public DrawingFire(IGraph model) {
+	public DrawingFire(IUndirectedGraph model) {
 		super();
 		this.model = model;
 	}
