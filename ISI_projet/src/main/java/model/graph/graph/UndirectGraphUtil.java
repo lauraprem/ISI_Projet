@@ -1,9 +1,11 @@
 package model.graph.graph;
 
+import model.graph.Node;
+import model.graph.graph.impl.UndirectedGraph;
+import model.graph.ground.GroundType;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
-import model.graph.Node;
 
 /**
  * @author Alexandre
@@ -16,5 +18,14 @@ public class UndirectGraphUtil {
 
     public static List<Node> getNodesOnFire(IUndirectedGraph graph) {
         return graph.getAllNodes().stream().filter(node -> node.isOnFire()).collect(Collectors.toList());
+    }
+
+    public static IUndirectedGraph getFilteredGraph(IUndirectedGraph graph, List<GroundType> groundTypes) {
+        IUndirectedGraph newGraph = new UndirectedGraph();
+        if (groundTypes != null || groundTypes.size() != 0)
+            graph.getAllEdges().forEach(edge -> {
+                if (groundTypes.contains(edge.getGround().getType())) newGraph.addEdge(edge);
+            });
+        return newGraph;
     }
 }
