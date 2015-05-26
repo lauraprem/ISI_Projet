@@ -5,7 +5,6 @@ import java.util.List;
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.ground.Ground;
-import model.graph.label.Label;
 
 public interface IUndirectedGraph {
 
@@ -44,7 +43,7 @@ public interface IUndirectedGraph {
     /**
      * Ajoute une arrete au graph entre deux noeuds
      */
-    public void addEdge(Node _node1, Node _node2, Label valuation, Ground ground);
+    public void addEdge(Node _node1, Node _node2, Double length, Ground ground);
 
     /**
      * @return vrai si le graph possede une arrete entre les noeuds _n1 et _n2

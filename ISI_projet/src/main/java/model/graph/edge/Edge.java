@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import model.graph.Node;
 import model.graph.ground.Ground;
-import model.graph.label.Label;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,9 +21,9 @@ public class Edge {
     private Long id = 0L;
 
     /**
-     * valeur de l'arrete
+     * Longueur de l'arrete
      */
-    private Label valuation;
+    private Double length;
     /**
      * Noeud source de l'arrete
      */
@@ -47,10 +46,10 @@ public class Edge {
      * @param _valuation valeur de l'arrete
      * @param ground terrain de l'arrête
      */
-    public Edge(Node _v1, Node _v2, Label _valuation, Ground ground) {
+    public Edge(Node _v1, Node _v2, Double _valuation, Ground ground) {
         _v1.setLinked(Boolean.TRUE);
         _v2.setLinked(Boolean.TRUE);
-        this.valuation = _valuation;
+        this.length = _valuation;
         this.source = _v1;
         this.destination = _v2;
         this.ground = ground;
@@ -84,16 +83,16 @@ public class Edge {
     /**
      * @return la valeur de l'arrete
      */
-    public Label getValuation() {
-        return valuation;
+    public Double getLength() {
+        return length;
     }
 
     /**
-     * @param valuation
+     * @param length
      */
     @XmlElement
-    public void setValuation(Label valuation) {
-        this.valuation = valuation;
+    public void setLength(Double length) {
+        this.length = length;
     }
 
     /**
@@ -160,11 +159,11 @@ public class Edge {
 	}
     @Override
     public String toString() {
-        return source.getLabel().toString() + " ==> " + destination.getLabel().getLabel() + "(\"" + valuation + "\" " + ground.toString() + ")";
+        return source.getLabel().toString() + " ==> " + destination.getLabel() + "(\"" + length + "\" " + ground.toString() + ")";
     }
 
     @Override
     public Edge clone() {
-        return new Edge(source.clone(), destination.clone(), valuation.clone(), ground.clone());
+        return new Edge(source.clone(), destination.clone(), length.doubleValue(), ground.clone());
     }
 }

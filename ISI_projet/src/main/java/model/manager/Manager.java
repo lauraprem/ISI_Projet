@@ -106,4 +106,8 @@ public class Manager extends Thread {
     public synchronized void addRobot(Robot r) {
         robots.add(r);
     }
+
+    public synchronized void Exit() {
+        exit = Boolean.TRUE;
+    }
 }

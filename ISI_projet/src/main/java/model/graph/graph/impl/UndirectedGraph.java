@@ -7,7 +7,6 @@ import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IUndirectedGraph;
 import model.graph.ground.Ground;
-import model.graph.label.Label;
 
 /**
  * Created by alexandreg on 11/03/2015.
@@ -35,7 +34,7 @@ public class UndirectedGraph implements IUndirectedGraph {
      * @param _node2
      */
     public void addEdge(Node _node1, Node _node2) {
-        addEdge(_node1, _node2, null, null);
+        addEdge(_node1, _node2, 0.0, null);
     }
 
     /**
@@ -44,13 +43,13 @@ public class UndirectedGraph implements IUndirectedGraph {
      * @param _node1
      * @param _node2
      */
-    public void addEdge(Node _node1, Node _node2, Label valuation, Ground ground) {
+    public void addEdge(Node _node1, Node _node2, Double length, Ground ground) {
         _node1.setLinked(true);
         _node2.setLinked(true);
         List<Node> nodes = getAllNodes();
         if (!nodes.contains(_node1)) addNode(_node1);
         if (!nodes.contains(_node2)) addNode(_node2);
-        edges.add(new Edge(_node1, _node2, valuation, ground));
+        edges.add(new Edge(_node1, _node2, length, ground));
     }
 
     /**

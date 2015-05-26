@@ -4,8 +4,6 @@ import model.graph.Node;
 import model.graph.graph.impl.UndirectedGraph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
-import model.graph.label.impl.IntegerLabel;
-import model.graph.label.impl.StringLabel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,16 +19,16 @@ import static org.junit.Assert.assertEquals;
 public class UndirectGraphUtilTest {
     private IUndirectedGraph graph;
     private Node onFire;
-    private Node unlinkedNode = new Node(new StringLabel("unlinkedNode"), new Point(-1, -5));
+    private Node unlinkedNode = new Node("unlinkedNode", new Point(-1, -5));
 
     @Before
     public void setUp() throws Exception {
         graph = new UndirectedGraph();
-        onFire = new Node(new StringLabel("test1"), new Point(1, 2));
+        onFire = new Node("test1", new Point(1, 2));
         onFire.increaseFireLevel(20);
         graph.addEdge(onFire,
-                new Node(new StringLabel("test2"), new Point(-1, -2)),
-                new IntegerLabel(3),
+                new Node("test2", new Point(-1, -2)),
+                3.0,
                 new Ground(GroundType.FLAT, 1.0));
         graph.addNode(unlinkedNode);
     }
