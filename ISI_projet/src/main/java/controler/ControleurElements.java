@@ -16,29 +16,34 @@ public class ControleurElements implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		int typeElement;
+		typeElement = -1;
+		
 		switch (e.getActionCommand()) {
-		case "Tout_terrain":
-			// TODO model
+		case "Tout_terrain":			
+			typeElement = 0;
 			System.out.println("Tout_terrain");
 			break;
 
 		case "Chenille":
-			// TODO model
+			typeElement = 1;
 			System.out.println("Chenille");
 			break;
 
 		case "A_pates":
-			// TODO model
+			typeElement = 2;
 			System.out.println("A_pates");
 			break;
 
 		case "Add_Feu":
-			// TODO model
+			typeElement = 3;
 			System.out.println("Add_Feu");
 			break;
 
 		default:
 			break;
 		}
+		vue.addMouseListener(new ControleurMap(vue,typeElement));
 	}
+	
 }

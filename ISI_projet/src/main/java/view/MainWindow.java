@@ -7,6 +7,7 @@ public class MainWindow extends JFrame {
 
 	private MenuFichier menuFile;
 	private MenuHaut menuHaut;
+	private Drawing dessin;
 
 	public MainWindow() { //(Manager modele)
 		super("Robocup Rescue");
@@ -40,5 +41,13 @@ public class MainWindow extends JFrame {
 
 	public void setMenuHaut(MenuHaut menuHaut) {
 		this.menuHaut = menuHaut;
+	}
+
+	public Drawing getDessin() {
+		return dessin;
+	}
+
+	public void setDessin(Drawing dessin) {
+		this.dessin = dessin;
 	}
 }

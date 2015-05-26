@@ -16,29 +16,33 @@ public class ControleurGraph implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		int typeElement;
+		typeElement = -1;
+		
 		switch (e.getActionCommand()) {
 		case "Add_Noeud":
-			// TODO model
+			typeElement = 4;
 			System.out.println("Add_Noeud");
 			break;
 
 		case "Add_arc":
-			// TODO model
+			typeElement = 5;
 			System.out.println("Add_arc");
 			break;
 
 		case "Add_arc_Escarp":
-			// TODO model
+			typeElement = 6;
 			System.out.println("Add_arc_Escarp");
 			break;
 
 		case "Add_arc_Plat":
-			// TODO model
+			typeElement = 7;
 			System.out.println("Add_arc_Plat");
 			break;
 
 		default:
 			break;
 		}
+		vue.addMouseListener(new ControleurMap(vue,typeElement)); // Singloton
 	}
 }
