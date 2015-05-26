@@ -163,16 +163,16 @@ public class FileXML {
 	{
 		String fileSeparator=System.getProperty("file.separator");
 		OSM graphe=new OSM();
-		Node noeud1=new Node(new StringLabel("noeud1"),new Point(1,0));
-		Node noeud2=new Node(new StringLabel("noeud2"),new Point(1,1));
-		Edge arc1=new Edge(noeud1, noeud2,new StringLabel("arc1"),new Ground(GroundType.FLAT));
-		graphe.setArc(arc1);
-		graphe.setNoeud(noeud1);
-		graphe.setNoeud(noeud2);
-		System.out.println("Source: "+arc1.getSource());
-		System.out.println("Destination: "+arc1.getDestination());
-		System.out.println("Type: "+arc1.getGround().getType());
-		System.out.println("Valuation: "+arc1.getValuation());
+//		Node noeud1=new Node(new StringLabel("noeud1"),new Point(1,0));
+//		Node noeud2=new Node(new StringLabel("noeud2"),new Point(1,1));
+//		Edge arc1=new Edge(noeud1, noeud2,new StringLabel("arc1"),new Ground(GroundType.FLAT));
+//		graphe.setArc(arc1);
+//		graphe.setNoeud(noeud1);
+//		graphe.setNoeud(noeud2);
+//		System.out.println("Source: "+arc1.getSource());
+//		System.out.println("Destination: "+arc1.getDestination());
+//		System.out.println("Type: "+arc1.getGround().getType());
+		//System.out.println("Valuation: "+arc1.getValuation());
 		File file = new File("data"+fileSeparator+"graphe.xml");
 		new FileXML(file,graphe);
 		new FileXML(file);
