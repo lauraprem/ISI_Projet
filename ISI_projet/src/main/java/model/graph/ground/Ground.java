@@ -49,6 +49,22 @@ public class Ground {
     }
 
     /**
+     * Permet d'augmenter la probabilité d'être inondé
+     * @param chancesOfGettingFlooded chances d'être inondé
+     */
+    public void increaseChancesOfGettingFlooded(Double chancesOfGettingFlooded) {
+        setChancesOfGettingFlooded(getChancesOfGettingFlooded() + chancesOfGettingFlooded);
+    }
+
+    /**
+     * Permet de diminuer la probabilité d'être inondé
+     * @param chancesOfGettingFlooded chances d'être inondé
+     */
+    public void decreaseChancesOfGettingFlooded(Double chancesOfGettingFlooded) {
+        setChancesOfGettingFlooded(getChancesOfGettingFlooded() - chancesOfGettingFlooded);
+    }
+
+    /**
      * Permet de définir la probabilité d'être inondé,
      * si la probabilité donnée n'est pas entre 0 et 1
      * sa valeur est rapportée à la plus proche des deux
