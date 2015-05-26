@@ -1,9 +1,9 @@
 package model.graph;
 
+import java.awt.Point;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.awt.*;
 
 /**
  * Classe representant un noeud etiquete pour un graph
@@ -73,12 +73,7 @@ public class Node extends Point {
         setMaxId(getMaxId() + 1);
     }
 
-    /**
-     * @return l'unique ID du noeud
-     */
-    public Long getID() {
-        return id;
-    }
+
 
     /**
      * Specifie l etiquette du noeud
@@ -102,6 +97,9 @@ public class Node extends Point {
         return "" + label;
     }
 
+    /**
+     * @return l'unique ID du noeud
+     */
     public Long getId() {
         return id;
     }
