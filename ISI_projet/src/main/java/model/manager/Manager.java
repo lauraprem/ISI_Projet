@@ -1,6 +1,7 @@
 package model.manager;
 
 import model.graph.Node;
+import model.graph.edge.Edge;
 import model.graph.graph.IUndirectedGraph;
 import model.graph.graph.UndirectGraphUtil;
 import model.robot.Robot;
@@ -94,5 +95,15 @@ public class Manager extends Thread {
         return UndirectGraphUtil.getNodesOnFire(graph);
     }
 
+    public synchronized void addNode(Node n) {
+        graph.addNode(n);
+    }
 
+    public synchronized void addEdge(Edge e) {
+        graph.addEdge(e);
+    }
+
+    public synchronized void addRobot(Robot r) {
+        robots.add(r);
+    }
 }
