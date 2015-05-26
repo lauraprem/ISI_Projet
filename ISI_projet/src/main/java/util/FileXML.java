@@ -1,6 +1,5 @@
 package util;
 
-import java.awt.Point;
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,11 +11,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import model.graph.Node;
-import model.graph.edge.Edge;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
