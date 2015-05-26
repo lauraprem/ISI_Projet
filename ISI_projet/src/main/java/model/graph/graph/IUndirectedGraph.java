@@ -18,21 +18,7 @@ public interface IUndirectedGraph {
      * @return tous les noeuds du graph
      */
     public List<Node> getAllNodes();
-<<<<<<< HEAD
 
-    /**
-     * @return le nombre de noeuds du graph
-     */
-    public int getNbNodes();
-
-    /**
-     * renvoie tous les noeuds du graph qui sont destination d'un arc dont la source est _n
-     */
-    public List<Node> getAdjNodes(Node _n);
-=======
->>>>>>> 8f5ec17f4a30802e1fa1163754219a4e8a4b2782
-
-	
     /**
      * @return le nombre de noeuds du graph
      */

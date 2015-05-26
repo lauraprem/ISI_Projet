@@ -1,10 +1,7 @@
 package model.manager;
 
 import model.graph.Node;
-<<<<<<< HEAD
-=======
 import model.graph.edge.Edge;
->>>>>>> 8f5ec17f4a30802e1fa1163754219a4e8a4b2782
 import model.graph.graph.IUndirectedGraph;
 import model.graph.graph.UndirectGraphUtil;
 import model.robot.Robot;
@@ -98,9 +95,6 @@ public class Manager extends Thread {
         return UndirectGraphUtil.getNodesOnFire(graph);
     }
 
-<<<<<<< HEAD
-
-=======
     public synchronized void addNode(Node n) {
         graph.addNode(n);
     }
@@ -116,5 +110,4 @@ public class Manager extends Thread {
     public synchronized void Exit() {
         exit = Boolean.TRUE;
     }
->>>>>>> 8f5ec17f4a30802e1fa1163754219a4e8a4b2782
 }

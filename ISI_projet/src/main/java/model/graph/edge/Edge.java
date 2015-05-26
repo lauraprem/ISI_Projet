@@ -6,10 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import model.graph.Node;
 import model.graph.ground.Ground;
-<<<<<<< HEAD
-import model.graph.label.Label;
-=======
->>>>>>> 8f5ec17f4a30802e1fa1163754219a4e8a4b2782
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

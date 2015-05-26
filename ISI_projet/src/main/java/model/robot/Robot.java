@@ -86,10 +86,7 @@ public class Robot {
 	 * @return le cout pour aller à la destination et -1 s'il est impossible d'y aller
 	 */
 	public int proposeNode(Node destination) {
-<<<<<<< HEAD
-=======
         // TODO LPR : Supprimer noeuds avec arrêtes non marchées + transformer Node en extendedNode dans le graphe
->>>>>>> 8f5ec17f4a30802e1fa1163754219a4e8a4b2782
 //		return pathFinder.findShorterPath(graph, currentNode, destination, capacity);
 		return -1;
 	}
