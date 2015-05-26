@@ -146,4 +146,23 @@ public class Graph implements IGraph {
         }
         return str;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Graph graph = (Graph) o;
+
+        if (!edges.equals(graph.edges)) return false;
+        return nodes.equals(graph.nodes);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = edges.hashCode();
+        result = 31 * result + nodes.hashCode();
+        return result;
+    }
 }

@@ -43,12 +43,27 @@ public class Node extends Point {
      * et une position
      *
      * @param _label etiquette du noeud
+     * @param _point position du noeud
      */
     public Node(String _label, Point _point) {
         super(_point);
         this.label = _label;
         this.id = getMaxId();
         incrementMaxId();
+    }
+
+    /**
+     * Construit un noeud avec une etiquette
+     * et une position
+     *
+     * @param _id identifiant du noeud
+     * @param _label etiquette du noeud
+     * @param _point position du noeud
+     */
+    private Node(Long _id, String _label, Point _point) {
+        super(_point);
+        this.label = _label;
+        this.id = _id;
     }
 
     private Boolean linked = Boolean.FALSE;
@@ -157,7 +172,7 @@ public class Node extends Point {
      */
     @Override
     public Node clone() {
-        Node node = new Node(new String(label), (Point) super.clone());
+        Node node = new Node(id, label, (Point) super.clone());
         node.setFireLevel(fireLevel);
         node.setLinked(linked);
         return node;
