@@ -6,7 +6,7 @@ import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.ground.Ground;
 
-public interface IUndirectedGraph {
+public interface IGraph {
 
 	
     /**

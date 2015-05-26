@@ -1,9 +1,7 @@
 package model.robot;
 
 import model.graph.Node;
-import model.graph.edge.Edge;
-import model.graph.graph.IUndirectedGraph;
-import model.graph.ground.Ground;
+import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
 
@@ -39,7 +37,7 @@ public class Robot {
 	/**
 	 * Graph sur lequel le robot se deplace
 	 */
-	private IUndirectedGraph graph;
+	private IGraph graph;
 
 	private Integer decreaseFireLevelCapacity;
 
@@ -50,7 +48,7 @@ public class Robot {
 	 * @param _startNode noeud sur lequel se trouve le robot pour commencer
 	 * @param _pathFinder méthode de calcul du plus court chemin
 	 */
-	public Robot(List<GroundType> _capacity, IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder) {
+	public Robot(List<GroundType> _capacity, IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder) {
 		this(_capacity, _graph, _startNode, _pathFinder, null);
 	}
 
@@ -62,7 +60,7 @@ public class Robot {
 	 * @param _pathFinder méthode de calcul du plus court chemin
 	 * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
 	 */
-	public Robot(List<GroundType> _capacity, IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+	public Robot(List<GroundType> _capacity, IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
 		busy = false;
 		capacity = _capacity;
 		currentNode = _startNode;
@@ -117,11 +115,11 @@ public class Robot {
 		this.currentNode = currentNode;
 	}
 
-	public IUndirectedGraph getGraph() {
+	public IGraph getGraph() {
 		return graph;
 	}
 
-	public void setGraph(IUndirectedGraph graph) {
+	public void setGraph(IGraph graph) {
 		this.graph = graph;
 	}
 
@@ -141,7 +139,7 @@ public class Robot {
 		this.decreaseFireLevelCapacity = decreaseFireLevelCapacity;
 	}
 
-	public static Robot ToutTerrain(IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+	public static Robot ToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
 		List<GroundType> grounds = new ArrayList<>();
 		grounds.add(GroundType.FLAT);
 		grounds.add(GroundType.STEEP);
@@ -149,14 +147,14 @@ public class Robot {
 		return new Robot(grounds, _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
 	}
 
-	public static Robot Chenille(IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+	public static Robot Chenille(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
 		List<GroundType> grounds = new ArrayList<>();
 		grounds.add(GroundType.FLAT);
 		grounds.add(GroundType.FLOODED);
 		return new Robot(grounds, _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
 	}
 
-	public static Robot APates(IUndirectedGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+	public static Robot APates(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
 		List<GroundType> grounds = new ArrayList<>();
 		grounds.add(GroundType.FLAT);
 		grounds.add(GroundType.STEEP);

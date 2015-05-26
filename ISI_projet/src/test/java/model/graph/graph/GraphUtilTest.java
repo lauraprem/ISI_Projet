@@ -1,7 +1,7 @@
 package model.graph.graph;
 
 import model.graph.Node;
-import model.graph.graph.impl.UndirectedGraph;
+import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
 import org.junit.Before;
@@ -16,14 +16,14 @@ import static org.junit.Assert.assertEquals;
  * @author Alexandre
  *         11/05/2015
  */
-public class UndirectGraphUtilTest {
-    private IUndirectedGraph graph;
+public class GraphUtilTest {
+    private IGraph graph;
     private Node onFire;
     private Node unlinkedNode = new Node("unlinkedNode", new Point(-1, -5));
 
     @Before
     public void setUp() throws Exception {
-        graph = new UndirectedGraph();
+        graph = new Graph();
         onFire = new Node("test1", new Point(1, 2));
         onFire.increaseFireLevel(20);
         graph.addEdge(onFire,
@@ -38,13 +38,13 @@ public class UndirectGraphUtilTest {
         ArrayList unlinkedNodes = new ArrayList<Node>();
         Node n = unlinkedNode;
         unlinkedNodes.add(n);
-        assertEquals(unlinkedNodes, UndirectGraphUtil.getUnlinkedNodes(graph));
+        assertEquals(unlinkedNodes, GraphUtil.getUnlinkedNodes(graph));
     }
 
     @Test
     public void testGetOnFireNodes() throws Exception {
         ArrayList onFireNodes = new ArrayList<Node>();
         onFireNodes.add(onFire);
-        assertEquals(onFireNodes, UndirectGraphUtil.getNodesOnFire(graph));
+        assertEquals(onFireNodes, GraphUtil.getNodesOnFire(graph));
     }
 }
