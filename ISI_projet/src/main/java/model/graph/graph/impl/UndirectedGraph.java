@@ -1,13 +1,13 @@
 package model.graph.graph.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IUndirectedGraph;
 import model.graph.ground.Ground;
 import model.graph.label.Label;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by alexandreg on 11/03/2015.
@@ -92,7 +92,7 @@ public class UndirectedGraph implements IUndirectedGraph {
     }
 
     /**
-     * renvoie tous les noeuds du graph qui sont destination d'un arc dont la source est _n
+     * renvoie tous les noeuds du graph qui sont voisins de _n
      *
      * @param _n
      */
