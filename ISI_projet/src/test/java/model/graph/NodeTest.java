@@ -16,8 +16,7 @@ public class NodeTest {
 
     @Before
     public void setUp() throws Exception {
-        node = new Node("test1", new Point(1, 2));
-        node.setFireLevel(5);
+        node = new Node("test1", new Point(1, 2), 5);
     }
 
     @Test

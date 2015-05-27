@@ -54,6 +54,21 @@ public class Node extends Point {
 
     /**
      * Construit un noeud avec une etiquette
+     * et une position, et un niveau de feu
+     *
+     * @param _label etiquette du noeud
+     * @param _point position du noeud
+     */
+    public Node(String _label, Point _point, Integer fireLevel) {
+        super(_point);
+        this.label = _label;
+        this.id = getMaxId();
+        incrementMaxId();
+        setFireLevel(fireLevel);
+    }
+
+    /**
+     * Construit un noeud avec une etiquette
      * et une position
      *
      */
@@ -96,8 +111,6 @@ public class Node extends Point {
         setMaxId(getMaxId() + 1);
     }
 
-
-
     /**
      * Specifie l etiquette du noeud
      *
@@ -127,11 +140,15 @@ public class Node extends Point {
         return id;
     }
 
+    private void setId(Long id) {
+        this.id = id;
+    }
+
     public Integer getFireLevel() {
         return fireLevel;
     }
 
-    public void setFireLevel(Integer fireLevel) {
+    private void setFireLevel(Integer fireLevel) {
         if (fireLevel < 0) {
             this.fireLevel = 0;
             logger.warn(String.format("The level of the fire can't be negative, has been set to 0."));
@@ -185,5 +202,4 @@ public class Node extends Point {
         node.setLinked(linked);
         return node;
     }
-
 }

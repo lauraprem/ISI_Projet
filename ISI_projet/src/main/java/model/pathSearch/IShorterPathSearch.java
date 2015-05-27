@@ -1,11 +1,11 @@
 package model.pathSearch;
 
+import java.util.List;
+
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.robot.NodePath;
-
-import java.util.List;
 
 /**
  * permet de trouver le plus court chemin
