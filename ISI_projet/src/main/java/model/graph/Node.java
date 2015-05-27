@@ -178,5 +178,3 @@ public class Node extends Point {
         return node;
     }
 }
-
-

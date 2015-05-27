@@ -1,32 +1,54 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
+
+import model.graph.Node;
 import model.graph.edge.Edge;
+import model.robot.Robot;
 
 public class DrawingRobot{
 	
-	private Edge model;
+	private Robot model;
 
-	public DrawingRobot(Edge model) {
-		super();
-		this.model = model;
-	}
+	public DrawingRobot(Graphics graph,Robot model) {
+			if (graph == null) {
+				return;
+			}
+			
+			String typePath = "pictures/robotAPattes.gif";
+			typePath = "pictures/robotChenilles.gif";
+			typePath = "pictures/RobotToutTerrain.gif";
 
-	public void drawArc(Graphics graph) {
-		if (graph == null) {
-			return;
+			
+			String imagePath = getClass().getClassLoader().getResource(typePath).getFile();
+			Image img = new ImageIcon(imagePath).getImage();
+			
+			Node node = model.getCurrentNode();
+			graph.drawImage(img,node.x -10, node.y-5, null); // Position haut gauche
 		}
-
-		// Dessine l'arc
-//		for (Iterator<Segment> it = tortue.getListSegments().iterator(); it
-//				.hasNext();) {
-//			Segment seg = (Segment) it.next();
-//			if (graph == null) {
-//				return;
-//			}
-//			graph.setColor(seg.getColor());
-//			graph.drawLine(seg.getPtStart().x, seg.getPtStart().y, seg.getPtEnd().x, seg.getPtEnd().y);
+		
+//		switch (model.g) {
+//		case FLAT:
+//			graph.setColor(Color.black);
+//			break;
+//		case STEEP:
+//			graph.setColor(Color.orange);
+//			break;
+//		case FLOODED: //TOTDO mettre innondé dans vue + add star + (stop + Pause)
+//			graph.setColor(Color.magenta);
+//			break;
+//			default:
+//				graph.setColor(Color.black);
+//				break;
 //		}
-	}
+		
+//		String imagePath = getClass().getClassLoader().getResource(typePath).getFile();
+//		Image img = new ImageIcon(imagePath).getImage();
+//		
+//		graph.drawImage(img, 0, 0, null);
+//	}
 }

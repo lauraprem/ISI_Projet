@@ -1,17 +1,17 @@
 package controler;
 
-import javax.swing.JButton;
 import javax.swing.JMenuItem;
 
+import model.manager.Manager;
 import view.MainWindow;
 
 public class MainControler {
-	// private Manager modele;
+	 private Manager model;
 	private MainWindow vue;
 
-	public MainControler(MainWindow vue) { // param model+vue
+	public MainControler(MainWindow vue, Manager model) {
 		this.vue = vue;
-
+		this.model = model;
 		this.addListenersView();
 	}
 
@@ -22,13 +22,13 @@ public class MainControler {
 
 		for (JMenuItem item : vue.getMenuFile().getListButon()) {
 			if (this.controleFile(item) == true) {
-				item.addActionListener(new ControleurFile(vue));
+				item.addActionListener(new ControleurFile(vue,model));
 			} else if (controleGraph(item) == true) {
-				item.addActionListener(new ControleurGraph(vue));
+				item.addActionListener(new ControleurGraph(vue,model));
 			} else if (controleHelp(item) == true) {
-				item.addActionListener(new ControleurHelp(vue));
+				item.addActionListener(new ControleurHelp(vue,model));
 			} else {
-				item.addActionListener(new ControleurElements(vue));
+				item.addActionListener(new ControleurElements(vue,model));
 			}
 
 		}

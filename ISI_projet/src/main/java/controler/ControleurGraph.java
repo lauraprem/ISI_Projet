@@ -3,14 +3,15 @@ package controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.manager.Manager;
 import view.MainWindow;
 
 public class ControleurGraph implements ActionListener {
-	// private EnvironnementTortue model; //TODO model
+	 private Manager model;
 	private MainWindow vue;
 
-	public ControleurGraph(MainWindow vue) { // TODO model
-	// this.model = model; //TODO model
+	public ControleurGraph(MainWindow vue,Manager model) {
+	 this.model = model;
 		this.vue = vue;
 	}
 
@@ -43,6 +44,6 @@ public class ControleurGraph implements ActionListener {
 		default:
 			break;
 		}
-		vue.addMouseListener(new ControleurMap(vue,typeElement)); // Singloton
+		vue.addMouseListener(new ControleurMap(vue,model,typeElement)); // Singloton
 	}
 }
