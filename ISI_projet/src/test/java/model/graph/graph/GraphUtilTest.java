@@ -1,6 +1,7 @@
 package model.graph.graph;
 
 import model.graph.Node;
+import model.graph.edge.Edge;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
@@ -17,19 +18,16 @@ import static org.junit.Assert.assertEquals;
  *         11/05/2015
  */
 public class GraphUtilTest {
-    private IGraph graph;
-    private Node onFire;
-    private Node unlinkedNode = new Node("unlinkedNode", new Point(-1, -5));
+    protected Node onFire = new Node("test1", new Point(1, 2), 20);
+    protected Node unlinkedNode = new Node("unlinkedNode", new Point(-1, -5));
+    protected Node startNode = new Node("test2", new Point(-1, -2));
+    protected IGraph graph = new Graph(new Edge(onFire,
+            startNode,
+            3.0,
+            new Ground(GroundType.FLAT, 1.0)));
 
     @Before
     public void setUp() throws Exception {
-        graph = new Graph();
-        onFire = new Node("test1", new Point(1, 2));
-        onFire.increaseFireLevel(20);
-        graph.addEdge(onFire,
-                new Node("test2", new Point(-1, -2)),
-                3.0,
-                new Ground(GroundType.FLAT, 1.0));
         graph.addNode(unlinkedNode);
     }
 
