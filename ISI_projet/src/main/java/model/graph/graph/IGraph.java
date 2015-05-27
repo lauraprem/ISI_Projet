@@ -60,7 +60,7 @@ public interface IGraph {
      */
     boolean hasEdge(Node _node1, Node _node2);
     
-    public Edge getEdgeFromNodes(Node _node1, Node _node2);
+    Edge getEdgeFromNodes(Node _node1, Node _node2);
 
     boolean equals(Object o);
 
