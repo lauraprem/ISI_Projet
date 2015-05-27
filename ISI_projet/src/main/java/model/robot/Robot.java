@@ -36,7 +36,7 @@ public class Robot {
     /**
      * Chemin à parcourir
      */
-    private NodePath path;
+    private NodePath path = new NodePath();
 
     /**
      * Graph sur lequel le robot se deplace
@@ -94,7 +94,7 @@ public class Robot {
      * @return le cout pour aller à la destination et -1 s'il est impossible d'y aller
      */
     public Float proposeNode(Node destination) {
-		return pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
+		return pathFinder == null ? -1.0f : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
     }
 
     public void acceptPath() {
@@ -155,5 +155,9 @@ public class Robot {
             currentNode = path.next();
         } else if (!currentNode.isOnFire() || currentNode.isOnFire() && stopFire())
             setBusy(Boolean.FALSE);
+    }
+
+    private void setPath(NodePath path) {
+        this.path = path;
     }
 }

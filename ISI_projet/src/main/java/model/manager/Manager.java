@@ -1,12 +1,5 @@
 package model.manager;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import model.Observable;
 import model.graph.Node;
 import model.graph.edge.Edge;
@@ -16,26 +9,30 @@ import model.graph.graph.impl.Graph;
 import model.robot.Robot;
 import view.Observer;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * @author Alexandre
  *         11/05/2015
  */
-public class Manager extends Thread implements Observable{
+public class Manager extends Thread implements Observable {
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
+    private Boolean pause = Boolean.FALSE;
     private Long refreshTime = 1000L;
-    
+
     protected ArrayList<Observer> observers;
 
     public Manager(IGraph graph, List<Robot> robots) {
-    	observers = new ArrayList<Observer>();
+        observers = new ArrayList<Observer>();
         this.graph = graph;
         this.robots = robots;
     }
 
     public Manager() {
-    	observers = new ArrayList<Observer>();
+        observers = new ArrayList<Observer>();
     }
 
     public synchronized IGraph getGraph() {
@@ -56,7 +53,6 @@ public class Manager extends Thread implements Observable{
     }
 
 
-
     /**
      * If this thread was constructed using a separate
      * <code>Runnable</code> run object, then that
@@ -71,30 +67,31 @@ public class Manager extends Thread implements Observable{
     @Override
     public void run() {
         Long startLoop, endLoop;
-        while(!exit) {
+        while (!isExited()) {
             startLoop = System.currentTimeMillis();
             askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
                     getUnoccupiedRobots());
             endLoop = System.currentTimeMillis();
-            if(endLoop - startLoop < refreshTime) try {
+            if (endLoop - startLoop < refreshTime) try {
                 sleep(refreshTime - endLoop + startLoop);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            while (isPaused()) ;
         }
     }
 
     private void askDistanceToRobots(List<Node> nodesOnFire, List<Robot> unoccupiedRobots) {
         Map<Robot, Float> distances = Collections.synchronizedMap(new HashMap());
-        for(Node node : nodesOnFire) {
+        for (Node node : nodesOnFire) {
             distances.clear();
             unoccupiedRobots.stream()
                     .forEach(robot -> {
-                Float distance = robot.proposeNode(node);
-                if(distance != -1) distances.put(robot, distance);
-            });
-            if(distances.size() != 0) Collections.min(
-                        distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey().acceptPath();
+                        Float distance = robot.proposeNode(node);
+                        if (distance != -1) distances.put(robot, distance);
+                    });
+            if (distances.size() != 0) Collections.min(
+                    distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey().acceptPath();
         }
     }
 
@@ -126,20 +123,36 @@ public class Manager extends Thread implements Observable{
         exit = Boolean.TRUE;
     }
 
+    public synchronized void Pause() {
+        pause = Boolean.TRUE;
+    }
+
+    public synchronized void Unpause() {
+        pause = Boolean.FALSE;
+    }
+
+    private synchronized Boolean isExited() {
+        return exit;
+    }
+
+    private synchronized Boolean isPaused() {
+        return pause;
+    }
+
     @Override
-	public void AjoutObservateur(Observer o) {
-		observers.add(o);
-	}
+    public void AjoutObservateur(Observer o) {
+        observers.add(o);
+    }
 
-	@Override
-	public void SupprimerObservateur(Observer o) {
-		observers.remove(o);
-	}
+    @Override
+    public void SupprimerObservateur(Observer o) {
+        observers.remove(o);
+    }
 
-	@Override
-	public void NotifierObservateur() {
-		for (Observer obs : observers) {
-			obs.Update();
-		}
-	}
+    @Override
+    public void NotifierObservateur() {
+        for (Observer obs : observers) {
+            obs.Update();
+        }
+    }
 }

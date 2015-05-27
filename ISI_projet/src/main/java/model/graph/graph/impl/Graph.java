@@ -18,6 +18,13 @@ public class Graph implements IGraph {
 
     private ArrayList<Node> nodes = new ArrayList<Node>();
 
+    public Graph() {
+    }
+
+    public Graph(Edge... edges) {
+        for(int i = 0; i < edges.length; i++) addEdge(edges[i]);
+    }
+
     /**
      * Ajoute une arrete au graph entre deux noeuds
      *
