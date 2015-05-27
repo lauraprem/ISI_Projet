@@ -16,8 +16,9 @@ public class ControleurMap implements MouseListener {
 	private MainWindow vue;
 	private int typeElement;
 
-	public ControleurMap(MainWindow vue, Manager manager, int typeElement) { // TODO model
+	public ControleurMap(MainWindow vue, Manager manager, int typeElement) {
 		this.vue = vue;
+		this.model = manager;
 		this.typeElement = typeElement;
 	}
 

@@ -9,7 +9,7 @@ public class MainWindow extends JFrame {
 
 	private MenuFichier menuFile;
 	private MenuHaut menuHaut;
-	private Drawing dessin;
+	private Drawing drawing;
 
 	public MainWindow(Manager model) {
 		super("Robocup Rescue");
@@ -23,7 +23,7 @@ public class MainWindow extends JFrame {
 //		menuHaut = new MenuHaut();
 //		getContentPane().add(menuHaut, "North");
 		String imagePath = getClass().getClassLoader().getResource("pictures/mapsixieme.jpg").getFile();
-		Drawing drawing = new Drawing(model,imagePath);
+		drawing = new Drawing(model,imagePath);
 		getContentPane().add(drawing, "Center");
 		
 		this.setResizable(false);
@@ -46,10 +46,10 @@ public class MainWindow extends JFrame {
 	}
 
 	public Drawing getDessin() {
-		return dessin;
+		return drawing;
 	}
 
-	public void setDessin(Drawing dessin) {
-		this.dessin = dessin;
+	public void setDessin(Drawing drawing) {
+		this.drawing = drawing;
 	}
 }
