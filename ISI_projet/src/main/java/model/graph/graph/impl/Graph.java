@@ -66,6 +66,15 @@ public class Graph implements IGraph {
         return false;
     }
 
+	public Edge getEdgeFromNodes(Node _node1, Node _node2) {
+		for (Edge edge : edges) {
+			if ((edge.getDestination().equals(_node1) && edge.getSource().equals(_node2)) || (edge.getDestination().equals(_node2) && edge.getSource().equals(_node1))) {
+				return edge;
+			}
+		}
+		return null;
+	}
+
 
     /**
      * ajoute un noeud au graph
