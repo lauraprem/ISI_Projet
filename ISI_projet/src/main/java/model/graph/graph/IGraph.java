@@ -59,6 +59,8 @@ public interface IGraph {
      * @return vrai si le graph possede une arrete entre les noeuds _n1 et _n2
      */
     boolean hasEdge(Node _node1, Node _node2);
+    
+    public Edge getEdgeFromNodes(Node _node1, Node _node2);
 
     boolean equals(Object o);
 
