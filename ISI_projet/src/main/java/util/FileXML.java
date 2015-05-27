@@ -93,10 +93,10 @@ public class FileXML {
 				switch(typeDeNoeud)
 				{
 				case Node:
-					Node noeud=new Node();
+					//Node noeud=new Node();
 					break;
 				case Edge:
-					Edge edge=new Edge();
+					//Edge edge=new Edge();
 					break;
 				}
 				for(int i=0;i<noms.getLength();i++)
