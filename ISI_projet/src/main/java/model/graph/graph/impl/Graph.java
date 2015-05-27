@@ -47,9 +47,8 @@ public class Graph implements IGraph {
     public void addEdge(Node _node1, Node _node2, Double length, Ground ground) {
         _node1.setLinked(true);
         _node2.setLinked(true);
-        List<Node> nodes = getAllNodes();
-        if (!nodes.contains(_node1)) addNode(_node1);
-        if (!nodes.contains(_node2)) addNode(_node2);
+        addNode(_node1);
+        addNode(_node2);
         edges.add(new Edge(_node1, _node2, length, ground));
     }
 
@@ -74,7 +73,7 @@ public class Graph implements IGraph {
      * @param _node
      */
     public void addNode(Node _node) {
-        nodes.add(_node);
+        if(!nodes.contains(_node)) nodes.add(_node);
     }
 
     /**
