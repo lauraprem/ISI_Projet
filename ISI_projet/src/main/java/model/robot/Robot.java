@@ -98,6 +98,7 @@ public class Robot {
     }
 
     public void acceptPath() {
+        busy = Boolean.TRUE;
         path.accept();
     }
 
