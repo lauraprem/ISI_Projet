@@ -85,20 +85,17 @@ public class Manager extends Thread implements Observable{
     }
 
     private void askDistanceToRobots(List<Node> nodesOnFire, List<Robot> unoccupiedRobots) {
-        Map<Node, Robot> commands = Collections.synchronizedMap(new HashMap());
-        Map<Robot, Integer> distances = Collections.synchronizedMap(new HashMap());
+        Map<Robot, Float> distances = Collections.synchronizedMap(new HashMap());
         for(Node node : nodesOnFire) {
             distances.clear();
             unoccupiedRobots.stream()
-                    .filter(robotCommanded -> !commands.containsValue(robotCommanded)).forEach(robot -> {
-                Integer distance = robot.proposeNode(node);
+                    .forEach(robot -> {
+                Float distance = robot.proposeNode(node);
                 if(distance != -1) distances.put(robot, distance);
             });
-            if(distances.size() != 0) commands.put(node,
-                    Collections.min(
-                            distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey());
+            if(distances.size() != 0) Collections.min(
+                        distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey().acceptPath();
         }
-        commands.forEach((node, robot) -> robot.stopFire(node));
     }
 
 
