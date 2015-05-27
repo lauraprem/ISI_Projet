@@ -111,8 +111,6 @@ public class Node extends Point {
         setMaxId(getMaxId() + 1);
     }
 
-
-
     /**
      * Specifie l etiquette du noeud
      *
@@ -140,6 +138,10 @@ public class Node extends Point {
      */
     public Long getId() {
         return id;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getFireLevel() {
@@ -200,5 +202,4 @@ public class Node extends Point {
         node.setLinked(linked);
         return node;
     }
-
 }
