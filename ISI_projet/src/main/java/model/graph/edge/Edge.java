@@ -59,6 +59,12 @@ public class Edge {
 
     /**
      * construit une arrete valuee
+     */
+    public Edge() {
+    }
+
+    /**
+     * construit une arrete valuee
      *
      * @param _id        id de l'arrête
      * @param _v1        noeud source

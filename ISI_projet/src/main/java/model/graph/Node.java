@@ -56,6 +56,14 @@ public class Node extends Point {
      * Construit un noeud avec une etiquette
      * et une position
      *
+     */
+    public Node() {
+    }
+
+    /**
+     * Construit un noeud avec une etiquette
+     * et une position
+     *
      * @param _id identifiant du noeud
      * @param _label etiquette du noeud
      * @param _point position du noeud
@@ -177,4 +185,5 @@ public class Node extends Point {
         node.setLinked(linked);
         return node;
     }
+
 }
