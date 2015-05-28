@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Event;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -19,12 +20,15 @@ public class MenuFichier extends JMenuBar {
 		
 		JMenu menuFile = new JMenu("File"); // on installe le premier menu
 		this.add(menuFile);
-		addMenuItem(menuFile, "Nouveau graph", "Nouveau graph", KeyEvent.VK_N);
-		addMenuItem(menuFile, "Charger graph", "Charger graph", KeyEvent.VK_C);
-		addMenuItem(menuFile, "Sauvegarder graph", "Sauvegarder graph", KeyEvent.VK_S);
-		addMenuItem(menuFile, "Démarrer", "Run", KeyEvent.VK_R, false);
-		addMenuItem(menuFile, "Arrêter", "Stop", KeyEvent.VK_S, false);
-		addMenuItem(menuFile, "Quitter", "Quitter", KeyEvent.VK_Q);
+		addMenuItem(menuFile, "Nouveau", "Nouveau graph", KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK);
+		addMenuItem(menuFile, "Ouvrir", "Charger graph", KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK);
+		addMenuItem(menuFile, "Enregistrer", "Sauvegarder graph", KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK);
+		addMenuItem(menuFile, "Enregistrer sous...", "Sauvegarder graph sous", KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK + InputEvent.SHIFT_DOWN_MASK);
+		menuFile.addSeparator();
+		addMenuItem(menuFile, "Démarrer", "Run", KeyEvent.VK_R);
+		addMenuItem(menuFile, "Arrêter", "Stop", KeyEvent.VK_S);
+		menuFile.addSeparator();
+		addMenuItem(menuFile, "Quitter", "Quitter", KeyEvent.VK_W, InputEvent.CTRL_DOWN_MASK);
 
 		JMenu menuGraph = new JMenu("Menu graph");
 		this.add(menuGraph);
@@ -49,16 +53,16 @@ public class MenuFichier extends JMenuBar {
 		addMenuItem(menuHelp, "A propos", "About", -1);
 
 	}
-	public void addMenuItem(JMenu m, String label, String command, int key, Boolean ctrl) {
+	public void addMenuItem(JMenu m, String label, String command, int key, int ctrlModifier) {
 		JMenuItem menuItem;
 		menuItem = new JMenuItem(label);
 		m.add(menuItem);
 
 		menuItem.setActionCommand(command);
 		if (key > 0) {
-			if (key != KeyEvent.VK_DELETE && ctrl)
+			if (key != KeyEvent.VK_DELETE && ctrlModifier != 0)
 				menuItem.setAccelerator(KeyStroke.getKeyStroke(key,
-						Event.CTRL_MASK, false));
+						ctrlModifier, false));
 			else
 				menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
 		}
@@ -66,7 +70,7 @@ public class MenuFichier extends JMenuBar {
 	}
 
 	public void addMenuItem(JMenu m, String label, String command, int key) {
-		addMenuItem(m, label, command, key, true);
+		addMenuItem(m, label, command, key, 0);
 	}
 
 	public ArrayList<JMenuItem> getListButon() {
