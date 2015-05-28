@@ -1,9 +1,9 @@
 package controler;
 
-import javax.swing.JMenuItem;
-
 import model.manager.Manager;
 import view.MainWindow;
+
+import javax.swing.*;
 
 public class MainControler {
 	 private Manager model;
@@ -74,14 +74,18 @@ public class MainControler {
 	 */
 	private boolean controleFile(JMenuItem item) {
 		switch (item.getActionCommand()) {
-		case "Nouveau graph":
-			return true;
-		case "Charger graph":
-			return true;
-		case "Sauvegarder graph":
-			return true;
-		case "Quitter":
-			return true;
+			case "Nouveau graph":
+				return true;
+			case "Charger graph":
+				return true;
+			case "Sauvegarder graph":
+				return true;
+			case "Quitter":
+				return true;
+			case "Run":
+				return true;
+			case "Stop":
+				return true;
 		}
 		return false;
 	}

@@ -14,6 +14,8 @@ import model.graph.graph.GraphUtil;
 import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.robot.Robot;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import view.Observer;
 
 /**
@@ -21,6 +23,7 @@ import view.Observer;
  *         11/05/2015
  */
 public class Manager extends Thread implements Observable, Observer {
+    private static Logger logger = LogManager.getLogger();
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
@@ -69,6 +72,9 @@ public class Manager extends Thread implements Observable, Observer {
      */
     @Override
     public void run() {
+        logger.info("Manager has been started.");
+        Long start = System.currentTimeMillis();
+        exit = Boolean.FALSE;
         Long startLoop = System.currentTimeMillis(), endLoop;
         while (!isExited()) {
             endLoop = System.currentTimeMillis();
@@ -77,8 +83,12 @@ public class Manager extends Thread implements Observable, Observer {
                 askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
                         getUnoccupiedRobots());
             }
-            while (isPaused()) ;
+            if(isPaused()) logger.info("Manager has been paused.");
+            while (isPaused()) {
+                if(!isPaused()) logger.info("Manager has been unpaused.");
+            }
         }
+        logger.info("Manager has stopped.");
     }
 
     private void askDistanceToRobots(List<Node> nodesOnFire, List<Robot> unoccupiedRobots) {
@@ -119,11 +129,11 @@ public class Manager extends Thread implements Observable, Observer {
         notifyObserver();
     }
 
-    public synchronized void Exit() {
+    public synchronized void exitManager() {
         exit = Boolean.TRUE;
     }
 
-    public synchronized void Pause() {
+    public synchronized void pauseManager() {
         pause = Boolean.TRUE;
     }
 
@@ -157,6 +167,15 @@ public class Manager extends Thread implements Observable, Observer {
 
     @Override
     public void Update() {
+        notifyObserver();
+    }
+
+    public synchronized void reset() {
+        robots = Collections.synchronizedList(new ArrayList<Robot>());
+        graph = new Graph();
+        exit = Boolean.FALSE;
+        pause = Boolean.FALSE;
+        refreshTime = 1000L;
         notifyObserver();
     }
 }
