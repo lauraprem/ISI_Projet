@@ -107,21 +107,30 @@ public class FileXML {
 								for(Method method:Node.class.getDeclaredMethods())
 								{
 									String nomMethod=method.getName();
-									if(method.getName().equalsIgnoreCase("set"+parametre.getName()))
+									try {
+									if(parametre.getType().getName().contains("String") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
 									{
-										try {
-											method.setAccessible(true);
-											method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
-										} catch (IllegalAccessException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										} catch (IllegalArgumentException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										} catch (InvocationTargetException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
+										method.setAccessible(true);
+										method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
+									}
+									else
+										if(!(parametre.getType().getName().contains("String")) && method.getName().equalsIgnoreCase("set"+parametre.getName()+"String"))
+									{
+										method.setAccessible(true);
+										method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
+									}
+									} catch (IllegalAccessException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IllegalArgumentException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (InvocationTargetException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (SecurityException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
 									}
 								}
 							}
@@ -140,20 +149,31 @@ public class FileXML {
 							{
 								for(Method method:Edge.class.getDeclaredMethods())
 								{
-									if(method.getName().equalsIgnoreCase("set"+parametre.getName()))
+									String nomMethod=method.getName();
+									try {
+									if(parametre.getType().getName().contains("String") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
 									{
-										try {
-											method.invoke(arc,eElement.getAttribute(noms.item(i).getNodeName()));
-										} catch (IllegalAccessException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										} catch (IllegalArgumentException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										} catch (InvocationTargetException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
+										method.setAccessible(true);
+										method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
+									}
+									else
+										if(!(parametre.getType().getName().contains("String")) && method.getName().equalsIgnoreCase("set"+parametre.getName()+"String"))
+									{
+										method.setAccessible(true);
+										method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
+									}
+									} catch (IllegalAccessException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IllegalArgumentException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (InvocationTargetException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (SecurityException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
 									}
 								}
 							}
