@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author Alexandre
  *         11/05/2015
  */
-public class Manager extends Thread implements Observable {
+public class Manager extends Thread implements Observable, Observer {
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
@@ -66,16 +66,13 @@ public class Manager extends Thread implements Observable {
      */
     @Override
     public void run() {
-        Long startLoop, endLoop;
+        Long startLoop = System.currentTimeMillis(), endLoop;
         while (!isExited()) {
-            startLoop = System.currentTimeMillis();
-            askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
-                    getUnoccupiedRobots());
             endLoop = System.currentTimeMillis();
-            if (endLoop - startLoop < refreshTime) try {
-                sleep(refreshTime - endLoop + startLoop);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (endLoop - startLoop > refreshTime) {
+                startLoop = System.currentTimeMillis();
+                askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
+                        getUnoccupiedRobots());
             }
             while (isPaused()) ;
         }
@@ -154,5 +151,10 @@ public class Manager extends Thread implements Observable {
         for (Observer obs : observers) {
             obs.Update();
         }
+    }
+
+    @Override
+    public void Update() {
+
     }
 }
