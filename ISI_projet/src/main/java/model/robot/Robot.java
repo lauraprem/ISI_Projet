@@ -1,11 +1,11 @@
 package model.robot;
 
+import java.util.List;
+
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
-
-import java.util.List;
 
 /**
  * Robots pompiers
@@ -93,9 +93,9 @@ public class Robot {
      * @param destination noeud à atteindre
      * @return le cout pour aller à la destination et -1 s'il est impossible d'y aller
      */
-    public Float proposeNode(Node destination) {
+    public Double proposeNode(Node destination) {
         path = new NodePath();
-		return pathFinder == null ? -1.0f : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
+		return pathFinder == null ? -1.0 : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
     }
 
     public void acceptPath() {
