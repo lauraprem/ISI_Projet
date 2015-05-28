@@ -7,8 +7,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import util.Util;
 
-import java.lang.reflect.Method;
-
 import static org.junit.Assert.*;
 
 /**
@@ -47,7 +45,7 @@ public class RobotTest extends GraphUtilTest {
     @Test
     public void testUpdatePosition() throws Exception {
         NodePath nodePath = new NodePath();
-        nodePath.add(onFire);
+        nodePath.addLast(onFire);
         Util.invokeMethod(robot, "setPath", nodePath);
         robot.acceptPath();
         robot.update();

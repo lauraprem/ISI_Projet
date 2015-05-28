@@ -94,6 +94,7 @@ public class Robot {
      * @return le cout pour aller à la destination et -1 s'il est impossible d'y aller
      */
     public Float proposeNode(Node destination) {
+        path = new NodePath();
 		return pathFinder == null ? -1.0f : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
     }
 
