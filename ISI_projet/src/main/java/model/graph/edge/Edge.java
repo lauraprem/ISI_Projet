@@ -117,7 +117,10 @@ public class Edge {
     public void setLength(Double length) {
         this.length = length;
     }
-
+    private void setLengthString(String length)
+    {
+    	this.setLength(Double.parseDouble(length));
+    }
     /**
      * @return le noeud source de l'arrete
      */
@@ -131,7 +134,6 @@ public class Edge {
     public void setSource(Node v1) {
         this.source = v1;
     }
-
     /**
      * @return le noeud destination de l'arrete
      */
@@ -173,9 +175,11 @@ public class Edge {
         return opposite;
     }
 
-    @XmlAttribute
 	private void setId(Long id) {
 		this.id = id;
+	}
+	private void setIdString(String id) {
+		this.setId(Long.parseLong(id));
 	}
     @Override
     public String toString() {
