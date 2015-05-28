@@ -52,7 +52,11 @@ public class NodePath implements Iterator<Node> {
         return accepted;
     }
 
-    public void add(Node n) {
-        path.add(n);
+    public void addLast(Node n) {
+        path.addLast(n);
+    }
+
+    public void addFirst(Node n) {
+        path.addFirst(n);
     }
 }
