@@ -9,10 +9,10 @@ import view.Observer;
  */
 
 public interface Observable {
-	public void AjoutObservateur(Observer o);
+	public void addObserver(Observer o);
 
-	public void SupprimerObservateur(Observer o);
+	public void removeObserver(Observer o);
 
 	// Dès raffraichissement.
-	public void NotifierObservateur();
+	public void notifyObserver();
 }

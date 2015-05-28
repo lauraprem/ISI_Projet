@@ -23,7 +23,7 @@ public class Manager extends Thread implements Observable, Observer {
     private Boolean pause = Boolean.FALSE;
     private Long refreshTime = 1000L;
 
-    protected ArrayList<Observer> observers;
+    protected ArrayList<Observer> observers = new ArrayList<>();
 
     public Manager(IGraph graph, List<Robot> robots) {
         observers = new ArrayList<Observer>();
@@ -32,7 +32,6 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     public Manager() {
-        observers = new ArrayList<Observer>();
     }
 
     public synchronized IGraph getGraph() {
@@ -41,7 +40,7 @@ public class Manager extends Thread implements Observable, Observer {
 
     public synchronized void setGraph(IGraph graph) {
         this.graph = graph;
-        this.NotifierObservateur();
+        this.notifyObserver();
     }
 
     public synchronized List<Robot> getRobots() {
@@ -102,18 +101,18 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     public synchronized void addNode(Node n) {
-        graph.addNode(n);
-        this.NotifierObservateur();
+        graph.addNode(n, this);
+        notifyObserver();
     }
 
     public synchronized void addEdge(Edge e) {
-        graph.addEdge(e);
-        this.NotifierObservateur();
+        graph.addEdge(e, this);
+        notifyObserver();
     }
 
     public synchronized void addRobot(Robot r) {
         robots.add(r);
-        this.NotifierObservateur();
+        notifyObserver();
     }
 
     public synchronized void Exit() {
@@ -137,24 +136,23 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     @Override
-    public void AjoutObservateur(Observer o) {
+    public void addObserver(Observer o) {
         observers.add(o);
     }
 
     @Override
-    public void SupprimerObservateur(Observer o) {
+    public void removeObserver(Observer o) {
         observers.remove(o);
     }
 
     @Override
-    public void NotifierObservateur() {
-        for (Observer obs : observers) {
-            obs.Update();
-        }
+    public void notifyObserver() {
+        if(observers != null)
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
     }
 
     @Override
     public void Update() {
-
+        notifyObserver();
     }
 }
