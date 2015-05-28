@@ -1,15 +1,16 @@
 package model.robot;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import model.graph.graph.GraphUtilTest;
 import model.robot.specialized.RobotChenille;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+
 import util.Util;
-
-import java.lang.reflect.Method;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Alexandre
@@ -34,20 +35,21 @@ public class RobotTest extends GraphUtilTest {
     @Ignore
     @Test
     public void testProposePossibleNode() throws Exception {
-        Float distance = robot.proposeNode(onFire);
+        Double distance = robot.proposeNode(onFire);
         assertTrue(distance >= 0.0);
     }
 
     @Test
     public void testProposeImpossibleNode() throws Exception {
-        Float distance = robot.proposeNode(unlinkedNode);
+        Double distance = robot.proposeNode(unlinkedNode);
         assertTrue(distance < 0.0);
     }
 
     @Test
     public void testUpdatePosition() throws Exception {
         NodePath nodePath = new NodePath();
-        nodePath.add(onFire);
+//        nodePath.addLast(onFire);
+        //TODO
         Util.invokeMethod(robot, "setPath", nodePath);
         robot.acceptPath();
         robot.update();

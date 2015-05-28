@@ -1,5 +1,12 @@
 package model.manager;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import model.Observable;
 import model.graph.Node;
 import model.graph.edge.Edge;
@@ -8,9 +15,6 @@ import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.robot.Robot;
 import view.Observer;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author Alexandre
@@ -78,12 +82,12 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     private void askDistanceToRobots(List<Node> nodesOnFire, List<Robot> unoccupiedRobots) {
-        Map<Robot, Float> distances = Collections.synchronizedMap(new HashMap());
+        Map<Robot, Double> distances = Collections.synchronizedMap(new HashMap());
         for (Node node : nodesOnFire) {
             distances.clear();
             unoccupiedRobots.stream()
                     .forEach(robot -> {
-                        Float distance = robot.proposeNode(node);
+                        Double distance = robot.proposeNode(node);
                         if (distance != -1) distances.put(robot, distance);
                     });
             if (distances.size() != 0) Collections.min(
