@@ -1,16 +1,21 @@
 package model.graph;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
+import model.Observable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import view.Observer;
 
 /**
  * Classe representant un noeud etiquete pour un graph
  */
 
-public class Node extends Point {
+public class Node extends Point implements Observable {
     private static final Logger logger = LogManager.getLogger();
+
+    protected ArrayList<Observer> observers = new ArrayList<>();
     /**
      * etiquette du noeud
      */
@@ -154,6 +159,8 @@ public class Node extends Point {
             logger.warn(String.format("The level of the fire can't be negative, has been set to 0."));
         } else
             this.fireLevel = fireLevel;
+
+        notifyObserver();
     }
 
     public void decreaseFireLevel(Integer diff) {
@@ -201,5 +208,21 @@ public class Node extends Point {
         node.setFireLevel(fireLevel);
         node.setLinked(linked);
         return node;
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObserver() {
+        if(observers != null)
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
     }
 }

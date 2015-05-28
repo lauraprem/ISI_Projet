@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
  * @author Alexandre
  *         11/05/2015
  */
-public class Manager extends Thread implements Observable {
+public class Manager extends Thread implements Observable, Observer {
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
     private Boolean pause = Boolean.FALSE;
     private Long refreshTime = 1000L;
 
-    protected ArrayList<Observer> observers;
+    protected ArrayList<Observer> observers = new ArrayList<>();
 
     public Manager(IGraph graph, List<Robot> robots) {
         observers = new ArrayList<Observer>();
@@ -32,7 +32,6 @@ public class Manager extends Thread implements Observable {
     }
 
     public Manager() {
-        observers = new ArrayList<Observer>();
     }
 
     public synchronized IGraph getGraph() {
@@ -41,7 +40,7 @@ public class Manager extends Thread implements Observable {
 
     public synchronized void setGraph(IGraph graph) {
         this.graph = graph;
-        this.NotifierObservateur();
+        this.notifyObserver();
     }
 
     public synchronized List<Robot> getRobots() {
@@ -66,16 +65,13 @@ public class Manager extends Thread implements Observable {
      */
     @Override
     public void run() {
-        Long startLoop, endLoop;
+        Long startLoop = System.currentTimeMillis(), endLoop;
         while (!isExited()) {
-            startLoop = System.currentTimeMillis();
-            askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
-                    getUnoccupiedRobots());
             endLoop = System.currentTimeMillis();
-            if (endLoop - startLoop < refreshTime) try {
-                sleep(refreshTime - endLoop + startLoop);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (endLoop - startLoop > refreshTime) {
+                startLoop = System.currentTimeMillis();
+                askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
+                        getUnoccupiedRobots());
             }
             while (isPaused()) ;
         }
@@ -105,18 +101,18 @@ public class Manager extends Thread implements Observable {
     }
 
     public synchronized void addNode(Node n) {
-        graph.addNode(n);
-        this.NotifierObservateur();
+        graph.addNode(n, this);
+        notifyObserver();
     }
 
     public synchronized void addEdge(Edge e) {
-        graph.addEdge(e);
-        this.NotifierObservateur();
+        graph.addEdge(e, this);
+        notifyObserver();
     }
 
     public synchronized void addRobot(Robot r) {
         robots.add(r);
-        this.NotifierObservateur();
+        notifyObserver();
     }
 
     public synchronized void Exit() {
@@ -140,19 +136,23 @@ public class Manager extends Thread implements Observable {
     }
 
     @Override
-    public void AjoutObservateur(Observer o) {
+    public void addObserver(Observer o) {
         observers.add(o);
     }
 
     @Override
-    public void SupprimerObservateur(Observer o) {
+    public void removeObserver(Observer o) {
         observers.remove(o);
     }
 
     @Override
-    public void NotifierObservateur() {
-        for (Observer obs : observers) {
-            obs.Update();
-        }
+    public void notifyObserver() {
+        if(observers != null)
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+    }
+
+    @Override
+    public void Update() {
+        notifyObserver();
     }
 }

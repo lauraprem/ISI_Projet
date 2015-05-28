@@ -5,14 +5,20 @@ import java.util.List;
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.ground.Ground;
+import view.Observer;
 
 public interface IGraph {
 
-	
+
     /**
      * ajoute un noeud au graph
      */
-    void addNode(Node _node);
+    Boolean addNode(Node _node);
+
+    /**
+     * ajoute un noeud au graph
+     */
+    Boolean addNode(Node _node, Observer o);
 
     /**
      * @return tous les noeuds du graph
@@ -39,16 +45,26 @@ public interface IGraph {
      * renvoie toutes les arrêtes du graph qui sont adjacents à _n
      */
     List<Edge> getAdjEdges(Node _n);
-	
+
     /**
      * Ajoute une arrete au graph entre deux noeuds
      */
     void addEdge(Edge edge);
+    
+    /**
+     * Ajoute une arrete au graph entre deux noeuds
+     */
+    void addEdge(Edge edge, Observer o);
 
     /**
      * Ajoute une arrete au graph entre deux noeuds
      */
     void addEdge(Node _node1, Node _node2);
+
+    /**
+     * Ajoute une arrete au graph entre deux noeuds
+     */
+    void addEdge(Node _node1, Node _node2, Observer o);
 
     /**
      * Ajoute une arrete au graph entre deux noeuds
