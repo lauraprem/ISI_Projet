@@ -33,27 +33,6 @@ public class DrawingRobot{
 			Image img = new ImageIcon(imagePath).getImage();
 			
 			Node node = model.getCurrentNode();
-			graph.drawImage(img,node.x -10, node.y-5, null); // Position haut gauche
+			graph.drawImage(img,node.getX() -10, node.getY()-5, null); // Position haut gauche
 		}
-		
-//		switch (model.g) {
-//		case FLAT:
-//			graph.setColor(Color.black);
-//			break;
-//		case STEEP:
-//			graph.setColor(Color.orange);
-//			break;
-//		case FLOODED: //TOTDO mettre innondé dans vue + addLast star + (stop + Pause)
-//			graph.setColor(Color.magenta);
-//			break;
-//			default:
-//				graph.setColor(Color.black);
-//				break;
-//		}
-		
-//		String imagePath = getClass().getClassLoader().getResource(typePath).getFile();
-//		Image img = new ImageIcon(imagePath).getImage();
-//		
-//		graph.drawImage(img, 0, 0, null);
-//	}
 }
