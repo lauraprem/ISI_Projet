@@ -148,6 +148,9 @@ public class Node extends Point implements Observable {
     private void setId(Long id) {
         this.id = id;
     }
+    private void setIdString(String id) {
+        this.setId(Long.parseLong(id));
+    }
 
     public Integer getFireLevel() {
         return fireLevel;
@@ -162,7 +165,9 @@ public class Node extends Point implements Observable {
 
         notifyObserver();
     }
-
+    private void setFireLevelString(String fireLevel) {
+    	this.setFireLevel(Integer.parseInt(fireLevel));
+    }
     public void decreaseFireLevel(Integer diff) {
         if (diff < 0)
             logger.warn(String.format("The level of the fire has been decreased of a negative amount, so it has been increased."));
@@ -178,7 +183,14 @@ public class Node extends Point implements Observable {
     public Boolean isOnFire() {
         return fireLevel != 0;
     }
-
+    private void setXString(String _x)
+    {
+    	this.x=Integer.parseInt(_x);
+    }
+    private void setYString(String _y)
+    {
+    	this.x=Integer.parseInt(_y);
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

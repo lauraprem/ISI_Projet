@@ -28,9 +28,9 @@ public class ControleurGraph implements ActionListener {
 			System.out.println("Add_Noeud");
 			break;
 
-		case "Add_arc":
+		case "Add_arc_Innond":
 			typeElement = 5;
-			System.out.println("Add_arc");
+			System.out.println("Add_arc_Innond");
 			break;
 
 		case "Add_arc_Escarp":

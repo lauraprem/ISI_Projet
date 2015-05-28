@@ -102,7 +102,7 @@ public class MainControler {
 		switch (item.getActionCommand()) {
 		case "Add_Noeud":
 			return true;
-		case "Add_arc":
+		case "Add_arc_Innond":
 			return true;
 		case "Add_arc_Escarp":
 			return true;

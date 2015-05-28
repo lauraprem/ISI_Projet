@@ -1,6 +1,10 @@
 package util;
 
+import java.awt.Point;
 import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,6 +15,12 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
+import model.graph.Node;
+import model.graph.edge.Edge;
+import model.graph.graph.impl.Graph;
+import model.graph.ground.Ground;
+import model.graph.ground.GroundType;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -31,7 +41,7 @@ public class FileXML {
 //	<edge nd1="16" nd2="17" type="PLAT" />
 //	...
 //	</osm>
-	public FileXML(File f,OSM graphe)
+	public FileXML(File f,Graph graphe)
 	{
 		sauvegarderDocument(f, graphe);
 	}
@@ -39,8 +49,13 @@ public class FileXML {
 	{
 		chargerDocument(f);
 	}
-	public void chargerDocument(File documentToRead)
+	public FileXML()
 	{
+		
+	}
+	public Graph chargerDocument(File documentToRead)
+	{
+		Graph graphe=new Graph();
 		try {
 			 
 			File fXmlFile =documentToRead;
@@ -51,43 +66,108 @@ public class FileXML {
 			//optional, but recommended
 			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
 			doc.getDocumentElement().normalize();
-		 
 			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 		 
-			NodeList nList = doc.getElementsByTagName("node");
+			NodeList nList = doc.getElementsByTagName(XMLType.Node.getLabel());
 		 
 			System.out.println("----------------------------");
-			listerElement(nList);
-			nList = doc.getElementsByTagName("edge");
+			listerElement(nList,graphe,XMLType.Node);
+			nList = doc.getElementsByTagName(XMLType.Edge.getLabel());
 			 
 			System.out.println("----------------------------");
-			listerElement(nList);
-			
+			listerElement(nList,graphe,XMLType.Edge);
 		    } catch (Exception e) {
 			e.printStackTrace();
 		    }
+		return graphe;
 	}
-	public void listerElement(NodeList nList)
+	public void listerElement(NodeList nList,Graph graphe,XMLType typeDeNoeud)
 	{
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			 
 			org.w3c.dom.Node nNode = nList.item(temp);
 	 
 			System.out.println("\nCurrent Element :" + nNode.getNodeName());
-	 
+			
 			if (nNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
 	 
 				Element eElement = (Element) nNode;
 				NamedNodeMap noms=nList.item(temp).getAttributes();
-				System.out.println("id : " + eElement.getAttribute(noms.item(0).getNodeName()));
-				System.out.println("x  : " + eElement.getAttribute(noms.item(1).getNodeName()));
-				System.out.println("y  : " + eElement.getAttribute(noms.item(2).getNodeName()));
-				System.out.println("type : " + eElement.getAttribute(noms.item(3).getNodeName()));
-	 
+				switch(typeDeNoeud)
+				{
+				case Node:
+					Node noeud=new Node();
+					for(int i=0;i<noms.getLength();i++)
+					{
+						for(Field parametre:Node.class.getDeclaredFields())
+						{
+							String nomParam=noms.item(i).getNodeName();
+							if(parametre.getName().contains(noms.item(i).getNodeName()))
+							{
+								for(Method method:Node.class.getDeclaredMethods())
+								{
+									String nomMethod=method.getName();
+									if(method.getName().equalsIgnoreCase("set"+parametre.getName()))
+									{
+										try {
+											method.setAccessible(true);
+											method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
+										} catch (IllegalAccessException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										} catch (IllegalArgumentException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										} catch (InvocationTargetException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+								}
+							}
+						}
+						System.out.println(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+					}
+					graphe.addNode(noeud);
+					break;
+				case Edge:
+					Edge arc=new Edge();
+					for(int i=0;i<noms.getLength();i++)
+					{
+						for(Field parametre:Edge.class.getDeclaredFields())
+						{
+							if(parametre.equals(noms.item(i).getNodeName()))
+							{
+								for(Method method:Edge.class.getDeclaredMethods())
+								{
+									if(method.getName().equalsIgnoreCase("set"+parametre.getName()))
+									{
+										try {
+											method.invoke(arc,eElement.getAttribute(noms.item(i).getNodeName()));
+										} catch (IllegalAccessException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										} catch (IllegalArgumentException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										} catch (InvocationTargetException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+								}
+							}
+						}
+						System.out.println(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+					}
+					graphe.addEdge(arc);
+					break;
+				}
+				
 			}
 		}
 	}
-	public void sauvegarderDocument(File f,OSM graphe)
+	public void sauvegarderDocument(File f,Graph graphe)
 	{
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -96,44 +176,15 @@ public class FileXML {
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("osm");
 			doc.appendChild(rootElement);
-			// node elements
-			Element node = doc.createElement("node");
-			rootElement.appendChild(node);
-			// set attribute to node element
-			Attr attr = doc.createAttribute("id");
-			attr.setValue("1");
-			node.setAttributeNode(attr);
-			// set attribute to node element
-			attr = doc.createAttribute("x");
-			attr.setValue("1");
-			node.setAttributeNode(attr);
-			// set attribute to node element
-			attr = doc.createAttribute("y");
-			attr.setValue("1");
-			node.setAttributeNode(attr);
-			// set attribute to node element
-			attr = doc.createAttribute("type");
-			attr.setValue("NORMAL");
-			node.setAttributeNode(attr);
-			// firstname elements
-			Element edge = doc.createElement("edge");
-			rootElement.appendChild(edge);
-			//set attribute to edge element
-			attr = doc.createAttribute("nd1");
-			attr.setValue("1");
-			edge.setAttributeNode(attr);
-			//set attribute to edge element
-			attr = doc.createAttribute("nd2");
-			attr.setValue("2");
-			edge.setAttributeNode(attr);
-			// set attribute to node element
-			attr = doc.createAttribute("valuation");
-			attr.setValue("31");
-			edge.setAttributeNode(attr);
-			// set attribute to node element
-			attr = doc.createAttribute("type");
-			attr.setValue("PLAT");
-			edge.setAttributeNode(attr);
+			//creation des element node
+			for(Node noeud:graphe.getAllNodes())
+			{
+				creerElementNode(noeud,doc,rootElement);
+			}
+			for(Edge arc:graphe.getAllEdges())
+			{
+				creerElementEdge(arc, doc, rootElement);
+			}
 			// write the content into xml file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
@@ -153,20 +204,68 @@ public class FileXML {
 				tfe.printStackTrace();
 			  }
 		}
+	public void creerElementNode(Node noeud,Document doc,Element rootElement)
+	{
+		// node elements
+		Element node = doc.createElement("node");
+		rootElement.appendChild(node);
+		// set attribute to node element
+		Attr attr = doc.createAttribute("id");
+		attr.setValue(String.valueOf(noeud.getId()));
+		node.setAttributeNode(attr);
+		// set attribute to node element
+		attr = doc.createAttribute("label");
+		attr.setValue(String.valueOf(noeud.getLabel()));
+		node.setAttributeNode(attr);
+		// set attribute to node element
+		attr = doc.createAttribute("x");
+		attr.setValue(String.valueOf(noeud.getX()));
+		node.setAttributeNode(attr);
+		// set attribute to node element
+		attr = doc.createAttribute("y");
+		attr.setValue(String.valueOf(noeud.getY()));
+		node.setAttributeNode(attr);
+		// set attribute to node element
+		attr = doc.createAttribute("fireLevel");
+		attr.setValue(String.valueOf(noeud.getFireLevel()));
+		node.setAttributeNode(attr);
+	}
+	public void creerElementEdge(Edge arc,Document doc,Element rootElement)
+	{
+		// edge elements
+		Element edge = doc.createElement("edge");
+		rootElement.appendChild(edge);
+		//set attribute to edge element
+		Attr attr = doc.createAttribute("source");
+		attr.setValue(arc.getSource().getLabel());
+		edge.setAttributeNode(attr);
+		//set attribute to edge element
+		attr = doc.createAttribute("destination");
+		attr.setValue(arc.getDestination().getLabel());
+		edge.setAttributeNode(attr);
+		// set attribute to node element
+		attr = doc.createAttribute("length");
+		attr.setValue(String.valueOf(arc.getLength()));
+		edge.setAttributeNode(attr);
+		// set attribute to node element
+		attr = doc.createAttribute("type");
+		attr.setValue(arc.getGround().getType().getLabel());
+		edge.setAttributeNode(attr);
+	}
 	public static void main(String[] args)
 	{
 		String fileSeparator=System.getProperty("file.separator");
-		OSM graphe=new OSM();
-//		Node noeud1=new Node(new StringLabel("noeud1"),new Point(1,0));
-//		Node noeud2=new Node(new StringLabel("noeud2"),new Point(1,1));
-//		Edge arc1=new Edge(noeud1, noeud2,new StringLabel("arc1"),new Ground(GroundType.FLAT));
-//		graphe.setArc(arc1);
-//		graphe.setNoeud(noeud1);
-//		graphe.setNoeud(noeud2);
-//		System.out.println("Source: "+arc1.getSource());
-//		System.out.println("Destination: "+arc1.getDestination());
-//		System.out.println("Type: "+arc1.getGround().getType());
-		//System.out.println("Valuation: "+arc1.getValuation());
+		Graph graphe=new Graph();
+		Node noeud1=new Node(new String("noeud1"),new Point(1,0));
+		Node noeud2=new Node(new String("noeud2"),new Point(1,1));
+		Edge arc1=new Edge(noeud1, noeud2,(double)10,new Ground(GroundType.FLAT));
+		graphe.addEdge(arc1);
+		graphe.addNode(noeud1);
+		graphe.addNode(noeud2);
+		System.out.println("Source: "+arc1.getSource());
+		System.out.println("Destination: "+arc1.getDestination());
+		System.out.println("Type: "+arc1.getGround().getType());
+		System.out.println("Valuation: "+arc1.getLength());
 		File file = new File("data"+fileSeparator+"graphe.xml");
 		new FileXML(file,graphe);
 		new FileXML(file);
