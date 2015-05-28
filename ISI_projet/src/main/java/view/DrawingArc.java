@@ -20,8 +20,8 @@ public class DrawingArc{
 		case STEEP:
 			graph.setColor(Color.orange);
 			break;
-		case FLOODED: //TOTDO mettre innondé dans vue + addLast star + (stop + Pause)
-			graph.setColor(Color.magenta);
+		case FLOODED:
+			graph.setColor(Color.blue);
 			break;
 			default:
 				graph.setColor(Color.black);

@@ -1,6 +1,7 @@
 package model.graph.graph;
 
 import model.graph.Node;
+import model.graph.Point;
 import model.graph.edge.Edge;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
@@ -8,7 +9,6 @@ import model.graph.ground.GroundType;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;

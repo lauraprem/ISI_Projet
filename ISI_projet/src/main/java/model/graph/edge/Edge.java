@@ -13,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 /**
  * Classe representant une arrete orientee et valuee
  */
-@XmlRootElement
 public class Edge {
     private static final Logger logger = LogManager.getLogger();
     private static Long maxId = 0L;
@@ -115,11 +114,13 @@ public class Edge {
     /**
      * @param length
      */
-    @XmlElement
     public void setLength(Double length) {
         this.length = length;
     }
-
+    private void setLengthString(String length)
+    {
+    	this.setLength(Double.parseDouble(length));
+    }
     /**
      * @return le noeud source de l'arrete
      */
@@ -130,11 +131,9 @@ public class Edge {
     /**
      * @param v1 noeud source
      */
-    @XmlElement
     public void setSource(Node v1) {
         this.source = v1;
     }
-
     /**
      * @return le noeud destination de l'arrete
      */
@@ -145,7 +144,6 @@ public class Edge {
     /**
      * @param v2 noeud destination
      */
-    @XmlElement
     public void setDestination(Node v2) {
         this.destination = v2;
     }
@@ -153,7 +151,6 @@ public class Edge {
     public Ground getGround() {
         return ground;
     }
-    @XmlElement
     public void setGround(Ground ground) {
         this.ground = ground;
     }
@@ -178,9 +175,11 @@ public class Edge {
         return opposite;
     }
 
-    @XmlAttribute
 	private void setId(Long id) {
 		this.id = id;
+	}
+	private void setIdString(String id) {
+		this.setId(Long.parseLong(id));
 	}
     @Override
     public String toString() {

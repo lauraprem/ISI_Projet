@@ -29,9 +29,9 @@ public class MenuFichier extends JMenuBar {
 		JMenu menuGraph = new JMenu("Menu graph");
 		this.add(menuGraph);
 		addMenuItem(menuGraph, "ajout noeud", "Add_Noeud", -1);
-		addMenuItem(menuGraph, "ajout arc normal", "Add_arc", -1);
-		addMenuItem(menuGraph, "ajout arc escarpé", "Add_arc_Escarp", -1);
 		addMenuItem(menuGraph, "ajout arc plat", "Add_arc_Plat", -1);
+		addMenuItem(menuGraph, "ajout arc innondé", "Add_arc_Innond", -1);
+		addMenuItem(menuGraph, "ajout arc escarpé", "Add_arc_Escarp", -1);
 		
 		JMenu menuRobot = new JMenu("Ajout Robot");
 		this.add(menuRobot);
