@@ -72,7 +72,7 @@ public class Drawing extends JPanel implements Observer {
 			Node node = model.getGraph().getAllNodes().get(i);
 			new DrawingNode(node,g);
 			
-			if(model.getGraph().getAllNodes().get(i).isOnFire()==true)showFires(node,g);
+			if(model.getGraph().getAllNodes().get(i).getFireLevel() >0)showFires(node,g);
 		}
 	}
 

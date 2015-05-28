@@ -9,10 +9,12 @@ import view.MainWindow;
 public class ControleurElements implements ActionListener {
 	 private Manager model;
 	private MainWindow vue;
+	private ControleurMap controleurMap;
 
-	public ControleurElements(MainWindow vue,Manager model) {
+	public ControleurElements(MainWindow vue,Manager model, ControleurMap controleurMap) {
 	 this.model = model;
 		this.vue = vue;
+		this.controleurMap = controleurMap;
 	}
 
 	@Override
@@ -40,11 +42,12 @@ public class ControleurElements implements ActionListener {
 			typeElement = 3;
 			System.out.println("Add_Feu");
 			break;
-
+			
 		default:
 			break;
 		}
-		vue.addMouseListener(new ControleurMap(vue,model,typeElement));
+		
+		controleurMap.setTypeElement(typeElement);
 	}
 	
 }

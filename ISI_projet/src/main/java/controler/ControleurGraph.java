@@ -9,10 +9,12 @@ import view.MainWindow;
 public class ControleurGraph implements ActionListener {
 	 private Manager model;
 	private MainWindow vue;
+	private ControleurMap controleurMap;
 
-	public ControleurGraph(MainWindow vue,Manager model) {
+	public ControleurGraph(MainWindow vue,Manager model,ControleurMap controleurMap) {
 	 this.model = model;
 		this.vue = vue;
+		this.controleurMap = controleurMap;
 	}
 
 	@Override
@@ -44,6 +46,6 @@ public class ControleurGraph implements ActionListener {
 		default:
 			break;
 		}
-		vue.getDessin().addMouseListener(new ControleurMap(vue,model,typeElement)); // Singloton
+		controleurMap.setTypeElement(typeElement);
 	}
 }
