@@ -1,12 +1,12 @@
 package model.graph.edge;
 
 import model.graph.Node;
+import model.graph.Point;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
 
 import static org.junit.Assert.*;
 

@@ -1,6 +1,6 @@
 package controler;
 
-import java.awt.Point;
+import model.graph.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -33,37 +33,26 @@ public class ControleurMap implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
-		Point point = e.getPoint();
-		
-		// Recherche du noeud selectionne
-		if (model.getGraph().getAllNodes().size() > 0)
-			for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
-				if (point.x >= model.getGraph().getAllNodes().get(i).x - 5
-						&& point.x <= model.getGraph().getAllNodes().get(i).x + 5
-						&& point.y >= model.getGraph().getAllNodes().get(i).y - 5
-						&& point.y <= model.getGraph().getAllNodes().get(i).y + 5) {
-					if(n1==null){
-						n1 = model.getGraph().getAllNodes().get(i);
-					}else{
-						n2 = model.getGraph().getAllNodes().get(i);
-					}
-					break;
-				}
-			}
-
+		Point point = new Point(e.getPoint());
+		System.out.println(point.toString());
 		switch (typeElement) {
 		case 0: // Ajout RobotToutTerrain
 			if (n1 !=null) {
@@ -105,11 +94,11 @@ public class ControleurMap implements MouseListener {
 
 		case 5: // TODO Add edge Innonde on model
 			if (n1 !=null && n2 != null) {
-				
+
 				// TODO Calcul distance entre les points
 				double valuation = 10;
 				model.addEdge(new Edge(n1, n2, valuation, new Ground(GroundType.FLOODED)));
-				
+
 				n1 = null;
 				n2 = null;
 			}
@@ -118,7 +107,7 @@ public class ControleurMap implements MouseListener {
 		case 6: // TODO Add edge Escarp on model
 
 			if (n1 !=null && n2 != null) {
-				
+
 				// TODO Calcul distance entre les points
 				double valuation = 10;
 				model.addEdge(new Edge(n1, n2, valuation, new Ground(GroundType.STEEP)));
@@ -130,7 +119,7 @@ public class ControleurMap implements MouseListener {
 		case 7: // TODO Add edge Plat on model
 
 			if (n1 !=null && n2 != null) {
-				
+
 				// TODO Calcul distance entre les points
 				double valuation = 10;
 				model.addEdge(new Edge(n1, n2, valuation, new Ground(GroundType.FLAT)));
@@ -143,6 +132,7 @@ public class ControleurMap implements MouseListener {
 			break;
 		}
 	}
+
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {

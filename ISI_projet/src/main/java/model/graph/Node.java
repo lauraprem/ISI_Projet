@@ -1,12 +1,11 @@
 package model.graph;
 
-import java.awt.Point;
-import java.util.ArrayList;
-
 import model.Observable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import view.Observer;
+
+import java.util.ArrayList;
 
 /**
  * Classe representant un noeud etiquete pour un graph
@@ -75,7 +74,6 @@ public class Node extends Point implements Observable {
     /**
      * Construit un noeud avec une etiquette
      * et une position
-     *
      */
     public Node() {
     }
@@ -84,7 +82,7 @@ public class Node extends Point implements Observable {
      * Construit un noeud avec une etiquette
      * et une position
      *
-     * @param _id identifiant du noeud
+     * @param _id    identifiant du noeud
      * @param _label etiquette du noeud
      * @param _point position du noeud
      */
@@ -234,7 +232,7 @@ public class Node extends Point implements Observable {
 
     @Override
     public void notifyObserver() {
-        if(observers != null)
+        if (observers != null)
             observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
     }
 }

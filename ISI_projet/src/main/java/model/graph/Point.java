@@ -5,8 +5,8 @@ package model.graph;
  *         28/05/2015
  */
 public class Point {
-    private Integer x = 0;
-    private Integer y = 0;
+    public Integer x = 0;
+    public Integer y = 0;
 
     public Point(Integer x, Integer y) {
         this.x = x;
@@ -14,6 +14,11 @@ public class Point {
     }
 
     public Point(Point p) {
+        this.x = p.x;
+        this.y = p.y;
+    }
+
+    public Point(java.awt.Point p) {
         this.x = p.x;
         this.y = p.y;
     }
