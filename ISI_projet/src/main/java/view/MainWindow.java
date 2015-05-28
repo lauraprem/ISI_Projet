@@ -21,7 +21,7 @@ public class MainWindow extends JFrame {
 		setJMenuBar(menuFile);
 		
 //		menuHaut = new MenuHaut();
-//		getContentPane().add(menuHaut, "North");
+//		getContentPane().addLast(menuHaut, "North");
 		String imagePath = getClass().getClassLoader().getResource("pictures/mapsixieme.jpg").getFile();
 		drawing = new Drawing(model,imagePath);
 		getContentPane().add(drawing, "Center");

@@ -22,6 +22,8 @@ public class MenuFichier extends JMenuBar {
 		addMenuItem(menuFile, "Nouveau graph", "Nouveau graph", KeyEvent.VK_N);
 		addMenuItem(menuFile, "Charger graph", "Charger graph", KeyEvent.VK_C);
 		addMenuItem(menuFile, "Sauvegarder graph", "Sauvegarder graph", KeyEvent.VK_S);
+		addMenuItem(menuFile, "Démarrer", "Run", KeyEvent.VK_R, false);
+		addMenuItem(menuFile, "Arrêter", "Stop", KeyEvent.VK_S, false);
 		addMenuItem(menuFile, "Quitter", "Quitter", KeyEvent.VK_Q);
 
 		JMenu menuGraph = new JMenu("Menu graph");
@@ -47,21 +49,24 @@ public class MenuFichier extends JMenuBar {
 		addMenuItem(menuHelp, "A propos", "About", -1);
 
 	}
-
-	public void addMenuItem(JMenu m, String label, String command, int key) {
+	public void addMenuItem(JMenu m, String label, String command, int key, Boolean ctrl) {
 		JMenuItem menuItem;
 		menuItem = new JMenuItem(label);
 		m.add(menuItem);
 
 		menuItem.setActionCommand(command);
 		if (key > 0) {
-			if (key != KeyEvent.VK_DELETE)
+			if (key != KeyEvent.VK_DELETE && ctrl)
 				menuItem.setAccelerator(KeyStroke.getKeyStroke(key,
 						Event.CTRL_MASK, false));
 			else
 				menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
 		}
 		listButon.add(menuItem);
+	}
+
+	public void addMenuItem(JMenu m, String label, String command, int key) {
+		addMenuItem(m, label, command, key, true);
 	}
 
 	public ArrayList<JMenuItem> getListButon() {
