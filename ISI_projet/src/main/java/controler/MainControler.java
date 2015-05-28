@@ -19,17 +19,22 @@ public class MainControler {
 	 * Ajout des ecouteurs (controleurs) sur les composants graphiques
 	 */
 	private void addListenersView() {
-
+		
+		ControleurMap controleurMap = new ControleurMap(vue,model,-1);
+		vue.getDessin().addMouseListener(controleurMap);
+		
 		for (JMenuItem item : vue.getMenuFile().getListButon()) {
 			if (this.controleFile(item) == true) {
 				item.addActionListener(new ControleurFile(vue,model));
 			} else if (controleGraph(item) == true) {
-				item.addActionListener(new ControleurGraph(vue,model));
+				item.addActionListener(new ControleurGraph(vue,model,controleurMap));
 			} else if (controleHelp(item) == true) {
 				item.addActionListener(new ControleurHelp(vue,model));
 			} else {
-				item.addActionListener(new ControleurElements(vue,model));
+				item.addActionListener(new ControleurElements(vue,model,controleurMap));
 			}
+			
+			
 
 		}
 		// for (JButton boutton : vue.getMenuHaut().getListButon()) {

@@ -8,6 +8,9 @@ import model.graph.Node;
 import model.graph.edge.Edge;
 import model.manager.Manager;
 import model.robot.Robot;
+import model.robot.specialized.RobotAPates;
+import model.robot.specialized.RobotChenille;
+import model.robot.specialized.RobotToutTerrain;
 import view.MainWindow;
 
 public class ControleurMap implements MouseListener {
@@ -46,20 +49,57 @@ public class ControleurMap implements MouseListener {
 		System.out.println(point.toString());
 				switch (typeElement) {
 				case 0:
-					// TODO model.addRobot(new Robot()); Tout_terrain
+					//chercher du noeud du robot
+					if(model.getGraph().getAllNodes().size()>0)
+					for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
+						if(point.x >= model.getGraph().getAllNodes().get(i).x-5 &&
+								point.x <= model.getGraph().getAllNodes().get(i).x+5 &&
+								point.y >= model.getGraph().getAllNodes().get(i).y-5 &&
+								point.y <= model.getGraph().getAllNodes().get(i).y+5){
+							model.addRobot(new RobotToutTerrain(model.getGraph(),model.getGraph().getAllNodes().get(i),null));
+							break;
+						}
+					}
 					break;
 
 				case 1:
-					// TODO model.addRobot(new Robot()); Chenille
+					//chercher du noeud du robot
+					if(model.getGraph().getAllNodes().size()>0)
+					for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
+						if(point.x >= model.getGraph().getAllNodes().get(i).x-5 &&
+								point.x <= model.getGraph().getAllNodes().get(i).x+5 &&
+								point.y >= model.getGraph().getAllNodes().get(i).y-5 &&
+								point.y <= model.getGraph().getAllNodes().get(i).y+5){
+							model.addRobot(new RobotChenille(model.getGraph(),model.getGraph().getAllNodes().get(i),null));
+							break;
+						}
+					}
 					break;
 					
 				case 2:
-					// TODO model.addRobot(new Robot()); A_pates
+					//chercher du noeud du robot
+					if(model.getGraph().getAllNodes().size()>0)
+					for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
+						if(point.x >= model.getGraph().getAllNodes().get(i).x-5 &&
+								point.x <= model.getGraph().getAllNodes().get(i).x+5 &&
+								point.y >= model.getGraph().getAllNodes().get(i).y-5 &&
+								point.y <= model.getGraph().getAllNodes().get(i).y+5){
+							model.addRobot(new RobotAPates(model.getGraph(),model.getGraph().getAllNodes().get(i),null));
+							break;
+						}
+					}
 					break;
 					
 				case 3:
-					// TODO dans vue recherche node sélectionné
-					// TODO model model.setFire(node)
+					for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
+						if(point.x >= model.getGraph().getAllNodes().get(i).x-5 &&
+								point.x <= model.getGraph().getAllNodes().get(i).x+5 &&
+								point.y >= model.getGraph().getAllNodes().get(i).y-5 &&
+								point.y <= model.getGraph().getAllNodes().get(i).y+5){
+							model.getGraph().getAllNodes().get(i).increaseFireLevel(10); // mettre observer sur Robot
+							break;
+						}
+					}
 					break;
 					
 				case 4:
@@ -94,4 +134,14 @@ public class ControleurMap implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public int getTypeElement() {
+		return typeElement;
+	}
+
+	public void setTypeElement(int typeElement) {
+		this.typeElement = typeElement;
+	}
+	
+	
 }
