@@ -48,12 +48,6 @@ public class Drawing extends JPanel implements Observer {
 	}
 
 	public void showEdges(Graphics g) {
-		// TODO Test
-//		Node n1 = new Node("",new Point(100,10));
-//		n1.setFireLevel(10);
-//		Node n2 = new Node("",new Point(100,200));
-//		Edge e = new Edge(n1,n2);
-//		e.setGround(new Ground(GroundType.FLAT));
 		if( model.getGraph().getAllEdges().size()>0)
 		for (int i = 0; i < model.getGraph().getAllEdges().size(); i++) {
 			new DrawingArc(model.getGraph().getAllEdges().get(i),g);
@@ -62,11 +56,6 @@ public class Drawing extends JPanel implements Observer {
 	}
 
 	public void showNodes(Graphics g) {
-//		Node n1 = new Node("",new Point(100,10));
-//		n1.setFireLevel(10);
-//		Node n2 = new Node("",new Point(100,200));
-//		new DrawingNode(n1,g);
-//		new DrawingNode(n2,g);
 		if( model.getGraph().getAllNodes().size()>0)
 		for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
 			Node node = model.getGraph().getAllNodes().get(i);
@@ -77,13 +66,10 @@ public class Drawing extends JPanel implements Observer {
 	}
 
 	public void showFires(Node n,Graphics g) {
-//		Node n1 = new Node("",new Point(100,10));
 		new DrawingFire(g,n);
 	}
 
 	public void showRobots(Graphics g) {
-//		Node n1 = new Node("",new Point(100,10));
-		
 		if( model.getRobots().size()>0)
 		for (int i = 0; i < model.getRobots().size(); i++) {
 			new DrawingRobot(g,model.getRobots().get(i));
