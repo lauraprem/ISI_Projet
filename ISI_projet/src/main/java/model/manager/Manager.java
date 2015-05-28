@@ -41,8 +41,8 @@ public class Manager extends Thread implements Observable, Observer {
     public Manager() {
     }
 
-    public synchronized IGraph getGraph() {
-        return graph;
+    public synchronized Graph getGraph() {
+        return (Graph) graph;
     }
 
     public synchronized void setGraph(IGraph graph) {
