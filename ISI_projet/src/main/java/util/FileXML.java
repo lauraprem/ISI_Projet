@@ -1,6 +1,6 @@
 package util;
 
-import java.awt.Point;
+import model.graph.Point;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
