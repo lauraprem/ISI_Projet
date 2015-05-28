@@ -24,4 +24,5 @@ public interface IShorterPathSearch {
      * @return la liste des noeuds qui composent le plus court chemin si le noeud est atteignable, liste vide si le noeud n'est pas atteignable
      */
     Double findShorterPath(IGraph graph, Node start, Node goal, List<GroundType> capacity, NodePath nodePath);
+
 }

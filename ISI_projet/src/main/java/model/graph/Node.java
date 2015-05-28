@@ -1,16 +1,21 @@
 package model.graph;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
+import model.Observable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import view.Observer;
 
 /**
  * Classe representant un noeud etiquete pour un graph
  */
 
-public class Node extends Point {
+public class Node extends Point implements Observable {
     private static final Logger logger = LogManager.getLogger();
+
+    protected ArrayList<Observer> observers = new ArrayList<>();
     /**
      * etiquette du noeud
      */
@@ -50,6 +55,21 @@ public class Node extends Point {
         this.label = _label;
         this.id = getMaxId();
         incrementMaxId();
+    }
+
+    /**
+     * Construit un noeud avec une etiquette
+     * et une position, et un niveau de feu
+     *
+     * @param _label etiquette du noeud
+     * @param _point position du noeud
+     */
+    public Node(String _label, Point _point, Integer fireLevel) {
+        super(_point);
+        this.label = _label;
+        this.id = getMaxId();
+        incrementMaxId();
+        setFireLevel(fireLevel);
     }
 
     /**
@@ -96,8 +116,6 @@ public class Node extends Point {
         setMaxId(getMaxId() + 1);
     }
 
-
-
     /**
      * Specifie l etiquette du noeud
      *
@@ -127,16 +145,22 @@ public class Node extends Point {
         return id;
     }
 
+    private void setId(Long id) {
+        this.id = id;
+    }
+
     public Integer getFireLevel() {
         return fireLevel;
     }
 
-    public void setFireLevel(Integer fireLevel) {
+    private void setFireLevel(Integer fireLevel) {
         if (fireLevel < 0) {
             this.fireLevel = 0;
             logger.warn(String.format("The level of the fire can't be negative, has been set to 0."));
         } else
             this.fireLevel = fireLevel;
+
+        notifyObserver();
     }
 
     public void decreaseFireLevel(Integer diff) {
@@ -186,4 +210,19 @@ public class Node extends Point {
         return node;
     }
 
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObserver() {
+        if(observers != null)
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+    }
 }

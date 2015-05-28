@@ -3,15 +3,11 @@ package view;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import model.graph.Node;
-import model.graph.edge.Edge;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
 import model.manager.Manager;
 
 public class Drawing extends JPanel implements Observer {
@@ -23,7 +19,7 @@ public class Drawing extends JPanel implements Observer {
 		this(new ImageIcon(img).getImage());
 		
 		this.model = model;
-		model.AjoutObservateur(this);
+		model.addObserver(this);
 	}
 
 	public Drawing(Image img) {
@@ -76,7 +72,7 @@ public class Drawing extends JPanel implements Observer {
 			Node node = model.getGraph().getAllNodes().get(i);
 			new DrawingNode(node,g);
 			
-			if(model.getGraph().getAllNodes().get(i).isOnFire()==true)showFires(node,g);
+			if(model.getGraph().getAllNodes().get(i).getFireLevel() >0)showFires(node,g);
 		}
 	}
 

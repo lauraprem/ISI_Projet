@@ -1,13 +1,14 @@
 package model.graph.graph.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IGraph;
 import model.graph.ground.Ground;
+import view.Observer;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by alexandreg on 11/03/2015.
@@ -18,6 +19,13 @@ public class Graph implements IGraph {
 
     private ArrayList<Node> nodes = new ArrayList<Node>();
 
+    public Graph() {
+    }
+
+    public Graph(Edge... edges) {
+        for (int i = 0; i < edges.length; i++) addEdge(edges[i]);
+    }
+
     /**
      * Ajoute une arrete au graph entre deux noeuds
      *
@@ -25,7 +33,17 @@ public class Graph implements IGraph {
      */
     @Override
     public void addEdge(Edge edge) {
-        addEdge(edge.getSource(), edge.getDestination(), edge.getLength(), edge.getGround());
+        addEdge(edge, null);
+    }
+
+    /**
+     * Ajoute une arrete au graph entre deux noeuds
+     *
+     * @param edge
+     */
+    @Override
+    public void addEdge(Edge edge, Observer o) {
+        addEdge(edge.getSource(), edge.getDestination(), edge.getLength(), edge.getGround(), o);
     }
 
     /**
@@ -35,7 +53,19 @@ public class Graph implements IGraph {
      * @param _node2
      */
     public void addEdge(Node _node1, Node _node2) {
-        addEdge(_node1, _node2, 0.0, null);
+        addEdge(_node1, _node2, null);
+    }
+
+    /**
+     * Ajoute une arrete au graph entre deux noeuds
+     *
+     * @param _node1
+     * @param _node2
+     * @param o
+     */
+    @Override
+    public void addEdge(Node _node1, Node _node2, Observer o) {
+        addEdge(_node1, _node2, 0.0, null, o);
     }
 
     /**
@@ -45,10 +75,20 @@ public class Graph implements IGraph {
      * @param _node2
      */
     public void addEdge(Node _node1, Node _node2, Double length, Ground ground) {
+        addEdge(_node1, _node2, length, ground, null);
+    }
+
+    /**
+     * Ajoute une arrete au graph entre deux noeuds
+     *
+     * @param _node1
+     * @param _node2
+     */
+    public void addEdge(Node _node1, Node _node2, Double length, Ground ground, Observer o) {
         _node1.setLinked(true);
         _node2.setLinked(true);
-        addNode(_node1);
-        addNode(_node2);
+        addNode(_node1, o);
+        addNode(_node2, o);
         edges.add(new Edge(_node1, _node2, length, ground));
     }
 
@@ -66,14 +106,29 @@ public class Graph implements IGraph {
         return false;
     }
 
-	public Edge getEdgeFromNodes(Node _node1, Node _node2) {
-		for (Edge edge : edges) {
-			if ((edge.getDestination().equals(_node1) && edge.getSource().equals(_node2)) || (edge.getDestination().equals(_node2) && edge.getSource().equals(_node1))) {
-				return edge;
-			}
-		}
-		return null;
-	}
+    public Edge getEdgeFromNodes(Node _node1, Node _node2) {
+        for (Edge edge : edges) {
+            if ((edge.getDestination().equals(_node1) && edge.getSource().equals(_node2)) || (edge.getDestination().equals(_node2) && edge.getSource().equals(_node1))) {
+                return edge;
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * ajoute un noeud au graph
+     *
+     * @param _node
+     * @return retourne vrai si le noeud a été ajouté
+     */
+    public Boolean addNode(Node _node) {
+        if (!nodes.contains(_node)) {
+            nodes.add(_node);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
 
 
     /**
@@ -81,8 +136,12 @@ public class Graph implements IGraph {
      *
      * @param _node
      */
-    public void addNode(Node _node) {
-        if(!nodes.contains(_node)) nodes.add(_node);
+    public Boolean addNode(Node _node, Observer o) {
+        if (addNode(_node)) {
+            if (o != null) _node.addObserver(o);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 
     /**

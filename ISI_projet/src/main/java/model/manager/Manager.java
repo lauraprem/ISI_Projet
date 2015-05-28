@@ -1,12 +1,5 @@
 package model.manager;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import model.Observable;
 import model.graph.Node;
 import model.graph.edge.Edge;
@@ -16,26 +9,29 @@ import model.graph.graph.impl.Graph;
 import model.robot.Robot;
 import view.Observer;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * @author Alexandre
  *         11/05/2015
  */
-public class Manager extends Thread implements Observable{
+public class Manager extends Thread implements Observable, Observer {
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
+    private Boolean pause = Boolean.FALSE;
     private Long refreshTime = 1000L;
-    
-    protected ArrayList<Observer> observers;
+
+    protected ArrayList<Observer> observers = new ArrayList<>();
 
     public Manager(IGraph graph, List<Robot> robots) {
-    	observers = new ArrayList<Observer>();
+        observers = new ArrayList<Observer>();
         this.graph = graph;
         this.robots = robots;
     }
 
     public Manager() {
-    	observers = new ArrayList<Observer>();
     }
 
     public synchronized IGraph getGraph() {
@@ -44,7 +40,7 @@ public class Manager extends Thread implements Observable{
 
     public synchronized void setGraph(IGraph graph) {
         this.graph = graph;
-        this.NotifierObservateur();
+        this.notifyObserver();
     }
 
     public synchronized List<Robot> getRobots() {
@@ -54,7 +50,6 @@ public class Manager extends Thread implements Observable{
     public synchronized void setRobots(List<Robot> robots) {
         this.robots = robots;
     }
-
 
 
     /**
@@ -70,31 +65,29 @@ public class Manager extends Thread implements Observable{
      */
     @Override
     public void run() {
-        Long startLoop, endLoop;
-        while(!exit) {
-            startLoop = System.currentTimeMillis();
-            askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
-                    getUnoccupiedRobots());
+        Long startLoop = System.currentTimeMillis(), endLoop;
+        while (!isExited()) {
             endLoop = System.currentTimeMillis();
-            if(endLoop - startLoop < refreshTime) try {
-                sleep(refreshTime - endLoop + startLoop);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (endLoop - startLoop > refreshTime) {
+                startLoop = System.currentTimeMillis();
+                askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
+                        getUnoccupiedRobots());
             }
+            while (isPaused()) ;
         }
     }
 
     private void askDistanceToRobots(List<Node> nodesOnFire, List<Robot> unoccupiedRobots) {
         Map<Robot, Float> distances = Collections.synchronizedMap(new HashMap());
-        for(Node node : nodesOnFire) {
+        for (Node node : nodesOnFire) {
             distances.clear();
             unoccupiedRobots.stream()
                     .forEach(robot -> {
-                Float distance = robot.proposeNode(node);
-                if(distance != -1) distances.put(robot, distance);
-            });
-            if(distances.size() != 0) Collections.min(
-                        distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey().acceptPath();
+                        Float distance = robot.proposeNode(node);
+                        if (distance != -1) distances.put(robot, distance);
+                    });
+            if (distances.size() != 0) Collections.min(
+                    distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey().acceptPath();
         }
     }
 
@@ -108,38 +101,58 @@ public class Manager extends Thread implements Observable{
     }
 
     public synchronized void addNode(Node n) {
-        graph.addNode(n);
-        this.NotifierObservateur();
+        graph.addNode(n, this);
+        notifyObserver();
     }
 
     public synchronized void addEdge(Edge e) {
-        graph.addEdge(e);
-        this.NotifierObservateur();
+        graph.addEdge(e, this);
+        notifyObserver();
     }
 
     public synchronized void addRobot(Robot r) {
         robots.add(r);
-        this.NotifierObservateur();
+        notifyObserver();
     }
 
     public synchronized void Exit() {
         exit = Boolean.TRUE;
     }
 
+    public synchronized void Pause() {
+        pause = Boolean.TRUE;
+    }
+
+    public synchronized void Unpause() {
+        pause = Boolean.FALSE;
+    }
+
+    private synchronized Boolean isExited() {
+        return exit;
+    }
+
+    private synchronized Boolean isPaused() {
+        return pause;
+    }
+
     @Override
-	public void AjoutObservateur(Observer o) {
-		observers.add(o);
-	}
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
 
-	@Override
-	public void SupprimerObservateur(Observer o) {
-		observers.remove(o);
-	}
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
 
-	@Override
-	public void NotifierObservateur() {
-		for (Observer obs : observers) {
-			obs.Update();
-		}
-	}
+    @Override
+    public void notifyObserver() {
+        if(observers != null)
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+    }
+
+    @Override
+    public void Update() {
+        notifyObserver();
+    }
 }
