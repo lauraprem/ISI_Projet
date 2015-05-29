@@ -55,6 +55,8 @@ public class Edge {
      * construit une arrete valuee
      */
     public Edge() {
+    	this.setId(getMaxId());
+        incrementMaxId();
     }
 
     /**
@@ -165,7 +167,7 @@ public class Edge {
         return id;
     }
 
-    private void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -77,6 +77,8 @@ public class Node extends Point implements Observable {
      * et une position
      */
     public Node() {
+    	 this.id = getMaxId();
+         incrementMaxId();
     }
 
     /**
@@ -146,7 +148,7 @@ public class Node extends Point implements Observable {
         return id;
     }
 
-    private void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

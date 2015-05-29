@@ -1,11 +1,11 @@
 package controler;
 
-import model.graph.Point;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import model.graph.Node;
+import model.graph.Point;
+import model.graph.PointUtil;
 import model.graph.edge.Edge;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
@@ -13,8 +13,10 @@ import model.manager.Manager;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
 import model.robot.specialized.RobotToutTerrain;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import view.MainWindow;
 
 public class ControleurMap implements MouseListener {
@@ -103,8 +105,7 @@ public class ControleurMap implements MouseListener {
 
 		case 5: // Add edge Innonde
 			if (n1 != null && n2 != null) {
-				// Double value = PointUtil.getDistance(n1, n2);
-				model.addEdge(new Edge(n1, n2, 10.0, new Ground(
+				model.addEdge(new Edge(n1, n2, PointUtil.getDistance(n1, n2), new Ground(
 						GroundType.FLOODED)));
 
 				resetCurrentNodes();
@@ -114,7 +115,7 @@ public class ControleurMap implements MouseListener {
 		case 6: // Add edge Escarp
 
 			if (n1 != null && n2 != null) {
-				model.addEdge(new Edge(n1, n2, 10.0, new Ground(
+				model.addEdge(new Edge(n1, n2, PointUtil.getDistance(n1, n2), new Ground(
 						GroundType.STEEP)));
 				resetCurrentNodes();
 			}
@@ -123,7 +124,7 @@ public class ControleurMap implements MouseListener {
 		case 7: // Add edge Plat
 
 			if (n1 != null && n2 != null) {
-				model.addEdge(new Edge(n1, n2, 10.0,
+				model.addEdge(new Edge(n1, n2, PointUtil.getDistance(n1, n2),
 						new Ground(GroundType.FLAT)));
 				resetCurrentNodes();
 			}
