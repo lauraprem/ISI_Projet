@@ -144,7 +144,7 @@ public class ReaderXML {
 									{
 										if(parametre.getType().getName().contains("Ground") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
 										{
-											Ground ground=new Ground(GroundType.valueOf(eElement.getAttribute(noms.item(i).getNodeName())));
+											Ground ground=new Ground(GroundType.getGroundType(eElement.getAttribute(noms.item(i).getNodeName())));
 											method.setAccessible(true);
 											method.invoke(arc, ground);
 										}
