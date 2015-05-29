@@ -31,7 +31,7 @@ public class ControleurFile implements ActionListener {
 				model.reset();
 				break;
 			case MenuLabel.LOAD:
-				temp = getFile();
+				temp = getFile("Charger");
 				if(temp != null) f = temp;
 				if(f != null) {
 					Graph newGraph = FileXML.chargerDocument(f);
@@ -43,7 +43,7 @@ public class ControleurFile implements ActionListener {
 				break;
 			case MenuLabel.SAVE:
 				if(f == null) {
-					temp = getFile();
+					temp = getFile("Enregistrer");
 					if (temp != null) f = temp;
 				}
 				if(f != null) {
@@ -51,7 +51,7 @@ public class ControleurFile implements ActionListener {
 				}
 				break;
 			case MenuLabel.SAVE_AS:
-				temp = getFile();
+				temp = getFile("Enregistrer sous");
 				if (temp != null) f = temp;
 				if (f != null) {
 					FileXML.sauvegarderDocument(f, model.getGraph());
@@ -72,13 +72,13 @@ public class ControleurFile implements ActionListener {
 		}
 	}
 
-	private File getFile() {
+	private File getFile(String stringButton) {
 		JFileChooser fc = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichier graphe (xml)", "xml");
 		fc.setFileFilter(filter);
 		fc.setAcceptAllFileFilterUsed(true);
 		fc.setDragEnabled(true);
-		int returnVal = fc.showOpenDialog(vue.getGlassPane());
+		int returnVal = fc.showDialog(vue.getGlassPane(),stringButton);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			return fc.getSelectedFile();
 		}
