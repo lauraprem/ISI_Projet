@@ -54,4 +54,13 @@ public class Point {
     public Point clone() {
         return new Point(x, y);
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Point{");
+        sb.append("x=").append(x);
+        sb.append(", y=").append(y);
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -18,39 +18,39 @@ public class MenuFichier extends JMenuBar {
 		
 		listButon = new ArrayList<JMenuItem>();
 		
-		JMenu menuFile = new JMenu("File"); // on installe le premier menu
+		JMenu menuFile = new JMenu(MenuLabel.MENU_FILE_LABEL); // on installe le premier menu
 		this.add(menuFile);
-		addMenuItem(menuFile, "Nouveau", "Nouveau graph", KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK);
-		addMenuItem(menuFile, "Ouvrir", "Charger graph", KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK);
-		addMenuItem(menuFile, "Enregistrer", "Sauvegarder graph", KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK);
-		addMenuItem(menuFile, "Enregistrer sous...", "Sauvegarder graph sous", KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK + InputEvent.SHIFT_DOWN_MASK);
+		addMenuItem(menuFile, MenuLabel.NEW_LABEL, MenuLabel.NEW, KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK);
+		addMenuItem(menuFile, MenuLabel.LOAD_LABEL, MenuLabel.LOAD, KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK);
+		addMenuItem(menuFile, MenuLabel.SAVE_LABEL, MenuLabel.SAVE, KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK);
+		addMenuItem(menuFile, MenuLabel.SAVE_AS_LABEL, MenuLabel.SAVE_AS, KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK + InputEvent.SHIFT_DOWN_MASK);
 		menuFile.addSeparator();
-		addMenuItem(menuFile, "Démarrer", "Run", KeyEvent.VK_R);
-		addMenuItem(menuFile, "Arrêter", "Stop", KeyEvent.VK_S);
+		addMenuItem(menuFile, MenuLabel.RUN_LABEL, MenuLabel.RUN, KeyEvent.VK_R);
+		addMenuItem(menuFile, MenuLabel.STOP_LABEL, MenuLabel.STOP, KeyEvent.VK_S);
 		menuFile.addSeparator();
-		addMenuItem(menuFile, "Quitter", "Quitter", KeyEvent.VK_W, InputEvent.CTRL_DOWN_MASK);
+		addMenuItem(menuFile, MenuLabel.QUIT_LABEL, MenuLabel.QUIT, KeyEvent.VK_W, InputEvent.CTRL_DOWN_MASK);
 
-		JMenu menuGraph = new JMenu("Menu graph");
+		JMenu menuGraph = new JMenu(MenuLabel.MENU_GRAPH_LABEL);
 		this.add(menuGraph);
-		addMenuItem(menuGraph, "ajout noeud", "Add_Noeud", -1);
-		addMenuItem(menuGraph, "ajout arc plat", "Add_arc_Plat", -1);
-		addMenuItem(menuGraph, "ajout arc innondé", "Add_arc_Innond", -1);
-		addMenuItem(menuGraph, "ajout arc escarpé", "Add_arc_Escarp", -1);
+		addMenuItem(menuGraph, MenuLabel.ADD_NODE_LABEL, MenuLabel.ADD_NODE, -1);
+		addMenuItem(menuGraph, MenuLabel.ADD_FLAT_EDGE_LABEL, MenuLabel.ADD_FLAT_EDGE, -1);
+		addMenuItem(menuGraph, MenuLabel.ADD_FLOODED_EDGE_LABEL, MenuLabel.ADD_FLOODED_EDGE, -1);
+		addMenuItem(menuGraph, MenuLabel.ADD_STEEP_EDGE_LABEL, MenuLabel.ADD_STEEP_EDGE, -1);
 		
-		JMenu menuRobot = new JMenu("Ajout Robot");
+		JMenu menuRobot = new JMenu(MenuLabel.MENU_ROBOT_LABEL);
 		this.add(menuRobot);
-		addMenuItem(menuRobot, "tout terrain", "Tout_terrain", -1);
-		addMenuItem(menuRobot, "chenille", "Chenille", -1);
-		addMenuItem(menuRobot, "à pates", "A_pates", -1);
+		addMenuItem(menuRobot, MenuLabel.ADD_TOUT_TERRAIN_ROBOT_LABEL, MenuLabel.ADD_TOUT_TERRAIN_ROBOT, -1);
+		addMenuItem(menuRobot, MenuLabel.ADD_CHENILLE_ROBOT_LABEL, MenuLabel.ADD_CHENILLE_ROBOT, -1);
+		addMenuItem(menuRobot, MenuLabel.ADD_A_PATE_ROBOT_LABEL, MenuLabel.ADD_A_PATE_ROBOT, -1);
 		
-		JMenu menuElements = new JMenu("Ajout élements");
+		JMenu menuElements = new JMenu(MenuLabel.MENU_ELEMENT_LABEL);
 		this.add(menuElements);
-		addMenuItem(menuElements,  "un feu", "Add_Feu", -1);
+		addMenuItem(menuElements,  MenuLabel.ADD_FIRE_LABEL, MenuLabel.ADD_FIRE, -1);
 
-		JMenu menuHelp = new JMenu("Aide");
+		JMenu menuHelp = new JMenu(MenuLabel.MENU_AIDE_LABEL);
 		this.add(menuHelp);
-		addMenuItem(menuHelp, "Aide", "Help", -1);
-		addMenuItem(menuHelp, "A propos", "About", -1);
+		addMenuItem(menuHelp, MenuLabel.HELP_LABEL, MenuLabel.HELP, -1);
+		addMenuItem(menuHelp, MenuLabel.ABOUT_LABEL, MenuLabel.ABOUT, -1);
 
 	}
 	public void addMenuItem(JMenu m, String label, String command, int key, int ctrlModifier) {
