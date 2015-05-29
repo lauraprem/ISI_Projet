@@ -56,6 +56,6 @@ public class FileXML {
 		graphe=FileXML.chargerDocument(file);
 		File file2 = new File("data"+fileSeparator+"graphe2.xml");
 		FileXML.sauvegarderDocument(file2,graphe);
-		FileXML.chargerDocument(file2);
+		graphe=FileXML.chargerDocument(file2);
 	}
 }

@@ -4,6 +4,8 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -74,9 +76,20 @@ public class ReaderXML {
 				{
 				case Node:
 					Node noeud=new Node();
+					ArrayList<Field> fieldList=new ArrayList<Field>();
+					Field[] fields=Node.class.getDeclaredFields();
+					for(int i=0;i<fields.length;i++)
+					{
+						fieldList.add(fields[i]);
+					}
+					fields=Node.class.getSuperclass().getDeclaredFields();
+					for(int i=0;i<fields.length;i++)
+					{
+						fieldList.add(fields[i]);
+					}
 					for(int i=0;i<noms.getLength();i++)
 					{
-						for(Field parametre:Node.class.getDeclaredFields())
+						for(Field parametre:fieldList)
 						{
 							String nomParam=noms.item(i).getNodeName();
 							if(parametre.getName().contains(noms.item(i).getNodeName()))

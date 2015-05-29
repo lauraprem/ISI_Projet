@@ -1,8 +1,10 @@
 package model.graph;
 
 import model.Observable;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import view.Observer;
 
 import java.util.ArrayList;
@@ -235,10 +237,10 @@ public class Node extends Point implements Observable {
 
 
     protected void setXString(String _x) {
-        super.setXString(_x);
+    	this.x = Integer.parseInt(_x);
     }
 
     protected void setYString(String _y) {
-        super.setYString(_y);
+    	this.y = Integer.parseInt(_y);
     }
 }
