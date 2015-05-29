@@ -44,7 +44,7 @@ public class FileXML {
 	/**
 	 * constructeur privée(toute les méthodes de la classes sont static
 	 */
-	public FileXML()
+	private FileXML()
 	{
 		
 	}
@@ -72,6 +72,9 @@ public class FileXML {
 		System.out.println("Valuation: "+arc1.getLength());
 		File file = new File("data"+fileSeparator+"graphe.xml");
 		FileXML.sauvegarderDocument(file,graphe);
-		FileXML.chargerDocument(file);
+		graphe=FileXML.chargerDocument(file);
+		File file2 = new File("data"+fileSeparator+"graphe2.xml");
+		FileXML.sauvegarderDocument(file2,graphe);
+		FileXML.chargerDocument(file2);
 	}
 }
