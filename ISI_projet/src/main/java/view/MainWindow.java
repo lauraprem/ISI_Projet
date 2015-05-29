@@ -1,55 +1,55 @@
 package view;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-
 import model.manager.Manager;
+
+import javax.swing.*;
+import java.awt.*;
+
 public class MainWindow extends JFrame {
 
-	private MenuFichier menuFile;
-	private MenuHaut menuHaut;
-	private Drawing drawing;
+    private MenuFichier menuFile;
+    private MenuHaut menuHaut;
+    private Drawing drawing;
 
-	public MainWindow(Manager model) {
-		super("Robocup Rescue");
+    public MainWindow(Manager model) {
+        super("Robocup Rescue");
 
-		getContentPane().setLayout(new BorderLayout(10, 10));
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout(10, 10));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		menuFile = new MenuFichier();
-		setJMenuBar(menuFile);
-		
+        menuFile = new MenuFichier();
+        setJMenuBar(menuFile);
+
 //		menuHaut = new MenuHaut();
 //		getContentPane().addLast(menuHaut, "North");
-		String imagePath = getClass().getClassLoader().getResource("pictures/mapsixieme.jpg").getFile();
-		drawing = new Drawing(model,imagePath);
-		getContentPane().add(drawing, "Center");
-		
-		this.setResizable(false);
-	}
+        String imagePath = getClass().getClassLoader().getResource("pictures/mapsixieme.jpg").getFile();
+        drawing = new Drawing(model, imagePath);
+        getContentPane().add(drawing, "Center");
 
-	public MenuFichier getMenuFile() {
-		return menuFile;
-	}
+        this.setResizable(false);
+    }
 
-	public void setMenuFile(MenuFichier menuFile) {
-		this.menuFile = menuFile;
-	}
+    public MenuFichier getMenuFile() {
+        return menuFile;
+    }
 
-	public MenuHaut getMenuHaut() {
-		return menuHaut;
-	}
+    public void setMenuFile(MenuFichier menuFile) {
+        this.menuFile = menuFile;
+    }
 
-	public void setMenuHaut(MenuHaut menuHaut) {
-		this.menuHaut = menuHaut;
-	}
+    public MenuHaut getMenuHaut() {
+        return menuHaut;
+    }
 
-	public Drawing getDessin() {
-		return drawing;
-	}
+    public void setMenuHaut(MenuHaut menuHaut) {
+        this.menuHaut = menuHaut;
+    }
 
-	public void setDessin(Drawing drawing) {
-		this.drawing = drawing;
-	}
+    public Drawing getDessin() {
+        return drawing;
+    }
+
+    public void setDessin(Drawing drawing) {
+        this.drawing = drawing;
+    }
 }

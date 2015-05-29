@@ -1,82 +1,78 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-
 import model.graph.Node;
 import model.manager.Manager;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Drawing extends JPanel implements Observer {
 
-	private Image img;
-	private Manager model;
+    private Image img;
+    private Manager model;
 
-	public Drawing(Manager model,String img) {
-		this(new ImageIcon(img).getImage());
-		
-		this.model = model;
-		model.addObserver(this);
-	}
+    public Drawing(Manager model, String img) {
+        this(new ImageIcon(img).getImage());
 
-	public Drawing(Image img) {
-		this.img = img;
-		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
-		setSize(size);
-		setLayout(null);
-	}
+        this.model = model;
+        model.addObserver(this);
+    }
 
-	public void paintComponent(Graphics g) {
-		
-		// Carte de fond
-		g.drawImage(img, 0, 0, null);
-		
-		// Dessine les arc
-		showEdges(g);
+    public Drawing(Image img) {
+        this.img = img;
+        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
+    }
 
-		// Dessine les noeuds
-		showNodes(g);
+    public void paintComponent(Graphics g) {
 
-		// Dessine les Robots
-		showRobots(g);
-	}
+        // Carte de fond
+        g.drawImage(img, 0, 0, null);
 
-	public void showEdges(Graphics g) {
-		if( model.getGraph().getAllEdges().size()>0)
-		for (int i = 0; i < model.getGraph().getAllEdges().size(); i++) {
-			new DrawingArc(model.getGraph().getAllEdges().get(i),g);
-		}
-		
-	}
+        // Dessine les arc
+        showEdges(g);
 
-	public void showNodes(Graphics g) {
-		if( model.getGraph().getAllNodes().size()>0)
-		for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
-			Node node = model.getGraph().getAllNodes().get(i);
-			new DrawingNode(node,g);
-			
-			if(model.getGraph().getAllNodes().get(i).getFireLevel() >0)showFires(node,g);
-		}
-	}
+        // Dessine les noeuds
+        showNodes(g);
 
-	public void showFires(Node n,Graphics g) {
-		new DrawingFire(g,n);
-	}
+        // Dessine les Robots
+        showRobots(g);
+    }
 
-	public void showRobots(Graphics g) {
-		if( model.getRobots().size()>0)
-		for (int i = 0; i < model.getRobots().size(); i++) {
-			new DrawingRobot(g,model.getRobots().get(i));
-		}
-	}
+    public void showEdges(Graphics g) {
+        if (model.getGraph().getAllEdges().size() > 0)
+            for (int i = 0; i < model.getGraph().getAllEdges().size(); i++) {
+                new DrawingArc(model.getGraph().getAllEdges().get(i), g);
+            }
 
-	public void Update() {
-		repaint();
-	}
+    }
+
+    public void showNodes(Graphics g) {
+        if (model.getGraph().getAllNodes().size() > 0)
+            for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
+                Node node = model.getGraph().getAllNodes().get(i);
+                new DrawingNode(node, g);
+
+                if (model.getGraph().getAllNodes().get(i).getFireLevel() > 0) showFires(node, g);
+            }
+    }
+
+    public void showFires(Node n, Graphics g) {
+        new DrawingFire(g, n);
+    }
+
+    public void showRobots(Graphics g) {
+        if (model.getRobots().size() > 0)
+            for (int i = 0; i < model.getRobots().size(); i++) {
+                new DrawingRobot(g, model.getRobots().get(i));
+            }
+    }
+
+    public void Update() {
+        repaint();
+    }
 }

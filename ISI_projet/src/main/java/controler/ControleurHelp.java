@@ -4,11 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.manager.Manager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import view.MainWindow;
+import view.MenuLabel;
 
 public class ControleurHelp implements ActionListener {
-
-	 private Manager model;
+	private final static Logger logger = LogManager.getLogger();
+	private Manager model;
 	private MainWindow vue;
 
 	public ControleurHelp(MainWindow vue,Manager model) {
@@ -19,14 +22,14 @@ public class ControleurHelp implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		case "Help":
+		case MenuLabel.HELP:
 			// TODO model
-			System.out.println("Help");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.HELP_LABEL));
 			break;
 
-		case "About":
+		case MenuLabel.ABOUT:
 			// TODO model
-			System.out.println("About");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ABOUT_LABEL));
 			break;
 
 		default:

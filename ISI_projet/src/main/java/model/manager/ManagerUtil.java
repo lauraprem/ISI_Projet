@@ -10,12 +10,7 @@ import java.util.stream.Collectors;
  *         11/05/2015
  */
 public class ManagerUtil {
-
     public static List<Robot> getUnoccupiedRobots(Manager manager) {
         return manager.getRobots().stream().filter(robot -> !robot.isBusy()).collect(Collectors.toList());
-    }
-
-    public static List<Robot> getBusyRobots(Manager manager) {
-        return manager.getRobots().stream().filter(robot -> robot.isBusy()).collect(Collectors.toList());
     }
 }

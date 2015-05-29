@@ -1,8 +1,8 @@
 /**
- * @author Laura
+ * 
  */
 /**
  * @author Laura
  *
  */
-package view;
+package model.pathSearch.impl;

@@ -1,12 +1,5 @@
 package model.manager;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import model.Observable;
 import model.graph.Node;
 import model.graph.edge.Edge;
@@ -18,19 +11,21 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import view.Observer;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * @author Alexandre
  *         11/05/2015
  */
 public class Manager extends Thread implements Observable, Observer {
     private static Logger logger = LogManager.getLogger();
+    protected ArrayList<Observer> observers = new ArrayList<>();
     private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
     private Boolean pause = Boolean.FALSE;
     private Long refreshTime = 1000L;
-
-    protected ArrayList<Observer> observers = new ArrayList<>();
 
     public Manager(IGraph graph, List<Robot> robots) {
         observers = new ArrayList<Observer>();
@@ -41,8 +36,8 @@ public class Manager extends Thread implements Observable, Observer {
     public Manager() {
     }
 
-    public synchronized IGraph getGraph() {
-        return graph;
+    public synchronized Graph getGraph() {
+        return (Graph) graph;
     }
 
     public synchronized void setGraph(IGraph graph) {
@@ -81,14 +76,14 @@ public class Manager extends Thread implements Observable, Observer {
             if (endLoop - startLoop > refreshTime) {
                 startLoop = System.currentTimeMillis();
                 askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
-                        getUnoccupiedRobots());
+                        ManagerUtil.getUnoccupiedRobots(this));
             }
-            if(isPaused()) logger.info("Manager has been paused.");
+            if (isPaused()) logger.info("Manager has been paused.");
             while (isPaused()) {
-                if(!isPaused()) logger.info("Manager has been unpaused.");
+                if (!isPaused()) logger.info("Manager has been unpaused.");
             }
         }
-        logger.info("Manager has stopped.");
+        logger.info("Manager has stopped, ran for %ss.", (System.currentTimeMillis() - start)/1000);
     }
 
     private void askDistanceToRobots(List<Node> nodesOnFire, List<Robot> unoccupiedRobots) {
@@ -161,7 +156,7 @@ public class Manager extends Thread implements Observable, Observer {
 
     @Override
     public void notifyObserver() {
-        if(observers != null)
+        if (observers != null)
             observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
     }
 

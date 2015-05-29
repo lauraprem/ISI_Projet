@@ -2,7 +2,10 @@ package model.robot;
 
 import model.graph.Node;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * @author Alexandre
@@ -58,5 +61,9 @@ public class NodePath implements Iterator<Node> {
 
     public void addFirst(Node n) {
         path.addFirst(n);
+    }
+
+    public Node getDestination() {
+        return path.isEmpty() ? null : path.getLast();
     }
 }
