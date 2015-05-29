@@ -22,37 +22,40 @@ public class FileXML {
 //	<edge nd1="16" nd2="17" type="PLAT" />
 //	...
 //	</osm>
-
-    /**
-     * constructeur privï¿½e(toute les mï¿½thodes de la classes sont static
-     */
-    public FileXML() {
-
-    }
-
-    public static void sauvegarderDocument(File f, Graph graphe) {
-        WriterXML.getInstance().sauvegarderDocument(f, graphe);
-    }
-
-    public static Graph chargerDocument(File f) {
-        return ReaderXML.getInstance().chargerDocument(f);
-    }
-
-    public static void main(String[] args) {
-        String fileSeparator = System.getProperty("file.separator");
-        Graph graphe = new Graph();
-        Node noeud1 = new Node(new String("noeud1"), new Point(1, 0));
-        Node noeud2 = new Node(new String("noeud2"), new Point(1, 1));
-        Edge arc1 = new Edge(noeud1, noeud2, (double) 10, new Ground(GroundType.FLAT));
-        graphe.addEdge(arc1);
-        graphe.addNode(noeud1);
-        graphe.addNode(noeud2);
-        System.out.println("Source: " + arc1.getSource());
-        System.out.println("Destination: " + arc1.getDestination());
-        System.out.println("Type: " + arc1.getGround().getType());
-        System.out.println("Valuation: " + arc1.getLength());
-        File file = new File("data" + fileSeparator + "graphe.xml");
-        FileXML.sauvegarderDocument(file, graphe);
-        FileXML.chargerDocument(file);
-    }
+	/**
+	 * constructeur privée(toute les méthodes de la classes sont static
+	 */
+	private FileXML()
+	{
+		
+	}
+	public static void sauvegarderDocument(File f,Graph graphe)
+	{
+		WriterXML.getInstance().sauvegarderDocument(f, graphe);
+	}
+	public static Graph chargerDocument(File f)
+	{
+		return ReaderXML.getInstance().chargerDocument(f);
+	}
+	public static void main(String[] args)
+	{
+		String fileSeparator=System.getProperty("file.separator");
+		Graph graphe=new Graph();
+		Node noeud1=new Node(new String("noeud1"),new Point(1,0));
+		Node noeud2=new Node(new String("noeud2"),new Point(1,1));
+		Edge arc1=new Edge(noeud1, noeud2,(double)10,new Ground(GroundType.FLAT));
+		graphe.addEdge(arc1);
+		graphe.addNode(noeud1);
+		graphe.addNode(noeud2);
+		System.out.println("Source: "+arc1.getSource());
+		System.out.println("Destination: "+arc1.getDestination());
+		System.out.println("Type: "+arc1.getGround().getType());
+		System.out.println("Valuation: "+arc1.getLength());
+		File file = new File("data"+fileSeparator+"graphe.xml");
+		FileXML.sauvegarderDocument(file,graphe);
+		graphe=FileXML.chargerDocument(file);
+		File file2 = new File("data"+fileSeparator+"graphe2.xml");
+		FileXML.sauvegarderDocument(file2,graphe);
+		FileXML.chargerDocument(file2);
+	}
 }

@@ -156,7 +156,7 @@ public class ReaderXML {
 												method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
 											}
 											else
-												if(!(parametre.getType().getName().contains("String")) && method.getName().equalsIgnoreCase("set"+parametre.getName()+"String"))
+												if(method.getName().equalsIgnoreCase("set"+parametre.getName()+"String"))
 											{
 												method.setAccessible(true);
 												method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
