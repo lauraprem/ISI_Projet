@@ -95,7 +95,9 @@ public class ControleurMap implements MouseListener {
 			break;
 
 		case 4: // Add Node
-			model.addNode(new Node("", point));
+			Node node = new Node("", point);
+			node.setLabel("node"+node.getId());
+			model.addNode(node);
 			resetCurrentNodes();
 			break;
 
