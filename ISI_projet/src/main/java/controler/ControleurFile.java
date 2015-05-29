@@ -34,7 +34,6 @@ public class ControleurFile implements ActionListener {
 				temp = getFile();
 				if(temp != null) f = temp;
 				if(f != null) {
-					FileXML fileXML = new FileXML();
 					Graph newGraph = FileXML.chargerDocument(f);
 					if(newGraph != null) {
 						model.reset();
@@ -48,16 +47,14 @@ public class ControleurFile implements ActionListener {
 					if (temp != null) f = temp;
 				}
 				if(f != null) {
-					FileXML fileXML = new FileXML();
-					fileXML.sauvegarderDocument(f, model.getGraph());
+					FileXML.sauvegarderDocument(f, model.getGraph());
 				}
 				break;
 			case MenuLabel.SAVE_AS:
 				temp = getFile();
 				if (temp != null) f = temp;
 				if (f != null) {
-					FileXML fileXML = new FileXML();
-					fileXML.sauvegarderDocument(f, model.getGraph());
+					FileXML.sauvegarderDocument(f, model.getGraph());
 				}
 				break;
 			case MenuLabel.QUIT:
