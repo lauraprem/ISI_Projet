@@ -13,18 +13,19 @@ public class DrawingArc {
 
         switch (model.getGround().getType()) {
             case FLAT:
-                graph.setColor(Color.black);
+            	graph.setColor(Color.black);
                 break;
             case STEEP:
-                graph.setColor(Color.orange);
+            	graph.setColor(Color.orange);
                 break;
             case FLOODED:
-                graph.setColor(Color.blue);
+            	graph.setColor(Color.blue);
                 break;
             default:
-                graph.setColor(Color.black);
+            	graph.setColor(Color.black);
                 break;
         }
+        
         graph.drawLine((int) model.getSource().getX(), (int) model.getSource().getY(), (int) model.getDestination().getX(), (int) model.getDestination().getY());
     }
 }

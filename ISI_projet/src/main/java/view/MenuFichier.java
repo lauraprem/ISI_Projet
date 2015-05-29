@@ -28,6 +28,7 @@ public class MenuFichier extends JMenuBar {
         JMenu menuGraph = new JMenu(MenuLabel.MENU_GRAPH_LABEL);
         this.add(menuGraph);
         addMenuItem(menuGraph, MenuLabel.ADD_NODE_LABEL, MenuLabel.ADD_NODE, -1);
+        menuGraph.addSeparator();
         addMenuItem(menuGraph, MenuLabel.ADD_FLAT_EDGE_LABEL, MenuLabel.ADD_FLAT_EDGE, -1);
         addMenuItem(menuGraph, MenuLabel.ADD_FLOODED_EDGE_LABEL, MenuLabel.ADD_FLOODED_EDGE, -1);
         addMenuItem(menuGraph, MenuLabel.ADD_STEEP_EDGE_LABEL, MenuLabel.ADD_STEEP_EDGE, -1);

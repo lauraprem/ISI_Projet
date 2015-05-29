@@ -4,6 +4,7 @@ import model.graph.Node;
 import model.manager.Manager;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 public class Drawing extends JPanel implements Observer {
@@ -29,18 +30,23 @@ public class Drawing extends JPanel implements Observer {
     }
 
     public void paintComponent(Graphics g) {
-
+    	
+    	 Graphics2D graph = (Graphics2D) g;
+         
+         // Epaisseur du trait
+    	 graph.setStroke(new BasicStroke(2.0f));
+         
         // Carte de fond
-        g.drawImage(img, 0, 0, null);
+    	 graph.drawImage(img, 0, 0, null);
 
         // Dessine les arc
-        showEdges(g);
+        showEdges(graph);
 
         // Dessine les noeuds
-        showNodes(g);
+        showNodes(graph);
 
         // Dessine les Robots
-        showRobots(g);
+        showRobots(graph);
     }
 
     public void showEdges(Graphics g) {
