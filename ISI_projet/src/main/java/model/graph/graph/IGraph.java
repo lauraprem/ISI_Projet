@@ -1,11 +1,11 @@
 package model.graph.graph;
 
-import java.util.List;
-
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.ground.Ground;
 import view.Observer;
+
+import java.util.List;
 
 public interface IGraph {
 
@@ -50,7 +50,7 @@ public interface IGraph {
      * Ajoute une arrete au graph entre deux noeuds
      */
     void addEdge(Edge edge);
-    
+
     /**
      * Ajoute une arrete au graph entre deux noeuds
      */
@@ -75,7 +75,7 @@ public interface IGraph {
      * @return vrai si le graph possede une arrete entre les noeuds _n1 et _n2
      */
     boolean hasEdge(Node _node1, Node _node2);
-    
+
     Edge getEdgeFromNodes(Node _node1, Node _node2);
 
     boolean equals(Object o);

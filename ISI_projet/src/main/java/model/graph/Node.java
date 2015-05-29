@@ -13,7 +13,10 @@ import java.util.ArrayList;
 
 public class Node extends Point implements Observable {
     private static final Logger logger = LogManager.getLogger();
-
+    /**
+     * nombre total d'instances de Noeud
+     */
+    private static Long maxId = 0L;
     protected ArrayList<Observer> observers = new ArrayList<>();
     /**
      * etiquette du noeud
@@ -24,14 +27,10 @@ public class Node extends Point implements Observable {
      */
     private Long id;
     /**
-     * nombre total d'instances de Noeud
-     */
-    private static Long maxId = 0L;
-
-    /**
      * Niveau de l'incendie
      */
     private Integer fireLevel = 0;
+    private Boolean linked = Boolean.FALSE;
 
     /**
      * Construit un noeud avec une etiquette
@@ -92,7 +91,13 @@ public class Node extends Point implements Observable {
         this.id = _id;
     }
 
-    private Boolean linked = Boolean.FALSE;
+    private synchronized static Long getMaxId() {
+        return maxId;
+    }
+
+    private synchronized static void setMaxId(Long maxId) {
+        Node.maxId = maxId;
+    }
 
     public Boolean isLinked() {
         return linked;
@@ -102,16 +107,15 @@ public class Node extends Point implements Observable {
         this.linked = linked;
     }
 
-    private synchronized static Long getMaxId() {
-        return maxId;
-    }
-
-    private synchronized static void setMaxId(Long maxId) {
-        Node.maxId = maxId;
-    }
-
     private void incrementMaxId() {
         setMaxId(getMaxId() + 1);
+    }
+
+    /**
+     * @return l etiquette du noeud
+     */
+    public String getLabel() {
+        return label;
     }
 
     /**
@@ -123,17 +127,14 @@ public class Node extends Point implements Observable {
         this.label = _label;
     }
 
-    /**
-     * @return l etiquette du noeud
-     */
-    public String getLabel() {
-        return label;
-    }
-
-
     @Override
     public String toString() {
-        return "" + label;
+        final StringBuffer sb = new StringBuffer("Node{");
+        sb.append("label='").append(label).append('\'');
+        sb.append(", id=").append(id);
+        sb.append(", fireLevel=").append(fireLevel);
+        sb.append('}');
+        return sb.toString();
     }
 
     /**
@@ -146,6 +147,7 @@ public class Node extends Point implements Observable {
     private void setId(Long id) {
         this.id = id;
     }
+
     private void setIdString(String id) {
         this.setId(Long.parseLong(id));
     }
@@ -163,9 +165,11 @@ public class Node extends Point implements Observable {
 
         notifyObserver();
     }
+
     private void setFireLevelString(String fireLevel) {
-    	this.setFireLevel(Integer.parseInt(fireLevel));
+        this.setFireLevel(Integer.parseInt(fireLevel));
     }
+
     public void decreaseFireLevel(Integer diff) {
         if (diff < 0)
             logger.warn(String.format("The level of the fire has been decreased of a negative amount, so it has been increased."));
@@ -181,14 +185,7 @@ public class Node extends Point implements Observable {
     public Boolean isOnFire() {
         return fireLevel != 0;
     }
-    private void setXString(String _x)
-    {
-    	this.x=Integer.parseInt(_x);
-    }
-    private void setYString(String _y)
-    {
-    	this.x=Integer.parseInt(_y);
-    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <osm>
-<node id="0" intensite="0" nom="noeud1" x="1.0" y="0.0"/>
-<node id="1" intensite="0" nom="noeud2" x="1.0" y="1.0"/>
-<edge nd1="noeud1" nd2="noeud2" type="Plat" valuation="10.0"/>
+<node fireLevel="0" id="0" label="noeud1" x="1" y="0"/>
+<node fireLevel="0" id="1" label="noeud2" x="1" y="1"/>
+<edge destination="1" ground="Plat" length="10.0" source="0"/>
 </osm>

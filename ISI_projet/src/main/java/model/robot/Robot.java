@@ -1,11 +1,13 @@
 package model.robot;
 
-import java.util.List;
-
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 /**
  * Robots pompiers
@@ -13,6 +15,8 @@ import model.pathSearch.IShorterPathSearch;
  * @author Laura
  */
 public class Robot {
+    private final static Logger logger = LogManager.getLogger();
+
     /**
      * Types de terrains sur lesquels le robot est capable de se deplacer
      */
@@ -95,12 +99,13 @@ public class Robot {
      */
     public Double proposeNode(Node destination) {
         path = new NodePath();
-		return pathFinder == null ? -1.0 : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
+        return pathFinder == null ? -1.0 : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
     }
 
     public void acceptPath() {
         busy = Boolean.TRUE;
         path.accept();
+        logger.info(String.format("A robot has been assigned to stop the fire at \"%s\"", path.getDestination()));
     }
 
     public List<GroundType> getCapacity() {
@@ -152,10 +157,15 @@ public class Robot {
     }
 
     public void update() {
-        if (path.hasNext()) {
-            currentNode = path.next();
-        } else if (!currentNode.isOnFire() || currentNode.isOnFire() && stopFire())
+        Node next = (path.hasNext() ? path.next() : null);
+        if (next != null && !next.equals(currentNode)) {
+            currentNode = next;
+            logger.info(String.format("A robot is now at \"%s\"", currentNode));
+        } else if (!currentNode.isOnFire() || currentNode.isOnFire() && stopFire()) {
             setBusy(Boolean.FALSE);
+            logger.info(String.format("A robot has stop a fire at \"%s\". " +
+                    "It's now available for annother task.", currentNode));
+        }
     }
 
     private void setPath(NodePath path) {

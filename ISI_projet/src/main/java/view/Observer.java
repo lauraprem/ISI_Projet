@@ -1,11 +1,10 @@
 package view;
 
 /**
-*
-* @author Corinne & Laura
-*/
+ * @author Corinne & Laura
+ */
 
 public interface Observer {
 
-   public void Update();
+    public void Update();
 }
