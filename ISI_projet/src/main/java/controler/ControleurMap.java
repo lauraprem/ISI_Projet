@@ -1,11 +1,9 @@
 package controler;
 
-import model.graph.NodeUtil;
 import model.graph.Point;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import model.graph.Node;
 import model.graph.edge.Edge;
@@ -115,7 +113,7 @@ public class ControleurMap implements MouseListener {
 
 		case 5: // Add edge Innonde
 			if (n1 != null && n2 != null) {
-				// Double value = NodeUtil.getDistance(n1, n2);
+				// Double value = PointUtil.getDistance(n1, n2);
 				model.addEdge(new Edge(n1, n2, 10.0, new Ground(
 						GroundType.FLOODED)));
 

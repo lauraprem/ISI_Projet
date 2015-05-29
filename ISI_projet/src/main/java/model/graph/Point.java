@@ -71,4 +71,35 @@ public class Point {
         sb.append('}');
         return sb.toString();
     }
+
+    public Point opposite() {
+        return new Point(-x, -y);
+    }
+
+    public Point add(Point p) {
+        return new Point(x + p.x, y + p.y);
+    }
+
+    public Point sub(Point p) {
+        return add(p.opposite());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Point point = (Point) o;
+
+        if (!x.equals(point.x)) return false;
+        return y.equals(point.y);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x.hashCode();
+        result = 31 * result + y.hashCode();
+        return result;
+    }
 }
