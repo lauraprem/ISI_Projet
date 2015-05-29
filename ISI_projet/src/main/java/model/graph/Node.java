@@ -232,4 +232,13 @@ public class Node extends Point implements Observable {
         if (observers != null)
             observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
     }
+
+
+    protected void setXString(String _x) {
+        super.setXString(_x);
+    }
+
+    protected void setYString(String _y) {
+        super.setYString(_y);
+    }
 }
