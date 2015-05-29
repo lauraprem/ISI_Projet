@@ -4,10 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.manager.Manager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import view.MainWindow;
+import view.MenuLabel;
 
 public class ControleurElements implements ActionListener {
-	 private Manager model;
+	private final static Logger logger = LogManager.getLogger();
+	private Manager model;
 	private MainWindow vue;
 	private ControleurMap controleurMap;
 
@@ -23,24 +27,24 @@ public class ControleurElements implements ActionListener {
 		typeElement = -1;
 		
 		switch (e.getActionCommand()) {
-		case "Tout_terrain":			
+		case MenuLabel.ADD_TOUT_TERRAIN_ROBOT:
 			typeElement = 0;
-			System.out.println("Tout_terrain");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_TOUT_TERRAIN_ROBOT_LABEL));
 			break;
 
-		case "Chenille":
+		case MenuLabel.ADD_CHENILLE_ROBOT:
 			typeElement = 1;
-			System.out.println("Chenille");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_CHENILLE_ROBOT_LABEL));
 			break;
 
-		case "A_pates":
+		case MenuLabel.ADD_A_PATE_ROBOT:
 			typeElement = 2;
-			System.out.println("A_pates");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_A_PATE_ROBOT_LABEL));
 			break;
 
-		case "Add_Feu":
+		case MenuLabel.ADD_FIRE:
 			typeElement = 3;
-			System.out.println("Add_Feu");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FIRE_LABEL));
 			break;
 			
 		default:

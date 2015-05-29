@@ -4,10 +4,10 @@ import model.graph.graph.impl.Graph;
 import model.manager.Manager;
 import util.FileXML;
 import view.MainWindow;
+import view.MenuLabel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -27,10 +27,10 @@ public class ControleurFile implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		File temp;
 		switch (e.getActionCommand()) {
-			case "Nouveau graph":
+			case MenuLabel.NEW:
 				model.reset();
 				break;
-			case "Charger graph":
+			case MenuLabel.LOAD:
 				temp = getFile();
 				if(temp != null) f = temp;
 				if(f != null) {
@@ -42,7 +42,7 @@ public class ControleurFile implements ActionListener {
 					}
 				}
 				break;
-			case "Sauvegarder graph":
+			case MenuLabel.SAVE:
 				if(f == null) {
 					temp = getFile();
 					if (temp != null) f = temp;
@@ -52,14 +52,22 @@ public class ControleurFile implements ActionListener {
 					fileXML.sauvegarderDocument(f, model.getGraph());
 				}
 				break;
-			case "Quitter":
+			case MenuLabel.SAVE_AS:
+				temp = getFile();
+				if (temp != null) f = temp;
+				if (f != null) {
+					FileXML fileXML = new FileXML();
+					fileXML.sauvegarderDocument(f, model.getGraph());
+				}
+				break;
+			case MenuLabel.QUIT:
 				if (model != null) model.exitManager();
 				System.exit(0);
 				break;
-			case "Run":
+			case MenuLabel.RUN:
 				if (model != null) model.start();
 				break;
-			case "Stop":
+			case MenuLabel.STOP:
 				if (model != null) model.pauseManager();
 				break;
 			default:

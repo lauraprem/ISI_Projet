@@ -23,14 +23,14 @@ public class MenuHaut extends JPanel {
 		listButon = new ArrayList<JButton>();
 
 		JToolBar toolBar = new JToolBar();
-		this.addButton(toolBar, " Effacer ", "Effacer", null, this);
+		this.addButton(toolBar, MenuLabel.ERASE_LABEL, MenuLabel.ERASE, null, this);
 
 		toolBar.add(Box.createRigidArea(HGAP));
 		this.add(toolBar);
-		this.addButton(toolBar, " Ajouter noeud ", "Add_Noeud", null, this);
-		this.addButton(toolBar, " Ajouter arc ", "Add_arc", null, this);
-		this.addButton(toolBar, " Ajouter feu ", "Add_Feu", null, this);
-		this.addButton(toolBar, " Ajouter robot ", "Add_Robot", null, this);
+		this.addButton(toolBar, MenuLabel.ADD_NODE_LABEL, MenuLabel.ADD_NODE, null, this);
+		this.addButton(toolBar, MenuLabel.ADD_EDGE_LABEL, MenuLabel.ADD_EDGE, null, this);
+		this.addButton(toolBar, MenuLabel.ADD_FIRE_LABEL, MenuLabel.ADD_FIRE, null, this);
+		this.addButton(toolBar, MenuLabel.ADD_ROBOT_LABEL, MenuLabel.ADD_ROBOT, null, this);
 	}
 
 	public ArrayList<JButton> getListButon() {

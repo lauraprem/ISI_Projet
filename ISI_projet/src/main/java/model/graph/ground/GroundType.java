@@ -1,11 +1,16 @@
 package model.graph.ground;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author Alexandre
  *         06/05/2015
  */
 public enum GroundType {
     FLOODED("Inondé"), FLAT("Plat"), STEEP("Escarpé");
+
+    private final static Logger logger = LogManager.getLogger();
 
     private String label;
 
@@ -23,5 +28,12 @@ public enum GroundType {
         sb.append("label='").append(label).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    public static GroundType getGroundType(String label) {
+        GroundType[] types = GroundType.values();
+        for(GroundType type : types) if(type.getLabel().equals(label)) return type;
+        logger.warn(String.format("No GroundType is matching : \"%s\"", label));
+        return null;
     }
 }

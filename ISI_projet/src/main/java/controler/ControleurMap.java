@@ -15,10 +15,12 @@ import model.manager.Manager;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
 import model.robot.specialized.RobotToutTerrain;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import view.MainWindow;
 
 public class ControleurMap implements MouseListener {
-
+	private final static Logger logger = LogManager.getLogger();
 	private Manager model;
 	private MainWindow vue;
 	private int typeElement;
@@ -71,7 +73,7 @@ public class ControleurMap implements MouseListener {
 				}
 			}
 
-		System.out.println(point.toString());
+		logger.trace(String.format("Click on \"%s\"", point.toString()));
 		switch (typeElement) {
 		case 0: // Add RobotToutTerrain
 			if (n1 != null) {

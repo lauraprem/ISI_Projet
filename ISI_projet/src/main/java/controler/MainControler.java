@@ -2,6 +2,7 @@ package controler;
 
 import model.manager.Manager;
 import view.MainWindow;
+import view.MenuLabel;
 
 import javax.swing.*;
 
@@ -56,9 +57,9 @@ public class MainControler {
 	 */
 	private boolean controleHelp(JMenuItem item) {
 		switch (item.getActionCommand()) {
-		case "Help":
+		case MenuLabel.HELP:
 			return true;
-		case "About":
+		case MenuLabel.ABOUT:
 			return true;
 		}
 		return false;
@@ -74,17 +75,19 @@ public class MainControler {
 	 */
 	private boolean controleFile(JMenuItem item) {
 		switch (item.getActionCommand()) {
-			case "Nouveau graph":
+			case MenuLabel.NEW:
 				return true;
-			case "Charger graph":
+			case MenuLabel.LOAD:
 				return true;
-			case "Sauvegarder graph":
+			case MenuLabel.SAVE:
 				return true;
-			case "Quitter":
+			case MenuLabel.SAVE_AS:
 				return true;
-			case "Run":
+			case MenuLabel.QUIT:
 				return true;
-			case "Stop":
+			case MenuLabel.RUN:
+				return true;
+			case MenuLabel.STOP:
 				return true;
 		}
 		return false;
@@ -100,13 +103,13 @@ public class MainControler {
 	 */
 	private boolean controleGraph(JMenuItem item) {
 		switch (item.getActionCommand()) {
-		case "Add_Noeud":
+		case MenuLabel.ADD_NODE:
 			return true;
-		case "Add_arc_Innond":
+		case MenuLabel.ADD_FLOODED_EDGE:
 			return true;
-		case "Add_arc_Escarp":
+		case MenuLabel.ADD_STEEP_EDGE:
 			return true;
-		case "Add_arc_Plat":
+		case MenuLabel.ADD_FLAT_EDGE:
 			return true;
 		}
 		return false;
