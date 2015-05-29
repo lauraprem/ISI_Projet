@@ -2,12 +2,9 @@ package model.robot.specialized;
 
 import model.graph.Node;
 import model.graph.graph.IGraph;
-import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
 import model.robot.Capacity;
 import model.robot.Robot;
-
-import java.util.List;
 
 /**
  * @author Alexandre

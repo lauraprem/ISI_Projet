@@ -4,7 +4,6 @@ import com.sun.istack.internal.NotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Objects;
 
 /**
  * @author Alexandre
@@ -23,7 +22,8 @@ public class Util {
             method.setAccessible(true);
             return (params != null ? method.invoke(instance, params) : method.invoke(instance));
         } catch (NoSuchMethodException e) {
-            if(!Object.class.equals(methodClass)) return invokeMethod(methodClass.getSuperclass(), instance, methodName, params);
+            if (!Object.class.equals(methodClass))
+                return invokeMethod(methodClass.getSuperclass(), instance, methodName, params);
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();

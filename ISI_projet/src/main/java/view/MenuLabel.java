@@ -22,7 +22,7 @@ public class MenuLabel {
 
     public final static String NEW = "NEW";
     public final static String NEW_LABEL = "Nouveau graphe";
-    
+
     public final static String LOAD = "LOAD";
     public final static String LOAD_LABEL = "Charger un graphe";
 
@@ -32,8 +32,8 @@ public class MenuLabel {
     public final static String SAVE_AS = "SAVE_AS";
     public final static String SAVE_AS_LABEL = "Enregistrer sous...";
 
-    public final static String  RUN = "RUN";
-    public final static String  RUN_LABEL = "Démarrer";
+    public final static String RUN = "RUN";
+    public final static String RUN_LABEL = "Démarrer";
 
     public final static String STOP = "STOP";
     public final static String STOP_LABEL = "Arrêter";

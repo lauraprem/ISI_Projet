@@ -47,17 +47,16 @@ public class Point {
     }
 
     public Double getSquaredLength() {
-        Integer delta = x*x + y*y;
+        Integer delta = x * x + y * y;
         return delta.doubleValue();
     }
 
-    private void setXString(String _x)
-    {
-        this.x=Integer.parseInt(_x);
+    private void setXString(String _x) {
+        this.x = Integer.parseInt(_x);
     }
-    private void setYString(String _y)
-    {
-        this.x=Integer.parseInt(_y);
+
+    private void setYString(String _y) {
+        this.x = Integer.parseInt(_y);
     }
 
     public Point clone() {

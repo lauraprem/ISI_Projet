@@ -1,13 +1,13 @@
 package model.robot;
 
-import java.util.List;
-
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 /**
  * Robots pompiers
@@ -99,7 +99,7 @@ public class Robot {
      */
     public Double proposeNode(Node destination) {
         path = new NodePath();
-		return pathFinder == null ? -1.0 : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
+        return pathFinder == null ? -1.0 : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
     }
 
     public void acceptPath() {

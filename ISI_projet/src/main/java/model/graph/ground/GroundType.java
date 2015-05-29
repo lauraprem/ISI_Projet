@@ -18,6 +18,13 @@ public enum GroundType {
         this.label = label;
     }
 
+    public static GroundType getGroundType(String label) {
+        GroundType[] types = GroundType.values();
+        for (GroundType type : types) if (type.getLabel().equals(label)) return type;
+        logger.warn(String.format("No GroundType is matching : \"%s\"", label));
+        return null;
+    }
+
     public String getLabel() {
         return label;
     }
@@ -28,12 +35,5 @@ public enum GroundType {
         sb.append("label='").append(label).append('\'');
         sb.append('}');
         return sb.toString();
-    }
-
-    public static GroundType getGroundType(String label) {
-        GroundType[] types = GroundType.values();
-        for(GroundType type : types) if(type.getLabel().equals(label)) return type;
-        logger.warn(String.format("No GroundType is matching : \"%s\"", label));
-        return null;
     }
 }

@@ -1,12 +1,7 @@
 package model.graph.edge;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import model.graph.Node;
 import model.graph.ground.Ground;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,7 +38,7 @@ public class Edge {
      * @param _v1        noeud source
      * @param _v2        noeud destination
      * @param _valuation valeur de l'arrete
-     * @param ground terrain de l'arrête
+     * @param ground     terrain de l'arrête
      */
     public Edge(Node _v1, Node _v2, Double _valuation, Ground ground) {
         _v1.setLinked(Boolean.TRUE);
@@ -69,7 +64,7 @@ public class Edge {
      * @param _v1        noeud source
      * @param _v2        noeud destination
      * @param _valuation valeur de l'arrete
-     * @param ground terrain de l'arrête
+     * @param ground     terrain de l'arrête
      */
     private Edge(Long _id, Node _v1, Node _v2, Double _valuation, Ground ground) {
         _v1.setLinked(Boolean.TRUE);
@@ -117,10 +112,11 @@ public class Edge {
     public void setLength(Double length) {
         this.length = length;
     }
-    private void setLengthString(String length)
-    {
-    	this.setLength(Double.parseDouble(length));
+
+    private void setLengthString(String length) {
+        this.setLength(Double.parseDouble(length));
     }
+
     /**
      * @return le noeud source de l'arrete
      */
@@ -134,6 +130,7 @@ public class Edge {
     public void setSource(Node v1) {
         this.source = v1;
     }
+
     /**
      * @return le noeud destination de l'arrete
      */
@@ -151,13 +148,14 @@ public class Edge {
     public Ground getGround() {
         return ground;
     }
+
     public void setGround(Ground ground) {
         this.ground = ground;
     }
 
     public Boolean updateGround() {
         if (ground.updateType()) {
-            logger.info(String.format("L'arrête %s est maintenant inondée.", id));
+            logger.info(String.format("The edge %s now flooded.", id));
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -167,6 +165,9 @@ public class Edge {
         return id;
     }
 
+    private void setId(Long id) {
+        this.id = id;
+    }
 
     public Edge opposite() {
         Edge opposite = this.clone();
@@ -175,12 +176,10 @@ public class Edge {
         return opposite;
     }
 
-	private void setId(Long id) {
-		this.id = id;
-	}
-	private void setIdString(String id) {
-		this.setId(Long.parseLong(id));
-	}
+    private void setIdString(String id) {
+        this.setId(Long.parseLong(id));
+    }
+
     @Override
     public String toString() {
         return source.getLabel().toString() + " ==> " + destination.getLabel() + "(\"" + length + "\" " + ground.toString() + ")";
