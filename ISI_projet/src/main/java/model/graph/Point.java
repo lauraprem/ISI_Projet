@@ -51,11 +51,11 @@ public class Point {
         return delta.doubleValue();
     }
 
-    private void setXString(String _x) {
+    protected void setXString(String _x) {
         this.x = Integer.parseInt(_x);
     }
 
-    private void setYString(String _y) {
+    protected void setYString(String _y) {
         this.x = Integer.parseInt(_y);
     }
 
