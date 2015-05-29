@@ -158,7 +158,7 @@ public class FileXML {
 										method.setAccessible(true);
 										for(Node noeudGraphe:graphe.getAllNodes())
 										{
-											if(noeudGraphe.getLabel().equals(eElement.getAttribute(noms.item(i).getNodeName())))
+											if(String.valueOf(noeudGraphe.getId()).equals(eElement.getAttribute(noms.item(i).getNodeName())))
 											{
 												method.invoke(arc,noeudGraphe);
 											}
@@ -282,11 +282,11 @@ public class FileXML {
 		rootElement.appendChild(edge);
 		//set attribute to edge element
 		Attr attr = doc.createAttribute("source");
-		attr.setValue(arc.getSource().getLabel());
+		attr.setValue(String.valueOf(arc.getSource().getId()));
 		edge.setAttributeNode(attr);
 		//set attribute to edge element
 		attr = doc.createAttribute("destination");
-		attr.setValue(arc.getDestination().getLabel());
+		attr.setValue(String.valueOf(arc.getDestination().getId()));
 		edge.setAttributeNode(attr);
 		// set attribute to node element
 		attr = doc.createAttribute("length");
