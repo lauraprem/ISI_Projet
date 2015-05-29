@@ -41,6 +41,9 @@ public class FileXML {
 //	<edge nd1="16" nd2="17" type="PLAT" />
 //	...
 //	</osm>
+	/**
+	 * constructeur privée(toute les méthodes de la classes sont static
+	 */
 	public FileXML()
 	{
 		

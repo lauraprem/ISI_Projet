@@ -35,7 +35,7 @@ public class ControleurFile implements ActionListener {
 				if(temp != null) f = temp;
 				if(f != null) {
 					FileXML fileXML = new FileXML();
-					Graph newGraph = fileXML.chargerDocument(f);
+					Graph newGraph = FileXML.chargerDocument(f);
 					if(newGraph != null) {
 						model.reset();
 						model.setGraph(newGraph);

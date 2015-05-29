@@ -111,7 +111,7 @@ public class WriterXML {
 		attr.setValue(String.valueOf(arc.getLength()));
 		edge.setAttributeNode(attr);
 		// set attribute to node element
-		attr = doc.createAttribute("type");
+		attr = doc.createAttribute("ground");
 		attr.setValue(arc.getGround().getType().getLabel());
 		edge.setAttributeNode(attr);
 	}
