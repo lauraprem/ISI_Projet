@@ -59,4 +59,8 @@ public class NodePath implements Iterator<Node> {
     public void addFirst(Node n) {
         path.addFirst(n);
     }
+
+    public Node getDestination() {
+        return path.isEmpty() ? null : path.getLast();
+    }
 }

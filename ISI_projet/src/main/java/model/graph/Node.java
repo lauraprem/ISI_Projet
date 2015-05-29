@@ -130,10 +130,14 @@ public class Node extends Point implements Observable {
         return label;
     }
 
-
     @Override
     public String toString() {
-        return "" + label;
+        final StringBuffer sb = new StringBuffer("Node{");
+        sb.append("label='").append(label).append('\'');
+        sb.append(", id=").append(id);
+        sb.append(", fireLevel=").append(fireLevel);
+        sb.append('}');
+        return sb.toString();
     }
 
     /**
@@ -181,14 +185,7 @@ public class Node extends Point implements Observable {
     public Boolean isOnFire() {
         return fireLevel != 0;
     }
-    private void setXString(String _x)
-    {
-    	this.x=Integer.parseInt(_x);
-    }
-    private void setYString(String _y)
-    {
-    	this.x=Integer.parseInt(_y);
-    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

@@ -48,8 +48,7 @@ public class RobotTest extends GraphUtilTest {
     @Test
     public void testUpdatePosition() throws Exception {
         NodePath nodePath = new NodePath();
-//        nodePath.addLast(onFire);
-        //TODO
+        nodePath.addLast(onFire);
         Util.invokeMethod(robot, "setPath", nodePath);
         robot.acceptPath();
         robot.update();
