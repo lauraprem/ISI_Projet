@@ -1,6 +1,7 @@
 package model.robot;
 
 import model.graph.graph.GraphUtilTest;
+import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -23,7 +24,7 @@ public class RobotTest extends GraphUtilTest {
 
     @Test
     public void testStopFire() throws Exception {
-        robot = new RobotChenille(graph, onFire, null);
+        robot = new RobotAPates(graph, onFire, null);
         robot.stopFire();
         assertFalse(onFire.isOnFire());
     }

@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.List;
 import java.util.Random;
+import static org.junit.Assert.*;
 
 /**
  * @author Alexandre
@@ -36,6 +37,6 @@ public class ManagerUtilTest {
     public void testGetUnoccupiedRobots() throws Exception {
         List<Robot> unoccupiedRobots = manager.getRobots();
         unoccupiedRobots.remove(busy);
-
+        assertArrayEquals(unoccupiedRobots.toArray(), ManagerUtil.getUnoccupiedRobots(manager).toArray());
     }
 }

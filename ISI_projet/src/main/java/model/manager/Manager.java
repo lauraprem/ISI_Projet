@@ -76,14 +76,14 @@ public class Manager extends Thread implements Observable, Observer {
             if (endLoop - startLoop > refreshTime) {
                 startLoop = System.currentTimeMillis();
                 askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
-                        getUnoccupiedRobots());
+                        ManagerUtil.getUnoccupiedRobots(this));
             }
             if (isPaused()) logger.info("Manager has been paused.");
             while (isPaused()) {
                 if (!isPaused()) logger.info("Manager has been unpaused.");
             }
         }
-        logger.info("Manager has stopped.");
+        logger.info("Manager has stopped, ran for %ss.", (System.currentTimeMillis() - start)/1000);
     }
 
     private void askDistanceToRobots(List<Node> nodesOnFire, List<Robot> unoccupiedRobots) {

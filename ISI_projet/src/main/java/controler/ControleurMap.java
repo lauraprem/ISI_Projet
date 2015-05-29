@@ -1,11 +1,9 @@
 package controler;
 
-import model.graph.NodeUtil;
 import model.graph.Point;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import model.graph.Node;
 import model.graph.edge.Edge;
@@ -31,26 +29,19 @@ public class ControleurMap implements MouseListener {
 		this.vue = vue;
 		this.model = manager;
 		this.typeElement = typeElement;
-		n1 = null;
-		n2 = null;
+		resetCurrentNodes();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -78,24 +69,21 @@ public class ControleurMap implements MouseListener {
 		case 0: // Add RobotToutTerrain
 			if (n1 != null) {
 				model.addRobot(new RobotToutTerrain(model.getGraph(), n1, null));
-				n1 = null;
-				n2 = null;
+				resetCurrentNodes();
 			}
 			break;
 
 		case 1: // Add RobotChenille
 			if (n1 != null) {
 				model.addRobot(new RobotChenille(model.getGraph(), n1, null));
-				n1 = null;
-				n2 = null;
+				resetCurrentNodes();
 			}
 			break;
 
 		case 2: // Add RobotAPates
 			if (n1 != null) {
 				model.addRobot(new RobotAPates(model.getGraph(), n1, null));
-				n1 = null;
-				n2 = null;
+				resetCurrentNodes();
 			}
 			break;
 
@@ -103,24 +91,21 @@ public class ControleurMap implements MouseListener {
 			if (n1 != null) {
 				n1.increaseFireLevel(10);
 			}
-			n1 = null;
-			n2 = null;
+			resetCurrentNodes();
 			break;
 
 		case 4: // Add Node
 			model.addNode(new Node("", point));
-			n1 = null;
-			n2 = null;
+			resetCurrentNodes();
 			break;
 
 		case 5: // Add edge Innonde
 			if (n1 != null && n2 != null) {
-				// Double value = NodeUtil.getDistance(n1, n2);
+				// Double value = PointUtil.getDistance(n1, n2);
 				model.addEdge(new Edge(n1, n2, 10.0, new Ground(
 						GroundType.FLOODED)));
 
-				n1 = null;
-				n2 = null;
+				resetCurrentNodes();
 			}
 			break;
 
@@ -129,8 +114,7 @@ public class ControleurMap implements MouseListener {
 			if (n1 != null && n2 != null) {
 				model.addEdge(new Edge(n1, n2, 10.0, new Ground(
 						GroundType.STEEP)));
-				n1 = null;
-				n2 = null;
+				resetCurrentNodes();
 			}
 			break;
 
@@ -139,14 +123,18 @@ public class ControleurMap implements MouseListener {
 			if (n1 != null && n2 != null) {
 				model.addEdge(new Edge(n1, n2, 10.0,
 						new Ground(GroundType.FLAT)));
-				n1 = null;
-				n2 = null;
+				resetCurrentNodes();
 			}
 			break;
 
 		default:
 			break;
 		}
+	}
+	
+	private void resetCurrentNodes(){
+		n1 = null;
+		n2 = null;
 	}
 
 	@Override
