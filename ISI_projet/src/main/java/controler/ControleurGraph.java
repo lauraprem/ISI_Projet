@@ -4,10 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.manager.Manager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import view.MainWindow;
+import view.MenuLabel;
 
 public class ControleurGraph implements ActionListener {
-	 private Manager model;
+	private final static Logger logger = LogManager.getLogger();
+	private Manager model;
 	private MainWindow vue;
 	private ControleurMap controleurMap;
 
@@ -23,24 +27,24 @@ public class ControleurGraph implements ActionListener {
 		typeElement = -1;
 		
 		switch (e.getActionCommand()) {
-		case "Add_Noeud":
+		case MenuLabel.ADD_NODE:
 			typeElement = 4;
-			System.out.println("Add_Noeud");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_NODE_LABEL));
 			break;
 
-		case "Add_arc_Innond":
+		case MenuLabel.ADD_FLOODED_EDGE:
 			typeElement = 5;
-			System.out.println("Add_arc_Innond");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FLOODED_EDGE_LABEL));
 			break;
 
-		case "Add_arc_Escarp":
+		case MenuLabel.ADD_STEEP_EDGE:
 			typeElement = 6;
-			System.out.println("Add_arc_Escarp");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_STEEP_EDGE_LABEL));
 			break;
 
-		case "Add_arc_Plat":
+		case MenuLabel.ADD_FLAT_EDGE:
 			typeElement = 7;
-			System.out.println("Add_arc_Plat");
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FLAT_EDGE_LABEL));
 			break;
 
 		default:

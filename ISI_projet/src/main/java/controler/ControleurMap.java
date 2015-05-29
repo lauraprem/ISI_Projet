@@ -1,11 +1,9 @@
 package controler;
 
-import model.graph.NodeUtil;
 import model.graph.Point;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import model.graph.Node;
 import model.graph.edge.Edge;
@@ -15,10 +13,12 @@ import model.manager.Manager;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
 import model.robot.specialized.RobotToutTerrain;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import view.MainWindow;
 
 public class ControleurMap implements MouseListener {
-
+	private final static Logger logger = LogManager.getLogger();
 	private Manager model;
 	private MainWindow vue;
 	private int typeElement;
@@ -71,7 +71,7 @@ public class ControleurMap implements MouseListener {
 				}
 			}
 
-		System.out.println(point.toString());
+		logger.trace(String.format("Click on \"%s\"", point.toString()));
 		switch (typeElement) {
 		case 0: // Add RobotToutTerrain
 			if (n1 != null) {
@@ -113,7 +113,7 @@ public class ControleurMap implements MouseListener {
 
 		case 5: // Add edge Innonde
 			if (n1 != null && n2 != null) {
-				// Double value = NodeUtil.getDistance(n1, n2);
+				// Double value = PointUtil.getDistance(n1, n2);
 				model.addEdge(new Edge(n1, n2, 10.0, new Ground(
 						GroundType.FLOODED)));
 
