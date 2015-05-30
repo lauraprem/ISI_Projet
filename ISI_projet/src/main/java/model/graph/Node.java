@@ -160,7 +160,7 @@ public class Node extends Point implements Observable {
     }
 
     private void setId(Long id)  throws IdAlreadyUsedException {
-        setIfUniqueId(id);
+        this.id = id;
     }
 
     private void setIdString(String id) throws IdAlreadyUsedException {
