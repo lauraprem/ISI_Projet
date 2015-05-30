@@ -36,7 +36,12 @@ public class ControleurFile implements ActionListener {
 				temp = getFile(MenuLabel.LOAD_LABEL);
 				if(temp != null) f = temp;
 				if(f != null) {
-					Graph newGraph = FileXML.chargerDocument(f);
+					Graph newGraph = null;
+					try{
+						newGraph = FileXML.chargerDocument(f);
+					}catch(Exception ex){
+						// TODO Fenetre erreur => XML non valide
+					}
 					if(newGraph != null) {
 						model.reset();
 						model.setGraph(newGraph);
