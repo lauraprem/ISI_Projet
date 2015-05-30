@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Alexandre
@@ -79,5 +80,19 @@ public class NodeTest {
         Boolean expected = Boolean.TRUE;
         Boolean got = node.isOnFire();
         assertEquals(String.format("Fire level is %s should be %s", got, expected), expected, got);
+    }
+
+    @Test(expected = IdAlreadyUsedException.class)
+    public void testSetIfUniqueId() throws Exception {
+        Long id = node.getId();
+        Node n = node.clone();
+        n.setIfUniqueId(id);
+    }
+
+    @Test
+    public void testUniqueId() throws Exception {
+        Node n1 = new Node();
+        Node n2 = new Node();
+        assertTrue((n1.getId()) + 1 == n2.getId());
     }
 }

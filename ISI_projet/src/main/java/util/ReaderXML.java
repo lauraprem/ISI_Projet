@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import model.graph.IdAlreadyUsedException;
 import model.graph.Node;
 import model.graph.Point;
 import model.graph.PointUtil;
@@ -127,8 +128,12 @@ public class ReaderXML {
 						String attrValue = eElement.getAttribute(noms.item(i).getNodeName());
 						switch (noms.item(i).getNodeName()) {
 						case "id":
-							genericInvokMethod(node, "setId", 1,Long.parseLong(attrValue));
-						case "x":
+							try {
+								node.setIfUniqueId(Long.parseLong(attrValue));
+							} catch (IdAlreadyUsedException e) {
+								e.printStackTrace();
+							}
+							case "x":
 							node.setX((int)Double.parseDouble(attrValue));
 						case "y":
 							node.setY((int)Double.parseDouble(attrValue));
@@ -150,68 +155,68 @@ public class ReaderXML {
 					Edge arc=new Edge();
 					for(int i=0;i<noms.getLength();i++)
 					{
-//						for(Field parametre:Edge.class.getDeclaredFields())
-//						{
-//							String nomParam=noms.item(i).getNodeName();
-//							if(parametre.getName().contains(noms.item(i).getNodeName()))
-//							{
-//								for(Method method:Edge.class.getDeclaredMethods())
-//								{
-//									String nomMethod=method.getName();
-//									try {
-//									if(parametre.getType().getName().contains("Node")&& method.getName().equalsIgnoreCase("set"+parametre.getName()))
-//									{
-//										method.setAccessible(true);
-//										for(Node noeudGraphe:graphe.getAllNodes())
-//										{
-//											if(String.valueOf(noeudGraphe.getId()).equals(eElement.getAttribute(noms.item(i).getNodeName())))
-//											{
-//												method.invoke(arc,noeudGraphe);
-//											}
-//										}
-//									}
-//									else
-//									{
-//										if(parametre.getType().getName().contains("Ground") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
-//										{
-//											Ground ground=new Ground(GroundType.getGroundType(eElement.getAttribute(noms.item(i).getNodeName())));
-//											method.setAccessible(true);
-//											method.invoke(arc, ground);
-//										}
-//										else
-//										{
-//											if(parametre.getType().getName().contains("String") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
-//											{
-//												method.setAccessible(true);
-//												method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
-//											}
-//											else
-//												if(!(parametre.getType().getName().contains("String")) && method.getName().equalsIgnoreCase("set"+parametre.getName()+"String"))
-//											{
-//												method.setAccessible(true);
-//												method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
-//											}
-//										}
-//									}
-//									} catch (IllegalAccessException e) {
-//										// TODO Auto-generated catch block
-//										e.printStackTrace();
-//									} catch (IllegalArgumentException e) {
-//										// TODO Auto-generated catch block
-//										e.printStackTrace();
-//									} catch (InvocationTargetException e) {
-//										// TODO Auto-generated catch block
-//										e.printStackTrace();
-//									} catch (SecurityException e) {
-//										// TODO Auto-generated catch block
-//										e.printStackTrace();
-//									}
-//								}
-//							}
-//						}
-//						System.out.println(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
-						
-						String attrValue = eElement.getAttribute(noms.item(i).getNodeName());
+						for(Field parametre:Edge.class.getDeclaredFields())
+						{
+							String nomParam=noms.item(i).getNodeName();
+							if(parametre.getName().contains(noms.item(i).getNodeName()))
+							{
+								for(Method method:Edge.class.getDeclaredMethods())
+								{
+									String nomMethod=method.getName();
+									try {
+									if(parametre.getType().getName().contains("Node")&& method.getName().equalsIgnoreCase("set"+parametre.getName()))
+									{
+										method.setAccessible(true);
+										for(Node noeudGraphe:graphe.getAllNodes())
+										{
+											if(String.valueOf(noeudGraphe.getId()).equals(eElement.getAttribute(noms.item(i).getNodeName())))
+											{
+												method.invoke(arc,noeudGraphe);
+											}
+										}
+									}
+									else
+									{
+										if(parametre.getType().getName().contains("Ground") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
+										{
+											Ground ground=new Ground(GroundType.getGroundType(eElement.getAttribute(noms.item(i).getNodeName())));
+											method.setAccessible(true);
+											method.invoke(arc, ground);
+										}
+										else
+										{
+											if(parametre.getType().getName().contains("String") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
+											{
+												method.setAccessible(true);
+												method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
+											}
+											else
+												if(!(parametre.getType().getName().contains("String")) && method.getName().equalsIgnoreCase("set"+parametre.getName()+"String"))
+											{
+												method.setAccessible(true);
+												method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
+											}
+										}
+									}
+									} catch (IllegalAccessException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IllegalArgumentException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (InvocationTargetException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (SecurityException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							}
+						}
+						System.out.println(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+
+						/*String attrValue = eElement.getAttribute(noms.item(i).getNodeName());
 						switch (noms.item(i).getNodeName()) {
 						case "nd1":
 							for (int j = 0; j < graphe.getAllNodes().size(); j++) {
@@ -237,7 +242,7 @@ public class ReaderXML {
 							break;
 						default:
 							break;
-						}
+						}*/
 					}
 					
 					// Calcul de la distance entre les points
@@ -248,34 +253,7 @@ public class ReaderXML {
 					graphe.addEdge(arc);
 					break;
 				}
-				
 			}
 		}
 	}
-	public static Object genericInvokMethod(Object obj, String methodName,
-            int paramCount, Object... params) {
-        Method method;
-        Object requiredObj = null;
-        Object[] parameters = new Object[paramCount];
-        Class<?>[] classArray = new Class<?>[paramCount];
-        for (int i = 0; i < paramCount; i++) {
-            parameters[i] = params[i];
-            classArray[i] = params[i].getClass();
-        }
-        try {
-            method = obj.getClass().getDeclaredMethod(methodName, classArray);
-            method.setAccessible(true);
-            requiredObj = method.invoke(obj, params);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        return requiredObj;
-    }
 }
