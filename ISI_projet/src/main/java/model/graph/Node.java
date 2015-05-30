@@ -253,4 +253,8 @@ public class Node extends Point implements Observable {
     protected void setYString(String _y) {
         this.y = Integer.parseInt(_y);
     }
+
+    public static void resetIds() {
+        ids = new LinkedList<>();
+    }
 }
