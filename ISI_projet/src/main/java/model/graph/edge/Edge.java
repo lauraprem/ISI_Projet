@@ -180,9 +180,20 @@ public class Edge {
         this.setId(Long.parseLong(id));
     }
 
+    public String toString2() {
+        return source.getLabel().toString() + " ==> " + destination.getLabel() + "(\"" + length + "\" " + ground.toString() + ")";
+    }
+
     @Override
     public String toString() {
-        return source.getLabel().toString() + " ==> " + destination.getLabel() + "(\"" + length + "\" " + ground.toString() + ")";
+        final StringBuffer sb = new StringBuffer("Edge{");
+        sb.append("destination=").append(destination);
+        sb.append(", id=").append(id);
+        sb.append(", length=").append(length);
+        sb.append(", source=").append(source);
+        sb.append(", ground=").append(ground);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
