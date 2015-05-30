@@ -1,8 +1,10 @@
 package model.graph;
 
 import model.Observable;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import view.Observer;
 
 import java.util.ArrayList;
@@ -137,7 +139,7 @@ public class Node extends Point implements Observable {
     public Long getId() {
         return id;
     }
-
+    
     public void setIfUniqueId(Long id) throws IdAlreadyUsedException {
         if (ids.isEmpty()) ids.add(id);
         else {
@@ -154,14 +156,14 @@ public class Node extends Point implements Observable {
                     }
                 }
         }
-        setId(id);
-    }
-
-    private void setId(Long id) {
         this.id = id;
     }
 
-    private void setIdString(String id) {
+    private void setId(Long id)  throws IdAlreadyUsedException {
+        setIfUniqueId(id);
+    }
+
+    private void setIdString(String id) throws IdAlreadyUsedException {
         this.setId(Long.parseLong(id));
     }
 
