@@ -110,4 +110,24 @@ public class Ground {
     public Ground clone() {
         return new Ground(type, chancesOfGettingFlooded);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ground ground = (Ground) o;
+
+        if (chancesOfGettingFlooded != null ? !chancesOfGettingFlooded.equals(ground.chancesOfGettingFlooded) : ground.chancesOfGettingFlooded != null)
+            return false;
+        return type == ground.type;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = chancesOfGettingFlooded != null ? chancesOfGettingFlooded.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
+    }
 }
