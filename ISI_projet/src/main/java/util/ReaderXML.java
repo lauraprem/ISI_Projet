@@ -2,6 +2,8 @@ package util;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -255,4 +257,30 @@ public class ReaderXML {
 			}
 		}
 	}
+	public static Object genericInvokMethod(Object obj, String methodName,
+            int paramCount, Object... params) {
+        Method method;
+        Object requiredObj = null;
+        Object[] parameters = new Object[paramCount];
+        Class<?>[] classArray = new Class<?>[paramCount];
+        for (int i = 0; i < paramCount; i++) {
+            parameters[i] = params[i];
+            classArray[i] = params[i].getClass();
+        }
+        try {
+            method = obj.getClass().getDeclaredMethod(methodName, classArray);
+            method.setAccessible(true);
+            requiredObj = method.invoke(obj, params);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return requiredObj;
+    }
 }
