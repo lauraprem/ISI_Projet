@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
  *         06/05/2015
  */
 public enum GroundType {
-    FLOODED("INNONDE"), FLAT("PLAT"), STEEP("ESCARPE");
+    FLOODED("Inondé"), FLAT("Plat"), STEEP("Escarpé");
 
     private final static Logger logger = LogManager.getLogger();
 
