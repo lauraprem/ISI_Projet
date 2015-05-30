@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import view.MainWindow;
 import view.MenuLabel;
 import view.about.AboutWindow;
+import view.help.HelpWindow;
 
 public class ControleurHelp implements ActionListener {
 	private final static Logger logger = LogManager.getLogger();
@@ -28,6 +29,16 @@ public class ControleurHelp implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case MenuLabel.HELP:
+			HelpWindow helpWindow= new HelpWindow();
+			helpWindow.addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent arg0) {
+					helpWindow.setVisible(false);
+				}
+			});
+			helpWindow.pack();
+			helpWindow.setLocationRelativeTo(null);
+			helpWindow.setVisible(true);
 			logger.info(String.format("Action \"%s\" selected", MenuLabel.HELP_LABEL));
 			break;
 
