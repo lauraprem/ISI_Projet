@@ -3,6 +3,10 @@ package util;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import model.graph.Node;
 import model.graph.Point;
@@ -13,6 +17,7 @@ import model.graph.ground.GroundType;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 public class FileXMLTest {
 	private Graph graphe;
@@ -36,7 +41,7 @@ public class FileXMLTest {
 		System.out.println("Valuation: "+arc1.getLength());
 	}
 	@Test
-	public void test1BoucleReadWrite()
+	public void test1BoucleReadWrite() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		File file = new File("data"+fileSeparator+"graphe.xml");
 		FileXML.sauvegarderDocument(file,graphe);
@@ -44,7 +49,7 @@ public class FileXMLTest {
 		assertEquals(graphe,graphe1);
 	}
 	@Test
-	public void test2BoucleReadWrite()
+	public void test2BoucleReadWrite() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		File file = new File("data"+fileSeparator+"graphe.xml");
 		FileXML.sauvegarderDocument(file,graphe);

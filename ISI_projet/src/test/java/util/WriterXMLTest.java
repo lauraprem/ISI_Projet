@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -52,7 +53,51 @@ public class WriterXMLTest extends XMLTestCase{
 		WriterXML.getInstance().sauvegarderDocument(f2, graphe);
 		DocumentBuilderFactory domFact = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = domFact.newDocumentBuilder();
-		Document doc = builder.parse(f);
+		Document doc = builder.parse(f2);
+		DOMSource domSource = new DOMSource(doc);
+		StringWriter writer = new StringWriter();
+		StreamResult result = new StreamResult(writer);
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		
+		transformer.transform(domSource, result);
+		
+		Document doc1 = builder.parse(f2);
+		domSource = new DOMSource(doc1);
+		StringWriter writer1 = new StringWriter();
+		result = new StreamResult(writer1);
+		tf = TransformerFactory.newInstance();
+		transformer = tf.newTransformer();
+		
+		transformer.transform(domSource, result);
+		
+		XMLUnit.setIgnoreWhitespace(true); // ignore les espace du document
+
+	    //permet de tester les deux document en String
+	    XMLTestCase.assertEquals(writer.toString(),writer1.toString());  // assertXMLEquals venant de XMLTestCase
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test(expected=java.lang.IllegalArgumentException.class)
+	public void testMauvaisChargement()
+	{
+		try {
+		init();//XMLUnit ne prenant pas le @Before je l'appel directement
+		WriterXML.getInstance().sauvegarderDocument(f2, graphe);
+		DocumentBuilderFactory domFact = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = domFact.newDocumentBuilder();
+		Document doc = builder.parse(f2);
 		DOMSource domSource = new DOMSource(doc);
 		StringWriter writer = new StringWriter();
 		StreamResult result = new StreamResult(writer);

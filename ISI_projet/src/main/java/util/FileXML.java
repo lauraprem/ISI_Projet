@@ -1,6 +1,12 @@
 package util;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 import model.graph.graph.impl.Graph;
 /**
@@ -31,7 +37,7 @@ public class FileXML {
 		
 	}
 	/**
-	 * 
+	 * fonction d'appel pour sauvegarde du document
 	 * @param f fichier permettant de sauvegarder le graphe
 	 * @param graphe générer par le programme
 	 */
@@ -40,11 +46,17 @@ public class FileXML {
 		WriterXML.getInstance().sauvegarderDocument(f, graphe);
 	}
 	/**
-	 * 
+	 * fonction d'appel pour chargement du graphe
 	 * @param f fichier permettant de charger le graphe
 	 * @return graphe charger à partir du fichier
+	 * @throws InvocationTargetException exception de ciblage
+	 * @throws IllegalArgumentException mauvais argument
+	 * @throws IllegalAccessException problème d'accès de reflexivité
+	 * @throws IOException 
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
 	 */
-	public static Graph chargerDocument(File f)
+	public static Graph chargerDocument(File f) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		return ReaderXML.getInstance().chargerDocument(f);
 	}
