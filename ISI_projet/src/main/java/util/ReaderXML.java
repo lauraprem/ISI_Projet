@@ -10,7 +10,10 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import model.graph.IdAlreadyUsedException;
 import model.graph.Node;
+import model.graph.Point;
+import model.graph.PointUtil;
 import model.graph.edge.Edge;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
@@ -124,6 +127,28 @@ public class ReaderXML {
 									}
 								}
 							}
+							/*
+							String attrValue = eElement.getAttribute(noms.item(i).getNodeName());
+						switch (noms.item(i).getNodeName()) {
+						case "id":
+							try {
+								node.setIfUniqueId(Long.parseLong(attrValue));
+							} catch (IdAlreadyUsedException e) {
+								e.printStackTrace();
+							}
+							case "x":
+							node.setX((int)Double.parseDouble(attrValue));
+						case "y":
+							node.setY((int)Double.parseDouble(attrValue));
+						case "type":
+					        if( eElement.getAttribute(noms.item(i).getNodeName()).equals("INCENDIE")){
+					        	node.increaseFireLevel(10);
+					        }
+							break;
+						default:
+							break;
+						}
+							 */
 						}
 						System.out.println(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
 					}
