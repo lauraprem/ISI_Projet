@@ -8,6 +8,8 @@ import view.MenuLabel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -31,7 +33,7 @@ public class ControleurFile implements ActionListener {
 				model.reset();
 				break;
 			case MenuLabel.LOAD:
-				temp = getFile("Charger");
+				temp = getFile(MenuLabel.LOAD_LABEL);
 				if(temp != null) f = temp;
 				if(f != null) {
 					Graph newGraph = FileXML.chargerDocument(f);
@@ -43,7 +45,7 @@ public class ControleurFile implements ActionListener {
 				break;
 			case MenuLabel.SAVE:
 				if(f == null) {
-					temp = getFile("Enregistrer");
+					temp = getFile(MenuLabel.SAVE_LABEL);
 					if (temp != null) f = temp;
 				}
 				if(f != null) {
@@ -51,7 +53,7 @@ public class ControleurFile implements ActionListener {
 				}
 				break;
 			case MenuLabel.SAVE_AS:
-				temp = getFile("Enregistrer sous");
+				temp = getFile(MenuLabel.SAVE_AS_LABEL);
 				if (temp != null) f = temp;
 				if (f != null) {
 					FileXML.sauvegarderDocument(f, model.getGraph());
@@ -78,6 +80,7 @@ public class ControleurFile implements ActionListener {
 		fc.setFileFilter(filter);
 		fc.setAcceptAllFileFilterUsed(true);
 		fc.setDragEnabled(true);
+		
 		int returnVal = fc.showDialog(vue.getGlassPane(),stringButton);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			return fc.getSelectedFile();
