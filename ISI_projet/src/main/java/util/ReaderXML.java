@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import model.graph.IdAlreadyUsedException;
 import model.graph.Node;
 import model.graph.Point;
 import model.graph.PointUtil;
@@ -125,8 +126,12 @@ public class ReaderXML {
 						String attrValue = eElement.getAttribute(noms.item(i).getNodeName());
 						switch (noms.item(i).getNodeName()) {
 						case "id":
-							node.setId(Long.parseLong(attrValue));
-						case "x":
+							try {
+								node.setIfUniqueId(Long.parseLong(attrValue));
+							} catch (IdAlreadyUsedException e) {
+								e.printStackTrace();
+							}
+							case "x":
 							node.setX((int)Double.parseDouble(attrValue));
 						case "y":
 							node.setY((int)Double.parseDouble(attrValue));
