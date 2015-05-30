@@ -10,7 +10,10 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import model.graph.IdAlreadyUsedException;
 import model.graph.Node;
+import model.graph.Point;
+import model.graph.PointUtil;
 import model.graph.edge.Edge;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;

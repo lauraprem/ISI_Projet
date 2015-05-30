@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import view.Observer;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Classe representant un noeud etiquete pour un graph
@@ -15,11 +16,9 @@ import java.util.ArrayList;
 
 public class Node extends Point implements Observable {
     private static final Logger logger = LogManager.getLogger();
-    /**
-     * nombre total d'instances de Noeud
-     */
-    private static Long maxId = 0L;
     protected ArrayList<Observer> observers = new ArrayList<>();
+
+    private static LinkedList<Long> ids = new LinkedList<>();
     /**
      * etiquette du noeud
      */
@@ -51,10 +50,7 @@ public class Node extends Point implements Observable {
      * @param _point position du noeud
      */
     public Node(String _label, Point _point) {
-        super(_point);
-        this.label = _label;
-        this.id = getMaxId();
-        incrementMaxId();
+        this(_label, _point, 0);
     }
 
     /**
@@ -67,8 +63,11 @@ public class Node extends Point implements Observable {
     public Node(String _label, Point _point, Integer fireLevel) {
         super(_point);
         this.label = _label;
-        this.id = getMaxId();
-        incrementMaxId();
+        try {
+            setIfUniqueId(getMaxId());
+        } catch (IdAlreadyUsedException e) {
+            e.printStackTrace();
+        }
         setFireLevel(fireLevel);
     }
 
@@ -77,6 +76,7 @@ public class Node extends Point implements Observable {
      * et une position
      */
     public Node() {
+        this("", new Point(), 0);
     }
 
     /**
@@ -87,18 +87,16 @@ public class Node extends Point implements Observable {
      * @param _label etiquette du noeud
      * @param _point position du noeud
      */
-    private Node(Long _id, String _label, Point _point) {
+    private Node(Long _id, String _label, Point _point, Integer fireLevel, Boolean linked) {
         super(_point);
         this.label = _label;
         this.id = _id;
+        this.fireLevel = fireLevel;
+        this.linked = linked;
     }
 
     private synchronized static Long getMaxId() {
-        return maxId;
-    }
-
-    private synchronized static void setMaxId(Long maxId) {
-        Node.maxId = maxId;
+        return ids.isEmpty() ? 0 : ids.getLast() + 1;
     }
 
     public Boolean isLinked() {
@@ -107,10 +105,6 @@ public class Node extends Point implements Observable {
 
     public void setLinked(Boolean linked) {
         this.linked = linked;
-    }
-
-    private void incrementMaxId() {
-        setMaxId(getMaxId() + 1);
     }
 
     /**
@@ -145,12 +139,31 @@ public class Node extends Point implements Observable {
     public Long getId() {
         return id;
     }
-
-    private void setId(Long id) {
+    
+    public void setIfUniqueId(Long id) throws IdAlreadyUsedException {
+        if (ids.isEmpty()) ids.add(id);
+        else {
+            int idsSize = ids.size();
+            if(id > ids.getLast()) {
+                ids.addLast(id);
+            }
+            else
+                for (int i = 0; i < idsSize; i++) {
+                    if (id == ids.get(i)) throw new IdAlreadyUsedException();
+                    if (id < ids.get(i)) {
+                        ids.add(i, id);
+                        break;
+                    }
+                }
+        }
         this.id = id;
     }
 
-    private void setIdString(String id) {
+    private void setId(Long id)  throws IdAlreadyUsedException {
+        setIfUniqueId(id);
+    }
+
+    private void setIdString(String id) throws IdAlreadyUsedException {
         this.setId(Long.parseLong(id));
     }
 
@@ -213,10 +226,7 @@ public class Node extends Point implements Observable {
      */
     @Override
     public Node clone() {
-        Node node = new Node(id, label, (Point) super.clone());
-        node.setFireLevel(fireLevel);
-        node.setLinked(linked);
-        return node;
+        return new Node(id, label, super.clone(), fireLevel, linked);
     }
 
     @Override
@@ -237,10 +247,10 @@ public class Node extends Point implements Observable {
 
 
     protected void setXString(String _x) {
-    	this.x = Integer.parseInt(_x);
+        this.x = Integer.parseInt(_x);
     }
 
     protected void setYString(String _y) {
-    	this.y = Integer.parseInt(_y);
+        this.y = Integer.parseInt(_y);
     }
 }
