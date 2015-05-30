@@ -23,9 +23,17 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
-
+/**
+ * singleton comportant le chargement d'un fichier XML vers un graphe
+ * @author gael,corinne,alexandre,laura
+ *
+ */
 public class ReaderXML {
 	private static ReaderXML reader;
+	/**
+	 * methode pour recuperer le singleton
+	 * @return une instance une unique
+	 */
 	public static ReaderXML getInstance()
 	{
 		if(reader==null)
@@ -34,6 +42,11 @@ public class ReaderXML {
 		}
 		return reader;
 	}
+	/**
+	 * 
+	 * @param documentToRead document à lire
+	 * @return un graphe charger à partir du XML
+	 */
 	public Graph chargerDocument(File documentToRead)
 	{
 		Graph graphe=new Graph();
@@ -44,8 +57,7 @@ public class ReaderXML {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 		 
-			//optional, but recommended
-			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+			//optionnel mais recommandé
 			doc.getDocumentElement().normalize();
 			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 		 
@@ -63,6 +75,13 @@ public class ReaderXML {
 		    }
 		return null;
 	}
+	/**
+	 * permet de récupérer l'ensemble des attributs d'un noeud du XML visité
+	 * @param nList noeud du XML récupéré
+	 * @param graphe a charger
+	 * @param typeDeNoeud permet de connaitre quel est la classe a utilisé par
+	 * rapport à nList
+	 */
 	public void listerElement(NodeList nList,Graph graphe,XMLType typeDeNoeud)
 	{
 		for (int temp = 0; temp < nList.getLength(); temp++) {

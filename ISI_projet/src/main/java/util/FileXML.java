@@ -3,7 +3,13 @@ package util;
 import java.io.File;
 
 import model.graph.graph.impl.Graph;
-
+/**
+ * classe permettant de sauvegarder
+ * un graphe dans un fichier XML ou de charger un graphe
+ * à partir d'un fichier XML
+ * @author gael,corinne,alexandre,laura
+ *
+ */
 public class FileXML {
 
 
@@ -18,16 +24,26 @@ public class FileXML {
 //	...
 //	</osm>
 	/**
-	 * constructeur privée(toute les méthodes de la classes sont static
+	 * constructeur privée(toutes les méthodes de la classes sont static)
 	 */
 	private FileXML()
 	{
 		
 	}
+	/**
+	 * 
+	 * @param f fichier permettant de sauvegarder le graphe
+	 * @param graphe générer par le programme
+	 */
 	public static void sauvegarderDocument(File f,Graph graphe)
 	{
 		WriterXML.getInstance().sauvegarderDocument(f, graphe);
 	}
+	/**
+	 * 
+	 * @param f fichier permettant de charger le graphe
+	 * @return graphe charger à partir du fichier
+	 */
 	public static Graph chargerDocument(File f)
 	{
 		return ReaderXML.getInstance().chargerDocument(f);

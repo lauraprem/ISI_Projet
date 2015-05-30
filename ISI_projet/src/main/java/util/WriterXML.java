@@ -17,17 +17,28 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-
+/**
+ * singleton comportant la sauvegarde un graphe dans un fichier XML
+ * @author gael,corinne,alexandre,laura
+ *
+ */
 public class WriterXML {
     private static WriterXML writer;
-
+    /**
+	 * methode pour recuperer le singleton
+	 * @return une instance une unique
+	 */
     public static WriterXML getInstance() {
         if (writer == null) {
             writer = new WriterXML();
         }
         return writer;
     }
-
+    /**
+     * 
+     * @param f fichier dans lequel on sauvegarde le graphe
+     * @param graphe à fournir pour le sauvegarder
+     */
     public void sauvegarderDocument(File f, Graph graphe) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -62,7 +73,12 @@ public class WriterXML {
             tfe.printStackTrace();
         }
     }
-
+    /**
+     * methode permettant de créer les élément Node du XML
+     * @param noeud instance permettant de récupérer les futures attribut de l'élément Node
+     * @param doc document dans lequel on doit sauvegarder les valuers
+     * @param rootElement element de référence du document
+     */
     public void creerElementNode(Node noeud, Document doc, Element rootElement) {
         // node elements
         Element node = doc.createElement("node");
@@ -88,7 +104,12 @@ public class WriterXML {
         attr.setValue(String.valueOf(noeud.getFireLevel()));
         node.setAttributeNode(attr);
     }
-
+    /**
+     * methode permettant de créer les élément Edge du XML
+     * @param arc instance permettant de récupérer les futures attribut de l'élément Edge
+     * @param doc document dans lequel on doit sauvegarder les valuers
+     * @param rootElement element de référence du document
+     */
     public void creerElementEdge(Edge arc, Document doc, Element rootElement) {
         // edge elements
         Element edge = doc.createElement("edge");
