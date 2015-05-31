@@ -1,5 +1,10 @@
 package model.pathSearch;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IGraph;
@@ -8,14 +13,9 @@ import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
 import model.pathSearch.impl.Djikstra;
 import model.robot.NodePath;
+
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author Laura
@@ -70,8 +70,7 @@ public class DjikstraTest {
 
     }
 
-    // TODO : Quand le pathfinder sera prêt : enlever l'annotation
-    @Ignore
+
     @Test
     public void testDjikstra() {
         Double got = pathSearch.findShorterPath(graph, start, goal, capacity, nodePath);
