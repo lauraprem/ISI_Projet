@@ -20,9 +20,11 @@ public class Graph implements IGraph {
     private ArrayList<Node> nodes = new ArrayList<Node>();
 
     public Graph() {
+        Node.resetIds();
     }
 
     public Graph(Edge... edges) {
+        this();
         for (int i = 0; i < edges.length; i++) addEdge(edges[i]);
     }
 

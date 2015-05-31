@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import view.about.AboutLabel;
 import model.manager.Manager;
 
 public class MainWindow extends JFrame {
@@ -12,7 +13,7 @@ public class MainWindow extends JFrame {
     private Drawing drawing;
 
     public MainWindow(Manager model) {
-        super("Robocup Rescue");
+        super(AboutLabel.NOM_APPLICATION);
 
         getContentPane().setLayout(new BorderLayout(10, 10));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -22,7 +23,7 @@ public class MainWindow extends JFrame {
         
         String imagePath = getClass().getClassLoader().getResource("pictures/mapsixieme.jpg").getFile();
         drawing = new Drawing(model, imagePath);
-        getContentPane().add(drawing, "Center");
+        getContentPane().add(drawing, BorderLayout.CENTER);
 
         this.setResizable(false);
     }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm>
+  <node id="14" x="227" y="105" fireLevel="0" />
+  <node id="11" x="189" y="184" fireLevel="0" />
+  <node id="3" x="103" y="278" fireLevel="1" />
+  <node id="16" x="233" y="148" fireLevel="0" />
+  <node id="24" x="378" y="192" fireLevel="0" />
+  <node id="15" x="230" y="125" fireLevel="0" />
+  <node id="8" x="134" y="190" fireLevel="0" />
+  <node id="13" x="125" y="120" fireLevel="0" />
+  <node id="10" x="201" y="263" fireLevel="0" />
+  <node id="19" x="242" y="210" fireLevel="0" />
+  <node id="9" x="150" y="271" fireLevel="0" />
+  <node id="18" x="249" y="256" fireLevel="0" />
+  <node id="12" x="183" y="115" fireLevel="0" />
+  <node id="2" x="300" y="199" fireLevel="1" />
+  <node id="20" x="296" y="171" fireLevel="0" />
+  <node id="22" x="386" y="237" fireLevel="0" />
+  <node id="25" x="370" y="111" fireLevel="0" />
+  <node id="5" x="91" y="198" fireLevel="0" />
+  <node id="4" x="86" y="147" fireLevel="0" />
+  <node id="6" x="128" y="138" fireLevel="0" />
+  <node id="7" x="131" y="165" fireLevel="0" />
+  <node id="17" x="238" y="176" fireLevel="0" />
+  <node id="23" x="373" y="160" fireLevel="0" />
+  <node id="21" x="306" y="249" fireLevel="0" />
+  <node id="1" x="290" y="121" fireLevel="1" />
+  <node id="0" x="185" y="156" fireLevel="1" />
+  <edge source="2" destination="20" ground="EscarpÃ©" />
+  <edge source="15" destination="14" ground="Plat" />
+  <edge source="16" destination="17" ground="Plat" />
+  <edge source="2" destination="21" ground="EscarpÃ©" />
+  <edge source="22" destination="21" ground="Plat" />
+  <edge source="0" destination="16" ground="EscarpÃ©" />
+  <edge source="15" destination="1" ground="EscarpÃ©" />
+  <edge source="2" destination="24" ground="Plat" />
+  <edge source="16" destination="15" ground="EscarpÃ©" />
+  <edge source="3" destination="5" ground="Plat" />
+  <edge source="8" destination="7" ground="Plat" />
+  <edge source="8" destination="11" ground="Plat" />
+  <edge source="12" destination="14" ground="Plat" />
+  <edge source="0" destination="7" ground="Plat" />
+  <edge source="17" destination="19" ground="EscarpÃ©" />
+  <edge source="6" destination="4" ground="Plat" />
+  <edge source="17" destination="11" ground="EscarpÃ©" />
+  <edge source="18" destination="10" ground="Plat" />
+  <edge source="23" destination="24" ground="Plat" />
+  <edge source="12" destination="13" ground="Plat" />
+  <edge source="17" destination="20" ground="Plat" />
+  <edge source="10" destination="11" ground="Plat" />
+  <edge source="7" destination="6" ground="Plat" />
+  <edge source="1" destination="25" ground="Plat" />
+  <edge source="22" destination="24" ground="Plat" />
+  <edge source="25" destination="23" ground="Plat" />
+  <edge source="8" destination="5" ground="Plat" />
+  <edge source="18" destination="19" ground="Plat" />
+  <edge source="20" destination="23" ground="Plat" />
+  <edge source="20" destination="1" ground="Plat" />
+  <edge source="8" destination="9" ground="Plat" />
+  <edge source="10" destination="9" ground="Plat" />
+  <edge source="6" destination="13" ground="Plat" />
+  <edge source="18" destination="21" ground="Plat" />
+  <edge source="9" destination="3" ground="EscarpÃ©" />
+  <edge source="2" destination="19" ground="Plat" />
+  <edge source="5" destination="4" ground="Plat" />
+  <edge source="12" destination="0" ground="Plat" />
+  <edge source="0" destination="11" ground="EscarpÃ©" />
+</osm>

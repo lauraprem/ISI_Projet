@@ -1,6 +1,7 @@
 package util;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import model.graph.IdAlreadyUsedException;
 import model.graph.Node;
@@ -23,9 +25,18 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
-
+import org.xml.sax.SAXException;
+/**
+ * singleton comportant le chargement d'un fichier XML vers un graphe
+ * @author gael,corinne,alexandre,laura
+ *
+ */
 public class ReaderXML {
 	private static ReaderXML reader;
+	/**
+	 * methode pour recuperer le singleton
+	 * @return une instance une unique
+	 */
 	public static ReaderXML getInstance()
 	{
 		if(reader==null)
@@ -34,18 +45,24 @@ public class ReaderXML {
 		}
 		return reader;
 	}
-	public Graph chargerDocument(File documentToRead)
+	/**
+	 * 
+	 * @param documentToRead document à lire
+	 * @return un graphe charger à partir du XML
+	 * @throws ParserConfigurationException 
+	 * @throws IOException 
+	 * @throws SAXException 
+	 */
+	public Graph chargerDocument(File documentToRead) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		Graph graphe=new Graph();
-		try {
 			 
 			File fXmlFile =documentToRead;
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 		 
-			//optional, but recommended
-			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+			//optionnel mais recommandé
 			doc.getDocumentElement().normalize();
 			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 		 
@@ -57,13 +74,23 @@ public class ReaderXML {
 			 
 			System.out.println("----------------------------");
 			listerElement(nList,graphe,XMLType.Edge);
-			return graphe;
-		    } catch (Exception e) {
-			e.printStackTrace();
-		    }
+			if(graphe.getAllNodes().size()>0)
+			{
+				return graphe;
+			}
 		return null;
 	}
-	public void listerElement(NodeList nList,Graph graphe,XMLType typeDeNoeud)
+	/**
+	 * permet de récupérer l'ensemble des attributs d'un noeud du XML visité
+	 * @param nList noeud du XML récupéré
+	 * @param graphe a charger
+	 * @param typeDeNoeud permet de connaitre quel est la classe a utilisé par
+	 * rapport à nList
+	 * @throws InvocationTargetException ciblage
+	 * @throws IllegalArgumentException mauvais argument
+	 * @throws IllegalAccessException problème d'accès de reflexivité
+	 */
+	public void listerElement(NodeList nList,Graph graphe,XMLType typeDeNoeud) throws IllegalArgumentException, InvocationTargetException
 	{
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			 
@@ -100,30 +127,26 @@ public class ReaderXML {
 								for(Method method:Node.class.getDeclaredMethods())
 								{
 									String nomMethod=method.getName();
-									try {
 									if(parametre.getType().getName().contains("String") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
 									{
 										method.setAccessible(true);
-										method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
+										try {
+											method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
+										} catch (IllegalAccessException e) {
+											System.out.println("Attention problème d'accès au niveau de la classe"+Node.class.getName()+" et de la méthode:"+method.getName());
+											e.printStackTrace();
+										}
 									}
 									else
 										if(!(parametre.getType().getName().contains("String")) && method.getName().equalsIgnoreCase("set"+parametre.getName()+"String"))
 									{
 										method.setAccessible(true);
-										method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
-									}
-									} catch (IllegalAccessException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									} catch (IllegalArgumentException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									} catch (InvocationTargetException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									} catch (SecurityException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
+										try {
+											method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
+										} catch (IllegalAccessException e) {
+											System.out.println("Attention problème d'accès au niveau de la classe"+Node.class.getName()+" et de la méthode:"+method.getName());
+											e.printStackTrace();
+										}
 									}
 								}
 							}
@@ -166,7 +189,6 @@ public class ReaderXML {
 								for(Method method:Edge.class.getDeclaredMethods())
 								{
 									String nomMethod=method.getName();
-									try {
 									if(parametre.getType().getName().contains("Node")&& method.getName().equalsIgnoreCase("set"+parametre.getName()))
 									{
 										method.setAccessible(true);
@@ -174,7 +196,12 @@ public class ReaderXML {
 										{
 											if(String.valueOf(noeudGraphe.getId()).equals(eElement.getAttribute(noms.item(i).getNodeName())))
 											{
-												method.invoke(arc,noeudGraphe);
+												try {
+													method.invoke(arc,noeudGraphe);
+												} catch (IllegalAccessException e) {
+													System.out.println("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
+													e.printStackTrace();
+												}
 											}
 										}
 									}
@@ -184,35 +211,37 @@ public class ReaderXML {
 										{
 											Ground ground=new Ground(GroundType.getGroundType(eElement.getAttribute(noms.item(i).getNodeName())));
 											method.setAccessible(true);
-											method.invoke(arc, ground);
+											try {
+												method.invoke(arc, ground);
+											} catch (IllegalAccessException e) {
+												System.out.println("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
+												e.printStackTrace();
+											}
 										}
 										else
 										{
 											if(parametre.getType().getName().contains("String") && method.getName().equalsIgnoreCase("set"+parametre.getName()))
 											{
 												method.setAccessible(true);
-												method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
+												try {
+													method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
+												} catch (IllegalAccessException e) {
+													System.out.println("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
+													e.printStackTrace();
+												}
 											}
 											else
 												if(!(parametre.getType().getName().contains("String")) && method.getName().equalsIgnoreCase("set"+parametre.getName()+"String"))
 											{
 												method.setAccessible(true);
-												method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
+												try {
+													method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
+												} catch (IllegalAccessException e) {
+													System.out.println("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
+													e.printStackTrace();
+												}
 											}
 										}
-									}
-									} catch (IllegalAccessException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									} catch (IllegalArgumentException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									} catch (InvocationTargetException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									} catch (SecurityException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
 									}
 								}
 							}
