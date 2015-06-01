@@ -1,12 +1,11 @@
 package model.graph.ground;
 
-import java.util.Random;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.Random;
 
 /**
  * @author Alexandre
@@ -14,9 +13,9 @@ import org.apache.logging.log4j.Logger;
  */
 @XmlRootElement
 public class Ground {
-	/**
-	 * logger de la classe
-	 */
+    /**
+     * logger de la classe
+     */
     private static final Logger logger = LogManager.getLogger();
     /**
      * Utilitaire d'aléatoire

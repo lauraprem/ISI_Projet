@@ -1,21 +1,19 @@
 package util;
 
+import model.graph.graph.IGraph;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
-
-import model.graph.graph.IGraph;
-import model.graph.graph.impl.Graph;
 /**
  * classe permettant de sauvegarder
  * un graphe dans un fichier XML ou de charger un graphe
- * à partir d'un fichier XML
- * @author gael,corinne,alexandre,laura
+ * ï¿½ partir d'un fichier XML
  *
+ * @author gael, corinne, alexandre, laura
  */
 public class FileXML {
 
@@ -30,35 +28,37 @@ public class FileXML {
 //	<edge nd1="16" nd2="17" type="PLAT" />
 //	...
 //	</osm>
-	/**
-	 * constructeur privée(toutes les méthodes de la classes sont static)
-	 */
-	private FileXML()
-	{
-		
-	}
-	/**
-	 * fonction d'appel pour sauvegarde du document
-	 * @param f fichier permettant de sauvegarder le graphe
-	 * @param graphe générer par le programme
-	 */
-	public static void sauvegarderDocument(File f,IGraph graphe)
-	{
-		WriterXML.getInstance().sauvegarderDocument(f, graphe);
-	}
-	/**
-	 * fonction d'appel pour chargement du graphe
-	 * @param f fichier permettant de charger le graphe
-	 * @return graphe charger à partir du fichier
-	 * @throws InvocationTargetException exception de ciblage
-	 * @throws IllegalArgumentException mauvais argument
-	 * @throws IllegalAccessException problème d'accès de reflexivité
-	 * @throws IOException 
-	 * @throws SAXException 
-	 * @throws ParserConfigurationException 
-	 */
-	public static IGraph chargerDocument(File f) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
-	{
-		return ReaderXML.getInstance().chargerDocument(f);
-	}
+
+    /**
+     * constructeur privï¿½e(toutes les mï¿½thodes de la classes sont static)
+     */
+    private FileXML() {
+
+    }
+
+    /**
+     * fonction d'appel pour sauvegarde du document
+     *
+     * @param f      fichier permettant de sauvegarder le graphe
+     * @param graphe gï¿½nï¿½rer par le programme
+     */
+    public static void sauvegarderDocument(File f, IGraph graphe) {
+        WriterXML.getInstance().sauvegarderDocument(f, graphe);
+    }
+
+    /**
+     * fonction d'appel pour chargement du graphe
+     *
+     * @param f fichier permettant de charger le graphe
+     * @return graphe charger ï¿½ partir du fichier
+     * @throws InvocationTargetException    exception de ciblage
+     * @throws IllegalArgumentException     mauvais argument
+     * @throws IllegalAccessException       problï¿½me d'accï¿½s de reflexivitï¿½
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
+    public static IGraph chargerDocument(File f) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException {
+        return ReaderXML.getInstance().chargerDocument(f);
+    }
 }

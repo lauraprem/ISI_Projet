@@ -10,8 +10,8 @@ public enum Picture {
     ROBOT_TOUT_TERRAIN("RobotToutTerrain.gif"),
     ROBOT_A_PATES("robotAPattes.gif"),
     FIRE("Feu.gif");
-    private String url;
     private static String dir = "pictures";
+    private String url;
 
     Picture(String url) {
         this.url = url;

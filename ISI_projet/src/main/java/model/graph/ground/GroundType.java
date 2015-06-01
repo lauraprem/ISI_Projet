@@ -12,9 +12,9 @@ import java.awt.*;
 public enum GroundType {
 
 
-	/**
-	 * differents types de sol
-	 */
+    /**
+     * differents types de sol
+     */
     FLOODED("Inondé", Color.BLUE), FLAT("Plat", Color.GRAY), STEEP("Escarpé", Color.ORANGE);
 
 

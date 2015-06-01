@@ -1,9 +1,5 @@
 package model.graph.graph.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IGraph;
@@ -13,14 +9,18 @@ import model.robot.Capacity;
 import model.robot.NodePath;
 import view.Observer;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by alexandreg on 11/03/2015.
  */
 public class Graph implements IGraph {
 
-	/**
-	 * Liste des arretes composant le graphe
-	 */
+    /**
+     * Liste des arretes composant le graphe
+     */
     private ArrayList<Edge> edges = new ArrayList<Edge>();
 
     /**
@@ -246,16 +246,17 @@ public class Graph implements IGraph {
 
     /**
      * Permet de savoir si le graphe est connexe en utlisant un path finder pour vérifier que l'on peut accéder à tous les noeuds depuis n'importe quel noeud
-     * @param pathSearch méthode de parcours du graphe 
+     *
+     * @param pathSearch méthode de parcours du graphe
      * @return true si la graphe est connexe false sinon
      */
     public Boolean isValid(IShorterPathSearch pathSearch) {
-        if(nodes.size() == 0) return Boolean.FALSE;
-        for(int i = 0; i < nodes.size();i++) {
-            for(int j = i + 1; j < nodes.size();j++) {
-                if(pathSearch.findShorterPath(
+        if (nodes.size() == 0) return Boolean.FALSE;
+        for (int i = 0; i < nodes.size(); i++) {
+            for (int j = i + 1; j < nodes.size(); j++) {
+                if (pathSearch.findShorterPath(
                         this, nodes.get(i), nodes.get(j), Capacity.allCapacity(), new NodePath())
-                         < 0.0) return Boolean.FALSE;
+                        < 0.0) return Boolean.FALSE;
             }
         }
         return Boolean.TRUE;

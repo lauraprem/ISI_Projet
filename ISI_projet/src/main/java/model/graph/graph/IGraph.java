@@ -1,16 +1,14 @@
 package model.graph.graph;
 
-import java.util.List;
-
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.ground.Ground;
 import view.Observer;
 
+import java.util.List;
+
 /**
- * 
  * @author Laura
- *
  */
 public interface IGraph {
 
@@ -83,6 +81,7 @@ public interface IGraph {
 
     /**
      * Permet de connaitre l'arrete qui relie deux noeuds
+     *
      * @param _node1
      * @param _node2
      * @return Edge reliant _node1 et _node2

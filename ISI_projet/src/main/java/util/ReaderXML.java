@@ -30,8 +30,8 @@ import java.util.ArrayList;
  * @author gael, corinne, alexandre, laura
  */
 public class ReaderXML {
-    private static ReaderXML reader;
     private final static Logger logger = LogManager.getLogger();
+    private static ReaderXML reader;
 
     /**
      * methode pour recuperer le singleton

@@ -6,7 +6,6 @@ import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import util.Util;
 

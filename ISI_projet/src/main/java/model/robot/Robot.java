@@ -1,18 +1,16 @@
 package model.robot;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Observable;
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import view.Observer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Robots pompiers
@@ -20,10 +18,10 @@ import view.Observer;
  * @author Laura
  */
 public abstract class Robot implements Observable {
-	/**
-	 * Logger de la classe
-	 */
-	private final static Logger logger = LogManager.getLogger();
+    /**
+     * Logger de la classe
+     */
+    private final static Logger logger = LogManager.getLogger();
     /**
      * Liste des observeurs du robot
      */
@@ -98,6 +96,7 @@ public abstract class Robot implements Observable {
     /**
      * Le robot tente d'éteindre un feu. Il va diminuer l'intensité du feu d'autant qu'il en est capable.
      * Si le feu est éteind à l'issu de l'opération, la probabilité que les arretes adjacentes au noeud soient inondés augmente. Il est même possible que ces arretes soient effectivement inondées.
+     *
      * @return true si le robot a éteind le feu, false sinon
      */
     public Boolean stopFire() {
