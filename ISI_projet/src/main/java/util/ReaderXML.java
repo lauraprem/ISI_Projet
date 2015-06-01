@@ -67,15 +67,15 @@ public class ReaderXML {
 		 
 			//optionnel mais recommandé
 			doc.getDocumentElement().normalize();
-			logger.info("Root element :" + doc.getDocumentElement().getNodeName());
+			logger.trace("Root element :" + doc.getDocumentElement().getNodeName());
 		 
 			NodeList nList = doc.getElementsByTagName(XMLType.Node.getLabel());
 		 
-			logger.info("----------------------------");
+			logger.trace("----------------------------");
 			listerElement(nList,graphe,XMLType.Node);
 			nList = doc.getElementsByTagName(XMLType.Edge.getLabel());
 			 
-			logger.info("----------------------------");
+			logger.trace("----------------------------");
 			listerElement(nList,graphe,XMLType.Edge);
 			if(graphe.getAllNodes().size()>0)
 			{
@@ -99,7 +99,7 @@ public class ReaderXML {
 			 
 			org.w3c.dom.Node nNode = nList.item(temp);
 	 
-			logger.info("Current Element :" + nNode.getNodeName());
+			logger.trace("Current Element :" + nNode.getNodeName());
 			
 			if (nNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
 	 
@@ -176,7 +176,7 @@ public class ReaderXML {
 						}
 							 */
 						}
-						logger.info(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+						logger.trace(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
 					}
 					graphe.addNode(noeud);
 					break;
@@ -249,7 +249,7 @@ public class ReaderXML {
 								}
 							}
 						}
-						logger.info(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+						logger.trace(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
 					}
 					graphe.addEdge(arc);
 					break;
