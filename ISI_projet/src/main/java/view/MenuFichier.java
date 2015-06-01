@@ -20,6 +20,8 @@ public class MenuFichier extends JMenuBar {
         addMenuItem(menuFile, MenuLabel.SAVE_FR, MenuLabel.SAVE, KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK);
         addMenuItem(menuFile, MenuLabel.SAVE_AS_FR, MenuLabel.SAVE_AS, KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK + InputEvent.SHIFT_DOWN_MASK);
         menuFile.addSeparator();
+        addMenuItem(menuFile, MenuLabel.UPDATE_BACK_FR, MenuLabel.UPDATE_BACK, -1);
+        menuFile.addSeparator();
         addMenuItem(menuFile, MenuLabel.RUN_FR, MenuLabel.RUN, KeyEvent.VK_R);
         addMenuItem(menuFile, MenuLabel.STOP_FR, MenuLabel.STOP, KeyEvent.VK_S);
         menuFile.addSeparator();

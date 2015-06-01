@@ -22,7 +22,8 @@ public class MainWindow extends JFrame {
         menuFile = new MenuFichier();
         setJMenuBar(menuFile);
 
-        drawing = new Drawing(model, Picture.BACKGROUND.getURL(),200);
+//        drawing = new Drawing(model, Picture.BACKGROUND.getURL(),200);
+        drawing = new Drawing(model, Picture.BACKGROUND.getURL(),0);
         getContentPane().add(drawing, BorderLayout.CENTER);
 
         this.setResizable(false);

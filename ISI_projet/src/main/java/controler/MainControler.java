@@ -82,6 +82,8 @@ public class MainControler {
 				return true;
 			case MenuLabel.STOP:
 				return true;
+			case MenuLabel.UPDATE_BACK:
+				return true;
 		}
 		return false;
 	}

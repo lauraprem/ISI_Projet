@@ -74,4 +74,7 @@ public class MenuLabel {
 
 	public final static String ABOUT = "ABOUT";
 	public final static String ABOUT_FR = "A propos";
+	
+	public final static String UPDATE_BACK = "UPDATE_BACK";
+	public final static String UPDATE_BACK_FR = "Changer la carte";
 }

@@ -1,14 +1,18 @@
 package controler;
 
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.graph.graph.IGraph;
+import model.graph.graph.impl.Graph;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
 import util.FileXML;
@@ -34,7 +38,7 @@ public class ControleurFile implements ActionListener {
 				model.reset();
 				break;
 			case MenuLabel.LOAD:
-				temp = getFile(MenuLabel.LOAD_FR);
+				temp = getFileXML(MenuLabel.LOAD_FR);
 				if(temp != null) f = temp;
 				if(f != null) {
 					IGraph newGraph = null;
@@ -53,7 +57,7 @@ public class ControleurFile implements ActionListener {
 				break;
 			case MenuLabel.SAVE:
 				if(f == null) {
-					temp = getFile(MenuLabel.SAVE_FR);
+					temp = getFileXML(MenuLabel.SAVE_FR);
 					if (temp != null) f = temp;
 				}
 				if(f != null) {
@@ -61,7 +65,7 @@ public class ControleurFile implements ActionListener {
 				}
 				break;
 			case MenuLabel.SAVE_AS:
-				temp = getFile(MenuLabel.SAVE_AS_FR);
+				temp = getFileXML(MenuLabel.SAVE_AS_FR);
 				if (temp != null) f = temp;
 				if (f != null) {
 					FileXML.sauvegarderDocument(f, model.getGraph());
@@ -90,12 +94,23 @@ public class ControleurFile implements ActionListener {
 			case MenuLabel.STOP:
 				if (model != null) model.pauseManager();
 				break;
+			case MenuLabel.UPDATE_BACK:
+				temp = getFile(MenuLabel.LOAD_FR);
+				if(temp != null) f = temp;
+				if(f != null) {
+					model.reset();
+					Image img = new ImageIcon(f.getPath()).getImage();
+					vue.getDessin().setImg(img);
+					vue.setSize(new Dimension(img.getWidth(null)+16, img.getHeight(null)+62));
+					vue.getDessin().Update();
+				}
+				break;
 			default:
 				break;
 		}
 	}
 
-	private File getFile(String stringButton) {
+	private File getFileXML(String stringButton) {
 		JFileChooser fc = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichier graphe (xml)", "xml");
 		fc.setFileFilter(filter);
@@ -103,6 +118,22 @@ public class ControleurFile implements ActionListener {
 		fc.setDragEnabled(true);
 		File f = new File("data");
 		if(!f.exists()) f.mkdir();
+		fc.setCurrentDirectory(f);
+		int returnVal = fc.showDialog(vue.getGlassPane(),stringButton);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			return fc.getSelectedFile();
+		}
+		return null;
+	}
+	
+	private File getFile(String stringButton) {
+		JFileChooser fc = new JFileChooser();
+//		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichier graphe (xml)", "xml");
+//		fc.setFileFilter(filter);
+		fc.setAcceptAllFileFilterUsed(true);
+		fc.setDragEnabled(true);
+//		File f = new File("data");
+//		if(!f.exists()) f.mkdir();
 		fc.setCurrentDirectory(f);
 		int returnVal = fc.showDialog(vue.getGlassPane(),stringButton);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
