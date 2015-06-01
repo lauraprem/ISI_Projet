@@ -15,6 +15,8 @@ import java.io.File;
  *         26/05/2015
  */
 public class RobotAPates extends Robot {
+    private static String URLImage = Picture.ROBOT_A_PATES.getURL();
+
     /**
      * Constructeur du robot. Le robot n'est pas occupé.
      *
@@ -38,14 +40,12 @@ public class RobotAPates extends Robot {
         this(_graph, _startNode, _pathFinder, null, o);
     }
 
-    private static String URLImage = Picture.ROBOT_A_PATES.getURL();
-
     @Override
     public String getURLImage() {
         return URLImage;
     }
 
     public static void setURLImage(String URLImage) {
-        if(new File(URLImage).exists()) RobotAPates.URLImage = URLImage;
+        if (new File(URLImage).exists()) RobotAPates.URLImage = URLImage;
     }
 }

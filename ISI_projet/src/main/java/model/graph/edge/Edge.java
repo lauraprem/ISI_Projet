@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * Classe representant une arrete orientee et valuee
  */
-public class Edge {
+public class Edge implements Cloneable {
     private static final Logger logger = LogManager.getLogger();
 
     /**
@@ -124,6 +124,11 @@ public class Edge {
         return Boolean.FALSE;
     }
 
+    /**
+     * Renvoi l'arrete inversée de l'arrete courante : la source devient destination et vice versa
+     *
+     * @return une arrete inversée
+     */
     public Edge opposite() {
         Edge opposite = this.clone();
         opposite.setDestination(getSource());
@@ -148,7 +153,7 @@ public class Edge {
 
     @Override
     public Edge clone() {
-        return new Edge(source.clone(), destination.clone(), length.doubleValue(), ground.clone());
+        return new Edge(source.clone(), destination.clone(), length, ground.clone());
     }
 
     @Override
@@ -159,8 +164,8 @@ public class Edge {
         Edge edge = (Edge) o;
 
         if (length != null ? !length.equals(edge.length) : edge.length != null) return false;
-        if (source != null ? !source.equals(edge.source) : edge.source != null) return false;
-        if (destination != null ? !destination.equals(edge.destination) : edge.destination != null) return false;
+        if(!(source.equals(edge.source) && destination.equals(edge.destination))
+                && !(source.equals(edge.destination) && destination.equals(edge.source))) return false;
         return !(ground != null ? !ground.equals(edge.ground) : edge.ground != null);
 
     }

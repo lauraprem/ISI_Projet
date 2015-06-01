@@ -10,7 +10,6 @@ import model.robot.NodePath;
 import view.Observer;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,8 +18,14 @@ import java.util.stream.Collectors;
  */
 public class Graph implements IGraph {
 
+    /**
+     * Liste des arretes composant le graphe
+     */
     private ArrayList<Edge> edges = new ArrayList<Edge>();
 
+    /**
+     * Liste des noeuds composants le graphe
+     */
     private ArrayList<Node> nodes = new ArrayList<Node>();
 
     public Graph() {
@@ -203,21 +208,21 @@ public class Graph implements IGraph {
 
     @Override
     public String toString() {
-        String str = String.format("%s\n", getClass().getName());
+        StringBuilder str = new StringBuilder(String.format("%s%n", getClass().getName()));
         List<Node> nodeList;
         Node node;
         for (Node n : getAllNodes()) {
-            str += String.format("[noeud=%s : [", n.getLabel());
+            str.append(String.format("[noeud=%s : [", n.getLabel()));
             nodeList = getAdjNodes(n);
             for (int i = 0; i < nodeList.size(); i++) {
                 node = nodeList.get(i);
                 if (i != 0)
-                    str += ", ";
-                str += String.format("%s <=> %s", n.getLabel(), node.getLabel());
+                    str.append(", ");
+                str.append(String.format("%s <=> %s", n.getLabel(), node.getLabel()));
             }
-            str += "]\n";
+            str.append("]\n");
         }
-        return str;
+        return str.toString();
     }
 
     @Override
@@ -239,13 +244,19 @@ public class Graph implements IGraph {
         return result;
     }
 
+    /**
+     * Permet de savoir si le graphe est connexe en utlisant un path finder pour vérifier que l'on peut accéder à tous les noeuds depuis n'importe quel noeud
+     *
+     * @param pathSearch méthode de parcours du graphe
+     * @return true si la graphe est connexe false sinon
+     */
     public Boolean isValid(IShorterPathSearch pathSearch) {
-        if(nodes.size() == 0) return Boolean.FALSE;
-        for(int i = 0; i < nodes.size();i++) {
-            for(int j = i + 1; j < nodes.size();j++) {
-                if(pathSearch.findShorterPath(
+        if (nodes.size() == 0) return Boolean.FALSE;
+        for (int i = 0; i < nodes.size(); i++) {
+            for (int j = i + 1; j < nodes.size(); j++) {
+                if (pathSearch.findShorterPath(
                         this, nodes.get(i), nodes.get(j), Capacity.allCapacity(), new NodePath())
-                         < 0.0) return Boolean.FALSE;
+                        < 0.0) return Boolean.FALSE;
             }
         }
         return Boolean.TRUE;

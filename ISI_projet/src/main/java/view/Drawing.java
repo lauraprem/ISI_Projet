@@ -98,7 +98,7 @@ public class Drawing extends JPanel implements Observer {
 			}
 	}
 
-	public void Update() {
+	public void update() {
 		repaint();
 	}
 

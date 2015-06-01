@@ -12,8 +12,14 @@ import java.util.Random;
  *         06/05/2015
  */
 @XmlRootElement
-public class Ground {
+public class Ground implements Cloneable {
+    /**
+     * logger de la classe
+     */
     private static final Logger logger = LogManager.getLogger();
+    /**
+     * Utilitaire d'aléatoire
+     */
     private static final Random random = new Random();
     /**
      * Probabilité que le terrain devienne inondé (flooded)

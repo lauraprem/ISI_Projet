@@ -4,3 +4,4 @@
 .project
 ISI_projet.iml
 data/*
+logs/app.log

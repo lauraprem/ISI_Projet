@@ -171,4 +171,3 @@
 11:56:12.640 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
 11:56:14.640 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
 11:56:19.913 [INFO ] model.manager.Manager - Manager has been started.
-11:56:21.937 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node3', id=3, fireLevel=10}"

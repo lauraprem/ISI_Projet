@@ -9,9 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawingRobot {
-
-    private Robot model;
-
     public DrawingRobot(Robot model,Graphics graph) {
         if (graph == null) {
             return;

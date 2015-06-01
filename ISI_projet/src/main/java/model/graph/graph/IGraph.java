@@ -7,6 +7,9 @@ import view.Observer;
 
 import java.util.List;
 
+/**
+ * @author Laura
+ */
 public interface IGraph {
 
 
@@ -76,6 +79,13 @@ public interface IGraph {
      */
     boolean hasEdge(Node _node1, Node _node2);
 
+    /**
+     * Permet de connaitre l'arrete qui relie deux noeuds
+     *
+     * @param _node1
+     * @param _node2
+     * @return Edge reliant _node1 et _node2
+     */
     Edge getEdgeFromNodes(Node _node1, Node _node2);
 
     boolean equals(Object o);

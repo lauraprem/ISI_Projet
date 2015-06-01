@@ -1,5 +1,9 @@
 package model.graph;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
+
 import model.Observable;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,19 +11,24 @@ import org.apache.logging.log4j.Logger;
 
 import view.Observer;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-
 /**
  * Classe representant un noeud etiquete pour un graph
  */
 
-public class Node extends Point implements Observable {
-    private static final Logger logger = LogManager.getLogger();
-    protected ArrayList<Observer> observers = new ArrayList<>();
+public class Node extends Point implements Observable, Cloneable {
 
+    /**
+     * Logger de la classe
+     */
+    private static final Logger logger = LogManager.getLogger();
+    /**
+     * liste des ids de tous les noeuds existants
+     */
     private static LinkedList<Long> ids = new LinkedList<>();
+    /**
+     * liste des observeurs du noeud
+     */
+    protected ArrayList<Observer> observers = new ArrayList<>();
     /**
      * etiquette du noeud
      */
@@ -32,6 +41,10 @@ public class Node extends Point implements Observable {
      * Niveau de l'incendie
      */
     private Integer fireLevel = 0;
+
+    /**
+     * permet de savoir si le noeud est lié au graphe
+     */
     private Boolean linked = Boolean.FALSE;
 
     /**
@@ -96,9 +109,23 @@ public class Node extends Point implements Observable {
         this.linked = linked;
     }
 
+    /**
+     * Renvoi le prochain ID a utiliser pour la création d'un nouveau noeud
+     *
+     * @return ID
+     */
     private synchronized static Long getMaxId() {
         ids.sort(Comparator.<Long>naturalOrder());
         return ids.isEmpty() ? 0 : ids.getLast() + 1;
+    }
+
+    public static void resetIds() {
+        ids = new LinkedList<>();
+    }
+
+    public static void addId(Long id) {
+        ids.add(id);
+        ids.sort(Comparator.<Long>naturalOrder());
     }
 
     public Boolean isLinked() {
@@ -142,31 +169,36 @@ public class Node extends Point implements Observable {
         return id;
     }
 
+    private void setId(Long id) {
+        if (!ids.contains(id)) addId(id);
+        this.id = id;
+    }
+
     public void setIdToNextAvailable() {
         setId(getMaxId());
     }
-    
+
+    /**
+     * Permet de changer l'ID du noeud. L'operation ne sera effectuee que si l'id est disponible
+     *
+     * @param id nouvel id du noeud
+     * @throws IdAlreadyUsedException l'id souhaite est déjà utlise
+     */
     public void setIfUniqueId(Long id) throws IdAlreadyUsedException {
         if (ids.isEmpty()) ids.add(id);
         else {
             int idsSize = ids.size();
-            if(id > ids.getLast()) {
+            if (id > ids.getLast()) {
                 ids.addLast(id);
-            }
-            else
+            } else
                 for (int i = 0; i < idsSize; i++) {
-                    if (id == ids.get(i)) throw new IdAlreadyUsedException();
+                    if (id.equals(ids.get(i))) throw new IdAlreadyUsedException();
                     if (id < ids.get(i)) {
                         ids.add(i, id);
                         break;
                     }
                 }
         }
-        this.id = id;
-    }
-
-    private void setId(Long id) {
-        if(!ids.contains(id)) addId(id);
         this.id = id;
     }
 
@@ -214,10 +246,10 @@ public class Node extends Point implements Observable {
             return true;
         if (obj == null)
             return false;
-        if (getClass() != obj.getClass())
+        if (!getClass().equals(obj.getClass()))
             return false;
         Node other = (Node) obj;
-        if (id != other.id)
+        if (!id.equals(other.id))
             return false;
         return true;
     }
@@ -249,9 +281,8 @@ public class Node extends Point implements Observable {
     @Override
     public void notifyObserver() {
         if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
     }
-
 
     protected void setXString(String _x) {
         this.x = Integer.parseInt(_x);
@@ -259,14 +290,5 @@ public class Node extends Point implements Observable {
 
     protected void setYString(String _y) {
         this.y = Integer.parseInt(_y);
-    }
-
-    public static void resetIds() {
-        ids = new LinkedList<>();
-    }
-
-    public static void addId(Long id) {
-        ids.add(id);
-        ids.sort(Comparator.<Long>naturalOrder());
     }
 }

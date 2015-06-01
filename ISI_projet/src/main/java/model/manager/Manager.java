@@ -15,17 +15,41 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
+ * Le manager est celui qui va gérer les robots : il va identifier ceux qui sont les plus près des feu et assigner la tache d'éteindre le feu au robot qui en est le plus près.
+ * Le manager va notifier la vue de tout changement du modèle qu'il effectuera (il est observé par la vue) et sera notifié des changements effectués en interne par les neuds ou les robots pour pouvoir egalement en avertir la vue (le manager observe le noeud et le robot)
+ *
  * @author Alexandre
  *         11/05/2015
  */
 public class Manager extends Thread implements Observable, Observer {
-    private static Logger logger = LogManager.getLogger();
-    protected ArrayList<Observer> observers = new ArrayList<>();
-    private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
-    private IGraph graph = new Graph();
-    private Boolean exit = Boolean.FALSE;
-    private Boolean pause = Boolean.FALSE;
+    /**
+     * Temps entre les rafraichissements
+     */
     private final static Long refreshTime = 1000L;
+    /**
+     * logger de la classe
+     */
+    private static Logger logger = LogManager.getLogger();
+    /**
+     * liste des observeurs du manager
+     */
+    protected ArrayList<Observer> observers = new ArrayList<>();
+    /**
+     * Liste des robots
+     */
+    private List<Robot> robots = Collections.synchronizedList(new ArrayList<Robot>());
+    /**
+     * Graphe a traiter
+     */
+    private IGraph graph = new Graph();
+    /**
+     * Permet de savoir si l'application doit etre quitté
+     */
+    private Boolean exit = Boolean.FALSE;
+    /**
+     * Permet de mettre l'application en pause
+     */
+    private Boolean pause = Boolean.FALSE;
 
     public Manager(IGraph graph, List<Robot> robots) {
         observers = new ArrayList<Observer>();
@@ -53,7 +77,6 @@ public class Manager extends Thread implements Observable, Observer {
         this.robots = robots;
     }
 
-
     /**
      * If this thread was constructed using a separate
      * <code>Runnable</code> run object, then that
@@ -78,36 +101,52 @@ public class Manager extends Thread implements Observable, Observer {
                 robots.forEach(robot -> robot.update());
                 askDistanceToUnoccupiedRobots(GraphUtil.getNodesOnFire(graph));
             }
-            if (isPaused()) logger.info("Manager has been paused.");
+            if (isPaused())
+                logger.info("Manager has been paused.");
             while (isPaused()) {
-                if (!isPaused()) logger.info("Manager has been unpaused.");
+                if (!isPaused())
+                    logger.info("Manager has been unpaused.");
             }
         }
-        logger.info("Manager has stopped, ran for %ss.", (System.currentTimeMillis() - start)/1000);
+        logger.info("Manager has stopped, ran for %ss.", (System.currentTimeMillis() - start) / 1000);
     }
 
-    private void askDistanceToUnoccupiedRobots(List<Node> nodesOnFire) {
+    /**
+     * Permet de connaitre la distance à laquelle se trouve chaque robot de chaque feu
+     *
+     * @param nodesOnFire liste des noeuds en feu
+     */
+    private synchronized void askDistanceToUnoccupiedRobots(List<Node> nodesOnFire) {
         List<Robot> unoccupiedRobots;
         Map<Robot, Double> distances = Collections.synchronizedMap(new HashMap());
         for (Node node : nodesOnFire) {
             distances.clear();
             unoccupiedRobots = getUnoccupiedRobots();
-            unoccupiedRobots.stream()
-                    .forEach(robot -> {
-                        Double distance = robot.proposeNode(node);
-                        if (distance != -1) distances.put(robot, distance);
-                    });
-            if (distances.size() != 0) Collections.min(
-                    distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey().acceptPath();
+            unoccupiedRobots.stream().forEach(robot -> {
+                Double distance = robot.proposeNode(node);
+                if (distance != -1)
+                    distances.put(robot, distance);
+            });
+            if (distances.size() != 0)
+                Collections.min(distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey().acceptPath();
         }
     }
 
-
-    private List<Robot> getUnoccupiedRobots() {
+    /**
+     * Permet de connaitre la liste des robots innocupés
+     *
+     * @return la liste des robots innocupés
+     */
+    private synchronized List<Robot> getUnoccupiedRobots() {
         return getRobots().stream().filter(robot -> !robot.isBusy()).collect(Collectors.toList());
     }
 
-    private List<Node> getNodesOnFire() {
+    /**
+     * Permet de connaitre la liste des noeuds en feu
+     *
+     * @return la liste des noeuds en feu
+     */
+    private synchronized List<Node> getNodesOnFire() {
         return GraphUtil.getNodesOnFire(graph);
     }
 
@@ -148,31 +187,34 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     @Override
-    public void addObserver(Observer o) {
+    public synchronized void addObserver(Observer o) {
         observers.add(o);
     }
 
     @Override
-    public void removeObserver(Observer o) {
+    public synchronized void removeObserver(Observer o) {
         observers.remove(o);
     }
 
-    @Override
-    public void notifyObserver() {
-        if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
-    }
 
     @Override
-    public void Update() {
+    public synchronized void update() {
         notifyObserver();
     }
 
     public synchronized void reset() {
-        robots = Collections.synchronizedList(new ArrayList<>());
+        robots = Collections.synchronizedList(new ArrayList<Robot>());
         graph = new Graph();
         exit = Boolean.FALSE;
         pause = Boolean.FALSE;
         notifyObserver();
     }
+
+    @Override
+    public synchronized void notifyObserver() {
+        if (observers != null)
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
+    }
+
+
 }

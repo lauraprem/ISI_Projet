@@ -1,16 +1,18 @@
 package model.robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.Observable;
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import view.Observer;
 
-import java.util.ArrayList;
-import java.util.List;
+import view.Observer;
 
 /**
  * Robots pompiers
@@ -18,7 +20,13 @@ import java.util.List;
  * @author Laura
  */
 public abstract class Robot implements Observable {
+    /**
+     * Logger de la classe
+     */
     private final static Logger logger = LogManager.getLogger();
+    /**
+     * Liste des observeurs du robot
+     */
     protected ArrayList<Observer> observers = new ArrayList<>();
 
     /**
@@ -51,6 +59,9 @@ public abstract class Robot implements Observable {
      */
     private IGraph graph;
 
+    /**
+     * Capacité du robot à réduire l'intensité d'un feu
+     */
     private Integer decreaseFireLevelCapacity;
 
     /**
@@ -84,12 +95,17 @@ public abstract class Robot implements Observable {
         addObserver(o);
     }
 
+    /**
+     * Le robot tente d'éteindre un feu. Il va diminuer l'intensité du feu d'autant qu'il en est capable.
+     * Si le feu est éteind à l'issu de l'opération, la probabilité que les arretes adjacentes au noeud soient inondés augmente. Il est même possible que ces arretes soient effectivement inondées.
+     *
+     * @return true si le robot a éteind le feu, false sinon
+     */
     public Boolean stopFire() {
         if (!currentNode.isOnFire()) return Boolean.TRUE;
         if (decreaseFireLevelCapacity == null) currentNode.decreaseFireLevel(currentNode.getFireLevel());
         else currentNode.decreaseFireLevel(decreaseFireLevelCapacity);
         graph.getAdjEdges(currentNode).forEach(edge -> {
-            // TODO AGA : Voir pour changer la valeur
             edge.getGround().increaseChancesOfGettingFlooded(0.25);
             edge.updateGround();
         });
@@ -192,7 +208,7 @@ public abstract class Robot implements Observable {
     @Override
     public void notifyObserver() {
         if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
     }
 
     public abstract String getURLImage();

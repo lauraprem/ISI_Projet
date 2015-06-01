@@ -1,16 +1,5 @@
 package controler;
 
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.manager.Manager;
@@ -19,17 +8,22 @@ import util.FileXML;
 import view.MainWindow;
 import view.MenuLabel;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
 public class ControleurFile implements ActionListener {
 
-	private Manager model;
-	private MainWindow vue;
-	private File f;
+    private Manager model;
+    private MainWindow vue;
+    private File f;
 
-	public ControleurFile(MainWindow vue,Manager model) {
-	 this.model = model;
-		this.vue = vue;
-	}
-
+    public ControleurFile(MainWindow vue, Manager model) {
+        this.model = model;
+        this.vue = vue;
+    }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		File temp;
