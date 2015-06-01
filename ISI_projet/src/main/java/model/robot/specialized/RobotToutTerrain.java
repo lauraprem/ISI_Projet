@@ -8,6 +8,8 @@ import model.robot.Robot;
 import util.Picture;
 import view.Observer;
 
+import java.io.File;
+
 /**
  * @author Alexandre
  *         26/05/2015
@@ -44,6 +46,6 @@ public class RobotToutTerrain extends Robot {
     }
 
     public static void setURLImage(String URLImage) {
-        RobotToutTerrain.URLImage = URLImage;
+        if(new File(URLImage).exists()) RobotToutTerrain.URLImage = URLImage;
     }
 }
