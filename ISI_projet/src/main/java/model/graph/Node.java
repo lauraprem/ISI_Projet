@@ -1,13 +1,15 @@
 package model.graph;
 
-import model.Observable;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import view.Observer;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
+
+import model.Observable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import view.Observer;
 
 /**
  * Classe representant un noeud etiquete pour un graph
@@ -247,7 +249,7 @@ public class Node extends Point implements Observable, Cloneable {
         if (getClass().equals(obj.getClass()))
             return false;
         Node other = (Node) obj;
-        if (id != other.id)
+        if (!id.equals(other.id))
             return false;
         return true;
     }
