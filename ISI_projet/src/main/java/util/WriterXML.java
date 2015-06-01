@@ -84,23 +84,23 @@ public class WriterXML {
         Element node = doc.createElement("node");
         rootElement.appendChild(node);
         // set attribute to node element
-        Attr attr = doc.createAttribute("id");
+        Attr attr = doc.createAttribute(Attribute.id);
         attr.setValue(String.valueOf(noeud.getId()));
         node.setAttributeNode(attr);
         // set attribute to node element
-        attr = doc.createAttribute("label");
+        attr = doc.createAttribute(Attribute.label);
         attr.setValue(String.valueOf(noeud.getLabel()));
         node.setAttributeNode(attr);
         // set attribute to node element
-        attr = doc.createAttribute("x");
+        attr = doc.createAttribute(Attribute.x);
         attr.setValue(String.valueOf(noeud.getX()));
         node.setAttributeNode(attr);
         // set attribute to node element
-        attr = doc.createAttribute("y");
+        attr = doc.createAttribute(Attribute.y);
         attr.setValue(String.valueOf(noeud.getY()));
         node.setAttributeNode(attr);
         // set attribute to node element
-        attr = doc.createAttribute("fireLevel");
+        attr = doc.createAttribute(Attribute.fireLevel);
         attr.setValue(String.valueOf(noeud.getFireLevel()));
         node.setAttributeNode(attr);
     }
@@ -115,19 +115,19 @@ public class WriterXML {
         Element edge = doc.createElement("edge");
         rootElement.appendChild(edge);
         //set attribute to edge element
-        Attr attr = doc.createAttribute("source");
+        Attr attr = doc.createAttribute(Attribute.source);
         attr.setValue(String.valueOf(arc.getSource().getId()));
         edge.setAttributeNode(attr);
         //set attribute to edge element
-        attr = doc.createAttribute("destination");
+        attr = doc.createAttribute(Attribute.destination);
         attr.setValue(String.valueOf(arc.getDestination().getId()));
         edge.setAttributeNode(attr);
         // set attribute to node element
-        attr = doc.createAttribute("length");
+        attr = doc.createAttribute(Attribute.length);
         attr.setValue(String.valueOf(arc.getLength()));
         edge.setAttributeNode(attr);
         // set attribute to node element
-        attr = doc.createAttribute("ground");
+        attr = doc.createAttribute(Attribute.ground);
         attr.setValue(arc.getGround().getType().getLabel());
         edge.setAttributeNode(attr);
     }
