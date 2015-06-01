@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * Classe representant un noeud etiquete pour un graph
  */
 
-public class Node extends Point implements Observable {
+public class Node extends Point implements Observable, Cloneable {
 
     /**
      * Logger de la classe
@@ -190,7 +190,7 @@ public class Node extends Point implements Observable {
                 ids.addLast(id);
             } else
                 for (int i = 0; i < idsSize; i++) {
-                    if (id == ids.get(i)) throw new IdAlreadyUsedException();
+                    if (id.equals(ids.get(i))) throw new IdAlreadyUsedException();
                     if (id < ids.get(i)) {
                         ids.add(i, id);
                         break;
@@ -244,7 +244,7 @@ public class Node extends Point implements Observable {
             return true;
         if (obj == null)
             return false;
-        if (getClass() != obj.getClass())
+        if (getClass().equals(obj.getClass()))
             return false;
         Node other = (Node) obj;
         if (id != other.id)
@@ -279,7 +279,7 @@ public class Node extends Point implements Observable {
     @Override
     public void notifyObserver() {
         if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
     }
 
     protected void setXString(String _x) {
@@ -288,5 +288,16 @@ public class Node extends Point implements Observable {
 
     protected void setYString(String _y) {
         this.y = Integer.parseInt(_y);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (observers != null ? observers.hashCode() : 0);
+        result = 31 * result + (label != null ? label.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (fireLevel != null ? fireLevel.hashCode() : 0);
+        result = 31 * result + (linked != null ? linked.hashCode() : 0);
+        return result;
     }
 }

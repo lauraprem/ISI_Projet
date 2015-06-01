@@ -20,11 +20,11 @@ public class Djikstra implements IShorterPathSearch {
 
     @Override
     public Double findShorterPath(IGraph _graph, Node _start, Node goal, List<GroundType> capacity, NodePath _path) {
-        ArrayList<Node> closedNodes = new ArrayList<Node>();
-        ArrayList<ExploredNode> path = new ArrayList<ExploredNode>();
+        ArrayList<Node> closedNodes;
+        ArrayList<ExploredNode> path;
 
-        closedNodes = new ArrayList<Node>();
-        path = new ArrayList<ExploredNode>();
+        closedNodes = new ArrayList<>();
+        path = new ArrayList<>();
         IGraph graph = GraphUtil.getFilteredGraph(_graph, capacity);
         if (!graph.getAllNodes().contains(goal)) {
             return -1.0;

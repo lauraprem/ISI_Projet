@@ -4,7 +4,7 @@ package model.graph;
  * @author Alexandre
  *         28/05/2015
  */
-public class Point {
+public class Point implements Cloneable {
     /**
      * Coordonnee x du point
      */

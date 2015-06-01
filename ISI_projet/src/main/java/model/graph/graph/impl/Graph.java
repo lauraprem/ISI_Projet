@@ -208,21 +208,21 @@ public class Graph implements IGraph {
 
     @Override
     public String toString() {
-        String str = String.format("%s\n", getClass().getName());
+        StringBuilder str = new StringBuilder(String.format("%s%n", getClass().getName()));
         List<Node> nodeList;
         Node node;
         for (Node n : getAllNodes()) {
-            str += String.format("[noeud=%s : [", n.getLabel());
+            str.append(String.format("[noeud=%s : [", n.getLabel()));
             nodeList = getAdjNodes(n);
             for (int i = 0; i < nodeList.size(); i++) {
                 node = nodeList.get(i);
                 if (i != 0)
-                    str += ", ";
-                str += String.format("%s <=> %s", n.getLabel(), node.getLabel());
+                    str.append(", ");
+                str.append(String.format("%s <=> %s", n.getLabel(), node.getLabel()));
             }
-            str += "]\n";
+            str.append("]\n");
         }
-        return str;
+        return str.toString();
     }
 
     @Override

@@ -66,7 +66,6 @@ public class ControleurFile implements ActionListener {
                 }
                 break;
             case MenuLabel.QUIT:
-                if (model != null) model.exitManager();
                 System.exit(0);
                 break;
             case MenuLabel.RUN:

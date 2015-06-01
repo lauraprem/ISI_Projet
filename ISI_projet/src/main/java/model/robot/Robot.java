@@ -208,7 +208,7 @@ public abstract class Robot implements Observable {
     @Override
     public void notifyObserver() {
         if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
     }
 
     public abstract String getURLImage();

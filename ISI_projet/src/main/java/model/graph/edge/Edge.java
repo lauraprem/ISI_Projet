@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * Classe representant une arrete orientee et valuee
  */
-public class Edge {
+public class Edge implements Cloneable {
     private static final Logger logger = LogManager.getLogger();
 
     /**
@@ -153,7 +153,7 @@ public class Edge {
 
     @Override
     public Edge clone() {
-        return new Edge(source.clone(), destination.clone(), length.doubleValue(), ground.clone());
+        return new Edge(source.clone(), destination.clone(), length, ground.clone());
     }
 
     @Override

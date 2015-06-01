@@ -12,7 +12,7 @@ import java.util.Random;
  *         06/05/2015
  */
 @XmlRootElement
-public class Ground {
+public class Ground implements Cloneable {
     /**
      * logger de la classe
      */

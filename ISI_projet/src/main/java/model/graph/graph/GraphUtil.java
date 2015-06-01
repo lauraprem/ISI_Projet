@@ -29,7 +29,7 @@ public class GraphUtil {
      * @return la liste des noeuds en feu
      */
     public static List<Node> getNodesOnFire(IGraph graph) {
-        return graph.getAllNodes().stream().filter(node -> node.isOnFire()).collect(Collectors.toList());
+        return graph.getAllNodes().stream().filter(node1 -> node1 != null).filter(node -> node.isOnFire()).collect(Collectors.toList());
     }
 
     /**

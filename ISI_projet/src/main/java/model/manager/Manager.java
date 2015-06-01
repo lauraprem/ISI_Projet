@@ -116,7 +116,7 @@ public class Manager extends Thread implements Observable, Observer {
      *
      * @param nodesOnFire liste des noeuds en feu
      */
-    private void askDistanceToUnoccupiedRobots(List<Node> nodesOnFire) {
+    private synchronized void askDistanceToUnoccupiedRobots(List<Node> nodesOnFire) {
         List<Robot> unoccupiedRobots;
         Map<Robot, Double> distances = Collections.synchronizedMap(new HashMap());
         for (Node node : nodesOnFire) {
@@ -137,7 +137,7 @@ public class Manager extends Thread implements Observable, Observer {
      *
      * @return la liste des robots innocupés
      */
-    private List<Robot> getUnoccupiedRobots() {
+    private synchronized List<Robot> getUnoccupiedRobots() {
         return getRobots().stream().filter(robot -> !robot.isBusy()).collect(Collectors.toList());
     }
 
@@ -146,7 +146,7 @@ public class Manager extends Thread implements Observable, Observer {
      *
      * @return la liste des noeuds en feu
      */
-    private List<Node> getNodesOnFire() {
+    private synchronized List<Node> getNodesOnFire() {
         return GraphUtil.getNodesOnFire(graph);
     }
 
@@ -187,18 +187,18 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     @Override
-    public void addObserver(Observer o) {
+    public synchronized void addObserver(Observer o) {
         observers.add(o);
     }
 
     @Override
-    public void removeObserver(Observer o) {
+    public synchronized void removeObserver(Observer o) {
         observers.remove(o);
     }
 
 
     @Override
-    public void Update() {
+    public synchronized void update() {
         notifyObserver();
     }
 
@@ -211,9 +211,9 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     @Override
-    public void notifyObserver() {
+    public synchronized void notifyObserver() {
         if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
     }
 
 
