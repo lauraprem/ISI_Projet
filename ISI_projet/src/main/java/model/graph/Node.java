@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import view.Observer;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 /**
@@ -96,6 +97,7 @@ public class Node extends Point implements Observable {
     }
 
     private synchronized static Long getMaxId() {
+        ids.sort(Comparator.<Long>naturalOrder());
         return ids.isEmpty() ? 0 : ids.getLast() + 1;
     }
 
@@ -139,6 +141,10 @@ public class Node extends Point implements Observable {
     public Long getId() {
         return id;
     }
+
+    public void setIdToNextAvailable() {
+        setId(getMaxId());
+    }
     
     public void setIfUniqueId(Long id) throws IdAlreadyUsedException {
         if (ids.isEmpty()) ids.add(id);
@@ -160,6 +166,7 @@ public class Node extends Point implements Observable {
     }
 
     private void setId(Long id) {
+        if(!ids.contains(id)) addId(id);
         this.id = id;
     }
 
@@ -256,5 +263,10 @@ public class Node extends Point implements Observable {
 
     public static void resetIds() {
         ids = new LinkedList<>();
+    }
+
+    public static void addId(Long id) {
+        ids.add(id);
+        ids.sort(Comparator.<Long>naturalOrder());
     }
 }

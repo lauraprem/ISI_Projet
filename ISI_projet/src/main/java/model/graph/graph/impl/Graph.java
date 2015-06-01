@@ -4,9 +4,13 @@ import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IGraph;
 import model.graph.ground.Ground;
+import model.pathSearch.IShorterPathSearch;
+import model.robot.Capacity;
+import model.robot.NodePath;
 import view.Observer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -233,5 +237,17 @@ public class Graph implements IGraph {
         int result = edges.hashCode();
         result = 31 * result + nodes.hashCode();
         return result;
+    }
+
+    public Boolean isValid(IShorterPathSearch pathSearch) {
+        if(nodes.size() == 0) return Boolean.FALSE;
+        for(int i = 0; i < nodes.size();i++) {
+            for(int j = i + 1; j < nodes.size();j++) {
+                if(pathSearch.findShorterPath(
+                        this, nodes.get(i), nodes.get(j), Capacity.allCapacity(), new NodePath())
+                         < 0.0) return Boolean.FALSE;
+            }
+        }
+        return Boolean.TRUE;
     }
 }

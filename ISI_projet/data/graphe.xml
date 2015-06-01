@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <osm>
-<node fireLevel="0" id="0" label="noeud1" x="1" y="0"/>
-<node fireLevel="0" id="1" label="noeud2" x="1" y="1"/>
-<edge destination="1" ground="Plat" length="10.0" source="0"/>
+<node fireLevel="0" id="1" label="node0" x="115" y="108"/>
+<node fireLevel="0" id="3" label="node2" x="169" y="104"/>
+<node fireLevel="0" id="5" label="node4" x="214" y="99"/>
+<node fireLevel="0" id="7" label="node6" x="224" y="118"/>
+<node fireLevel="0" id="9" label="node8" x="280" y="109"/>
+<node fireLevel="0" id="11" label="node10" x="284" y="162"/>
+<node fireLevel="0" id="13" label="node12" x="366" y="185"/>
+<node fireLevel="0" id="15" label="node14" x="368" y="151"/>
+<node fireLevel="10" id="17" label="node16" x="381" y="252"/>
+<node fireLevel="10" id="19" label="node18" x="443" y="242"/>
+<node fireLevel="10" id="21" label="node20" x="438" y="174"/>
+<node fireLevel="0" id="23" label="node22" x="291" y="240"/>
+<node fireLevel="0" id="25" label="node24" x="243" y="244"/>
+<node fireLevel="0" id="27" label="node26" x="185" y="253"/>
+<node fireLevel="0" id="29" label="node28" x="195" y="305"/>
+<node fireLevel="0" id="31" label="node30" x="245" y="299"/>
+<node fireLevel="10" id="33" label="node32" x="375" y="229"/>
+<edge destination="27" ground="Plat" length="52.952809179494906" source="29"/>
+<edge destination="25" ground="Plat" length="58.69412236331676" source="27"/>
+<edge destination="7" ground="Plat" length="127.4244874425634" source="25"/>
+<edge destination="9" ground="Plat" length="56.71860364994893" source="7"/>
+<edge destination="13" ground="Plat" length="72.83543093852057" source="21"/>
+<edge destination="17" ground="Plat" length="62.80127387243033" source="19"/>
+<edge destination="3" ground="Escarpé" length="54.147945482723536" source="1"/>
+<edge destination="5" ground="Escarpé" length="45.27692569068709" source="3"/>
+<edge destination="7" ground="Escarpé" length="21.470910553583888" source="5"/>
+<edge destination="11" ground="Escarpé" length="53.150729063673246" source="9"/>
+<edge destination="15" ground="Escarpé" length="84.71717653463199" source="11"/>
+<edge destination="13" ground="Escarpé" length="34.058772731852805" source="15"/>
+<edge destination="19" ground="Escarpé" length="68.18357573492314" source="21"/>
+<edge destination="23" ground="Escarpé" length="84.71717653463199" source="33"/>
+<edge destination="11" ground="Escarpé" length="78.31347265956222" source="23"/>
+<edge destination="25" ground="Escarpé" length="48.16637831516918" source="23"/>
+<edge destination="31" ground="Escarpé" length="55.036351623268054" source="25"/>
+<edge destination="29" ground="Escarpé" length="50.35871324805669" source="31"/>
+<edge destination="17" ground="Plat" length="23.769728648009426" source="33"/>
+<edge destination="13" ground="Plat" length="44.91102314577124" source="33"/>
 </osm>
