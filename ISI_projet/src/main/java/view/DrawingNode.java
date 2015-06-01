@@ -17,11 +17,11 @@ import java.awt.*;
 
 public class DrawingNode {
 
-    public DrawingNode(Node model, int magnificationFactor, Graphics graph) {
+    public DrawingNode(Node model, Graphics graph) {
         if (graph == null) {
             return;
         }
-        graph.setColor(Color.black);
-        graph.drawOval((int) model.getX() - 5, (int) model.getY() - 5, 10, 10);
+        graph.setColor(Color.lightGray);
+        graph.fillOval((int) model.getX() - 8, (int) model.getY() - 8, 16, 16);
     }
 }
