@@ -1,6 +1,7 @@
 package view;
 
 import model.graph.Node;
+import util.Picture;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,8 +14,7 @@ public class DrawingFire {
             return;
         }
 
-        String imagePath = getClass().getClassLoader().getResource("pictures/Feu.gif").getFile();
-        Image img = new ImageIcon(imagePath).getImage();
+        Image img = new ImageIcon(Picture.FIRE.getURL()).getImage();
 
         graph.drawImage(img, model.getX() - 10, model.getY() - 13, null);
     }

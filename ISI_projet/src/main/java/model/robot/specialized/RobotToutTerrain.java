@@ -5,6 +5,7 @@ import model.graph.graph.IGraph;
 import model.pathSearch.IShorterPathSearch;
 import model.robot.Capacity;
 import model.robot.Robot;
+import util.Picture;
 import view.Observer;
 
 /**
@@ -35,8 +36,7 @@ public class RobotToutTerrain extends Robot {
         this(_graph, _startNode, _pathFinder, null, o);
     }
 
-    private static String ressourcePath = "pictures/RobotToutTerrain.gif";
-    private static String URLImage = RobotToutTerrain.class.getClassLoader().getResource(ressourcePath).getFile();
+    private static String URLImage = Picture.ROBOT_TOUT_TERRAIN.getURL();
 
     @Override
     public String getURLImage() {
