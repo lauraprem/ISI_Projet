@@ -10,22 +10,7 @@ public class DrawingArc {
         if (graph == null) {
             return;
         }
-
-        switch (model.getGround().getType()) {
-            case FLAT:
-            	graph.setColor(Color.black);
-                break;
-            case STEEP:
-            	graph.setColor(Color.orange);
-                break;
-            case FLOODED:
-            	graph.setColor(Color.blue);
-                break;
-            default:
-            	graph.setColor(Color.black);
-                break;
-        }
-        
-        graph.drawLine((int) model.getSource().getX(), (int) model.getSource().getY(), (int) model.getDestination().getX(), (int) model.getDestination().getY());
+        graph.setColor(model.getGround().getType().getColor());
+        graph.drawLine(model.getSource().getX(), model.getSource().getY(), model.getDestination().getX(), model.getDestination().getY());
     }
 }

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import util.Picture;
 import view.about.AboutLabel;
 import model.manager.Manager;
 
@@ -20,10 +21,8 @@ public class MainWindow extends JFrame {
 
         menuFile = new MenuFichier();
         setJMenuBar(menuFile);
-        
-        String imagePath = getClass().getClassLoader().getResource("pictures/mapsixieme.jpg").getFile();
-//        drawing = new Drawing(model, imagePath);
-        drawing = new Drawing(model, imagePath,200);
+
+        drawing = new Drawing(model, Picture.BACKGROUND.getURL(),200);
         getContentPane().add(drawing, BorderLayout.CENTER);
 
         this.setResizable(false);

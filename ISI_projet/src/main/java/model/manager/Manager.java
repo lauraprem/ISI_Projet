@@ -25,7 +25,7 @@ public class Manager extends Thread implements Observable, Observer {
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
     private Boolean pause = Boolean.FALSE;
-    private final static Long refreshTime = 2000L;
+    private final static Long refreshTime = 1000L;
 
     public Manager(IGraph graph, List<Robot> robots) {
         observers = new ArrayList<Observer>();
@@ -76,8 +76,7 @@ public class Manager extends Thread implements Observable, Observer {
             if (endLoop - startLoop > refreshTime) {
                 startLoop = System.currentTimeMillis();
                 robots.forEach(robot -> robot.update());
-                askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
-                        ManagerUtil.getUnoccupiedRobots(this));
+                askDistanceToUnoccupiedRobots(GraphUtil.getNodesOnFire(graph));
             }
             if (isPaused()) logger.info("Manager has been paused.");
             while (isPaused()) {
@@ -87,10 +86,12 @@ public class Manager extends Thread implements Observable, Observer {
         logger.info("Manager has stopped, ran for %ss.", (System.currentTimeMillis() - start)/1000);
     }
 
-    private void askDistanceToRobots(List<Node> nodesOnFire, List<Robot> unoccupiedRobots) {
+    private void askDistanceToUnoccupiedRobots(List<Node> nodesOnFire) {
+        List<Robot> unoccupiedRobots;
         Map<Robot, Double> distances = Collections.synchronizedMap(new HashMap());
         for (Node node : nodesOnFire) {
             distances.clear();
+            unoccupiedRobots = getUnoccupiedRobots();
             unoccupiedRobots.stream()
                     .forEach(robot -> {
                         Double distance = robot.proposeNode(node);
@@ -111,6 +112,7 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     public synchronized void addNode(Node n) {
+        n.setIdToNextAvailable();
         graph.addNode(n, this);
         notifyObserver();
     }
@@ -167,7 +169,7 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     public synchronized void reset() {
-        robots = Collections.synchronizedList(new ArrayList<Robot>());
+        robots = Collections.synchronizedList(new ArrayList<>());
         graph = new Graph();
         exit = Boolean.FALSE;
         pause = Boolean.FALSE;
