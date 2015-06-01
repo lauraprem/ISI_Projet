@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<osm>
-<node fireLevel="0" id="0" label="noeud1" x="1" y="0"/>
-<node fireLevel="0" id="1" label="noeud2" x="1" y="1"/>
-<edge destination="1" ground="Plat" length="10.0" source="0"/>
-</osm>

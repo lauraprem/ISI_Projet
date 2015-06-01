@@ -70,7 +70,10 @@ public class ControleurFile implements ActionListener {
 				break;
 			case MenuLabel.RUN:
 				if (model != null) {
-					if(!model.isAlive()) model.start();
+					if(!model.isAlive()) {
+						model.unPauseManager();
+						model.start();
+					}
 					else if(model.isPaused()) model.unPauseManager();
 				}
 				break;
@@ -88,7 +91,9 @@ public class ControleurFile implements ActionListener {
 		fc.setFileFilter(filter);
 		fc.setAcceptAllFileFilterUsed(true);
 		fc.setDragEnabled(true);
-		
+		File f = new File("data");
+		if(!f.exists()) f.mkdir();
+		fc.setCurrentDirectory(f);
 		int returnVal = fc.showDialog(vue.getGlassPane(),stringButton);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			return fc.getSelectedFile();
