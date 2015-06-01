@@ -17,6 +17,7 @@ import model.graph.Node;
 import model.graph.Point;
 import model.graph.PointUtil;
 import model.graph.edge.Edge;
+import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
@@ -48,18 +49,25 @@ public class ReaderXML {
 		}
 		return reader;
 	}
+	public IGraph chargerDocument(File documentToRead) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
+	{
+		return this.chargerDocument(documentToRead, null);
+	}
 	/**
 	 * 
+	 * @param graphe instance de IGraph a retourner
 	 * @param documentToRead document à lire
 	 * @return un graphe charger à partir du XML
 	 * @throws ParserConfigurationException 
 	 * @throws IOException 
 	 * @throws SAXException 
 	 */
-	public Graph chargerDocument(File documentToRead) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
+	public IGraph chargerDocument(File documentToRead,IGraph graphe) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
-		Graph graphe=new Graph();
-			 
+		if(graphe==null)
+		{
+			graphe=new Graph();
+		}
 			File fXmlFile =documentToRead;
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -67,15 +75,15 @@ public class ReaderXML {
 		 
 			//optionnel mais recommandé
 			doc.getDocumentElement().normalize();
-			logger.info("Root element :" + doc.getDocumentElement().getNodeName());
+			logger.trace("Root element :" + doc.getDocumentElement().getNodeName());
 		 
 			NodeList nList = doc.getElementsByTagName(XMLType.Node.getLabel());
 		 
-			logger.info("----------------------------");
+			logger.trace("----------------------------");
 			listerElement(nList,graphe,XMLType.Node);
 			nList = doc.getElementsByTagName(XMLType.Edge.getLabel());
 			 
-			logger.info("----------------------------");
+			logger.trace("----------------------------");
 			listerElement(nList,graphe,XMLType.Edge);
 			if(graphe.getAllNodes().size()>0)
 			{
@@ -93,13 +101,13 @@ public class ReaderXML {
 	 * @throws IllegalArgumentException mauvais argument
 	 * @throws IllegalAccessException problème d'accès de reflexivité
 	 */
-	public void listerElement(NodeList nList,Graph graphe,XMLType typeDeNoeud) throws IllegalArgumentException, InvocationTargetException
+	public void listerElement(NodeList nList,IGraph graphe,XMLType typeDeNoeud) throws IllegalArgumentException, InvocationTargetException
 	{
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			 
 			org.w3c.dom.Node nNode = nList.item(temp);
 	 
-			logger.info("Current Element :" + nNode.getNodeName());
+			logger.trace("Current Element :" + nNode.getNodeName());
 			
 			if (nNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
 	 
@@ -176,7 +184,7 @@ public class ReaderXML {
 						}
 							 */
 						}
-						logger.info(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+						logger.trace(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
 					}
 					graphe.addNode(noeud);
 					break;
@@ -249,7 +257,7 @@ public class ReaderXML {
 								}
 							}
 						}
-						logger.info(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+						logger.trace(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
 					}
 					graphe.addEdge(arc);
 					break;

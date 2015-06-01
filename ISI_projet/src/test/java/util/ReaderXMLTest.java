@@ -11,6 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import model.graph.Node;
 import model.graph.Point;
 import model.graph.edge.Edge;
+import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
@@ -51,13 +52,13 @@ public class ReaderXMLTest {
 	public void testChargement() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		Node.resetIds();
-		Graph graphe1=ReaderXML.getInstance().chargerDocument(f);
+		IGraph graphe1=ReaderXML.getInstance().chargerDocument(f);
 		assertEquals(graphe1,graphe);
 	}
 	@Test
 	public void testChargementGrosfichier() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
-		Graph graphe2=ReaderXML.getInstance().chargerDocument(grosFichier);
+		IGraph graphe2=ReaderXML.getInstance().chargerDocument(grosFichier);
 		assertEquals(graphe2.getAllNodes().size(),26);
 		assertEquals(graphe2.getAllEdges().size(),39);
 	}
@@ -66,7 +67,7 @@ public class ReaderXMLTest {
 	public void testMauvaisChargement() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		Node.resetIds();
-		Graph graphe3;
+		IGraph graphe3;
 		graphe3 = ReaderXML.getInstance().chargerDocument(fMauvais);
 		assertEquals(graphe3,graphe);
 	}
@@ -75,7 +76,7 @@ public class ReaderXMLTest {
 	public void testMauvaisChargement2() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		Node.resetIds();
-		Graph graphe4;
+		IGraph graphe4;
 		graphe4 = ReaderXML.getInstance().chargerDocument(fMauvais2);
 		assertEquals(graphe4,graphe);
 	}
@@ -84,7 +85,7 @@ public class ReaderXMLTest {
 	public void testMauvaisChargement3() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		Node.resetIds();
-		Graph graphe5;
+		IGraph graphe5;
 		graphe5 = ReaderXML.getInstance().chargerDocument(fMauvais3);
 		assertEquals(graphe5,graphe);
 	}
@@ -93,7 +94,7 @@ public class ReaderXMLTest {
 	public void testMauvaisChargement4() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		Node.resetIds();
-		Graph graphe6;
+		IGraph graphe6;
 		graphe6 = ReaderXML.getInstance().chargerDocument(fMauvais4);
 		assertEquals(graphe6,graphe);
 	}
@@ -102,7 +103,7 @@ public class ReaderXMLTest {
 	public void testMauvaisChargement5() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		Node.resetIds();
-		Graph graphe7;
+		IGraph graphe7;
 		graphe7 = ReaderXML.getInstance().chargerDocument(fMauvais5);
 		assertEquals(graphe7,graphe);
 	}

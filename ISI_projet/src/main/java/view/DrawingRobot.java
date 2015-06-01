@@ -12,7 +12,7 @@ public class DrawingRobot {
 
     private Robot model;
 
-    public DrawingRobot(Graphics graph, Robot model) {
+    public DrawingRobot(Robot model,int magnificationFactor, Graphics graph) {
         if (graph == null) {
             return;
         }

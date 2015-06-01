@@ -1,17 +1,19 @@
 package controler;
 
-import model.graph.graph.impl.Graph;
-import model.manager.Manager;
-import util.FileXML;
-import view.MainWindow;
-import view.MenuLabel;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import model.graph.graph.IGraph;
+import model.manager.Manager;
+import model.pathSearch.impl.Djikstra;
+import util.FileXML;
+import view.MainWindow;
+import view.MenuLabel;
 
 public class ControleurFile implements ActionListener {
 
@@ -35,11 +37,12 @@ public class ControleurFile implements ActionListener {
 				temp = getFile(MenuLabel.LOAD_FR);
 				if(temp != null) f = temp;
 				if(f != null) {
-					Graph newGraph = null;
+					IGraph newGraph = null;
 					try{
 						newGraph = FileXML.chargerDocument(f);
 					}catch(Exception ex){
-						// TODO Fenetre erreur => XML non valide
+						 JOptionPane.showMessageDialog(null, "Le XML n'est pas valide !", "Attention",
+                                 JOptionPane.WARNING_MESSAGE);
 					}
 					if(newGraph != null) {
 						model.reset();
@@ -71,8 +74,15 @@ public class ControleurFile implements ActionListener {
 			case MenuLabel.RUN:
 				if (model != null) {
 					if(!model.isAlive()) {
-						model.unPauseManager();
-						model.start();
+						if(model.getGraph().isValid(new Djikstra())) {
+							model.unPauseManager();
+							model.start();
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Le graphe n'est pas valide car certains" +
+											" noeuds sont inateignables !", "Attention",
+									JOptionPane.WARNING_MESSAGE);
+						}
 					}
 					else if(model.isPaused()) model.unPauseManager();
 				}

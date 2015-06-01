@@ -21,7 +21,7 @@ public class RobotAPates extends Robot {
      * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
      */
     public RobotAPates(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity, Observer o) {
-        super(Capacity.APateCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
+        super(Capacity.aPateCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
     }
 
     /**

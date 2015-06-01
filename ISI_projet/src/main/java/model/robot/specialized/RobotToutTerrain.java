@@ -21,7 +21,7 @@ public class RobotToutTerrain extends Robot {
      * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
      */
     public RobotToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity, Observer o) {
-        super(Capacity.ToutTerrainCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
+        super(Capacity.toutTerrainCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
     }
 
     /**

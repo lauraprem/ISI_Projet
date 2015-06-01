@@ -2,6 +2,7 @@ package util;
 
 import model.graph.Node;
 import model.graph.edge.Edge;
+import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 
 import org.apache.logging.log4j.LogManager;
@@ -44,7 +45,7 @@ public class WriterXML {
      * @param f fichier dans lequel on sauvegarde le graphe
      * @param graphe à fournir pour le sauvegarder
      */
-    public void sauvegarderDocument(File f, Graph graphe) {
+    public void sauvegarderDocument(File f, IGraph graphe) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
