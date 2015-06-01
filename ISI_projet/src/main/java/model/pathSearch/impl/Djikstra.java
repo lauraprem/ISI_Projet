@@ -23,6 +23,8 @@ public class Djikstra implements IShorterPathSearch {
 
 	@Override
 	public Double findShorterPath(IGraph _graph, Node _start, Node goal, List<GroundType> capacity, NodePath _path) {
+		closedNodes = new ArrayList<Node>();
+		path = new ArrayList<ExploredNode>();
 		IGraph graph = GraphUtil.getFilteredGraph(_graph, capacity);
 		if (!graph.getAllNodes().contains(goal)) {
 			return -1.0;
@@ -46,7 +48,7 @@ public class Djikstra implements IShorterPathSearch {
 						betterNode = new ExploredNode(node, exploredNode.getCurrentNode(), graph.getEdgeFromNodes(node, exploredNode.getCurrentNode()).getLength()
 								+ exploredNode.getPathCost());
 					}
-					if (!closedNodes.contains(node)
+					else if (!closedNodes.contains(node)
 							&& graph.getEdgeFromNodes(node, exploredNode.getCurrentNode()).getLength() + exploredNode.getPathCost() < betterNode.getPathCost()) {
 						// on conserve ce noeud comme étant le prochain
 						betterNode = new ExploredNode(node, exploredNode.getCurrentNode(), graph.getEdgeFromNodes(node, exploredNode.getCurrentNode()).getLength()
