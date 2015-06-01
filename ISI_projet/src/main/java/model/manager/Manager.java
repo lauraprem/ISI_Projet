@@ -25,7 +25,7 @@ public class Manager extends Thread implements Observable, Observer {
     private IGraph graph = new Graph();
     private Boolean exit = Boolean.FALSE;
     private Boolean pause = Boolean.FALSE;
-    private Long refreshTime = 1000L;
+    private final static Long refreshTime = 2000L;
 
     public Manager(IGraph graph, List<Robot> robots) {
         observers = new ArrayList<Observer>();
@@ -75,6 +75,7 @@ public class Manager extends Thread implements Observable, Observer {
             endLoop = System.currentTimeMillis();
             if (endLoop - startLoop > refreshTime) {
                 startLoop = System.currentTimeMillis();
+                robots.forEach(robot -> robot.update());
                 askDistanceToRobots(GraphUtil.getNodesOnFire(graph),
                         ManagerUtil.getUnoccupiedRobots(this));
             }
@@ -132,7 +133,7 @@ public class Manager extends Thread implements Observable, Observer {
         pause = Boolean.TRUE;
     }
 
-    public synchronized void Unpause() {
+    public synchronized void unPauseManager() {
         pause = Boolean.FALSE;
     }
 
@@ -140,7 +141,7 @@ public class Manager extends Thread implements Observable, Observer {
         return exit;
     }
 
-    private synchronized Boolean isPaused() {
+    public synchronized Boolean isPaused() {
         return pause;
     }
 
@@ -170,7 +171,6 @@ public class Manager extends Thread implements Observable, Observer {
         graph = new Graph();
         exit = Boolean.FALSE;
         pause = Boolean.FALSE;
-        refreshTime = 1000L;
         notifyObserver();
     }
 }

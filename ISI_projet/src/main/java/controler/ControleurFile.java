@@ -9,7 +9,6 @@ import view.MenuLabel;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -45,6 +44,7 @@ public class ControleurFile implements ActionListener {
 					if(newGraph != null) {
 						model.reset();
 						model.setGraph(newGraph);
+						model.pauseManager();
 					}
 				}
 				break;
@@ -69,7 +69,10 @@ public class ControleurFile implements ActionListener {
 				System.exit(0);
 				break;
 			case MenuLabel.RUN:
-				if (model != null) model.start();
+				if (model != null) {
+					if(!model.isAlive()) model.start();
+					else if(model.isPaused()) model.unPauseManager();
+				}
 				break;
 			case MenuLabel.STOP:
 				if (model != null) model.pauseManager();
