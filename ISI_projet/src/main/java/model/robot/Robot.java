@@ -1,16 +1,18 @@
 package model.robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.Observable;
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import view.Observer;
 
-import java.util.ArrayList;
-import java.util.List;
+import view.Observer;
 
 /**
  * Robots pompiers
@@ -104,7 +106,6 @@ public abstract class Robot implements Observable {
         if (decreaseFireLevelCapacity == null) currentNode.decreaseFireLevel(currentNode.getFireLevel());
         else currentNode.decreaseFireLevel(decreaseFireLevelCapacity);
         graph.getAdjEdges(currentNode).forEach(edge -> {
-            // TODO AGA : Voir pour changer la valeur
             edge.getGround().increaseChancesOfGettingFlooded(0.25);
             edge.updateGround();
         });

@@ -1,16 +1,8 @@
 package util;
 
-import model.graph.Node;
-import model.graph.Point;
-import model.graph.edge.Edge;
-import model.graph.graph.impl.Graph;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
-import org.custommonkey.xmlunit.XMLTestCase;
-import org.custommonkey.xmlunit.XMLUnit;
-import org.junit.Test;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,9 +12,19 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
+
+import model.graph.Node;
+import model.graph.Point;
+import model.graph.edge.Edge;
+import model.graph.graph.impl.Graph;
+import model.graph.ground.Ground;
+import model.graph.ground.GroundType;
+
+import org.custommonkey.xmlunit.XMLTestCase;
+import org.custommonkey.xmlunit.XMLUnit;
+import org.junit.Test;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 public class WriterXMLTest extends XMLTestCase {
     private Graph graphe;
@@ -72,16 +74,12 @@ public class WriterXMLTest extends XMLTestCase {
             //permet de tester les deux document en String
             XMLTestCase.assertEquals(writer.toString(), writer1.toString());  // assertXMLEquals venant de XMLTestCase
         } catch (TransformerException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (SAXException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -116,16 +114,12 @@ public class WriterXMLTest extends XMLTestCase {
             //permet de tester les deux document en String
             XMLTestCase.assertEquals(writer.toString(), writer1.toString());  // assertXMLEquals venant de XMLTestCase
         } catch (TransformerException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (SAXException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
