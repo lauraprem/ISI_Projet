@@ -1,18 +1,22 @@
 package controler;
 
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import model.graph.graph.IGraph;
-import model.graph.graph.impl.Graph;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
 import util.FileXML;
 import view.MainWindow;
 import view.MenuLabel;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 public class ControleurFile implements ActionListener {
 
@@ -96,7 +100,7 @@ public class ControleurFile implements ActionListener {
 					Image img = new ImageIcon(f.getPath()).getImage();
 					vue.getDessin().setImg(img);
 					vue.setSize(new Dimension(img.getWidth(null)+16, img.getHeight(null)+62));
-					vue.getDessin().Update();
+					vue.getDessin().update();
 				}
 				break;
 			default:
