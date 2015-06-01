@@ -39,7 +39,8 @@ public class ControleurFile implements ActionListener {
 					try{
 						newGraph = FileXML.chargerDocument(f);
 					}catch(Exception ex){
-						// TODO Fenetre erreur => XML non valide
+						 JOptionPane.showMessageDialog(null, "Le XML n'est pas valide !", "Attention",
+                                 JOptionPane.WARNING_MESSAGE);
 					}
 					if(newGraph != null) {
 						model.reset();
