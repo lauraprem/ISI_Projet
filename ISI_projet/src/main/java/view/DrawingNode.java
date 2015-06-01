@@ -17,7 +17,7 @@ import java.awt.*;
 
 public class DrawingNode {
 
-    public DrawingNode(Node model, Graphics graph) {
+    public DrawingNode(Node model, int magnificationFactor, Graphics graph) {
         if (graph == null) {
             return;
         }
