@@ -12,17 +12,13 @@ import model.robot.NodePath;
 
 public class Djikstra implements IShorterPathSearch {
 
-	private ArrayList<Node> closedNodes;
-	private ArrayList<ExploredNode> path;
 
-	public Djikstra() {
-		closedNodes = new ArrayList<Node>();
-		path = new ArrayList<ExploredNode>();
-
-	}
 
 	@Override
 	public Double findShorterPath(IGraph _graph, Node _start, Node goal, List<GroundType> capacity, NodePath _path) {
+		 ArrayList<Node> closedNodes = new ArrayList<Node>();
+		 ArrayList<ExploredNode> path=new ArrayList<ExploredNode>();
+		
 		closedNodes = new ArrayList<Node>();
 		path = new ArrayList<ExploredNode>();
 		IGraph graph = GraphUtil.getFilteredGraph(_graph, capacity);
@@ -56,6 +52,9 @@ public class Djikstra implements IShorterPathSearch {
 
 					}
 				}
+			}
+			if(betterNode == null){
+				return -1.0;
 			}
 			int size = path.size();
 			for (int i = 0; i < size; i++) {
