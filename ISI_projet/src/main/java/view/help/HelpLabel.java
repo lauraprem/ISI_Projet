@@ -1,6 +1,11 @@
 package view.help;
 
 public class HelpLabel {
+	
+	private HelpLabel() {
+
+	}
+	
 //	public final static String HTLM = "<html>";
 //	public final static String HTLM_CLOSE = "</html>";
 //    public final static String NOM_APPLICATION = "Robocup Rescue";

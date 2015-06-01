@@ -19,18 +19,18 @@ import static org.junit.Assert.*;
  */
 public class ManagerUtilTest {
     private Manager manager = new Manager();
-    private Robot busy =  new RobotToutTerrain(new Graph(), new Node(), new Djikstra());
+    private Robot busy =  new RobotToutTerrain(new Graph(), new Node(), new Djikstra(), manager);
     @Before
     public void setUp() throws Exception {
         busy.setBusy(true);
         Integer rand = new Random().nextInt(50);
         for(int i = 0; i < rand; i++) {
-            manager.addRobot(new RobotChenille(new Graph(), new Node(), new Djikstra()));
+            manager.addRobot(new RobotChenille(new Graph(), new Node(), new Djikstra(), manager));
         }
         manager.addRobot(busy);
         rand = new Random().nextInt(50);
         for(int i = 0; i < rand; i++) {
-            manager.addRobot(new RobotChenille(new Graph(), new Node(), new Djikstra()));
+            manager.addRobot(new RobotChenille(new Graph(), new Node(), new Djikstra(), manager));
         }
     }
 

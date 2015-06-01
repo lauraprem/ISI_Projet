@@ -1,12 +1,15 @@
 package model.robot;
 
+import model.Observable;
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import view.Observer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +17,9 @@ import java.util.List;
  *
  * @author Laura
  */
-public class Robot {
+public class Robot implements Observable {
     private final static Logger logger = LogManager.getLogger();
+    protected ArrayList<Observer> observers = new ArrayList<>();
 
     /**
      * Types de terrains sur lesquels le robot est capable de se deplacer
@@ -57,8 +61,8 @@ public class Robot {
      * @param _startNode  noeud sur lequel se trouve le robot pour commencer
      * @param _pathFinder méthode de calcul du plus court chemin
      */
-    public Robot(List<GroundType> _capacity, IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder) {
-        this(_capacity, _graph, _startNode, _pathFinder, null);
+    public Robot(List<GroundType> _capacity, IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Observer o) {
+        this(_capacity, _graph, _startNode, _pathFinder, null, o);
     }
 
     /**
@@ -70,13 +74,14 @@ public class Robot {
      * @param _pathFinder                méthode de calcul du plus court chemin
      * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
      */
-    public Robot(List<GroundType> _capacity, IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
+    public Robot(List<GroundType> _capacity, IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity, Observer o) {
         busy = false;
         capacity = _capacity;
         currentNode = _startNode;
         graph = _graph;
         pathFinder = _pathFinder;
         decreaseFireLevelCapacity = _decreaseFireLevelCapacity;
+        addObserver(o);
     }
 
     public Boolean stopFire() {
@@ -130,6 +135,7 @@ public class Robot {
 
     public void setCurrentNode(Node currentNode) {
         this.currentNode = currentNode;
+        notify();
     }
 
     public IGraph getGraph() {
@@ -161,14 +167,31 @@ public class Robot {
         if (next != null && !next.equals(currentNode)) {
             currentNode = next;
             logger.info(String.format("A robot is now at \"%s\"", currentNode));
-        } else if (!currentNode.isOnFire() || currentNode.isOnFire() && stopFire()) {
+        } else if (currentNode.isOnFire() && stopFire()) {
             setBusy(Boolean.FALSE);
             logger.info(String.format("A robot has stop a fire at \"%s\". " +
                     "It's now available for annother task.", currentNode));
         }
+        notifyObserver();
     }
 
     private void setPath(NodePath path) {
         this.path = path;
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObserver() {
+        if (observers != null)
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
     }
 }

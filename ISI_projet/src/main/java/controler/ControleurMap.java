@@ -71,21 +71,21 @@ public class ControleurMap implements MouseListener {
 		switch (typeElement) {
 		case 0: // Add RobotToutTerrain
 			if (n1 != null) {
-				model.addRobot(new RobotToutTerrain(model.getGraph(), n1, new Djikstra()));
+				model.addRobot(new RobotToutTerrain(model.getGraph(), n1, new Djikstra(), model));
 				resetCurrentNodes();
 			}
 			break;
 
 		case 1: // Add RobotChenille
 			if (n1 != null) {
-				model.addRobot(new RobotChenille(model.getGraph(), n1, new Djikstra()));
+				model.addRobot(new RobotChenille(model.getGraph(), n1, new Djikstra(), model));
 				resetCurrentNodes();
 			}
 			break;
 
 		case 2: // Add RobotAPates
 			if (n1 != null) {
-				model.addRobot(new RobotAPates(model.getGraph(), n1, new Djikstra()));
+				model.addRobot(new RobotAPates(model.getGraph(), n1, new Djikstra(), model));
 				resetCurrentNodes();
 			}
 			break;
