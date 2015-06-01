@@ -1,11 +1,12 @@
 package model.graph.ground;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.Random;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Random;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Alexandre
@@ -13,7 +14,13 @@ import java.util.Random;
  */
 @XmlRootElement
 public class Ground {
+	/**
+	 * logger de la classe
+	 */
     private static final Logger logger = LogManager.getLogger();
+    /**
+     * Utilitaire d'aléatoire
+     */
     private static final Random random = new Random();
     /**
      * Probabilité que le terrain devienne inondé (flooded)

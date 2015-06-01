@@ -1,19 +1,25 @@
 package model.robot;
 
-import model.graph.Node;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import model.graph.Node;
 
 /**
  * @author Alexandre
  *         27/05/2015
  */
 public class NodePath implements Iterator<Node> {
+	/**
+	 * permet de savoir si ce chemin de noeud est choisi par le manager
+	 */
     private Boolean accepted = Boolean.FALSE;
 
+    /**
+     * Liste des neuds qui composent le chemin
+     */
     private LinkedList<Node> path = new LinkedList<>();
 
     public NodePath(List<Node> path) {

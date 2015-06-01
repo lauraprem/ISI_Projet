@@ -2,6 +2,7 @@ package model.graph.edge;
 
 import model.graph.Node;
 import model.graph.ground.Ground;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -124,6 +125,10 @@ public class Edge {
         return Boolean.FALSE;
     }
 
+    /**
+     * Renvoi l'arrete inversée de l'arrete courante : la source devient destination et vice versa
+     * @return une arrete inversée
+     */
     public Edge opposite() {
         Edge opposite = this.clone();
         opposite.setDestination(getSource());

@@ -8,10 +8,20 @@ import org.apache.logging.log4j.Logger;
  *         06/05/2015
  */
 public enum GroundType {
+
+	/**
+	 * differents types de sol
+	 */
     FLOODED("Inondé"), FLAT("Plat"), STEEP("Escarpé");
 
+    /**
+     * logger de la classe
+     */
     private final static Logger logger = LogManager.getLogger();
 
+    /**
+     * nom du type de sol
+     */
     private String label;
 
     GroundType(String label) {

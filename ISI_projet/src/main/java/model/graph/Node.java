@@ -1,5 +1,9 @@
 package model.graph;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
+
 import model.Observable;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,18 +11,25 @@ import org.apache.logging.log4j.Logger;
 
 import view.Observer;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-
 /**
  * Classe representant un noeud etiquete pour un graph
  */
 
 public class Node extends Point implements Observable {
-    private static final Logger logger = LogManager.getLogger();
-    protected ArrayList<Observer> observers = new ArrayList<>();
 
+	/**
+	 * Logger de la classe
+	 */
+	private static final Logger logger = LogManager.getLogger();
+    
+	/**
+	 * liste des observeurs du noeud
+	 */
+	protected ArrayList<Observer> observers = new ArrayList<>();
+
+	/**
+	 * liste des ids de tous les noeuds existants
+	 */
     private static LinkedList<Long> ids = new LinkedList<>();
     /**
      * etiquette du noeud
@@ -32,6 +43,10 @@ public class Node extends Point implements Observable {
      * Niveau de l'incendie
      */
     private Integer fireLevel = 0;
+    
+    /**
+     * permet de savoir si le noeud est lié au graphe
+     */
     private Boolean linked = Boolean.FALSE;
 
     /**
@@ -96,6 +111,10 @@ public class Node extends Point implements Observable {
         this.linked = linked;
     }
 
+    /**
+     * Renvoi le prochain ID a utiliser pour la création d'un nouveau noeud
+     * @return ID 
+     */
     private synchronized static Long getMaxId() {
         ids.sort(Comparator.<Long>naturalOrder());
         return ids.isEmpty() ? 0 : ids.getLast() + 1;
@@ -146,6 +165,11 @@ public class Node extends Point implements Observable {
         setId(getMaxId());
     }
     
+    /**
+     * Permet de changer l'ID du noeud. L'operation ne sera effectuee que si l'id est disponible
+     * @param id nouvel id du noeud
+     * @throws IdAlreadyUsedException l'id souhaite est déjà utlise
+     */
     public void setIfUniqueId(Long id) throws IdAlreadyUsedException {
         if (ids.isEmpty()) ids.add(id);
         else {

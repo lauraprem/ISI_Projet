@@ -2,12 +2,26 @@ package model.pathSearch.impl;
 
 import model.graph.Node;
 
+/**
+ * Noeud explorés par l'algorithme du Djikstra
+ * @author Laura
+ *
+ */
 public class ExploredNode {
 
+	/**
+	 * Le noeud actuellement exploré
+	 */
 	private Node currentNode;
 	
+	/**
+	 * Le noeud duquel on est venu pour atteindre le currentNode
+	 */
 	private Node previousNode;
 	
+	/**
+	 * Le cout depuis le noeud d'origine pour atteindre le currentNode
+	 */
 	private Double pathCost;
 	
 	public ExploredNode(Node _currentNode, Node _previousNode, Double _pathCost)

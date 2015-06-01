@@ -1,5 +1,9 @@
 package model.graph.graph.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.IGraph;
@@ -9,18 +13,19 @@ import model.robot.Capacity;
 import model.robot.NodePath;
 import view.Observer;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Created by alexandreg on 11/03/2015.
  */
 public class Graph implements IGraph {
 
+	/**
+	 * Liste des arretes composant le graphe
+	 */
     private ArrayList<Edge> edges = new ArrayList<Edge>();
 
+    /**
+     * Liste des noeuds composants le graphe
+     */
     private ArrayList<Node> nodes = new ArrayList<Node>();
 
     public Graph() {
@@ -239,6 +244,11 @@ public class Graph implements IGraph {
         return result;
     }
 
+    /**
+     * Permet de savoir si le graphe est connexe en utlisant un path finder pour vérifier que l'on peut accéder à tous les noeuds depuis n'importe quel noeud
+     * @param pathSearch méthode de parcours du graphe 
+     * @return true si la graphe est connexe false sinon
+     */
     public Boolean isValid(IShorterPathSearch pathSearch) {
         if(nodes.size() == 0) return Boolean.FALSE;
         for(int i = 0; i < nodes.size();i++) {

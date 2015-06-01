@@ -10,6 +10,11 @@ import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
 import model.robot.NodePath;
 
+/**
+ * Trouver le plus court chemin en utilisant l'algorithme du Djikstra
+ * @author Laura
+ *
+ */
 public class Djikstra implements IShorterPathSearch {
 
 
@@ -31,8 +36,6 @@ public class Djikstra implements IShorterPathSearch {
 		Node currentNode = _start.clone();
 		// tant qu'on n'a pas trouvé la fin
 		while (!currentNode.equals(goal)) {
-//			ExploredNode betterNode = new ExploredNode(graph.getAdjNodes(path.get(0).getCurrentNode()).get(0), path.get(0).getCurrentNode(), path.get(0).getPathCost()
-//					+ graph.getEdgeFromNodes(path.get(0).getCurrentNode(), graph.getAdjNodes(path.get(0).getCurrentNode()).get(0)).getLength());
 			ExploredNode betterNode = null;
 			// pour chaque noeud qu'on a déjà visité
 			for (ExploredNode exploredNode : path) {
