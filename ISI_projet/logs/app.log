@@ -1,0 +1,174 @@
+10:10:06.889 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:10:23.008 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:10:50.184 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:11:09.640 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:11:15.495 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+10:11:21.392 [INFO ] model.manager.Manager - Manager has been started.
+10:11:23.428 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node0', id=0, fireLevel=10}"
+10:14:58.905 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:15:17.815 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:15:47.359 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:15:53.967 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+10:15:59.280 [INFO ] model.manager.Manager - Manager has been started.
+10:16:43.522 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node0', id=0, fireLevel=10}"
+10:16:45.524 [INFO ] model.robot.Robot - A robot is now at "Node{label='node9', id=9, fireLevel=0}"
+10:16:47.525 [INFO ] model.robot.Robot - A robot is now at "Node{label='node8', id=8, fireLevel=0}"
+10:16:49.526 [INFO ] model.robot.Robot - A robot is now at "Node{label='node7', id=7, fireLevel=0}"
+10:16:51.527 [INFO ] model.robot.Robot - A robot is now at "Node{label='node6', id=6, fireLevel=0}"
+10:16:53.528 [INFO ] model.robot.Robot - A robot is now at "Node{label='node1', id=1, fireLevel=0}"
+10:16:55.529 [INFO ] model.robot.Robot - A robot is now at "Node{label='node0', id=0, fireLevel=10}"
+10:16:57.535 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node0', id=0, fireLevel=0}". It's now available for annother task.
+10:17:11.830 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:26:11.110 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:26:23.285 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:26:41.317 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:26:45.877 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:26:50.525 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:26:56.029 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+10:27:04.246 [INFO ] model.manager.Manager - Manager has been started.
+10:31:01.796 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:31:14.837 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:31:29.277 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:31:33.653 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+10:31:37.437 [INFO ] model.manager.Manager - Manager has been started.
+10:36:54.302 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node5', id=5, fireLevel=10}"
+10:36:56.304 [INFO ] model.robot.Robot - A robot is now at "Node{label='node1', id=1, fireLevel=0}"
+10:36:58.305 [INFO ] model.robot.Robot - A robot is now at "Node{label='node2', id=2, fireLevel=0}"
+10:37:00.306 [INFO ] model.robot.Robot - A robot is now at "Node{label='node3', id=3, fireLevel=0}"
+10:37:02.307 [INFO ] model.robot.Robot - A robot is now at "Node{label='node5', id=5, fireLevel=10}"
+10:37:04.311 [INFO ] model.graph.edge.Edge - An edge now flooded.
+10:37:04.312 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node5', id=5, fireLevel=0}". It's now available for annother task.
+10:37:15.420 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:38:07.372 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:38:10.492 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:38:19.163 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:38:31.740 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:38:34.596 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+10:38:37.213 [INFO ] model.manager.Manager - Manager has been started.
+10:38:39.243 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node5', id=5, fireLevel=10}"
+10:38:43.216 [INFO ] model.robot.Robot - A robot is now at "Node{label='node1', id=1, fireLevel=0}"
+10:38:45.217 [INFO ] model.robot.Robot - A robot is now at "Node{label='node2', id=2, fireLevel=0}"
+10:38:47.218 [INFO ] model.robot.Robot - A robot is now at "Node{label='node3', id=3, fireLevel=0}"
+10:38:49.219 [INFO ] model.robot.Robot - A robot is now at "Node{label='node5', id=5, fireLevel=10}"
+10:38:51.223 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node5', id=5, fireLevel=0}". It's now available for annother task.
+10:38:54.643 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:38:57.223 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node2', id=2, fireLevel=10}"
+10:39:01.225 [INFO ] model.robot.Robot - A robot is now at "Node{label='node3', id=3, fireLevel=0}"
+10:39:03.226 [INFO ] model.robot.Robot - A robot is now at "Node{label='node2', id=2, fireLevel=10}"
+10:39:05.228 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node2', id=2, fireLevel=0}". It's now available for annother task.
+10:39:08.547 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:39:11.230 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node0', id=0, fireLevel=10}"
+10:39:15.232 [INFO ] model.robot.Robot - A robot is now at "Node{label='node1', id=1, fireLevel=0}"
+10:39:17.233 [INFO ] model.robot.Robot - A robot is now at "Node{label='node0', id=0, fireLevel=10}"
+10:39:19.234 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node0', id=0, fireLevel=0}". It's now available for annother task.
+10:39:21.371 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:39:23.236 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node3', id=3, fireLevel=10}"
+10:39:23.674 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:39:27.238 [INFO ] model.robot.Robot - A robot is now at "Node{label='node1', id=1, fireLevel=0}"
+10:39:29.239 [INFO ] model.robot.Robot - A robot is now at "Node{label='node2', id=2, fireLevel=0}"
+10:39:31.240 [INFO ] model.robot.Robot - A robot is now at "Node{label='node3', id=3, fireLevel=10}"
+10:39:33.241 [INFO ] model.graph.edge.Edge - An edge now flooded.
+10:39:33.242 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node3', id=3, fireLevel=0}". It's now available for annother task.
+10:39:33.242 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node4', id=4, fireLevel=10}"
+10:39:37.243 [INFO ] model.robot.Robot - A robot is now at "Node{label='node2', id=2, fireLevel=0}"
+10:39:39.244 [INFO ] model.robot.Robot - A robot is now at "Node{label='node4', id=4, fireLevel=10}"
+10:39:41.245 [INFO ] model.graph.edge.Edge - An edge now flooded.
+10:39:41.245 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node4', id=4, fireLevel=0}". It's now available for annother task.
+10:54:33.183 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:55:02.513 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:55:22.897 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+10:55:27.208 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:55:41.352 [INFO ] controler.ControleurElements - Action "Ajouter un robot chenille" selected
+10:56:01.088 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+10:56:06.913 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:56:22.449 [INFO ] model.manager.Manager - Manager has been started.
+10:57:29.100 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:57:33.241 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:57:36.784 [INFO ] controler.ControleurElements - Action "Ajouter un robot chenille" selected
+10:57:41.137 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+10:57:44.872 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:57:50.337 [INFO ] model.manager.Manager - Manager has been started.
+10:59:24.969 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+10:59:30.728 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+10:59:33.280 [INFO ] controler.ControleurElements - Action "Ajouter un robot à pates" selected
+10:59:37.992 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+10:59:42.752 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+10:59:56.297 [INFO ] model.manager.Manager - Manager has been started.
+11:00:04.561 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node8', id=8, fireLevel=10}"
+11:00:06.563 [INFO ] model.robot.Robot - A robot is now at "Node{label='node10', id=10, fireLevel=0}"
+11:00:08.564 [INFO ] model.robot.Robot - A robot is now at "Node{label='node8', id=8, fireLevel=10}"
+11:00:10.569 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node8', id=8, fireLevel=0}". It's now available for annother task.
+11:00:25.360 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:00:30.624 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:00:36.096 [INFO ] controler.ControleurElements - Action "Ajouter un robot chenille" selected
+11:00:40.648 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+11:00:44.272 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:00:57.433 [INFO ] model.manager.Manager - Manager has been started.
+11:01:08.288 [INFO ] controler.ControleurElements - Action "Ajouter un robot à pates" selected
+11:01:09.445 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node6', id=6, fireLevel=10}"
+11:01:13.442 [INFO ] model.robot.Robot - A robot is now at "Node{label='node5', id=5, fireLevel=0}"
+11:01:15.443 [INFO ] model.robot.Robot - A robot is now at "Node{label='node4', id=4, fireLevel=0}"
+11:01:17.444 [INFO ] model.robot.Robot - A robot is now at "Node{label='node6', id=6, fireLevel=10}"
+11:01:19.450 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{label='node6', id=6, fireLevel=0}". It's now available for annother task.
+11:01:23.039 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:01:40.761 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:01:47.464 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:01:50.816 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:02:05.775 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+11:02:09.817 [INFO ] model.manager.Manager - Manager has been started.
+11:03:36.777 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:03:40.920 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:03:47.520 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:03:51.463 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+11:03:54.673 [INFO ] model.manager.Manager - Manager has been started.
+11:15:01.119 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:15:07.517 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:15:11.742 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:15:18.534 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+11:15:23.367 [INFO ] model.manager.Manager - Manager has been started.
+11:47:42.258 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:47:51.057 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+11:47:54.321 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:47:57.697 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:48:03.144 [INFO ] controler.ControleurElements - Action "Ajouter un robot chenille" selected
+11:48:07.002 [INFO ] model.manager.Manager - Manager has been started.
+11:49:25.465 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:49:28.664 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:49:39.857 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+11:49:43.344 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:49:48.577 [INFO ] controler.ControleurElements - Action "Ajouter un robot chenille" selected
+11:49:51.345 [INFO ] model.manager.Manager - Manager has been started.
+11:50:13.897 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:50:22.761 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:50:26.960 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+11:50:32.632 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:50:44.680 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+11:50:48.369 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:50:51.656 [INFO ] controler.ControleurElements - Action "Ajouter un robot chenille" selected
+11:50:56.657 [INFO ] model.manager.Manager - Manager has been started.
+11:52:03.529 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:52:07.945 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:52:17.481 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:52:21.744 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+11:52:25.217 [INFO ] model.manager.Manager - Manager has been started.
+11:52:42.808 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:52:46.465 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:52:48.656 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:52:58.169 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:53:01.657 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:53:09.025 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:53:12.352 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+11:53:15.665 [INFO ] model.manager.Manager - Manager has been started.
+11:54:58.042 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:55:03.024 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:55:09.080 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:55:12.159 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+11:55:15.136 [INFO ] model.manager.Manager - Manager has been started.
+11:55:41.311 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+11:55:52.704 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:56:03.767 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+11:56:08.848 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+11:56:12.640 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+11:56:14.640 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+11:56:19.913 [INFO ] model.manager.Manager - Manager has been started.
+11:56:21.937 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{label='node3', id=3, fireLevel=10}"
