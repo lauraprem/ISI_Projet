@@ -246,7 +246,7 @@ public class Node extends Point implements Observable, Cloneable {
             return true;
         if (obj == null)
             return false;
-        if (getClass().equals(obj.getClass()))
+        if (!getClass().equals(obj.getClass()))
             return false;
         Node other = (Node) obj;
         if (!id.equals(other.id))
@@ -290,16 +290,5 @@ public class Node extends Point implements Observable, Cloneable {
 
     protected void setYString(String _y) {
         this.y = Integer.parseInt(_y);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (observers != null ? observers.hashCode() : 0);
-        result = 31 * result + (label != null ? label.hashCode() : 0);
-        result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (fireLevel != null ? fireLevel.hashCode() : 0);
-        result = 31 * result + (linked != null ? linked.hashCode() : 0);
-        return result;
     }
 }
