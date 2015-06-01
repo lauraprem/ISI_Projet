@@ -1,17 +1,18 @@
 package controler;
 
-import model.graph.graph.impl.Graph;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import model.graph.graph.IGraph;
 import model.manager.Manager;
 import util.FileXML;
 import view.MainWindow;
 import view.MenuLabel;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 public class ControleurFile implements ActionListener {
 
@@ -35,7 +36,7 @@ public class ControleurFile implements ActionListener {
 				temp = getFile(MenuLabel.LOAD_FR);
 				if(temp != null) f = temp;
 				if(f != null) {
-					Graph newGraph = null;
+					IGraph newGraph = null;
 					try{
 						newGraph = FileXML.chargerDocument(f);
 					}catch(Exception ex){

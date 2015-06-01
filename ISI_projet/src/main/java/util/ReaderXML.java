@@ -17,6 +17,7 @@ import model.graph.Node;
 import model.graph.Point;
 import model.graph.PointUtil;
 import model.graph.edge.Edge;
+import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
@@ -48,18 +49,25 @@ public class ReaderXML {
 		}
 		return reader;
 	}
+	public IGraph chargerDocument(File documentToRead) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
+	{
+		return this.chargerDocument(documentToRead, null);
+	}
 	/**
 	 * 
+	 * @param graphe instance de IGraph a retourner
 	 * @param documentToRead document à lire
 	 * @return un graphe charger à partir du XML
 	 * @throws ParserConfigurationException 
 	 * @throws IOException 
 	 * @throws SAXException 
 	 */
-	public Graph chargerDocument(File documentToRead) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
+	public IGraph chargerDocument(File documentToRead,IGraph graphe) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
-		Graph graphe=new Graph();
-			 
+		if(graphe==null)
+		{
+			graphe=new Graph();
+		}
 			File fXmlFile =documentToRead;
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -93,7 +101,7 @@ public class ReaderXML {
 	 * @throws IllegalArgumentException mauvais argument
 	 * @throws IllegalAccessException problème d'accès de reflexivité
 	 */
-	public void listerElement(NodeList nList,Graph graphe,XMLType typeDeNoeud) throws IllegalArgumentException, InvocationTargetException
+	public void listerElement(NodeList nList,IGraph graphe,XMLType typeDeNoeud) throws IllegalArgumentException, InvocationTargetException
 	{
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			 

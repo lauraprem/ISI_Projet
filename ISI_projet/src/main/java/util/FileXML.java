@@ -8,6 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 /**
  * classe permettant de sauvegarder
@@ -41,7 +42,7 @@ public class FileXML {
 	 * @param f fichier permettant de sauvegarder le graphe
 	 * @param graphe générer par le programme
 	 */
-	public static void sauvegarderDocument(File f,Graph graphe)
+	public static void sauvegarderDocument(File f,IGraph graphe)
 	{
 		WriterXML.getInstance().sauvegarderDocument(f, graphe);
 	}
@@ -56,7 +57,7 @@ public class FileXML {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 */
-	public static Graph chargerDocument(File f) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
+	public static IGraph chargerDocument(File f) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
 	{
 		return ReaderXML.getInstance().chargerDocument(f);
 	}

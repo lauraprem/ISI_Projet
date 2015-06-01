@@ -11,6 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import model.graph.Node;
 import model.graph.Point;
 import model.graph.edge.Edge;
+import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
@@ -48,7 +49,7 @@ public class FileXMLTest {
 	{
 		File file = new File("data"+fileSeparator+"graphe.xml");
 		FileXML.sauvegarderDocument(file,graphe);
-		Graph graphe1=FileXML.chargerDocument(file);
+		IGraph graphe1=FileXML.chargerDocument(file);
 		assertEquals(graphe,graphe1);
 	}
 	@Test
@@ -56,10 +57,10 @@ public class FileXMLTest {
 	{
 		File file = new File("data"+fileSeparator+"graphe.xml");
 		FileXML.sauvegarderDocument(file,graphe);
-		Graph graphe1=FileXML.chargerDocument(file);
+		IGraph graphe1=FileXML.chargerDocument(file);
 		File file2 = new File("data"+fileSeparator+"graphe2.xml");
 		FileXML.sauvegarderDocument(file2,graphe);
-		Graph graphe2=FileXML.chargerDocument(file2);
+		IGraph graphe2=FileXML.chargerDocument(file2);
 		assertEquals(graphe1,graphe2);
 	}
 }
