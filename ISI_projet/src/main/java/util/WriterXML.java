@@ -3,6 +3,9 @@ package util;
 import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.graph.impl.Graph;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -16,6 +19,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
 import java.io.File;
 /**
  * singleton comportant la sauvegarde un graphe dans un fichier XML
@@ -23,6 +27,7 @@ import java.io.File;
  *
  */
 public class WriterXML {
+	private final static Logger logger = LogManager.getLogger();
     private static WriterXML writer;
     /**
 	 * methode pour recuperer le singleton
@@ -65,7 +70,7 @@ public class WriterXML {
 
             transformer.transform(source, result);
 
-            System.out.println("File saved!");
+            logger.info("File saved!");
 
         } catch (ParserConfigurationException pce) {
             pce.printStackTrace();

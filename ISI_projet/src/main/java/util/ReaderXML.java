@@ -21,6 +21,8 @@ import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -33,6 +35,7 @@ import org.xml.sax.SAXException;
  */
 public class ReaderXML {
 	private static ReaderXML reader;
+	private final static Logger logger = LogManager.getLogger();
 	/**
 	 * methode pour recuperer le singleton
 	 * @return une instance une unique
@@ -64,15 +67,15 @@ public class ReaderXML {
 		 
 			//optionnel mais recommandé
 			doc.getDocumentElement().normalize();
-			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+			logger.info("Root element :" + doc.getDocumentElement().getNodeName());
 		 
 			NodeList nList = doc.getElementsByTagName(XMLType.Node.getLabel());
 		 
-			System.out.println("----------------------------");
+			logger.info("----------------------------");
 			listerElement(nList,graphe,XMLType.Node);
 			nList = doc.getElementsByTagName(XMLType.Edge.getLabel());
 			 
-			System.out.println("----------------------------");
+			logger.info("----------------------------");
 			listerElement(nList,graphe,XMLType.Edge);
 			if(graphe.getAllNodes().size()>0)
 			{
@@ -96,7 +99,7 @@ public class ReaderXML {
 			 
 			org.w3c.dom.Node nNode = nList.item(temp);
 	 
-			System.out.println("\nCurrent Element :" + nNode.getNodeName());
+			logger.info("Current Element :" + nNode.getNodeName());
 			
 			if (nNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
 	 
@@ -133,7 +136,7 @@ public class ReaderXML {
 										try {
 											method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
 										} catch (IllegalAccessException e) {
-											System.out.println("Attention problème d'accès au niveau de la classe"+Node.class.getName()+" et de la méthode:"+method.getName());
+											logger.error("Attention problème d'accès au niveau de la classe"+Node.class.getName()+" et de la méthode:"+method.getName());
 											e.printStackTrace();
 										}
 									}
@@ -144,7 +147,7 @@ public class ReaderXML {
 										try {
 											method.invoke(noeud,(eElement.getAttribute(noms.item(i).getNodeName())));
 										} catch (IllegalAccessException e) {
-											System.out.println("Attention problème d'accès au niveau de la classe"+Node.class.getName()+" et de la méthode:"+method.getName());
+											logger.error("Attention problème d'accès au niveau de la classe"+Node.class.getName()+" et de la méthode:"+method.getName());
 											e.printStackTrace();
 										}
 									}
@@ -173,7 +176,7 @@ public class ReaderXML {
 						}
 							 */
 						}
-						System.out.println(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+						logger.info(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
 					}
 					graphe.addNode(noeud);
 					break;
@@ -199,7 +202,7 @@ public class ReaderXML {
 												try {
 													method.invoke(arc,noeudGraphe);
 												} catch (IllegalAccessException e) {
-													System.out.println("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
+													logger.error("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
 													e.printStackTrace();
 												}
 											}
@@ -214,7 +217,7 @@ public class ReaderXML {
 											try {
 												method.invoke(arc, ground);
 											} catch (IllegalAccessException e) {
-												System.out.println("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
+												logger.error("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
 												e.printStackTrace();
 											}
 										}
@@ -226,7 +229,7 @@ public class ReaderXML {
 												try {
 													method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
 												} catch (IllegalAccessException e) {
-													System.out.println("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
+													logger.error("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
 													e.printStackTrace();
 												}
 											}
@@ -237,7 +240,7 @@ public class ReaderXML {
 												try {
 													method.invoke(arc,(eElement.getAttribute(noms.item(i).getNodeName())));
 												} catch (IllegalAccessException e) {
-													System.out.println("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
+													logger.error("Attention problème d'accès au niveau de la classe"+Edge.class.getName()+" et de la méthode:"+method.getName());
 													e.printStackTrace();
 												}
 											}
@@ -246,7 +249,7 @@ public class ReaderXML {
 								}
 							}
 						}
-						System.out.println(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
+						logger.info(noms.item(i).getNodeName()+" : " + eElement.getAttribute(noms.item(i).getNodeName()));
 					}
 					graphe.addEdge(arc);
 					break;

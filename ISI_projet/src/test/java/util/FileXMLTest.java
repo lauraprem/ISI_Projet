@@ -15,6 +15,8 @@ import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
@@ -25,6 +27,7 @@ public class FileXMLTest {
 	private Node noeud2;
 	private Edge arc1;
 	private String fileSeparator=System.getProperty("file.separator");
+	private final static Logger logger = LogManager.getLogger();
 	@Before
 	public void init()
 	{
@@ -35,10 +38,10 @@ public class FileXMLTest {
 		graphe.addEdge(arc1);
 		graphe.addNode(noeud1);
 		graphe.addNode(noeud2);
-		System.out.println("Source: "+arc1.getSource());
-		System.out.println("Destination: "+arc1.getDestination());
-		System.out.println("Type: "+arc1.getGround().getType());
-		System.out.println("Valuation: "+arc1.getLength());
+		logger.info("Source: "+arc1.getSource());
+		logger.info("Destination: "+arc1.getDestination());
+		logger.info("Type: "+arc1.getGround().getType());
+		logger.info("Valuation: "+arc1.getLength());
 	}
 	@Test
 	public void test1BoucleReadWrite() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, SAXException, IOException
