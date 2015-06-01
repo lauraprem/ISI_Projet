@@ -5,6 +5,7 @@ import model.graph.graph.IGraph;
 import model.pathSearch.IShorterPathSearch;
 import model.robot.Capacity;
 import model.robot.Robot;
+import view.Observer;
 
 /**
  * @author Alexandre
@@ -19,8 +20,8 @@ public class RobotToutTerrain extends Robot {
      * @param _pathFinder                méthode de calcul du plus court chemin
      * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
      */
-    public RobotToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity) {
-        super(Capacity.ToutTerrainCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity);
+    public RobotToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity, Observer o) {
+        super(Capacity.ToutTerrainCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
     }
 
     /**
@@ -30,7 +31,7 @@ public class RobotToutTerrain extends Robot {
      * @param _startNode  noeud sur lequel se trouve le robot pour commencer
      * @param _pathFinder méthode de calcul du plus court chemin
      */
-    public RobotToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder) {
-        this(_graph, _startNode, _pathFinder, null);
+    public RobotToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Observer o) {
+        this(_graph, _startNode, _pathFinder, null, o);
     }
 }

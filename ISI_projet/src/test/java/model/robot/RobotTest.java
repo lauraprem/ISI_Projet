@@ -1,6 +1,7 @@
 package model.robot;
 
 import model.graph.graph.GraphUtilTest;
+import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
@@ -16,7 +17,7 @@ import static org.junit.Assert.*;
  *         26/05/2015
  */
 public class RobotTest extends GraphUtilTest {
-    private Robot robot = new RobotChenille(graph, startNode, new Djikstra());
+    private Robot robot = new RobotChenille(graph, startNode, new Djikstra(), new Manager());
 
     @Before
     public void setUp() throws Exception {
@@ -25,7 +26,7 @@ public class RobotTest extends GraphUtilTest {
 
     @Test
     public void testStopFire() throws Exception {
-        robot = new RobotAPates(graph, onFire, new Djikstra());
+        robot = new RobotAPates(graph, onFire, new Djikstra(), new Manager());
         robot.stopFire();
         assertFalse(onFire.isOnFire());
     }
@@ -54,7 +55,7 @@ public class RobotTest extends GraphUtilTest {
 
     @Test
     public void testUpdateStopFire() throws Exception {
-        robot = new RobotChenille(graph, onFire, new Djikstra());
+        robot = new RobotChenille(graph, onFire, new Djikstra(), new Manager());
         robot.update();
         assertFalse(onFire.isOnFire());
     }
