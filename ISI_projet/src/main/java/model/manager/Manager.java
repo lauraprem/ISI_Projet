@@ -169,7 +169,7 @@ public class Manager extends Thread implements Observable, Observer {
     }
 
     public synchronized void reset() {
-        robots = Collections.synchronizedList(new ArrayList<Robot>());
+        robots = Collections.synchronizedList(new ArrayList<>());
         graph = new Graph();
         exit = Boolean.FALSE;
         pause = Boolean.FALSE;
