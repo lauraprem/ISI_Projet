@@ -39,7 +39,7 @@ public class ControleurHelp implements ActionListener {
 			helpWindow.pack();
 			helpWindow.setLocationRelativeTo(null);
 			helpWindow.setVisible(true);
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.HELP_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.HELP_FR));
 			break;
 
 		case MenuLabel.ABOUT:
@@ -53,7 +53,7 @@ public class ControleurHelp implements ActionListener {
 			windowsHelp.pack();
 			windowsHelp.setLocationRelativeTo(null);
 			windowsHelp.setVisible(true);
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ABOUT_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ABOUT_FR));
 			break;
 
 		default:

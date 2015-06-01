@@ -29,22 +29,22 @@ public class ControleurElements implements ActionListener {
 		switch (e.getActionCommand()) {
 		case MenuLabel.ADD_TOUT_TERRAIN_ROBOT:
 			typeElement = 0;
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_TOUT_TERRAIN_ROBOT_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_TOUT_TERRAIN_ROBOT_FR));
 			break;
 
 		case MenuLabel.ADD_CHENILLE_ROBOT:
 			typeElement = 1;
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_CHENILLE_ROBOT_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_CHENILLE_ROBOT_FR));
 			break;
 
 		case MenuLabel.ADD_A_PATE_ROBOT:
 			typeElement = 2;
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_A_PATE_ROBOT_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_A_PATE_ROBOT_FR));
 			break;
 
 		case MenuLabel.ADD_FIRE:
 			typeElement = 3;
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FIRE_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FIRE_FR));
 			break;
 			
 		default:

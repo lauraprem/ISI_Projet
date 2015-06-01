@@ -29,22 +29,22 @@ public class ControleurGraph implements ActionListener {
 		switch (e.getActionCommand()) {
 		case MenuLabel.ADD_NODE:
 			typeElement = 4;
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_NODE_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_NODE_FR));
 			break;
 
 		case MenuLabel.ADD_FLOODED_EDGE:
 			typeElement = 5;
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FLOODED_EDGE_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FLOODED_EDGE_FR));
 			break;
 
 		case MenuLabel.ADD_STEEP_EDGE:
 			typeElement = 6;
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_STEEP_EDGE_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_STEEP_EDGE_FR));
 			break;
 
 		case MenuLabel.ADD_FLAT_EDGE:
 			typeElement = 7;
-			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FLAT_EDGE_LABEL));
+			logger.info(String.format("Action \"%s\" selected", MenuLabel.ADD_FLAT_EDGE_FR));
 			break;
 
 		default:
