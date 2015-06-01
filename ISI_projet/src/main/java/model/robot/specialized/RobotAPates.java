@@ -34,4 +34,16 @@ public class RobotAPates extends Robot {
     public RobotAPates(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Observer o) {
         this(_graph, _startNode, _pathFinder, null, o);
     }
+
+    private static String ressourcePath = "pictures/robotAPattes.gif";
+    private static String URLImage = RobotAPates.class.getClassLoader().getResource(ressourcePath).getFile();
+
+    @Override
+    public String getURLImage() {
+        return URLImage;
+    }
+
+    public static void setURLImage(String URLImage) {
+        RobotAPates.URLImage = URLImage;
+    }
 }

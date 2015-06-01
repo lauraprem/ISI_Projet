@@ -34,4 +34,16 @@ public class RobotChenille extends Robot {
     public RobotChenille(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Observer o) {
         this(_graph, _startNode, _pathFinder, null, o);
     }
+
+    private static String ressourcePath = "pictures/robotChenilles.gif";
+    private static String URLImage = RobotChenille.class.getClassLoader().getResource(ressourcePath).getFile();
+
+    @Override
+    public String getURLImage() {
+        return URLImage;
+    }
+
+    public static void setURLImage(String URLImage) {
+        RobotChenille.URLImage = URLImage;
+    }
 }

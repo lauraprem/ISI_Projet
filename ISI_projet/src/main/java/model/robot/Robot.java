@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Laura
  */
-public class Robot implements Observable {
+public abstract class Robot implements Observable {
     private final static Logger logger = LogManager.getLogger();
     protected ArrayList<Observer> observers = new ArrayList<>();
 
@@ -194,4 +194,6 @@ public class Robot implements Observable {
         if (observers != null)
             observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
     }
+
+    public abstract String getURLImage();
 }

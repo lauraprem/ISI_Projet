@@ -34,4 +34,16 @@ public class RobotToutTerrain extends Robot {
     public RobotToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Observer o) {
         this(_graph, _startNode, _pathFinder, null, o);
     }
+
+    private static String ressourcePath = "pictures/RobotToutTerrain.gif";
+    private static String URLImage = RobotToutTerrain.class.getClassLoader().getResource(ressourcePath).getFile();
+
+    @Override
+    public String getURLImage() {
+        return URLImage;
+    }
+
+    public static void setURLImage(String URLImage) {
+        RobotToutTerrain.URLImage = URLImage;
+    }
 }
