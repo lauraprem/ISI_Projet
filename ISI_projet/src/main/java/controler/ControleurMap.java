@@ -10,6 +10,7 @@ import model.graph.edge.Edge;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
 import model.manager.Manager;
+import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
 import model.robot.specialized.RobotToutTerrain;
@@ -70,21 +71,21 @@ public class ControleurMap implements MouseListener {
 		switch (typeElement) {
 		case 0: // Add RobotToutTerrain
 			if (n1 != null) {
-				model.addRobot(new RobotToutTerrain(model.getGraph(), n1, null));
+				model.addRobot(new RobotToutTerrain(model.getGraph(), n1, new Djikstra()));
 				resetCurrentNodes();
 			}
 			break;
 
 		case 1: // Add RobotChenille
 			if (n1 != null) {
-				model.addRobot(new RobotChenille(model.getGraph(), n1, null));
+				model.addRobot(new RobotChenille(model.getGraph(), n1, new Djikstra()));
 				resetCurrentNodes();
 			}
 			break;
 
 		case 2: // Add RobotAPates
 			if (n1 != null) {
-				model.addRobot(new RobotAPates(model.getGraph(), n1, null));
+				model.addRobot(new RobotAPates(model.getGraph(), n1, new Djikstra()));
 				resetCurrentNodes();
 			}
 			break;

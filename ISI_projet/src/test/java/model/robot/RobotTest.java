@@ -1,6 +1,7 @@
 package model.robot;
 
 import model.graph.graph.GraphUtilTest;
+import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
 import org.junit.Before;
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
  *         26/05/2015
  */
 public class RobotTest extends GraphUtilTest {
-    private Robot robot = new RobotChenille(graph, startNode, null);
+    private Robot robot = new RobotChenille(graph, startNode, new Djikstra());
 
     @Before
     public void setUp() throws Exception {
@@ -24,13 +25,11 @@ public class RobotTest extends GraphUtilTest {
 
     @Test
     public void testStopFire() throws Exception {
-        robot = new RobotAPates(graph, onFire, null);
+        robot = new RobotAPates(graph, onFire, new Djikstra());
         robot.stopFire();
         assertFalse(onFire.isOnFire());
     }
 
-    // TODO : Quand le pathfinder sera prêt : enlever l'annotation
-    @Ignore
     @Test
     public void testProposePossibleNode() throws Exception {
         Double distance = robot.proposeNode(onFire);
@@ -55,7 +54,7 @@ public class RobotTest extends GraphUtilTest {
 
     @Test
     public void testUpdateStopFire() throws Exception {
-        robot = new RobotChenille(graph, onFire, null);
+        robot = new RobotChenille(graph, onFire, new Djikstra());
         robot.update();
         assertFalse(onFire.isOnFire());
     }
