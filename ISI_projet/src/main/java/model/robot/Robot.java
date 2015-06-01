@@ -19,11 +19,11 @@ import view.Observer;
  *
  * @author Laura
  */
-public class Robot implements Observable {
+public abstract class Robot implements Observable {
 	/**
 	 * Logger de la classe
 	 */
-    private final static Logger logger = LogManager.getLogger();
+	private final static Logger logger = LogManager.getLogger();
     /**
      * Liste des observeurs du robot
      */
@@ -210,4 +210,6 @@ public class Robot implements Observable {
         if (observers != null)
             observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
     }
+
+    public abstract String getURLImage();
 }

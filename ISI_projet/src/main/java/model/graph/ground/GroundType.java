@@ -3,16 +3,20 @@ package model.graph.ground;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
+
 /**
  * @author Alexandre
  *         06/05/2015
  */
 public enum GroundType {
 
+
 	/**
 	 * differents types de sol
 	 */
-    FLOODED("Inondé"), FLAT("Plat"), STEEP("Escarpé");
+    FLOODED("Inondé", Color.BLUE), FLAT("Plat", Color.GRAY), STEEP("Escarpé", Color.ORANGE);
+
 
     /**
      * logger de la classe
@@ -23,9 +27,15 @@ public enum GroundType {
      * nom du type de sol
      */
     private String label;
+    private Color color;
 
     GroundType(String label) {
+        this(label, Color.BLACK);
+    }
+
+    GroundType(String label, Color color) {
         this.label = label;
+        this.color = color;
     }
 
     public static GroundType getGroundType(String label) {
@@ -37,6 +47,10 @@ public enum GroundType {
 
     public String getLabel() {
         return label;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     @Override

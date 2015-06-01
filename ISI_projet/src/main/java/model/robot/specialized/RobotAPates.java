@@ -5,7 +5,10 @@ import model.graph.graph.IGraph;
 import model.pathSearch.IShorterPathSearch;
 import model.robot.Capacity;
 import model.robot.Robot;
+import util.Picture;
 import view.Observer;
+
+import java.io.File;
 
 /**
  * @author Alexandre
@@ -33,5 +36,16 @@ public class RobotAPates extends Robot {
      */
     public RobotAPates(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Observer o) {
         this(_graph, _startNode, _pathFinder, null, o);
+    }
+
+    private static String URLImage = Picture.ROBOT_A_PATES.getURL();
+
+    @Override
+    public String getURLImage() {
+        return URLImage;
+    }
+
+    public static void setURLImage(String URLImage) {
+        if(new File(URLImage).exists()) RobotAPates.URLImage = URLImage;
     }
 }

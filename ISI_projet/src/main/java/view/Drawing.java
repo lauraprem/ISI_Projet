@@ -51,7 +51,7 @@ public class Drawing extends JPanel implements Observer {
 		Graphics2D graph = (Graphics2D) g;
 
 		// Epaisseur du trait
-		graph.setStroke(new BasicStroke(2.0f));
+		graph.setStroke(new BasicStroke(5.0f));
 
 		// Carte de fond
 		g.drawImage(img, 0, 0, img.getWidth(null) + magnificationFactor,
@@ -80,7 +80,7 @@ public class Drawing extends JPanel implements Observer {
 		if (model.getGraph().getAllNodes().size() > 0)
 			for (int i = 0; i < model.getGraph().getAllNodes().size(); i++) {
 				Node node = model.getGraph().getAllNodes().get(i);
-				new DrawingNode(node, magnificationFactor, g);
+				new DrawingNode(node,g);
 
 				if (model.getGraph().getAllNodes().get(i).getFireLevel() > 0)
 					showFires(node, g);
@@ -88,14 +88,13 @@ public class Drawing extends JPanel implements Observer {
 	}
 
 	public void showFires(Node n, Graphics g) {
-		new DrawingFire(n,magnificationFactor,g);
+		new DrawingFire(n,g);
 	}
 
 	public void showRobots(Graphics g) {
 		if (model.getRobots().size() > 0)
 			for (int i = 0; i < model.getRobots().size(); i++) {
-				new DrawingRobot(model.getRobots().get(i), magnificationFactor,
-						g);
+				new DrawingRobot(model.getRobots().get(i),g);
 			}
 	}
 

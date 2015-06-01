@@ -198,11 +198,6 @@ public class Manager extends Thread implements Observable, Observer {
 		observers.remove(o);
 	}
 
-	@Override
-	public void notifyObserver() {
-		if (observers != null)
-			observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
-	}
 
 	@Override
 	public void Update() {
@@ -215,5 +210,12 @@ public class Manager extends Thread implements Observable, Observer {
 		exit = Boolean.FALSE;
 		pause = Boolean.FALSE;
 		notifyObserver();
-	}
+}
+    @Override
+    public void notifyObserver() {
+        if (observers != null)
+            observers.stream().filter(obs -> obs != null).forEach(view.Observer::Update);
+    }
+
+
 }
