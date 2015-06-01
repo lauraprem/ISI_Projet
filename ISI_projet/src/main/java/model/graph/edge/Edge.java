@@ -137,7 +137,7 @@ public class Edge implements Cloneable {
     }
 
     public String toString2() {
-        return source.getLabel().toString() + " ==> " + destination.getLabel() + "(\"" + length + "\" " + ground.toString() + ")";
+        return source.getId().toString() + " ==> " + destination.getId().toString() + "(\"" + length + "\" " + ground.toString() + ")";
     }
 
     @Override

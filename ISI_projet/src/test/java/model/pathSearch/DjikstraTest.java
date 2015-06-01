@@ -35,15 +35,15 @@ public class DjikstraTest {
 
     @Before
     public void setUp() throws Exception {
-        start = new Node("1");
-        Node node2 = new Node("2");
-        Node node3 = new Node("3");
-        goal = new Node("4");
-        Node node5 = new Node("5");
-        Node node6 = new Node("6");
-        Node node7 = new Node("7");
-        Node node8 = new Node("8");
-        Node node9 = new Node("9");
+        start = new Node();
+        Node node2 = new Node();
+        Node node3 = new Node();
+        goal = new Node();
+        Node node5 = new Node();
+        Node node6 = new Node();
+        Node node7 = new Node();
+        Node node8 = new Node();
+        Node node9 = new Node();
 
         Ground g = new Ground(GroundType.FLAT);
         Edge edge12 = new Edge(start, node2, 2.0, g);

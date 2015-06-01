@@ -18,9 +18,9 @@ import static org.junit.Assert.assertEquals;
  *         11/05/2015
  */
 public class GraphUtilTest {
-    protected Node onFire = new Node("test1", new Point(1, 2), 20);
-    protected Node unlinkedNode = new Node("unlinkedNode", new Point(-1, -5));
-    protected Node startNode = new Node("test2", new Point(-1, -2));
+    protected Node onFire = new Node(new Point(1, 2), 20);
+    protected Node unlinkedNode = new Node(new Point(-1, -5));
+    protected Node startNode = new Node(new Point(-1, -2));
     protected IGraph graph = new Graph(new Edge(onFire,
             startNode,
             3.0,

@@ -30,10 +30,6 @@ public class Node extends Point implements Observable, Cloneable {
      */
     protected ArrayList<Observer> observers = new ArrayList<>();
     /**
-     * etiquette du noeud
-     */
-    private String label;
-    /**
      * ID unique du noeud
      */
     private Long id;
@@ -46,37 +42,26 @@ public class Node extends Point implements Observable, Cloneable {
      * permet de savoir si le noeud est lié au graphe
      */
     private Boolean linked = Boolean.FALSE;
-
-    /**
-     * Construit un noeud avec une etiquette
-     *
-     * @param _label etiquette du noeud
-     */
-    public Node(String _label) {
-        this(_label, new Point(0, 0));
-    }
-
+    
     /**
      * Construit un noeud avec une etiquette
      * et une position
      *
-     * @param _label etiquette du noeud
      * @param _point position du noeud
      */
-    public Node(String _label, Point _point) {
-        this(_label, _point, 0);
+    public Node(Point _point) {
+        this(_point, 0);
     }
 
     /**
-     * Construit un noeud avec une etiquette
-     * et une position, et un niveau de feu
+     * Construit un noeud avec une position,
+     * et un niveau de feu
      *
      * @param _label etiquette du noeud
      * @param _point position du noeud
      */
-    public Node(String _label, Point _point, Integer fireLevel) {
+    public Node(Point _point, Integer fireLevel) {
         super(_point);
-        this.label = _label;
         try {
             setIfUniqueId(getMaxId());
         } catch (IdAlreadyUsedException e) {
@@ -90,7 +75,7 @@ public class Node extends Point implements Observable, Cloneable {
      * et une position
      */
     public Node() {
-        this("", new Point(), 0);
+        this(new Point(), 0);
     }
 
     /**
@@ -101,9 +86,8 @@ public class Node extends Point implements Observable, Cloneable {
      * @param _label etiquette du noeud
      * @param _point position du noeud
      */
-    private Node(Long _id, String _label, Point _point, Integer fireLevel, Boolean linked) {
+    private Node(Long _id, Point _point, Integer fireLevel, Boolean linked) {
         super(_point);
-        this.label = _label;
         this.id = _id;
         this.fireLevel = fireLevel;
         this.linked = linked;
@@ -136,26 +120,9 @@ public class Node extends Point implements Observable, Cloneable {
         this.linked = linked;
     }
 
-    /**
-     * @return l etiquette du noeud
-     */
-    public String getLabel() {
-        return label;
-    }
-
-    /**
-     * Specifie l etiquette du noeud
-     *
-     * @param _label
-     */
-    public void setLabel(String _label) {
-        this.label = _label;
-    }
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Node{");
-        sb.append("label='").append(label).append('\'');
         sb.append(", id=").append(id);
         sb.append(", fireLevel=").append(fireLevel);
         sb.append('}');
@@ -265,7 +232,7 @@ public class Node extends Point implements Observable, Cloneable {
      */
     @Override
     public Node clone() {
-        return new Node(id, label, super.clone(), fireLevel, linked);
+        return new Node(id, super.clone(), fireLevel, linked);
     }
 
     @Override

@@ -36,8 +36,8 @@ public class WriterXMLTest extends XMLTestCase {
         f = new File("data" + fileSeparator + "grapheTest.xml");
         f2 = new File("data" + fileSeparator + "grapheTest2.xml");
         graphe = new Graph();
-        Node noeud1 = new Node(new String("noeud1"), new Point(1, 0));
-        Node noeud2 = new Node(new String("noeud2"), new Point(1, 1));
+        Node noeud1 = new Node(new Point(1, 0));
+        Node noeud2 = new Node( new Point(1, 1));
         Edge arc1 = new Edge(noeud1, noeud2, (double) 10, new Ground(GroundType.FLAT));
         graphe.addEdge(arc1);
         graphe.addNode(noeud1);

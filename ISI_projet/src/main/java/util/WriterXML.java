@@ -96,10 +96,6 @@ public class WriterXML {
         attr.setValue(String.valueOf(noeud.getId()));
         node.setAttributeNode(attr);
         // set attribute to node element
-        attr = doc.createAttribute(Attribute.label);
-        attr.setValue(String.valueOf(noeud.getLabel()));
-        node.setAttributeNode(attr);
-        // set attribute to node element
         attr = doc.createAttribute(Attribute.x);
         attr.setValue(String.valueOf(noeud.getX()));
         node.setAttributeNode(attr);

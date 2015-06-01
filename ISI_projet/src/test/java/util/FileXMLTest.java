@@ -31,8 +31,8 @@ public class FileXMLTest {
     @Before
     public void init() {
         graphe = new Graph();
-        noeud1 = new Node(new String("noeud1"), new Point(1, 0));
-        noeud2 = new Node(new String("noeud2"), new Point(1, 1));
+        noeud1 = new Node(new Point(1, 0));
+        noeud2 = new Node(new Point(1, 1));
         arc1 = new Edge(noeud1, noeud2, (double) 10, new Ground(GroundType.FLAT));
         graphe.addEdge(arc1);
         graphe.addNode(noeud1);

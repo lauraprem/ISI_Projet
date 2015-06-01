@@ -16,8 +16,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class EdgeTest {
     private Edge edge;
-    private Node source = new Node("test1", new Point(1, 2));
-    private Node destination = new Node("test2", new Point(-1, -2));
+    private Node source = new Node(new Point(1, 2));
+    private Node destination = new Node(new Point(-1, -2));
 
     @Before
     public void setUp() throws Exception {
@@ -30,8 +30,8 @@ public class EdgeTest {
     @Test
     public void testUpdateGround() throws Exception {
         GroundType expected = GroundType.FLOODED;
-        edge = new Edge(new Node("test1", new Point(1, 2)),
-                new Node("test2", new Point(-1, -2)),
+        edge = new Edge(new Node(new Point(1, 2)),
+                new Node(new Point(-1, -2)),
                 3.0,
                 new Ground(GroundType.FLAT, 1.0));
         edge.updateGround();

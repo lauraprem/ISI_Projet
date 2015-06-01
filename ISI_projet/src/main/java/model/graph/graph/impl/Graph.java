@@ -212,13 +212,13 @@ public class Graph implements IGraph {
         List<Node> nodeList;
         Node node;
         for (Node n : getAllNodes()) {
-            str.append(String.format("[noeud=%s : [", n.getLabel()));
+            str.append(String.format("[noeud=%s : [", n.getId().toString()));
             nodeList = getAdjNodes(n);
             for (int i = 0; i < nodeList.size(); i++) {
                 node = nodeList.get(i);
                 if (i != 0)
                     str.append(", ");
-                str.append(String.format("%s <=> %s", n.getLabel(), node.getLabel()));
+                str.append(String.format("%s <=> %s", n.getId().toString(), node.getId().toString()));
             }
             str.append("]\n");
         }
