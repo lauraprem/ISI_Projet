@@ -22,6 +22,6 @@ public class DrawingNode {
             return;
         }
         graph.setColor(Color.lightGray);
-        graph.fillOval((int) model.getX() - 8, (int) model.getY() - 8, 16, 16);
+        graph.fillOval(model.getX() - 8, model.getY() - 8, 16, 16);
     }
 }
