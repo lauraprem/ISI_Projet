@@ -93,7 +93,7 @@ public class ControleurFile implements ActionListener {
 				if (model != null) model.pauseManager();
 				break;
 			case MenuLabel.UPDATE_BACK:
-				temp = getFile(MenuLabel.LOAD_FR);
+				temp = getFile(MenuLabel.UPDATE_BACK_FR);
 				if(temp != null) f = temp;
 				if(f != null) {
 					model.reset();

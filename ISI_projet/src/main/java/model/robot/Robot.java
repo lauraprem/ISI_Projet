@@ -106,7 +106,7 @@ public abstract class Robot implements Observable {
         if (decreaseFireLevelCapacity == null) currentNode.decreaseFireLevel(currentNode.getFireLevel());
         else currentNode.decreaseFireLevel(decreaseFireLevelCapacity);
         graph.getAdjEdges(currentNode).forEach(edge -> {
-            edge.getGround().increaseChancesOfGettingFlooded(0.25);
+            edge.getGround().increaseChancesOfGettingFlooded(0.1);
             edge.updateGround();
         });
         return !currentNode.isOnFire();
