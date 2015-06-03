@@ -2,14 +2,12 @@ package view;
 
 import model.graph.Node;
 import model.robot.Robot;
-import model.robot.specialized.RobotAPates;
-import model.robot.specialized.RobotChenille;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class DrawingRobot {
-    public DrawingRobot(Robot model,Graphics graph) {
+    public DrawingRobot(Robot model, Graphics graph) {
         if (graph == null) {
             return;
         }

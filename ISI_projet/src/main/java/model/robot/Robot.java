@@ -1,18 +1,16 @@
 package model.robot;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Observable;
 import model.graph.Node;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import view.Observer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Robots pompiers

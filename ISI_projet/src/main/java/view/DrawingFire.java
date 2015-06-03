@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class DrawingFire {
 
-    public DrawingFire(Node model,Graphics graph) {
+    public DrawingFire(Node model, Graphics graph) {
         if (graph == null) {
             return;
         }

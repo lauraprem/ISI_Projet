@@ -1,14 +1,9 @@
 package view.help;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class HelpWindow extends JFrame {
-	
+
     public HelpWindow() {
 //        super("Help de "+HelpLabel.NOM_APPLICATION);
 //        Dimension size = new Dimension(300, 200);

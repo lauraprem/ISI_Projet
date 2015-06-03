@@ -164,7 +164,7 @@ public class Edge implements Cloneable {
         Edge edge = (Edge) o;
 
         if (length != null ? !length.equals(edge.length) : edge.length != null) return false;
-        if(!(source.equals(edge.source) && destination.equals(edge.destination))
+        if (!(source.equals(edge.source) && destination.equals(edge.destination))
                 && !(source.equals(edge.destination) && destination.equals(edge.source))) return false;
         return !(ground != null ? !ground.equals(edge.ground) : edge.ground != null);
 

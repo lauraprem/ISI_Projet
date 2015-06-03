@@ -10,6 +10,7 @@ public class Attribute {
     public final static String destination = "destination";
     public final static String length = "length";
     public final static String ground = "ground";
+
     private Attribute() {
     }
 }

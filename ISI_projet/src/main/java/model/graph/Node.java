@@ -1,15 +1,13 @@
 package model.graph;
 
+import model.Observable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import view.Observer;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
-
-import model.Observable;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import view.Observer;
 
 /**
  * Classe representant un noeud etiquete pour un graph
@@ -42,7 +40,7 @@ public class Node extends Point implements Observable, Cloneable {
      * permet de savoir si le noeud est lié au graphe
      */
     private Boolean linked = Boolean.FALSE;
-    
+
     /**
      * Construit un noeud avec une etiquette
      * et une position

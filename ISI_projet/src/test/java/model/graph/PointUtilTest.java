@@ -16,8 +16,8 @@ public class PointUtilTest {
 
     @Before
     public void setUp() throws Exception {
-        n1 = new Node( new Point(-5, 1));
-        n2 = new Node( new Point(-2, 1));
+        n1 = new Node(new Point(-5, 1));
+        n2 = new Node(new Point(-2, 1));
         delta = new Node(new Point(3, 0));
     }
 

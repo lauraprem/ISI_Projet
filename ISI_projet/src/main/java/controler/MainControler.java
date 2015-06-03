@@ -36,35 +36,35 @@ public class MainControler {
             }
         }
     }
-    
-	/**
-	 * Indique si la commande de l'item sert à la gestion de graph dans ça
-	 * globalité, il comprend l'action Nouveau graph, Charger graph, Enregistrer
-	 * graph, Enregistrer sous graph, Quitter, Run, Stop.
-	 * 
-	 * @param item
-	 * @return vrai si l'item à une commande parmis celle ci-dessus
-	 */
-	private boolean controleFile(JMenuItem item) {
-		switch (item.getActionCommand()) {
-			case MenuLabel.NEW:
-				return true;
-			case MenuLabel.LOAD:
-				return true;
-			case MenuLabel.SAVE:
-				return true;
-			case MenuLabel.SAVE_AS:
-				return true;
-			case MenuLabel.QUIT:
-				return true;
-			case MenuLabel.RUN:
-				return true;
-			case MenuLabel.STOP:
-				return true;
-			case MenuLabel.UPDATE_BACK:
-				return true;
-		}
-		return false;
+
+    /**
+     * Indique si la commande de l'item sert à la gestion de graph dans ça
+     * globalité, il comprend l'action Nouveau graph, Charger graph, Enregistrer
+     * graph, Enregistrer sous graph, Quitter, Run, Stop.
+     *
+     * @param item
+     * @return vrai si l'item à une commande parmis celle ci-dessus
+     */
+    private boolean controleFile(JMenuItem item) {
+        switch (item.getActionCommand()) {
+            case MenuLabel.NEW:
+                return true;
+            case MenuLabel.LOAD:
+                return true;
+            case MenuLabel.SAVE:
+                return true;
+            case MenuLabel.SAVE_AS:
+                return true;
+            case MenuLabel.QUIT:
+                return true;
+            case MenuLabel.RUN:
+                return true;
+            case MenuLabel.STOP:
+                return true;
+            case MenuLabel.UPDATE_BACK:
+                return true;
+        }
+        return false;
 
     }
 

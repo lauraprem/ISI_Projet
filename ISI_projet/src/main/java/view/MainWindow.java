@@ -1,12 +1,11 @@
 package view;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-
+import model.manager.Manager;
 import util.Picture;
 import view.about.AboutLabel;
-import model.manager.Manager;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class MainWindow extends JFrame {
 
@@ -23,7 +22,7 @@ public class MainWindow extends JFrame {
         setJMenuBar(menuFile);
 
 //        drawing = new Drawing(model, Picture.BACKGROUND.getURL(),200);
-        drawing = new Drawing(model, Picture.BACKGROUND.getURL(),0);
+        drawing = new Drawing(model, Picture.BACKGROUND.getURL(), 0);
         getContentPane().add(drawing, BorderLayout.CENTER);
 
         this.setResizable(false);

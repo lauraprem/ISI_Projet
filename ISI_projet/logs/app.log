@@ -171,3 +171,171 @@
 11:56:12.640 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
 11:56:14.640 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
 11:56:19.913 [INFO ] model.manager.Manager - Manager has been started.
+18:31:25.433 [WARN ] model.graph.Node - The level of the fire has been increased of a negative amount, so it has been decreased.
+18:31:25.436 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+18:31:25.438 [WARN ] model.graph.Node - The level of the fire has been increased of a negative amount, so it has been decreased.
+18:31:25.440 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+18:31:25.442 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+18:31:25.445 [WARN ] model.graph.Node - The level of the fire has been decreased of a negative amount, so it has been increased.
+18:31:25.505 [INFO ] model.graph.edge.Edge - An edge now flooded.
+18:31:25.533 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+18:31:25.534 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be negative, has been set to 0.
+18:31:25.579 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+18:31:25.580 [INFO ] model.graph.edge.Edge - An edge now flooded.
+18:31:25.602 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=0, fireLevel=20}"
+18:31:25.602 [INFO ] model.robot.Robot - A robot is now at "Node{, id=0, fireLevel=20}"
+18:31:25.606 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+18:31:25.607 [INFO ] model.graph.edge.Edge - An edge now flooded.
+18:31:25.608 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=0, fireLevel=0}". It's now available for annother task.
+18:31:25.612 [INFO ] util.FileXMLTest - Source: Node{, id=0, fireLevel=0}
+18:31:25.612 [INFO ] util.FileXMLTest - Destination: Node{, id=1, fireLevel=0}
+18:31:25.612 [INFO ] util.FileXMLTest - Type: GroundType{label='Plat'}
+18:31:25.615 [INFO ] util.FileXMLTest - Valuation: 10.0
+18:31:25.709 [INFO ] util.WriterXML - File saved!
+18:31:25.739 [INFO ] util.FileXMLTest - Source: Node{, id=0, fireLevel=0}
+18:31:25.740 [INFO ] util.FileXMLTest - Destination: Node{, id=1, fireLevel=0}
+18:31:25.740 [INFO ] util.FileXMLTest - Type: GroundType{label='Plat'}
+18:31:25.740 [INFO ] util.FileXMLTest - Valuation: 10.0
+18:31:25.745 [INFO ] util.WriterXML - File saved!
+18:31:25.760 [INFO ] util.WriterXML - File saved!
+18:31:25.969 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:25.973 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:25.978 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:25.979 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:25.982 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:25.993 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:25.996 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:26.021 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:26.026 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:26.048 [INFO ] util.WriterXML - File saved!
+18:31:26.065 [INFO ] util.WriterXML - File saved!
+18:31:51.958 [WARN ] model.graph.Node - The level of the fire has been increased of a negative amount, so it has been decreased.
+18:31:51.964 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+18:31:51.966 [WARN ] model.graph.Node - The level of the fire has been increased of a negative amount, so it has been decreased.
+18:31:51.969 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+18:31:51.971 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+18:31:51.981 [WARN ] model.graph.Node - The level of the fire has been decreased of a negative amount, so it has been increased.
+18:31:52.010 [INFO ] model.graph.edge.Edge - An edge now flooded.
+18:31:52.036 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+18:31:52.038 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be negative, has been set to 0.
+18:31:52.070 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+18:31:52.071 [INFO ] model.graph.edge.Edge - An edge now flooded.
+18:31:52.080 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=0, fireLevel=20}"
+18:31:52.081 [INFO ] model.robot.Robot - A robot is now at "Node{, id=0, fireLevel=20}"
+18:31:52.085 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+18:31:52.086 [INFO ] model.graph.edge.Edge - An edge now flooded.
+18:31:52.087 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=0, fireLevel=0}". It's now available for annother task.
+18:31:52.092 [INFO ] util.FileXMLTest - Source: Node{, id=0, fireLevel=0}
+18:31:52.093 [INFO ] util.FileXMLTest - Destination: Node{, id=1, fireLevel=0}
+18:31:52.094 [INFO ] util.FileXMLTest - Type: GroundType{label='Plat'}
+18:31:52.094 [INFO ] util.FileXMLTest - Valuation: 10.0
+18:31:52.178 [INFO ] util.WriterXML - File saved!
+18:31:52.213 [INFO ] util.FileXMLTest - Source: Node{, id=0, fireLevel=0}
+18:31:52.214 [INFO ] util.FileXMLTest - Destination: Node{, id=1, fireLevel=0}
+18:31:52.216 [INFO ] util.FileXMLTest - Type: GroundType{label='Plat'}
+18:31:52.216 [INFO ] util.FileXMLTest - Valuation: 10.0
+18:31:52.230 [INFO ] util.WriterXML - File saved!
+18:31:52.254 [INFO ] util.WriterXML - File saved!
+18:31:52.522 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.527 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.530 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.532 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.535 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.545 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.548 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.572 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.577 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+18:31:52.596 [INFO ] util.WriterXML - File saved!
+18:31:52.619 [INFO ] util.WriterXML - File saved!
+13:30:42.304 [WARN ] model.graph.Node - The level of the fire has been increased of a negative amount, so it has been decreased.
+13:30:42.307 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+13:30:42.310 [WARN ] model.graph.Node - The level of the fire has been increased of a negative amount, so it has been decreased.
+13:30:42.313 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+13:30:42.316 [WARN ] model.graph.Node - The level of the fire can't be negative, has been set to 0.
+13:30:42.322 [WARN ] model.graph.Node - The level of the fire has been decreased of a negative amount, so it has been increased.
+13:30:42.363 [INFO ] model.graph.edge.Edge - An edge now flooded.
+13:30:42.412 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+13:30:42.421 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be negative, has been set to 0.
+13:30:42.490 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+13:30:42.492 [INFO ] model.graph.edge.Edge - An edge now flooded.
+13:30:42.526 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=0, fireLevel=20}"
+13:30:42.528 [INFO ] model.robot.Robot - A robot is now at "Node{, id=0, fireLevel=20}"
+13:30:42.533 [WARN ] model.graph.ground.Ground - The chances of getting flooded can't be greater than 1, has been set to 1.
+13:30:42.535 [INFO ] model.graph.edge.Edge - An edge now flooded.
+13:30:42.537 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=0, fireLevel=0}". It's now available for annother task.
+13:30:42.545 [INFO ] util.FileXMLTest - Source: Node{, id=0, fireLevel=0}
+13:30:42.546 [INFO ] util.FileXMLTest - Destination: Node{, id=1, fireLevel=0}
+13:30:42.546 [INFO ] util.FileXMLTest - Type: GroundType{label='Plat'}
+13:30:42.551 [INFO ] util.FileXMLTest - Valuation: 10.0
+13:30:42.716 [INFO ] util.WriterXML - File saved!
+13:30:42.843 [INFO ] util.FileXMLTest - Source: Node{, id=0, fireLevel=0}
+13:30:42.844 [INFO ] util.FileXMLTest - Destination: Node{, id=1, fireLevel=0}
+13:30:42.844 [INFO ] util.FileXMLTest - Type: GroundType{label='Plat'}
+13:30:42.845 [INFO ] util.FileXMLTest - Valuation: 10.0
+13:30:42.850 [INFO ] util.WriterXML - File saved!
+13:30:42.877 [INFO ] util.WriterXML - File saved!
+13:30:43.102 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.113 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.122 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.125 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.130 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.145 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.151 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.181 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.188 [WARN ] model.graph.ground.GroundType - No GroundType is matching : "EscarpÃ©"
+13:30:43.214 [INFO ] util.WriterXML - File saved!
+13:30:43.237 [INFO ] util.WriterXML - File saved!
+13:30:58.426 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+13:31:40.128 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+13:32:05.745 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+13:32:11.978 [INFO ] controler.ControleurGraph - Action "Ajouter un noeud" selected
+13:32:20.477 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+13:32:31.106 [INFO ] controler.ControleurGraph - Action "Ajouter un arc escarpé" selected
+13:32:52.115 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+13:33:00.018 [INFO ] controler.ControleurGraph - Action "Ajouter un arc plat" selected
+13:33:17.490 [INFO ] controler.ControleurElements - Action "Ajouter un feu" selected
+13:33:32.646 [INFO ] util.WriterXML - File saved!
+13:33:42.516 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+13:33:49.254 [INFO ] controler.ControleurElements - Action "Ajouter un robot chenille" selected
+13:34:02.698 [INFO ] controler.ControleurElements - Action "Ajouter un robot à pates" selected
+13:34:33.886 [INFO ] model.manager.Manager - Manager has been started.
+13:34:34.902 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=9, fireLevel=10}"
+13:34:34.903 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=19, fireLevel=10}"
+13:34:36.890 [INFO ] model.robot.Robot - A robot is now at "Node{, id=15, fireLevel=0}"
+13:34:36.890 [INFO ] model.robot.Robot - A robot is now at "Node{, id=19, fireLevel=10}"
+13:34:37.891 [INFO ] model.robot.Robot - A robot is now at "Node{, id=5, fireLevel=0}"
+13:34:37.895 [INFO ] model.graph.edge.Edge - An edge now flooded.
+13:34:37.895 [INFO ] model.graph.edge.Edge - An edge now flooded.
+13:34:37.895 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=19, fireLevel=0}". It's now available for annother task.
+13:34:38.892 [INFO ] model.robot.Robot - A robot is now at "Node{, id=9, fireLevel=10}"
+13:34:39.893 [INFO ] model.graph.edge.Edge - An edge now flooded.
+13:34:39.893 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=9, fireLevel=0}". It's now available for annother task.
+13:34:39.894 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=23, fireLevel=10}"
+13:34:41.895 [INFO ] model.robot.Robot - A robot is now at "Node{, id=5, fireLevel=0}"
+13:34:42.896 [INFO ] model.robot.Robot - A robot is now at "Node{, id=15, fireLevel=0}"
+13:34:43.897 [INFO ] model.robot.Robot - A robot is now at "Node{, id=13, fireLevel=0}"
+13:34:44.898 [INFO ] model.robot.Robot - A robot is now at "Node{, id=25, fireLevel=0}"
+13:34:45.899 [INFO ] model.robot.Robot - A robot is now at "Node{, id=23, fireLevel=10}"
+13:34:46.900 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=23, fireLevel=0}". It's now available for annother task.
+13:37:23.342 [INFO ] model.manager.Manager - Manager has been paused.
+13:37:52.334 [INFO ] model.manager.Manager - Manager has been paused.
+13:39:49.068 [INFO ] model.manager.Manager - Manager has been paused.
+13:40:12.415 [INFO ] controler.ControleurElements - Action "Ajouter un robot tout terrain" selected
+13:40:14.812 [INFO ] model.manager.Manager - Manager has been unpaused.
+13:40:14.814 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=9, fireLevel=10}"
+13:40:16.814 [INFO ] model.robot.Robot - A robot is now at "Node{, id=3, fireLevel=0}"
+13:40:17.815 [INFO ] model.robot.Robot - A robot is now at "Node{, id=5, fireLevel=0}"
+13:40:18.816 [INFO ] model.robot.Robot - A robot is now at "Node{, id=9, fireLevel=10}"
+13:40:19.817 [INFO ] model.graph.edge.Edge - An edge now flooded.
+13:40:19.817 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=9, fireLevel=0}". It's now available for annother task.
+13:40:19.818 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=19, fireLevel=10}"
+13:40:21.819 [INFO ] model.robot.Robot - A robot is now at "Node{, id=5, fireLevel=0}"
+13:40:22.820 [INFO ] model.robot.Robot - A robot is now at "Node{, id=15, fireLevel=0}"
+13:40:23.821 [INFO ] model.robot.Robot - A robot is now at "Node{, id=17, fireLevel=0}"
+13:40:24.822 [INFO ] model.robot.Robot - A robot is now at "Node{, id=19, fireLevel=10}"
+13:40:25.823 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=19, fireLevel=0}". It's now available for annother task.
+13:40:25.824 [INFO ] model.robot.Robot - A robot has been assigned to stop the fire at "Node{, id=23, fireLevel=10}"
+13:40:27.825 [INFO ] model.robot.Robot - A robot is now at "Node{, id=21, fireLevel=0}"
+13:40:28.826 [INFO ] model.robot.Robot - A robot is now at "Node{, id=23, fireLevel=10}"
+13:40:29.827 [INFO ] model.graph.edge.Edge - An edge now flooded.
+13:40:29.827 [INFO ] model.robot.Robot - A robot has stop a fire at "Node{, id=23, fireLevel=0}". It's now available for annother task.
