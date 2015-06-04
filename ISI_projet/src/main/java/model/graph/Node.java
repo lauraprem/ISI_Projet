@@ -55,7 +55,6 @@ public class Node extends Point implements Observable, Cloneable {
      * Construit un noeud avec une position,
      * et un niveau de feu
      *
-     * @param _label etiquette du noeud
      * @param _point position du noeud
      */
     public Node(Point _point, Integer fireLevel) {
@@ -81,7 +80,6 @@ public class Node extends Point implements Observable, Cloneable {
      * et une position
      *
      * @param _id    identifiant du noeud
-     * @param _label etiquette du noeud
      * @param _point position du noeud
      */
     private Node(Long _id, Point _point, Integer fireLevel, Boolean linked) {
@@ -250,10 +248,10 @@ public class Node extends Point implements Observable, Cloneable {
     }
 
     protected void setXString(String _x) {
-        this.x = Integer.parseInt(_x);
+        super.setXString(_x);
     }
 
     protected void setYString(String _y) {
-        this.y = Integer.parseInt(_y);
+        super.setXString(_y);
     }
 }

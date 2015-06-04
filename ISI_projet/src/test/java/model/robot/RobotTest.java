@@ -1,5 +1,7 @@
 package model.robot;
 
+import model.graph.Point;
+import model.graph.PointUtil;
 import model.graph.graph.GraphUtilTest;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
@@ -43,13 +45,40 @@ public class RobotTest extends GraphUtilTest {
     }
 
     @Test
-    public void testUpdatePosition() throws Exception {
+     public void testUpdatePosition() throws Exception {
         NodePath nodePath = new NodePath();
         nodePath.addLast(onFire);
         Util.invokeMethod(robot, "setPath", nodePath);
         robot.acceptPath();
         robot.update();
         assertEquals(onFire, robot.getCurrentNode());
+    }
+
+    @Test
+    public void testMultiUpdatePositionTrue() throws Exception {
+        NodePath nodePath = new NodePath();
+        onFire.setX(robot.getPosition().getX() + Robot.getVitesse()*1.5);
+        onFire.setY(robot.getPosition().getY());
+        nodePath.addLast(onFire);
+        Util.invokeMethod(robot, "setPath", nodePath);
+        robot.acceptPath();
+        robot.update();
+        robot.update();
+        assertEquals(onFire, robot.getCurrentNode());
+        assertEquals(new Point(robot.getCurrentNode()), robot.getPosition());
+    }
+
+    @Test
+    public void testMultiUpdatePositionFalse() throws Exception {
+        NodePath nodePath = new NodePath();
+        onFire.setX(robot.getPosition().getX() + Robot.getVitesse()*1.5);
+        onFire.setY(robot.getPosition().getY());
+        nodePath.addLast(onFire);
+        Util.invokeMethod(robot, "setPath", nodePath);
+        robot.acceptPath();
+        robot.update();
+        assertNotEquals(onFire, robot.getCurrentNode());
+        assertEquals(Robot.getVitesse(), PointUtil.getDistance(robot.getCurrentNode(), robot.getPosition()));
     }
 
     @Test

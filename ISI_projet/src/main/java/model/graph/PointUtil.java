@@ -37,4 +37,16 @@ public class PointUtil {
     public static Point getDelta(Point p1, Point p2) {
         return p2.sub(p1);
     }
+
+    /**
+     * Renvoie le vecteur entre deux points
+     *
+     * @param p1 premier point
+     * @param p2 second point
+     * @return un Point contenant les coordonnees du vecteur separant les deux points
+     */
+    public static Point getUnitaryDelta(Point p1, Point p2) {
+        Point delta = getDelta(p1, p2);
+        return delta.getLength() != 0 ? delta.scale(1/delta.getLength()) : new Point();
+    }
 }

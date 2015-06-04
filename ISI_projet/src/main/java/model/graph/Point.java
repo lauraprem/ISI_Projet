@@ -8,44 +8,56 @@ public class Point implements Cloneable {
     /**
      * Coordonnee x du point
      */
-    public Integer x = 0;
+    public Double x = 0.0;
     /**
      * Coordonne y du point
      */
-    public Integer y = 0;
+    public Double y = 0.0;
 
     public Point(Integer x, Integer y) {
-        this.x = x;
-        this.y = y;
+        this.x = x.doubleValue();
+        this.y = y.doubleValue();
+    }
+
+
+    public Point(Double x, Double y) {
+        this(x.intValue(), y.intValue());
     }
 
     public Point(Point p) {
-        this.x = p.x;
-        this.y = p.y;
+        this(p.x, p.y);
     }
 
     public Point(java.awt.Point p) {
-        this.x = p.x;
-        this.y = p.y;
+        this(p.x, p.y);
     }
 
     public Point() {
+        this(0, 0);
     }
 
     public Integer getX() {
-        return x;
+        return x.intValue();
     }
 
     public void setX(Integer x) {
-        this.x = x;
+        this.x = x.doubleValue();
+    }
+
+    public void setX(Double x) {
+        setX(x.intValue());
     }
 
     public Integer getY() {
-        return y;
+        return y.intValue();
     }
 
     public void setY(Integer y) {
-        this.y = y;
+        this.y = y.doubleValue();
+    }
+
+    public void setY(Double y) {
+        setY(y.intValue());
     }
 
     public Double getLength() {
@@ -53,16 +65,15 @@ public class Point implements Cloneable {
     }
 
     public Double getSquaredLength() {
-        Integer delta = x * x + y * y;
-        return delta.doubleValue();
+        return x * x + y * y;
     }
 
     protected void setXString(String _x) {
-        this.x = Integer.parseInt(_x);
+        this.x = ((Integer) Integer.parseInt(_x)).doubleValue();
     }
 
     protected void setYString(String _y) {
-        this.x = Integer.parseInt(_y);
+        this.y = ((Integer) Integer.parseInt(_y)).doubleValue();
     }
 
     public Point clone() {
@@ -107,5 +118,9 @@ public class Point implements Cloneable {
         int result = x.hashCode();
         result = 31 * result + y.hashCode();
         return result;
+    }
+
+    public Point scale(Double s) {
+        return new Point(x * s, y * s);
     }
 }

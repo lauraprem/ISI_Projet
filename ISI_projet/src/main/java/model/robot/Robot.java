@@ -2,6 +2,8 @@ package model.robot;
 
 import model.Observable;
 import model.graph.Node;
+import model.graph.Point;
+import model.graph.PointUtil;
 import model.graph.graph.IGraph;
 import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
@@ -18,6 +20,7 @@ import java.util.List;
  * @author Laura
  */
 public abstract class Robot implements Observable {
+    private static Double vitesse = 100.0;
     /**
      * Logger de la classe
      */
@@ -41,6 +44,17 @@ public abstract class Robot implements Observable {
      * Le noeud sur lequel se trouve le robot
      */
     private Node currentNode;
+
+    /**
+     * Le noeud sur lequel se dirige le robot
+     */
+    private Node nextNode = null;
+
+    /**
+     * La position du robot
+     */
+    private Point position;
+
 
     /**
      * Stratégie d'obtention du plus court chemin
@@ -87,6 +101,7 @@ public abstract class Robot implements Observable {
         busy = false;
         capacity = _capacity;
         currentNode = _startNode;
+        position = new Point(currentNode.x, currentNode.y);
         graph = _graph;
         pathFinder = _pathFinder;
         decreaseFireLevelCapacity = _decreaseFireLevelCapacity;
@@ -100,6 +115,8 @@ public abstract class Robot implements Observable {
      * @return true si le robot a éteind le feu, false sinon
      */
     public Boolean stopFire() {
+        if (!positionIsEqualToCurrentNode()) return Boolean.FALSE;
+
         if (!currentNode.isOnFire()) return Boolean.TRUE;
         if (decreaseFireLevelCapacity == null) currentNode.decreaseFireLevel(currentNode.getFireLevel());
         else currentNode.decreaseFireLevel(decreaseFireLevelCapacity);
@@ -118,7 +135,10 @@ public abstract class Robot implements Observable {
      */
     public Double proposeNode(Node destination) {
         path = new NodePath();
-        return pathFinder == null ? -1.0 : pathFinder.findShorterPath(graph, currentNode, destination, capacity, path);
+        return pathFinder == null ? -1.0 : (
+                nextNode == null ?
+                        pathFinder.findShorterPath(graph, currentNode, destination, capacity, path) :
+                        pathFinder.findShorterPath(graph, nextNode, destination, capacity, path) + PointUtil.getDelta(position, nextNode).getLength());
     }
 
     public void acceptPath() {
@@ -177,15 +197,24 @@ public abstract class Robot implements Observable {
     }
 
     public void update() {
-        Node next = (path.hasNext() ? path.next() : null);
-        if (next != null && !next.equals(currentNode)) {
-            currentNode = next;
+        if (positionIsEqualToCurrentNode())
+            nextNode = (path.hasNext() ? path.next() : null);
+
+        if (nextNode != null && !nextNode.equals(currentNode)) {
+            if (PointUtil.getDistance(position, nextNode) < vitesse) {
+                setPosition(new Point(nextNode));
+                currentNode = nextNode;
+                nextNode = null;
+            } else {
+                setPosition(position.add(PointUtil.getUnitaryDelta(position, nextNode).scale(vitesse)));
+            }
             logger.info(String.format("A robot is now at \"%s\"", currentNode));
         } else if (currentNode.isOnFire() && stopFire()) {
             setBusy(Boolean.FALSE);
             logger.info(String.format("A robot has stop a fire at \"%s\". " +
                     "It's now available for annother task.", currentNode));
         }
+
         notifyObserver();
     }
 
@@ -210,4 +239,31 @@ public abstract class Robot implements Observable {
     }
 
     public abstract String getURLImage();
+
+    public Point getPosition() {
+        return position;
+    }
+
+    private void setPosition(Point position) {
+        this.position = position;
+        notifyObserver();
+    }
+
+    public Node getNextNode() {
+        return nextNode;
+    }
+
+    private void setNextNode(Node nextNode) {
+        this.nextNode = nextNode;
+    }
+
+    private Boolean positionIsEqualToCurrentNode() {
+        return new Point(currentNode).equals(position);
+    }
+
+    public static Double getVitesse() {
+        return vitesse;
+    }
+
+
 }
