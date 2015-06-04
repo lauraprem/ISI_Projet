@@ -1,6 +1,7 @@
 package view;
 
 import model.graph.Node;
+import model.graph.Point;
 import model.robot.Robot;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ public class DrawingRobot {
 
         Image img = new ImageIcon(model.getURLImage()).getImage();
 
-        Node node = model.getCurrentNode();
-        graph.drawImage(img, node.getX() - 10, node.getY() - 5, null); // Position haut gauche
+        Point position = model.getPosition();
+        graph.drawImage(img, position.getX() - 10, position.getY() - 5, null); // Position haut gauche
     }
 }

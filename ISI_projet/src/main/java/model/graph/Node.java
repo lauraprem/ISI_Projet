@@ -42,6 +42,11 @@ public class Node extends Point implements Observable, Cloneable {
     private Boolean linked = Boolean.FALSE;
 
     /**
+     * permet de savoir si le noeud est lié au graphe
+     */
+    private Boolean takenCareOf = Boolean.FALSE;
+
+    /**
      * Construit un noeud avec une etiquette
      * et une position
      *
@@ -252,6 +257,14 @@ public class Node extends Point implements Observable, Cloneable {
     }
 
     protected void setYString(String _y) {
-        super.setXString(_y);
+        super.setYString(_y);
+    }
+
+    public Boolean isTakenCareOf() {
+        return takenCareOf;
+    }
+
+    public void setTakenCareOf(Boolean takenCareOf) {
+        this.takenCareOf = takenCareOf;
     }
 }

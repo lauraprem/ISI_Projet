@@ -25,7 +25,7 @@ public class Manager extends Thread implements Observable, Observer {
     /**
      * Temps entre les rafraichissements
      */
-    private final static Long refreshTime = 1000L;
+    private final static Long refreshTime = 200L;
     /**
      * logger de la classe
      */
@@ -98,8 +98,8 @@ public class Manager extends Thread implements Observable, Observer {
             endLoop = System.currentTimeMillis();
             if (endLoop - startLoop > refreshTime) {
                 startLoop = System.currentTimeMillis();
-                robots.forEach(robot -> robot.update());
-                askDistanceToUnoccupiedRobots(GraphUtil.getNodesOnFire(graph));
+                robots.forEach(Robot::update);
+                askDistanceToUnoccupiedRobots(GraphUtil.getUntakenCareOfNodesOnFire(graph));
             }
             if (isPaused())
                 logger.info("Manager has been paused.");
@@ -123,6 +123,25 @@ public class Manager extends Thread implements Observable, Observer {
             distances.clear();
             unoccupiedRobots = getUnoccupiedRobots();
             unoccupiedRobots.stream().forEach(robot -> {
+                Double distance = robot.proposeNode(node);
+                if (distance != -1)
+                    distances.put(robot, distance);
+            });
+            if (distances.size() != 0)
+                Collections.min(distances.entrySet(), (o1, o2) -> o1.getValue().compareTo(o2.getValue())).getKey().acceptPath();
+        }
+    }
+
+    /**
+     * Permet de connaitre la distance à laquelle se trouve chaque robot de chaque feu
+     *
+     * @param nodesOnFire liste des noeuds en feu
+     */
+    private synchronized void askDistanceToAllRobots(List<Node> nodesOnFire) {
+        Map<Robot, Double> distances = Collections.synchronizedMap(new HashMap());
+        for (Node node : nodesOnFire) {
+            distances.clear();
+            robots.stream().filter(robot1 -> !distances.containsKey(robot1)).forEach(robot -> {
                 Double distance = robot.proposeNode(node);
                 if (distance != -1)
                     distances.put(robot, distance);

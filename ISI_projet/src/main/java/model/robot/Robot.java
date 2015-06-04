@@ -20,7 +20,7 @@ import java.util.List;
  * @author Laura
  */
 public abstract class Robot implements Observable {
-    private static Double vitesse = 100.0;
+    private static Double vitesse = 3.0;
     /**
      * Logger de la classe
      */
@@ -101,7 +101,7 @@ public abstract class Robot implements Observable {
         busy = false;
         capacity = _capacity;
         currentNode = _startNode;
-        position = new Point(currentNode.x, currentNode.y);
+        position = new Point(currentNode);
         graph = _graph;
         pathFinder = _pathFinder;
         decreaseFireLevelCapacity = _decreaseFireLevelCapacity;
@@ -124,6 +124,7 @@ public abstract class Robot implements Observable {
             edge.getGround().increaseChancesOfGettingFlooded(0.1);
             edge.updateGround();
         });
+        if(!currentNode.isOnFire()) currentNode.setTakenCareOf(Boolean.FALSE);
         return !currentNode.isOnFire();
     }
 
@@ -143,6 +144,7 @@ public abstract class Robot implements Observable {
 
     public void acceptPath() {
         busy = Boolean.TRUE;
+        path.getDestination().setTakenCareOf(Boolean.TRUE);
         path.accept();
         logger.info(String.format("A robot has been assigned to stop the fire at \"%s\"", path.getDestination()));
     }
@@ -197,10 +199,12 @@ public abstract class Robot implements Observable {
     }
 
     public void update() {
-        if (positionIsEqualToCurrentNode())
+        if (nextNode == null) {
             nextNode = (path.hasNext() ? path.next() : null);
+            if (currentNode.equals(nextNode)) nextNode = (path.hasNext() ? path.next() : null);
+        }
 
-        if (nextNode != null && !nextNode.equals(currentNode)) {
+        if (nextNode != null && !currentNode.equals(nextNode)) {
             if (PointUtil.getDistance(position, nextNode) < vitesse) {
                 setPosition(new Point(nextNode));
                 currentNode = nextNode;
@@ -208,13 +212,12 @@ public abstract class Robot implements Observable {
             } else {
                 setPosition(position.add(PointUtil.getUnitaryDelta(position, nextNode).scale(vitesse)));
             }
-            logger.info(String.format("A robot is now at \"%s\"", currentNode));
-        } else if (currentNode.isOnFire() && stopFire()) {
+            logger.info(String.format("A robot is now at \"%s\"", position));
+        } else if (currentNode.isOnFire() && stopFire() || nextNode == null) {
             setBusy(Boolean.FALSE);
             logger.info(String.format("A robot has stop a fire at \"%s\". " +
                     "It's now available for annother task.", currentNode));
         }
-
         notifyObserver();
     }
 

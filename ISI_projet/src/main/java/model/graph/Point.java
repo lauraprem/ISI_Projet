@@ -15,13 +15,13 @@ public class Point implements Cloneable {
     public Double y = 0.0;
 
     public Point(Integer x, Integer y) {
-        this.x = x.doubleValue();
-        this.y = y.doubleValue();
+        this(x.doubleValue(), y.doubleValue());
     }
 
 
     public Point(Double x, Double y) {
-        this(x.intValue(), y.intValue());
+        this.x = x;
+        this.y = y;
     }
 
     public Point(Point p) {

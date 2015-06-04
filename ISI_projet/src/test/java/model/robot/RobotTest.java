@@ -51,6 +51,7 @@ public class RobotTest extends GraphUtilTest {
         Util.invokeMethod(robot, "setPath", nodePath);
         robot.acceptPath();
         robot.update();
+        robot.update();
         assertEquals(onFire, robot.getCurrentNode());
     }
 
