@@ -14,13 +14,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class ControleurFile implements ActionListener {
+public class ControlerFile implements ActionListener {
 
     private Manager model;
     private MainWindow vue;
     private File f;
 
-    public ControleurFile(MainWindow vue, Manager model) {
+    public ControlerFile(MainWindow vue, Manager model) {
         this.model = model;
         this.vue = vue;
     }

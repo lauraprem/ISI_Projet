@@ -6,7 +6,7 @@ import view.MainWindow;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
         Manager modele = new Manager();
