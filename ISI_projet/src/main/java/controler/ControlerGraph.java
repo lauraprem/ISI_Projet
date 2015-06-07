@@ -19,7 +19,7 @@ public class ControlerGraph implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String typeElement;
-		typeElement = null;
+		typeElement = "";
 
 		switch (e.getActionCommand()) {
 		case MenuLabel.ADD_NODE:

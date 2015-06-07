@@ -18,7 +18,7 @@ public class ControlerElements implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String typeElement = null;
+		String typeElement = "";
 
 		switch (e.getActionCommand()) {
 		case MenuLabel.ADD_TOUT_TERRAIN_ROBOT:

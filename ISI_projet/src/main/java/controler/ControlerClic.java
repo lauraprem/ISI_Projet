@@ -29,7 +29,7 @@ public class ControlerClic implements MouseListener {
 
 	public ControlerClic(Manager manager) {
 		this.model = manager;
-		this.typeElement = null;
+		this.typeElement = "";
 		resetCurrentNodes();
 	}
 
@@ -63,6 +63,7 @@ public class ControlerClic implements MouseListener {
 					if (n1 == null) {
 						n1 = model.getGraph().getAllNodes().get(i);
 					} else {
+						if(n1.getId()!=model.getGraph().getAllNodes().get(i).getId())
 						n2 = model.getGraph().getAllNodes().get(i);
 					}
 					break;
