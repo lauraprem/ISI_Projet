@@ -1,9 +1,14 @@
 package controler;
 
-import model.graph.graph.IGraph;
+import util.GraphUtil;
+import model.graph.IGraph;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
+<<<<<<< Updated upstream
 import util.utilXML.FileXML;
+=======
+import util.xml.FileXML;
+>>>>>>> Stashed changes
 import view.MainWindow;
 import view.MenuLabel;
 
@@ -74,7 +79,7 @@ public class ControlerFile implements ActionListener {
             case MenuLabel.RUN:
                 if (model != null) {
                     if (!model.isAlive()) {
-                        if (model.getGraph().isValid(new Djikstra())) {
+                        if (GraphUtil.isValid(model.getGraph(), new Djikstra())) {
                             model.unPauseManager();
                             model.start();
                         } else {

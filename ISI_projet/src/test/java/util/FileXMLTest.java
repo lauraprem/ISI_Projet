@@ -2,17 +2,26 @@ package util;
 
 import model.graph.Node;
 import model.graph.Point;
+<<<<<<< Updated upstream
 import model.graph.edge.Edge;
 import model.graph.graph.IGraph;
 import model.graph.graph.impl.Graph;
 import model.graph.ground.Ground;
 import model.graph.ground.GroundType;
 
+=======
+import model.graph.Edge;
+import model.graph.IGraph;
+import model.graph.impl.Graph;
+import model.graph.Ground;
+import model.graph.GroundType;
+>>>>>>> Stashed changes
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
+import util.xml.FileXML;
 
 import util.utilXML.FileXML;
 

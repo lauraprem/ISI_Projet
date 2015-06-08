@@ -1,12 +1,12 @@
 package model.robot.specialized;
 
 import model.graph.Node;
-import model.graph.graph.IGraph;
+import model.graph.IGraph;
 import model.pathSearch.IShorterPathSearch;
 import model.robot.Capacity;
 import model.robot.Robot;
 import util.Picture;
-import view.Observer;
+import util.struct.Observer;
 
 import java.io.File;
 

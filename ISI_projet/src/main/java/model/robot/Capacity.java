@@ -1,6 +1,6 @@
 package model.robot;
 
-import model.graph.ground.GroundType;
+import model.graph.GroundType;
 
 import java.util.ArrayList;
 import java.util.List;

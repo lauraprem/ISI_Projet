@@ -1,4 +1,6 @@
-package model.graph;
+package util;
+
+import model.graph.Point;
 
 /**
  * @author Alexandre

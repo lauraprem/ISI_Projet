@@ -1,11 +1,11 @@
 package model.pathSearch;
 
 import model.graph.Node;
-import model.graph.edge.Edge;
-import model.graph.graph.IGraph;
-import model.graph.graph.impl.Graph;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
+import model.graph.Edge;
+import model.graph.IGraph;
+import model.graph.impl.Graph;
+import model.graph.Ground;
+import model.graph.GroundType;
 import model.pathSearch.impl.Djikstra;
 import model.robot.NodePath;
 import org.junit.Before;

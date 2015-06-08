@@ -5,10 +5,10 @@ import java.awt.event.MouseListener;
 
 import model.graph.Node;
 import model.graph.Point;
-import model.graph.PointUtil;
-import model.graph.edge.Edge;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
+import util.PointUtil;
+import model.graph.Edge;
+import model.graph.Ground;
+import model.graph.GroundType;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;

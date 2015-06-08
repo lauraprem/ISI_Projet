@@ -1,9 +1,10 @@
 package model.graph.edge;
 
+import model.graph.Edge;
 import model.graph.Node;
 import model.graph.Point;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
+import model.graph.Ground;
+import model.graph.GroundType;
 import org.junit.Before;
 import org.junit.Test;
 

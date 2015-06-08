@@ -1,8 +1,12 @@
-package model.graph.graph;
+package util;
 
 import model.graph.Node;
-import model.graph.graph.impl.Graph;
-import model.graph.ground.GroundType;
+import model.graph.IGraph;
+import model.graph.impl.Graph;
+import model.graph.GroundType;
+import model.pathSearch.IShorterPathSearch;
+import model.robot.Capacity;
+import model.robot.NodePath;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,5 +60,25 @@ public class GraphUtil {
                 if (groundTypes.contains(edge.getGround().getType())) newGraph.addEdge(edge);
             });
         return newGraph;
+    }
+
+
+    /**
+     * Permet de savoir si le graphe est connexe en utlisant un path finder pour vérifier que l'on peut accéder à tous les noeuds depuis n'importe quel noeud
+     *
+     * @param pathSearch méthode de parcours du graphe
+     * @return true si la graphe est connexe false sinon
+     */
+    public static Boolean isValid(IGraph graph, IShorterPathSearch pathSearch) {
+        List<Node> nodes = graph.getAllNodes();
+        if (nodes.size() == 0) return Boolean.FALSE;
+        for (int i = 0; i < nodes.size(); i++) {
+            for (int j = i + 1; j < nodes.size(); j++) {
+                if (pathSearch.findShorterPath(
+                        graph, nodes.get(i), nodes.get(j), Capacity.allCapacity(), new NodePath())
+                        < 0.0) return Boolean.FALSE;
+            }
+        }
+        return Boolean.TRUE;
     }
 }

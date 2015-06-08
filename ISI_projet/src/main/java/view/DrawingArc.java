@@ -1,6 +1,6 @@
 package view;
 
-import model.graph.edge.Edge;
+import model.graph.Edge;
 
 import java.awt.*;
 

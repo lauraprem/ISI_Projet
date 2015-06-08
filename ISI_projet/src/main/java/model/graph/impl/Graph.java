@@ -1,20 +1,15 @@
-package model.graph.graph.impl;
+package model.graph.impl;
 
 import model.graph.Node;
-import model.graph.edge.Edge;
-import model.graph.graph.GraphUtil;
-import model.graph.graph.IGraph;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
-import model.pathSearch.IShorterPathSearch;
-import model.robot.Capacity;
-import model.robot.NodePath;
-import view.Observer;
-import view.Updatable;
+import model.graph.Edge;
+import util.GraphUtil;
+import model.graph.IGraph;
+import model.graph.Ground;
+import model.graph.GroundType;
+import util.struct.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -69,38 +64,6 @@ public class Graph implements IGraph {
      * @param _node1
      * @param _node2
      */
-    public void addEdge(Node _node1, Node _node2) {
-        addEdge(_node1, _node2, null);
-    }
-
-    /**
-     * Ajoute une arrete au graph entre deux noeuds
-     *
-     * @param _node1
-     * @param _node2
-     * @param o
-     */
-    @Override
-    public void addEdge(Node _node1, Node _node2, Observer o) {
-        addEdge(_node1, _node2, 0.0, null, o);
-    }
-
-    /**
-     * Ajoute une arrete au graph entre deux noeuds
-     *
-     * @param _node1
-     * @param _node2
-     */
-    public void addEdge(Node _node1, Node _node2, Double length, Ground ground) {
-        addEdge(_node1, _node2, length, ground, null);
-    }
-
-    /**
-     * Ajoute une arrete au graph entre deux noeuds
-     *
-     * @param _node1
-     * @param _node2
-     */
     public void addEdge(Node _node1, Node _node2, Double length, Ground ground, Observer o) {
         _node1.setLinked(true);
         _node2.setLinked(true);
@@ -111,22 +74,22 @@ public class Graph implements IGraph {
     }
 
     /**
-     * @param _node1
-     * @param _node2
+     * @param node1
+     * @param node2
      * @return vrai si le graph possede une arrete entre les noeuds _n1 et _n2
      */
-    public boolean hasEdge(Node _node1, Node _node2) {
+    public boolean hasEdge(Node node1, Node node2) {
         for (Edge edge : edges) {
-            if ((edge.getDestination().equals(_node1) && edge.getSource().equals(_node2)) || (edge.getDestination().equals(_node2) && edge.getSource().equals(_node1))) {
+            if ((edge.getDestination().equals(node1) && edge.getSource().equals(node2)) || (edge.getDestination().equals(node2) && edge.getSource().equals(node1))) {
                 return true;
             }
         }
         return false;
     }
 
-    public Edge getEdgeFromNodes(Node _node1, Node _node2) {
+    public Edge getEdgeFromNodes(Node node1, Node node2) {
         for (Edge edge : edges) {
-            if ((edge.getDestination().equals(_node1) && edge.getSource().equals(_node2)) || (edge.getDestination().equals(_node2) && edge.getSource().equals(_node1))) {
+            if ((edge.getDestination().equals(node1) && edge.getSource().equals(node2)) || (edge.getDestination().equals(node2) && edge.getSource().equals(node1))) {
                 return edge;
             }
         }
@@ -137,12 +100,12 @@ public class Graph implements IGraph {
     /**
      * ajoute un noeud au graph
      *
-     * @param _node
+     * @param node
      * @return retourne vrai si le noeud a été ajouté
      */
-    public Boolean addNode(Node _node) {
-        if (!nodes.contains(_node)) {
-            nodes.add(_node);
+    public Boolean addNode(Node node) {
+        if (!nodes.contains(node)) {
+            nodes.add(node);
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -152,11 +115,11 @@ public class Graph implements IGraph {
     /**
      * ajoute un noeud au graph
      *
-     * @param _node
+     * @param node
      */
-    public Boolean addNode(Node _node, Observer o) {
-        if (addNode(_node)) {
-            if (o != null) _node.addObserver(o);
+    public Boolean addNode(Node node, Observer o) {
+        if (addNode(node)) {
+            if (o != null) node.addObserver(o);
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -178,24 +141,17 @@ public class Graph implements IGraph {
     }
 
     /**
-     * @return le nombre de noeuds du graph
-     */
-    public int getNbNodes() {
-        return nodes.size();
-    }
-
-    /**
      * renvoie tous les noeuds du graph qui sont voisins de _n
      *
-     * @param _n
+     * @param n
      */
-    public List<Node> getAdjNodes(Node _n) {
+    public List<Node> getAdjNodes(Node n) {
         ArrayList<Node> adjNodes = new ArrayList<Node>();
         for (Edge edge : edges) {
-            if (edge.getDestination().equals(_n)) {
+            if (edge.getDestination().equals(n)) {
                 adjNodes.add(edge.getSource());
             }
-            if (edge.getSource().equals(_n)) {
+            if (edge.getSource().equals(n)) {
                 adjNodes.add(edge.getDestination());
             }
         }
@@ -206,10 +162,10 @@ public class Graph implements IGraph {
     /**
      * renvoie tous les noeuds du graph qui sont voisins de _n
      *
-     * @param _n
+     * @param n
      */
-    public List<Edge> getAdjEdges(Node _n) {
-        return edges.stream().filter(edge -> edge.getSource().equals(_n) || edge.getDestination().equals(_n)).collect(Collectors.toList());
+    public List<Edge> getAdjEdges(Node n) {
+        return edges.stream().filter(edge -> edge.getSource().equals(n) || edge.getDestination().equals(n)).collect(Collectors.toList());
     }
 
 
@@ -249,24 +205,6 @@ public class Graph implements IGraph {
         int result = edges.hashCode();
         result = 31 * result + nodes.hashCode();
         return result;
-    }
-
-    /**
-     * Permet de savoir si le graphe est connexe en utlisant un path finder pour vérifier que l'on peut accéder à tous les noeuds depuis n'importe quel noeud
-     *
-     * @param pathSearch méthode de parcours du graphe
-     * @return true si la graphe est connexe false sinon
-     */
-    public Boolean isValid(IShorterPathSearch pathSearch) {
-        if (nodes.size() == 0) return Boolean.FALSE;
-        for (int i = 0; i < nodes.size(); i++) {
-            for (int j = i + 1; j < nodes.size(); j++) {
-                if (pathSearch.findShorterPath(
-                        this, nodes.get(i), nodes.get(j), Capacity.allCapacity(), new NodePath())
-                        < 0.0) return Boolean.FALSE;
-            }
-        }
-        return Boolean.TRUE;
     }
 
     @Override

@@ -1,15 +1,15 @@
 package model.manager;
 
-import model.Observable;
+import util.struct.Observable;
 import model.graph.Node;
-import model.graph.edge.Edge;
-import model.graph.graph.GraphUtil;
-import model.graph.graph.IGraph;
-import model.graph.graph.impl.Graph;
+import model.graph.Edge;
+import util.GraphUtil;
+import model.graph.IGraph;
+import model.graph.impl.Graph;
 import model.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import view.Observer;
+import util.struct.Observer;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -233,7 +233,7 @@ public class Manager extends Thread implements Observable, Observer {
     @Override
     public synchronized void notifyObserver() {
         if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
+            observers.stream().filter(obs -> obs != null).forEach(Observer::update);
     }
 
 

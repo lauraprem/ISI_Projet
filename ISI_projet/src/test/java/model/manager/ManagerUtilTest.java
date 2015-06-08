@@ -1,7 +1,7 @@
 package model.manager;
 
 import model.graph.Node;
-import model.graph.graph.impl.Graph;
+import model.graph.impl.Graph;
 import model.pathSearch.impl.Djikstra;
 import model.robot.Robot;
 import model.robot.specialized.RobotChenille;

@@ -2,6 +2,7 @@ package model.graph;
 
 import org.junit.Before;
 import org.junit.Test;
+import util.PointUtil;
 
 import static org.junit.Assert.assertEquals;
 

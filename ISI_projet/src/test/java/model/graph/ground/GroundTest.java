@@ -1,5 +1,7 @@
 package model.graph.ground;
 
+import model.graph.Ground;
+import model.graph.GroundType;
 import org.junit.Before;
 import org.junit.Test;
 

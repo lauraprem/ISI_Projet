@@ -1,13 +1,10 @@
 package model.graph.graph;
 
-import model.graph.Node;
-import model.graph.Point;
-import model.graph.edge.Edge;
-import model.graph.graph.impl.Graph;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
+import model.graph.*;
+import model.graph.impl.Graph;
 import org.junit.Before;
 import org.junit.Test;
+import util.GraphUtil;
 
 import java.util.ArrayList;
 

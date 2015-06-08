@@ -1,9 +1,9 @@
 package model.graph;
 
-import model.Observable;
+import util.struct.Observable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import view.Observer;
+import util.struct.Observer;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -51,20 +51,20 @@ public class Node extends Point implements Observable, Cloneable {
      * Construit un noeud avec une etiquette
      * et une position
      *
-     * @param _point position du noeud
+     * @param point position du noeud
      */
-    public Node(Point _point) {
-        this(_point, 0);
+    public Node(Point point) {
+        this(point, 0);
     }
 
     /**
      * Construit un noeud avec une position,
      * et un niveau de feu
      *
-     * @param _point position du noeud
+     * @param point position du noeud
      */
-    public Node(Point _point, Integer fireLevel) {
-        super(_point);
+    public Node(Point point, Integer fireLevel) {
+        super(point);
         try {
             setIfUniqueId(getMaxId());
         } catch (IdAlreadyUsedException e) {
@@ -85,12 +85,12 @@ public class Node extends Point implements Observable, Cloneable {
      * Construit un noeud avec une etiquette
      * et une position
      *
-     * @param _id    identifiant du noeud
-     * @param _point position du noeud
+     * @param id    identifiant du noeud
+     * @param point position du noeud
      */
-    private Node(Long _id, Point _point, Integer fireLevel, Boolean linked) {
-        super(_point);
-        this.id = _id;
+    private Node(Long id, Point point, Integer fireLevel, Boolean linked) {
+        super(point);
+        this.id = id;
         this.fireLevel = fireLevel;
         this.linked = linked;
     }
@@ -109,7 +109,7 @@ public class Node extends Point implements Observable, Cloneable {
         ids = new LinkedList<>();
     }
 
-    public static void addId(Long id) {
+    private static void addId(Long id) {
         ids.add(id);
         ids.sort(Comparator.<Long>naturalOrder());
     }
@@ -250,7 +250,7 @@ public class Node extends Point implements Observable, Cloneable {
     @Override
     public void notifyObserver() {
         if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
+            observers.stream().filter(obs -> obs != null).forEach(Observer::update);
     }
 
     protected void setXString(String _x) {

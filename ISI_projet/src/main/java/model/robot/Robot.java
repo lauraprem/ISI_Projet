@@ -1,16 +1,16 @@
 package model.robot;
 
-import model.Observable;
+import util.struct.Observable;
 import model.graph.Node;
 import model.graph.Point;
-import model.graph.PointUtil;
-import model.graph.graph.IGraph;
-import model.graph.ground.GroundType;
+import util.PointUtil;
+import model.graph.IGraph;
+import model.graph.GroundType;
 import model.pathSearch.IShorterPathSearch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import view.Observer;
-import view.Updatable;
+import util.struct.Observer;
+import util.struct.Updatable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -218,7 +218,7 @@ public abstract class Robot implements Observable, Updatable {
     @Override
     public void notifyObserver() {
         if (observers != null)
-            observers.stream().filter(obs -> obs != null).forEach(view.Observer::update);
+            observers.stream().filter(obs -> obs != null).forEach(Observer::update);
     }
 
     public abstract String getURLImage();
