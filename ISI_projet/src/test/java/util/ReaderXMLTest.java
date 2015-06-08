@@ -1,30 +1,13 @@
 package util;
 
-import model.graph.Node;
-import model.graph.Point;
-<<<<<<< Updated upstream
-import model.graph.edge.Edge;
-import model.graph.graph.IGraph;
-import model.graph.graph.impl.Graph;
-import model.graph.ground.Ground;
-import model.graph.ground.GroundType;
-
-=======
-import model.graph.Edge;
-import model.graph.IGraph;
+import model.graph.*;
 import model.graph.impl.Graph;
-import model.graph.Ground;
-import model.graph.GroundType;
->>>>>>> Stashed changes
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 import util.xml.ReaderXML;
 
-import util.utilXML.ReaderXML;
-
 import javax.xml.parsers.ParserConfigurationException;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

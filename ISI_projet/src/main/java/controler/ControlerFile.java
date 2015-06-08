@@ -4,11 +4,7 @@ import util.GraphUtil;
 import model.graph.IGraph;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
-<<<<<<< Updated upstream
-import util.utilXML.FileXML;
-=======
 import util.xml.FileXML;
->>>>>>> Stashed changes
 import view.MainWindow;
 import view.MenuLabel;
 
