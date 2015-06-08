@@ -1,4 +1,4 @@
-package util;
+package util.utilXML;
 
 /**
  * Sous-element accepter dans le XML(OSM rootelement)

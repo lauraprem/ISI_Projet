@@ -3,12 +3,13 @@ package controler;
 import model.graph.graph.IGraph;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
-import util.FileXML;
+import util.utilXML.FileXML;
 import view.MainWindow;
 import view.MenuLabel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
