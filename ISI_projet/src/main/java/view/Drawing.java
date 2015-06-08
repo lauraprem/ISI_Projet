@@ -10,11 +10,9 @@ public class Drawing extends JPanel implements Observer {
 
     private Image img;
     private Manager model;
-    private int magnificationFactor;
 
     public Drawing(Manager model, String img) {
         this(new ImageIcon(img).getImage(), 0);
-        this.magnificationFactor = 0;
 
         this.model = model;
         model.addObserver(this);
@@ -22,7 +20,6 @@ public class Drawing extends JPanel implements Observer {
 
     public Drawing(Manager model, String img, int magnificationFactor) {
         this(new ImageIcon(img).getImage(), magnificationFactor);
-        this.magnificationFactor = magnificationFactor;
 
         this.model = model;
         model.addObserver(this);
@@ -31,7 +28,7 @@ public class Drawing extends JPanel implements Observer {
     public Drawing(Image img, int magnificationFactor) {
         this.img = img;
         Dimension size = new Dimension(
-                img.getWidth(null) + magnificationFactor, img.getHeight(null)
+                img.getWidth(null), img.getHeight(null)
                 + magnificationFactor);
         setPreferredSize(size);
         setMinimumSize(size);
@@ -48,8 +45,8 @@ public class Drawing extends JPanel implements Observer {
         graph.setStroke(new BasicStroke(5.0f));
 
         // Carte de fond
-        g.drawImage(img, 0, 0, img.getWidth(null) + magnificationFactor,
-                img.getHeight(null) + magnificationFactor, this);
+        g.drawImage(img, 0, 0, img.getWidth(null) ,
+                img.getHeight(null), this);
 
         // Dessine les arc
         showEdges(graph);
@@ -64,8 +61,7 @@ public class Drawing extends JPanel implements Observer {
     public void showEdges(Graphics g) {
         if (model.getGraph().getAllEdges().size() > 0)
             for (int i = 0; i < model.getGraph().getAllEdges().size(); i++) {
-                new DrawingArc(model.getGraph().getAllEdges().get(i),
-                        magnificationFactor, g);
+                new DrawingArc(model.getGraph().getAllEdges().get(i), g);
             }
 
     }
@@ -95,15 +91,7 @@ public class Drawing extends JPanel implements Observer {
     public void update() {
         repaint();
     }
-
-    public int getMagnificationFactor() {
-        return magnificationFactor;
-    }
-
-    public void setMagnificationFactor(int magnificationFactor) {
-        this.magnificationFactor = magnificationFactor;
-    }
-
+    
     public Image getImg() {
         return img;
     }

@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class DrawingArc {
 
-    public DrawingArc(Edge model, int magnificationFactor, Graphics graph) {
+    public DrawingArc(Edge model, Graphics graph) {
         if (graph == null) {
             return;
         }

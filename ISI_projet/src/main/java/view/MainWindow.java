@@ -11,9 +11,10 @@ public class MainWindow extends JFrame {
 
     private MenuFichier menuFile;
     private Drawing drawing;
+    private Manager model;
 
     public MainWindow(Manager model) {
-        super(AboutLabel.NOM_APPLICATION);
+        super(MenuLabel.NOM_APPLICATION);
 
         getContentPane().setLayout(new BorderLayout(10, 10));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -43,4 +44,12 @@ public class MainWindow extends JFrame {
     public void setDessin(Drawing drawing) {
         this.drawing = drawing;
     }
+
+	public Manager getModel() {
+		return model;
+	}
+
+	public void setModel(Manager model) {
+		this.model = model;
+	}
 }

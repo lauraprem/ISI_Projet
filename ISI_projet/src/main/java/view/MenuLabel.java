@@ -52,6 +52,7 @@ public class MenuLabel {
     public final static String ABOUT_FR = "A propos";
     public final static String UPDATE_BACK = "UPDATE_BACK";
     public final static String UPDATE_BACK_FR = "Changer la carte";
+    public final static String NOM_APPLICATION = "Robocup Rescue";
     private MenuLabel() {
 
     }

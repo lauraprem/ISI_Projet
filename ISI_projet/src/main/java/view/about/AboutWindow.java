@@ -1,21 +1,27 @@
 package view.about;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import view.MenuLabel;
 
 public class AboutWindow extends JFrame {
 
     public AboutWindow() {
-        super("A propos de " + AboutLabel.NOM_APPLICATION);
+        super("A propos de " + MenuLabel.NOM_APPLICATION);
         Dimension size = new Dimension(300, 200);
         this.setPreferredSize(size);
         this.getContentPane().setLayout(new BorderLayout(10, 10));
 
-        JLabel labelTitle = new JLabel(AboutLabel.NOM_APPLICATION + " " + AboutLabel.VERSION, 0);
+        JLabel labelTitle = new JLabel(MenuLabel.NOM_APPLICATION + " " + AboutLabel.VERSION, 0);
         labelTitle.setFont(new Font("Verdana", 1, 20));
         this.add(labelTitle, BorderLayout.NORTH);
 
-        JLabel labelDesrcDuties = new JLabel(AboutLabel.HTLM + AboutLabel.DESCRIPTION_LABEL + "<br>" + AboutLabel.DUTIES + "." + AboutLabel.HTLM_CLOSE);
+        JLabel labelDesrcDuties = new JLabel(AboutLabel.HTLM + AboutLabel.DESCRIPTION + "<br>" + AboutLabel.DUTIES + "." + AboutLabel.HTLM_CLOSE);
         labelDesrcDuties.setFont(new Font("Verdana", 1, 12));
         this.add(labelDesrcDuties, BorderLayout.CENTER);
 
