@@ -4,13 +4,14 @@ import model.graph.Node;
 import model.graph.edge.Edge;
 import model.graph.ground.Ground;
 import view.Observer;
+import view.Updatable;
 
 import java.util.List;
 
 /**
  * @author Laura
  */
-public interface IGraph {
+public interface IGraph extends Updatable {
 
 
     /**

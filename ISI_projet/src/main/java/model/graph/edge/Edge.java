@@ -4,11 +4,12 @@ import model.graph.Node;
 import model.graph.ground.Ground;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import view.Updatable;
 
 /**
  * Classe representant une arrete orientee et valuee
  */
-public class Edge implements Cloneable {
+public class Edge implements Cloneable, Updatable {
     private static final Logger logger = LogManager.getLogger();
 
     /**
@@ -116,12 +117,10 @@ public class Edge implements Cloneable {
         this.ground = ground;
     }
 
-    public Boolean updateGround() {
+    public void update() {
         if (ground.updateType()) {
             logger.info(String.format("An edge now flooded."));
-            return Boolean.TRUE;
         }
-        return Boolean.FALSE;
     }
 
     /**

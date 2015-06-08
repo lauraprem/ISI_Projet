@@ -2,21 +2,27 @@ package model.graph.graph.impl;
 
 import model.graph.Node;
 import model.graph.edge.Edge;
+import model.graph.graph.GraphUtil;
 import model.graph.graph.IGraph;
 import model.graph.ground.Ground;
+import model.graph.ground.GroundType;
 import model.pathSearch.IShorterPathSearch;
 import model.robot.Capacity;
 import model.robot.NodePath;
 import view.Observer;
+import view.Updatable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
  * Created by alexandreg on 11/03/2015.
  */
 public class Graph implements IGraph {
+    private final Random random = new Random();
 
     /**
      * Liste des arretes composant le graphe
@@ -100,7 +106,8 @@ public class Graph implements IGraph {
         _node2.setLinked(true);
         addNode(_node1, o);
         addNode(_node2, o);
-        edges.add(new Edge(_node1, _node2, length, ground));
+        if (hasEdge(_node1, _node2)) getEdgeFromNodes(_node1, _node2).setGround(ground);
+        else edges.add(new Edge(_node1, _node2, length, ground));
     }
 
     /**
@@ -260,5 +267,21 @@ public class Graph implements IGraph {
             }
         }
         return Boolean.TRUE;
+    }
+
+    @Override
+    public void update() {
+        // Propagation  du feu
+        GraphUtil.getNodesOnFire(this)
+                .forEach(onFireNode ->
+                        getAdjEdges(onFireNode).stream()
+                                .filter(edge -> !GroundType.FLOODED.equals(edge.getGround().getType())).forEach(
+                                edge1 -> {
+                                    if (!edge1.getSource().getId().equals(onFireNode.getId()) && random.nextDouble() <= Node.fireProbability)
+                                        edge1.getSource().increaseFireLevel(10);
+                                    else if (!edge1.getDestination().getId().equals(onFireNode.getId()) && random.nextDouble() <= Node.fireProbability)
+                                        edge1.getDestination().increaseFireLevel(10);
+                                }
+                        ));
     }
 }

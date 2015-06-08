@@ -4,7 +4,5 @@ package view;
  * @author Corinne & Laura
  */
 
-public interface Observer {
-
-    public void update();
+public interface Observer extends Updatable {
 }

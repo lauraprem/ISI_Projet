@@ -10,6 +10,7 @@ import model.pathSearch.IShorterPathSearch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import view.Observer;
+import view.Updatable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
  *
  * @author Laura
  */
-public abstract class Robot implements Observable {
+public abstract class Robot implements Observable, Updatable {
     private static Double vitesse = 3.0;
     /**
      * Logger de la classe
@@ -121,8 +122,8 @@ public abstract class Robot implements Observable {
         if (decreaseFireLevelCapacity == null) currentNode.decreaseFireLevel(currentNode.getFireLevel());
         else currentNode.decreaseFireLevel(decreaseFireLevelCapacity);
         graph.getAdjEdges(currentNode).forEach(edge -> {
-            edge.getGround().increaseChancesOfGettingFlooded(0.1);
-            edge.updateGround();
+            edge.getGround().increaseChancesOfGettingFlooded(0.01);
+            edge.update();
         });
         if(!currentNode.isOnFire()) currentNode.setTakenCareOf(Boolean.FALSE);
         return !currentNode.isOnFire();
@@ -143,10 +144,12 @@ public abstract class Robot implements Observable {
     }
 
     public void acceptPath() {
-        busy = Boolean.TRUE;
-        path.getDestination().setTakenCareOf(Boolean.TRUE);
-        path.accept();
-        logger.info(String.format("A robot has been assigned to stop the fire at \"%s\"", path.getDestination()));
+        if(path.getDestination() != null) {
+            busy = Boolean.TRUE;
+            path.getDestination().setTakenCareOf(Boolean.TRUE);
+            path.accept();
+            logger.info(String.format("A robot has been assigned to stop the fire at \"%s\"", path.getDestination()));
+        }
     }
 
     public List<GroundType> getCapacity() {
@@ -198,29 +201,6 @@ public abstract class Robot implements Observable {
         this.decreaseFireLevelCapacity = decreaseFireLevelCapacity;
     }
 
-    public void update() {
-        if (nextNode == null) {
-            nextNode = (path.hasNext() ? path.next() : null);
-            if (currentNode.equals(nextNode)) nextNode = (path.hasNext() ? path.next() : null);
-        }
-
-        if (nextNode != null && !currentNode.equals(nextNode)) {
-            if (PointUtil.getDistance(position, nextNode) < vitesse) {
-                setPosition(new Point(nextNode));
-                currentNode = nextNode;
-                nextNode = null;
-            } else {
-                setPosition(position.add(PointUtil.getUnitaryDelta(position, nextNode).scale(vitesse)));
-            }
-            logger.info(String.format("A robot is now at \"%s\"", position));
-        } else if (currentNode.isOnFire() && stopFire() || nextNode == null) {
-            setBusy(Boolean.FALSE);
-            logger.info(String.format("A robot has stop a fire at \"%s\". " +
-                    "It's now available for annother task.", currentNode));
-        }
-        notifyObserver();
-    }
-
     private void setPath(NodePath path) {
         this.path = path;
     }
@@ -269,4 +249,37 @@ public abstract class Robot implements Observable {
     }
 
 
+    public void update() {
+        if (nextNode == null) {
+            nextNode = (path.hasNext() ? path.next() : null);
+            if (currentNode.equals(nextNode)) nextNode = (path.hasNext() ? path.next() : null);
+        }
+
+        if (nextNode != null && !currentNode.equals(nextNode)) {
+            if(!positionIsEqualToCurrentNode() && !capacity.contains(graph.getEdgeFromNodes(currentNode, nextNode).getGround().getType())) {
+                if(path.getDestination() == null) nextNode.setTakenCareOf(Boolean.FALSE);
+                else path.getDestination().setTakenCareOf(Boolean.FALSE);
+                nextNode = null;
+                path = new NodePath();
+            }
+            else if (PointUtil.getDistance(position, nextNode) < vitesse) {
+                setPosition(new Point(nextNode));
+                currentNode = nextNode;
+                nextNode = null;
+            } else {
+                setPosition(position.add(PointUtil.getUnitaryDelta(position, nextNode).scale(vitesse)));
+            }
+            logger.info(String.format("A robot is now at \"%s\"", position));
+        } else if (currentNode.isOnFire() && stopFire()) {
+            setBusy(Boolean.FALSE);
+            logger.info(String.format("A robot has stop a fire at \"%s\". " +
+                    "It's now available for annother task.", currentNode));
+        }
+
+        if(busy == Boolean.TRUE && nextNode == null && !positionIsEqualToCurrentNode()) {
+            busy = Boolean.FALSE;
+            nextNode = null;
+        }
+        notifyObserver();
+    }
 }

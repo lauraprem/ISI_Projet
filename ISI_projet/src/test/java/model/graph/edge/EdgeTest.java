@@ -34,7 +34,7 @@ public class EdgeTest {
                 new Node(new Point(-1, -2)),
                 3.0,
                 new Ground(GroundType.FLAT, 1.0));
-        edge.updateGround();
+        edge.update();
         assertEquals(String.format("Ground type is %s should be %s", edge.getGround().getType(), expected), expected, edge.getGround().getType());
     }
 

@@ -100,6 +100,7 @@ public class Manager extends Thread implements Observable, Observer {
                 startLoop = System.currentTimeMillis();
                 robots.forEach(Robot::update);
                 askDistanceToUnoccupiedRobots(GraphUtil.getUntakenCareOfNodesOnFire(graph));
+                graph.update();
             }
             if (isPaused())
                 logger.info("Manager has been paused.");

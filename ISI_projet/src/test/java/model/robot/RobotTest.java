@@ -1,8 +1,11 @@
 package model.robot;
 
+import model.graph.Node;
 import model.graph.Point;
 import model.graph.PointUtil;
 import model.graph.graph.GraphUtilTest;
+import model.graph.ground.Ground;
+import model.graph.ground.GroundType;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;
@@ -45,7 +48,7 @@ public class RobotTest extends GraphUtilTest {
     }
 
     @Test
-     public void testUpdatePosition() throws Exception {
+    public void testUpdatePosition() throws Exception {
         NodePath nodePath = new NodePath();
         nodePath.addLast(onFire);
         Util.invokeMethod(robot, "setPath", nodePath);
@@ -53,6 +56,33 @@ public class RobotTest extends GraphUtilTest {
         robot.update();
         robot.update();
         assertEquals(onFire, robot.getCurrentNode());
+    }
+
+    @Test
+    public void testUpdatePositionChangeEdge() throws Exception {
+        NodePath nodePath = new NodePath();
+        nodePath.addLast(onFire);
+        Util.invokeMethod(robot, "setPath", nodePath);
+        robot.acceptPath();
+        robot.update();
+        graph.getEdgeFromNodes(robot.getCurrentNode(), robot.getNextNode()).setGround(new Ground(GroundType.STEEP));
+        robot.update();
+        assertNotEquals(onFire, robot.getCurrentNode());
+    }
+
+    @Test
+    public void testUpdatePositionChangeEdgeTwice() throws Exception {
+        NodePath nodePath = new NodePath();
+        nodePath.addLast(onFire);
+        Util.invokeMethod(robot, "setPath", nodePath);
+        Node sourceNode = robot.getCurrentNode();
+        robot.acceptPath();
+        robot.update();
+        graph.getEdgeFromNodes(robot.getCurrentNode(), robot.getNextNode()).setGround(new Ground(GroundType.STEEP));
+        robot.update();
+        graph.getEdgeFromNodes(robot.getCurrentNode(), onFire).setGround(new Ground(GroundType.FLAT));
+        robot.update();
+        assertEquals(sourceNode, robot.getCurrentNode());
     }
 
     @Test

@@ -14,6 +14,7 @@ import java.util.LinkedList;
  */
 
 public class Node extends Point implements Observable, Cloneable {
+    public static final Double fireProbability = 0.005;
 
     /**
      * Logger de la classe
