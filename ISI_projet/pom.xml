@@ -72,8 +72,8 @@
                             <outputDirectory>${basedir}/target/ISI_Projet</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>resources</directory>
-                                    <filtering>true</filtering>
+                                    <directory>src/main/resources</directory>
+                                    <filtering>false</filtering>
                                 </resource>
                             </resources>
                         </configuration>

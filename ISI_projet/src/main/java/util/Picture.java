@@ -18,6 +18,6 @@ public enum Picture {
     }
 
     public String getURL() {
-        return Picture.class.getClassLoader().getResource(dir + '/' + url).getFile();
+        return dir + '/' + url;
     }
 }
