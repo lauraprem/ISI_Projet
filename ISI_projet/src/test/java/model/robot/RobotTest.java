@@ -1,11 +1,8 @@
 package model.robot;
 
-import model.graph.Node;
-import model.graph.Point;
+import model.graph.*;
 import util.PointUtil;
 import model.graph.graph.GraphUtilTest;
-import model.graph.Ground;
-import model.graph.GroundType;
 import model.manager.Manager;
 import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;

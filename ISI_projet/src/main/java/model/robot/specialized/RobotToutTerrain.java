@@ -3,7 +3,7 @@ package model.robot.specialized;
 import model.graph.Node;
 import model.graph.IGraph;
 import model.pathSearch.IShorterPathSearch;
-import model.robot.Capacity;
+import util.Capacity;
 import model.robot.Robot;
 import util.Picture;
 import util.struct.Observer;

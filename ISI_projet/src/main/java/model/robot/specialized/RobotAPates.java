@@ -3,7 +3,7 @@ package model.robot.specialized;
 import model.graph.Node;
 import model.graph.IGraph;
 import model.pathSearch.IShorterPathSearch;
-import model.robot.Capacity;
+import util.Capacity;
 import model.robot.Robot;
 import util.Picture;
 import util.struct.Observer;
@@ -25,7 +25,8 @@ public class RobotAPates extends Robot {
      * @param _pathFinder                méthode de calcul du plus court chemin
      * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
      */
-    public RobotAPates(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity, Observer o) {
+    public RobotAPates(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder,
+                       Integer _decreaseFireLevelCapacity, Observer o) {
         super(Capacity.aPateCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
     }
 

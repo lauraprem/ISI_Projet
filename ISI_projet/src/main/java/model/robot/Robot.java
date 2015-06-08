@@ -1,11 +1,8 @@
 package model.robot;
 
+import model.graph.*;
 import util.struct.Observable;
-import model.graph.Node;
-import model.graph.Point;
 import util.PointUtil;
-import model.graph.IGraph;
-import model.graph.GroundType;
 import model.pathSearch.IShorterPathSearch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,18 +73,6 @@ public abstract class Robot implements Observable, Updatable {
      * Capacité du robot à réduire l'intensité d'un feu
      */
     private Integer decreaseFireLevelCapacity;
-
-    /**
-     * Constructeur du robot. Le robot n'est pas occupé.
-     *
-     * @param _capacity   liste des terrains sur lesquels les robots peuvent evoluer
-     * @param _graph      graph sur lequel le robot se déplace
-     * @param _startNode  noeud sur lequel se trouve le robot pour commencer
-     * @param _pathFinder méthode de calcul du plus court chemin
-     */
-    public Robot(List<GroundType> _capacity, IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Observer o) {
-        this(_capacity, _graph, _startNode, _pathFinder, null, o);
-    }
 
     /**
      * Constructeur du robot. Le robot n'est pas occupé.

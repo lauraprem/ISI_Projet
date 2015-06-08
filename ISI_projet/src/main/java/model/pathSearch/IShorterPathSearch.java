@@ -3,7 +3,7 @@ package model.pathSearch;
 import model.graph.Node;
 import model.graph.IGraph;
 import model.graph.GroundType;
-import model.robot.NodePath;
+import model.graph.NodePath;
 
 import java.util.List;
 

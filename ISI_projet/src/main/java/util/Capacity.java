@@ -1,4 +1,4 @@
-package model.robot;
+package util;
 
 import model.graph.GroundType;
 

@@ -5,7 +5,7 @@ import util.GraphUtil;
 import model.graph.IGraph;
 import model.graph.GroundType;
 import model.pathSearch.IShorterPathSearch;
-import model.robot.NodePath;
+import model.graph.NodePath;
 
 import java.util.ArrayList;
 import java.util.List;

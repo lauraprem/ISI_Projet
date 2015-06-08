@@ -7,7 +7,7 @@ import model.graph.impl.Graph;
 import model.graph.Ground;
 import model.graph.GroundType;
 import model.pathSearch.impl.Djikstra;
-import model.robot.NodePath;
+import model.graph.NodePath;
 import org.junit.Before;
 import org.junit.Test;
 
