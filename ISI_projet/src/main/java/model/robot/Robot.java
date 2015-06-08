@@ -1,11 +1,11 @@
 package model.robot;
 
 import model.graph.*;
-import util.struct.Observable;
-import util.PointUtil;
 import model.pathSearch.IShorterPathSearch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.PointUtil;
+import util.struct.Observable;
 import util.struct.Observer;
 import util.struct.Updatable;
 
@@ -18,11 +18,11 @@ import java.util.List;
  * @author Laura
  */
 public abstract class Robot implements Observable, Updatable {
-    private static Double vitesse = 3.0;
     /**
      * Logger de la classe
      */
     private final static Logger logger = LogManager.getLogger();
+    private static Double vitesse = 3.0;
     /**
      * Liste des observeurs du robot
      */
@@ -94,6 +94,10 @@ public abstract class Robot implements Observable, Updatable {
         addObserver(o);
     }
 
+    public static Double getVitesse() {
+        return vitesse;
+    }
+
     /**
      * Le robot tente d'éteindre un feu. Il va diminuer l'intensité du feu d'autant qu'il en est capable.
      * Si le feu est éteind à l'issu de l'opération, la probabilité que les arretes adjacentes au noeud soient inondés augmente. Il est même possible que ces arretes soient effectivement inondées.
@@ -110,7 +114,7 @@ public abstract class Robot implements Observable, Updatable {
             edge.getGround().increaseChancesOfGettingFlooded(0.01);
             edge.update();
         });
-        if(!currentNode.isOnFire()) currentNode.setTakenCareOf(Boolean.FALSE);
+        if (!currentNode.isOnFire()) currentNode.setTakenCareOf(Boolean.FALSE);
         return !currentNode.isOnFire();
     }
 
@@ -129,7 +133,7 @@ public abstract class Robot implements Observable, Updatable {
     }
 
     public void acceptPath() {
-        if(path.getDestination() != null) {
+        if (path.getDestination() != null) {
             busy = Boolean.TRUE;
             path.getDestination().setTakenCareOf(Boolean.TRUE);
             path.accept();
@@ -229,11 +233,6 @@ public abstract class Robot implements Observable, Updatable {
         return new Point(currentNode).equals(position);
     }
 
-    public static Double getVitesse() {
-        return vitesse;
-    }
-
-
     public void update() {
         if (nextNode == null) {
             nextNode = (path.hasNext() ? path.next() : null);
@@ -241,13 +240,12 @@ public abstract class Robot implements Observable, Updatable {
         }
 
         if (nextNode != null && !currentNode.equals(nextNode)) {
-            if(!positionIsEqualToCurrentNode() && !capacity.contains(graph.getEdgeFromNodes(currentNode, nextNode).getGround().getType())) {
-                if(path.getDestination() == null) nextNode.setTakenCareOf(Boolean.FALSE);
+            if (!positionIsEqualToCurrentNode() && !capacity.contains(graph.getEdgeFromNodes(currentNode, nextNode).getGround().getType())) {
+                if (path.getDestination() == null) nextNode.setTakenCareOf(Boolean.FALSE);
                 else path.getDestination().setTakenCareOf(Boolean.FALSE);
                 nextNode = null;
                 path = new NodePath();
-            }
-            else if (PointUtil.getDistance(position, nextNode) < vitesse) {
+            } else if (PointUtil.getDistance(position, nextNode) < vitesse) {
                 setPosition(new Point(nextNode));
                 currentNode = nextNode;
                 nextNode = null;
@@ -261,7 +259,7 @@ public abstract class Robot implements Observable, Updatable {
                     "It's now available for annother task.", currentNode));
         }
 
-        if(busy == Boolean.TRUE && nextNode == null && !positionIsEqualToCurrentNode()) {
+        if (busy == Boolean.TRUE && nextNode == null && !positionIsEqualToCurrentNode()) {
             busy = Boolean.FALSE;
             nextNode = null;
         }

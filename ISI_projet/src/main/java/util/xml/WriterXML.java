@@ -1,8 +1,8 @@
 package util.xml;
 
-import model.graph.Node;
 import model.graph.Edge;
 import model.graph.IGraph;
+import model.graph.Node;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Attr;

@@ -1,16 +1,15 @@
 package controler;
 
-import util.GraphUtil;
-import model.graph.IGraph;
 import model.Manager;
+import model.graph.IGraph;
 import model.pathSearch.impl.Djikstra;
+import util.GraphUtil;
 import util.xml.FileXML;
 import view.MainWindow;
 import view.MenuLabel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

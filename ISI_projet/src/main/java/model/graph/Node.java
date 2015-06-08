@@ -1,8 +1,8 @@
 package model.graph;
 
-import util.struct.Observable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.struct.Observable;
 import util.struct.Observer;
 
 import java.util.ArrayList;

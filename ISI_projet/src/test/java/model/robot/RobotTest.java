@@ -1,14 +1,14 @@
 package model.robot;
 
-import model.graph.*;
-import util.PointUtil;
-import model.graph.graph.GraphUtilTest;
 import model.Manager;
+import model.graph.*;
+import model.graph.graph.GraphUtilTest;
 import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;
 import org.junit.Before;
 import org.junit.Test;
+import util.PointUtil;
 import util.Util;
 
 import static org.junit.Assert.*;
@@ -85,7 +85,7 @@ public class RobotTest extends GraphUtilTest {
     @Test
     public void testMultiUpdatePositionTrue() throws Exception {
         NodePath nodePath = new NodePath();
-        onFire.setX(robot.getPosition().getX() + Robot.getVitesse()*1.5);
+        onFire.setX(robot.getPosition().getX() + Robot.getVitesse() * 1.5);
         onFire.setY(robot.getPosition().getY());
         nodePath.addLast(onFire);
         Util.invokeMethod(robot, "setPath", nodePath);
@@ -99,7 +99,7 @@ public class RobotTest extends GraphUtilTest {
     @Test
     public void testMultiUpdatePositionFalse() throws Exception {
         NodePath nodePath = new NodePath();
-        onFire.setX(robot.getPosition().getX() + Robot.getVitesse()*1.5);
+        onFire.setX(robot.getPosition().getX() + Robot.getVitesse() * 1.5);
         onFire.setY(robot.getPosition().getY());
         nodePath.addLast(onFire);
         Util.invokeMethod(robot, "setPath", nodePath);

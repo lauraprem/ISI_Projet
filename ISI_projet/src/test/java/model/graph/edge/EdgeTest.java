@@ -1,10 +1,6 @@
 package model.graph.edge;
 
-import model.graph.Edge;
-import model.graph.Node;
-import model.graph.Point;
-import model.graph.Ground;
-import model.graph.GroundType;
+import model.graph.*;
 import org.junit.Before;
 import org.junit.Test;
 

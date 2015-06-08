@@ -44,11 +44,11 @@ public class MainWindow extends JFrame {
         this.drawing = drawing;
     }
 
-	public Manager getModel() {
-		return model;
-	}
+    public Manager getModel() {
+        return model;
+    }
 
-	public void setModel(Manager model) {
-		this.model = model;
-	}
+    public void setModel(Manager model) {
+        this.model = model;
+    }
 }

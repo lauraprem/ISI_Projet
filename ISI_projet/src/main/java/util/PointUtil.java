@@ -49,6 +49,6 @@ public class PointUtil {
      */
     public static Point getUnitaryDelta(Point p1, Point p2) {
         Point delta = getDelta(p1, p2);
-        return delta.getLength() != 0 ? delta.scale(1/delta.getLength()) : new Point();
+        return delta.getLength() != 0 ? delta.scale(1 / delta.getLength()) : new Point();
     }
 }

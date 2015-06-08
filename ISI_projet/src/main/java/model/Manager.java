@@ -1,14 +1,14 @@
 package model;
 
-import util.struct.Observable;
-import model.graph.Node;
 import model.graph.Edge;
-import util.GraphUtil;
 import model.graph.IGraph;
+import model.graph.Node;
 import model.graph.impl.Graph;
 import model.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.GraphUtil;
+import util.struct.Observable;
 import util.struct.Observer;
 
 import java.util.*;

@@ -1,8 +1,8 @@
 package model.pathSearch;
 
-import model.graph.Node;
-import model.graph.IGraph;
 import model.graph.GroundType;
+import model.graph.IGraph;
+import model.graph.Node;
 import model.graph.NodePath;
 
 import java.util.List;

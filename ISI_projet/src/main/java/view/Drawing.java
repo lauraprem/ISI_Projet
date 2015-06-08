@@ -1,7 +1,7 @@
 package view;
 
-import model.graph.Node;
 import model.Manager;
+import model.graph.Node;
 import util.struct.Observer;
 
 import javax.swing.*;
@@ -46,7 +46,7 @@ public class Drawing extends JPanel implements Observer {
         graph.setStroke(new BasicStroke(5.0f));
 
         // Carte de fond
-        g.drawImage(img, 0, 0, img.getWidth(null) ,
+        g.drawImage(img, 0, 0, img.getWidth(null),
                 img.getHeight(null), this);
 
         // Dessine les arc
@@ -92,7 +92,7 @@ public class Drawing extends JPanel implements Observer {
     public void update() {
         repaint();
     }
-    
+
     public Image getImg() {
         return img;
     }

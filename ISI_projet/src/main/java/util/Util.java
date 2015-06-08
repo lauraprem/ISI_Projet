@@ -1,7 +1,5 @@
 package util;
 
-import com.sun.istack.internal.NotNull;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -10,7 +8,7 @@ import java.lang.reflect.Method;
  *         27/05/2015
  */
 public class Util {
-    private static Object invokeMethod(@NotNull Class methodClass, @NotNull Object instance, @NotNull String methodName, Object... params) {
+    private static Object invokeMethod(Class methodClass, Object instance, String methodName, Object... params) {
         Class[] paramTypes = null;
         if (params != null) {
             paramTypes = new Class[params.length];
@@ -33,7 +31,7 @@ public class Util {
         return null;
     }
 
-    public static Object invokeMethod(@NotNull Object instance, @NotNull String methodName, Object... params) {
+    public static Object invokeMethod(Object instance, String methodName, Object... params) {
         return invokeMethod(instance.getClass(), instance, methodName, params);
     }
 }

@@ -1,8 +1,5 @@
 package model.graph;
 
-import model.graph.Node;
-import model.graph.Edge;
-import model.graph.Ground;
 import util.struct.Observer;
 import util.struct.Updatable;
 
@@ -56,6 +53,7 @@ public interface IGraph extends Updatable {
     void addEdge(Edge edge, Observer o);
 
     void addEdge(Node _node1, Node _node2, Double length, Ground ground, Observer o);
+
     /**
      * @return vrai si le graph possede une arrete entre les noeuds _n1 et _n2
      */

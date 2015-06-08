@@ -1,6 +1,5 @@
 package view;
 
-import model.graph.Node;
 import model.graph.Point;
 import model.robot.Robot;
 

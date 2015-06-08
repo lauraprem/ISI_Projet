@@ -1,13 +1,9 @@
 package view.about;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import view.MenuLabel;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class AboutWindow extends JFrame {
 

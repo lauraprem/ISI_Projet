@@ -40,24 +40,24 @@ public class Point implements Cloneable {
         return x.intValue();
     }
 
-    public void setX(Integer x) {
-        this.x = x.doubleValue();
-    }
-
     public void setX(Double x) {
         setX(x.intValue());
+    }
+
+    public void setX(Integer x) {
+        this.x = x.doubleValue();
     }
 
     public Integer getY() {
         return y.intValue();
     }
 
-    public void setY(Integer y) {
-        this.y = y.doubleValue();
-    }
-
     public void setY(Double y) {
         setY(y.intValue());
+    }
+
+    public void setY(Integer y) {
+        this.y = y.doubleValue();
     }
 
     public Double getLength() {

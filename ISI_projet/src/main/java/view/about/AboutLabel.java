@@ -8,6 +8,7 @@ public class AboutLabel {
     public final static String VERSION = "1.0";
     public final static String DUTIES = "Copyright 2015";
     public final static String AUTOR = "Réalisé par Corinne Fagno <br>& Gael Ferjani & Alexandre Galdeano & Laura Premillieu";
+
     private AboutLabel() {
 
     }

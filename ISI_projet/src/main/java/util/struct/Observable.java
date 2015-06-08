@@ -1,8 +1,5 @@
 package util.struct;
 
-import util.struct.Observer;
-
-
 /**
  * @author Corinne
  */
