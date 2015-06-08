@@ -9,7 +9,7 @@ import java.util.List;
  * @author Alexandre
  *         26/05/2015
  */
-public class Capacity {
+public class CapacityUtil {
     /**
      * Capacité des robots tout terrains
      *

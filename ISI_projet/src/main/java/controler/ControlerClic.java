@@ -9,7 +9,7 @@ import util.PointUtil;
 import model.graph.Edge;
 import model.graph.Ground;
 import model.graph.GroundType;
-import model.manager.Manager;
+import model.Manager;
 import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;

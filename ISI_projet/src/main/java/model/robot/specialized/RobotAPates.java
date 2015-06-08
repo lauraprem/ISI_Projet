@@ -3,7 +3,7 @@ package model.robot.specialized;
 import model.graph.Node;
 import model.graph.IGraph;
 import model.pathSearch.IShorterPathSearch;
-import util.Capacity;
+import util.CapacityUtil;
 import model.robot.Robot;
 import util.Picture;
 import util.struct.Observer;
@@ -27,7 +27,7 @@ public class RobotAPates extends Robot {
      */
     public RobotAPates(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder,
                        Integer _decreaseFireLevelCapacity, Observer o) {
-        super(Capacity.aPateCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
+        super(CapacityUtil.aPateCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
     }
 
     /**

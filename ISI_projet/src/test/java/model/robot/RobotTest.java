@@ -3,7 +3,7 @@ package model.robot;
 import model.graph.*;
 import util.PointUtil;
 import model.graph.graph.GraphUtilTest;
-import model.manager.Manager;
+import model.Manager;
 import model.pathSearch.impl.Djikstra;
 import model.robot.specialized.RobotAPates;
 import model.robot.specialized.RobotChenille;

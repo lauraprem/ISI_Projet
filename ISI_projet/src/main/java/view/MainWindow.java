@@ -1,8 +1,7 @@
 package view;
 
-import model.manager.Manager;
+import model.Manager;
 import util.Picture;
-import view.about.AboutLabel;
 
 import javax.swing.*;
 import java.awt.*;

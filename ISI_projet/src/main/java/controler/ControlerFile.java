@@ -2,7 +2,7 @@ package controler;
 
 import util.GraphUtil;
 import model.graph.IGraph;
-import model.manager.Manager;
+import model.Manager;
 import model.pathSearch.impl.Djikstra;
 import util.xml.FileXML;
 import view.MainWindow;

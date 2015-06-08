@@ -1,7 +1,7 @@
 package view;
 
 import model.graph.Node;
-import model.manager.Manager;
+import model.Manager;
 import util.struct.Observer;
 
 import javax.swing.*;

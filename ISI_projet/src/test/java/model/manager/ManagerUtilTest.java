@@ -1,5 +1,6 @@
 package model.manager;
 
+import model.Manager;
 import model.graph.Node;
 import model.graph.impl.Graph;
 import model.pathSearch.impl.Djikstra;
@@ -8,6 +9,7 @@ import model.robot.specialized.RobotChenille;
 import model.robot.specialized.RobotToutTerrain;
 import org.junit.Before;
 import org.junit.Test;
+import util.ManagerUtil;
 
 import java.util.List;
 import java.util.Random;

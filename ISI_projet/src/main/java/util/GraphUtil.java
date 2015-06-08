@@ -74,7 +74,7 @@ public class GraphUtil {
         for (int i = 0; i < nodes.size(); i++) {
             for (int j = i + 1; j < nodes.size(); j++) {
                 if (pathSearch.findShorterPath(
-                        graph, nodes.get(i), nodes.get(j), Capacity.allCapacity(), new NodePath())
+                        graph, nodes.get(i), nodes.get(j), CapacityUtil.allCapacity(), new NodePath())
                         < 0.0) return Boolean.FALSE;
             }
         }

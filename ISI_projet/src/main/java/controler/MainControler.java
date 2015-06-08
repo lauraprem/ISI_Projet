@@ -2,7 +2,7 @@ package controler;
 
 import javax.swing.JMenuItem;
 
-import model.manager.Manager;
+import model.Manager;
 import view.MainWindow;
 import view.MenuLabel;
 

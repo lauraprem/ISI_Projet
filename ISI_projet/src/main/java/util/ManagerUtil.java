@@ -1,5 +1,6 @@
-package model.manager;
+package util;
 
+import model.Manager;
 import model.robot.Robot;
 
 import java.util.List;

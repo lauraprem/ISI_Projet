@@ -3,7 +3,7 @@ package model.robot.specialized;
 import model.graph.Node;
 import model.graph.IGraph;
 import model.pathSearch.IShorterPathSearch;
-import util.Capacity;
+import util.CapacityUtil;
 import model.robot.Robot;
 import util.Picture;
 import util.struct.Observer;
@@ -26,7 +26,7 @@ public class RobotToutTerrain extends Robot {
      * @param _decreaseFireLevelCapacity nombre d'unité de réduction de l'intensité d'un feu
      */
     public RobotToutTerrain(IGraph _graph, Node _startNode, IShorterPathSearch _pathFinder, Integer _decreaseFireLevelCapacity, Observer o) {
-        super(Capacity.toutTerrainCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
+        super(CapacityUtil.toutTerrainCapacity(), _graph, _startNode, _pathFinder, _decreaseFireLevelCapacity, o);
     }
 
     /**

@@ -1,6 +1,6 @@
 package controler;
 
-import model.manager.Manager;
+import model.Manager;
 import view.MainWindow;
 
 import java.awt.event.WindowAdapter;
