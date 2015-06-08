@@ -98,7 +98,7 @@ public class ControlerClic implements MouseListener {
 
 		case MenuLabel.ADD_FIRE:
 			if (n1 != null) {
-				n1.increaseFireLevel(10);
+				model.increaseFireLevel(n1);
 			}
 			resetCurrentNodes();
 			break;

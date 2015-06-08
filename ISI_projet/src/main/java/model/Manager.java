@@ -167,6 +167,11 @@ public class Manager extends Thread implements Observable, Observer {
         notifyObserver();
     }
 
+    public synchronized void increaseFireLevel(Node n) {
+        n.increaseFireLevel(10);
+        notifyObserver();
+    }
+
     public synchronized void addEdge(Edge e) {
         graph.addEdge(e, this);
         notifyObserver();
